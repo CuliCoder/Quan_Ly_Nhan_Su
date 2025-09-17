@@ -15,7 +15,7 @@ namespace Quan_Ly_Nhan_Su
             connectDB connectDB = new connectDB();
             MySqlConnection con = connectDB.getConnection();
             con.Open();
-            string query = "select * from user";
+            string query = "select * from nhanvien";
             MySqlCommand mySqlCommand = new MySqlCommand(query, con);
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
             while (reader.Read())
