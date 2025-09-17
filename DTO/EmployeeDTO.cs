@@ -16,3 +16,4 @@ namespace YourNamespace.DTO
         public string MaTaiKhoan { get; set; }
         public string MaPhong { get; set; }
     }
+}
