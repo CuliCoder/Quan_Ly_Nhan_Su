@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Quan_Ly_Nhan_Su.GUI;
 
 namespace Quan_Ly_Nhan_Su
 {
@@ -12,16 +13,8 @@ namespace Quan_Ly_Nhan_Su
     {
         static void Main()
         {
-            connectDB connectDB = new connectDB();
-            MySqlConnection con = connectDB.getConnection();
-            con.Open();
-            string query = "select * from nhanvien";
-            MySqlCommand mySqlCommand = new MySqlCommand(query, con);
-            MySqlDataReader reader = mySqlCommand.ExecuteReader();
-            while (reader.Read())
-            {
-                Console.WriteLine(reader.GetString(1));
-            }
+            mainGUI mainGUI = new mainGUI();
+            Application.Run(mainGUI);
         }
     }
 }
