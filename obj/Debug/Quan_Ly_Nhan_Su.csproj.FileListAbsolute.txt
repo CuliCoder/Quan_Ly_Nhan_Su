@@ -84,3 +84,4 @@ C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.csproj.CoreComp
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_.0AC7D4CC.Up2Date
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.pdb
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.mainGUI.resources
