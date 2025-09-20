@@ -84,6 +84,7 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -108,14 +109,38 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ContractGUI.Designer.cs">
+      <DependentUpon>ContractGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LaborContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LaborContractGUI.Designer.cs">
+      <DependentUpon>LaborContractGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\mainGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\mainGUI.Designer.cs">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\StatisticsGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\StatisticsGUI.Designer.cs">
+      <DependentUpon>StatisticsGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\ContractGUI.resx">
+      <DependentUpon>ContractGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LaborContractGUI.resx">
+      <DependentUpon>LaborContractGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\mainGUI.resx">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +152,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -145,6 +171,12 @@
   <ItemGroup>
     <Folder Include="BUS\" />
     <Folder Include="DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiem.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

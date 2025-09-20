@@ -17,6 +17,11 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             designForm();
+
+            // Gán sự kiện click cho panel, label, pictureBox của Hợp đồng
+            this.pnlbHopDong.Click += pnlbHopDong_Click;
+            this.label5.Click += pnlbHopDong_Click;
+            this.pictureBox9.Click += pnlbHopDong_Click;
         }
         private void designForm()
         {
@@ -76,6 +81,30 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pnlbHopDong_Click(object sender, EventArgs e)
+        {
+            this.pnContent.Controls.Clear();
+            var laborContractGUI = new LaborContractGUI();
+            laborContractGUI.Dock = DockStyle.Fill;
+            this.pnContent.Controls.Add(laborContractGUI);
+        }
+
+        private void pnlbHopDong_Paint(object sender, PaintEventArgs e)
+        {
+               this.pnContent.Controls.Clear();
+            var laborContractGUI = new LaborContractGUI();
+            laborContractGUI.Dock = DockStyle.Fill;
+            this.pnContent.Controls.Add(laborContractGUI);
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            this.pnContent.Controls.Clear();
+            var laborContractGUI = new LaborContractGUI();
+            laborContractGUI.Dock = DockStyle.Fill;
+            this.pnContent.Controls.Add(laborContractGUI);
         }
     }
 }
