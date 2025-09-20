@@ -118,50 +118,50 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Searches for recruitment batches by maTuyenDung or chucVu
         /// </summary>
-        public List<RecruitmentBatchDTO> Search(string searchTerm)
-        {
-            var batches = new List<RecruitmentBatchDTO>();
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "SELECT * FROM dottuyendung WHERE maTuyenDung = @searchTerm OR chucVu LIKE @searchTermLike";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@searchTerm", searchTerm);
-                    command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            batches.Add(new RecruitmentBatchDTO
-                            {
-                                MaTuyenDung = reader.GetString("maTuyenDung"),
-                                ChucVu = reader.GetString("chucVu"),
-                                HocVan = reader.IsDBNull(reader.GetOrdinal("hocVan")) ? null : reader.GetString("hocVan"),
-                                GioiTinh = reader.IsDBNull(reader.GetOrdinal("gioiTinh")) ? null : reader.GetString("gioiTinh"),
-                                DoTuoi = reader.IsDBNull(reader.GetOrdinal("doTuoi")) ? null : reader.GetString("doTuoi"),
-                                SoLuongCanTuyen = reader.GetInt32("soLuongCanTuyen"),
-                                HanNopHoSo = reader.GetDateTime("hanNopHoSo"),
-                                MucLuongToiThieu = reader.IsDBNull(reader.GetOrdinal("mucLuongToiThieu")) ? null : reader.GetDecimal("mucLuongToiThieu"),
-                                MucLuongToiDa = reader.IsDBNull(reader.GetOrdinal("mucLuongToiDa")) ? null : reader.GetDecimal("mucLuongToiDa"),
-                                SoLuongNopHoSo = reader.GetInt32("soLuongNopHoSo"),
-                                SoLuongDaTuyen = reader.GetInt32("soLuongDaTuyen")
-                            });
-                        }
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error searching recruitment batches: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-            return batches;
-        }
+        //public List<RecruitmentBatchDTO> Search(string searchTerm)
+        //{
+        //    var batches = new List<RecruitmentBatchDTO>();
+        //    MySqlConnection conn = null;
+        //    try
+        //    {
+        //        conn = connectDB.getConnection();
+        //        conn.Open();
+        //        string query = "SELECT * FROM dottuyendung WHERE maTuyenDung = @searchTerm OR chucVu LIKE @searchTermLike";
+        //        using (var command = new MySqlCommand(query, conn))
+        //        {
+        //            command.Parameters.AddWithValue("@searchTerm", searchTerm);
+        //            command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
+        //            using (var reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    batches.Add(new RecruitmentBatchDTO
+        //                    {
+        //                        MaTuyenDung = reader.GetString("maTuyenDung"),
+        //                        ChucVu = reader.GetString("chucVu"),
+        //                        HocVan = reader.IsDBNull(reader.GetOrdinal("hocVan")) ? null : reader.GetString("hocVan"),
+        //                        GioiTinh = reader.IsDBNull(reader.GetOrdinal("gioiTinh")) ? null : reader.GetString("gioiTinh"),
+        //                        DoTuoi = reader.IsDBNull(reader.GetOrdinal("doTuoi")) ? null : reader.GetString("doTuoi"),
+        //                        SoLuongCanTuyen = reader.GetInt32("soLuongCanTuyen"),
+        //                        HanNopHoSo = reader.GetDateTime("hanNopHoSo"),
+        //                        MucLuongToiThieu = reader.IsDBNull(reader.GetOrdinal("mucLuongToiThieu")) ? null : reader.GetDecimal("mucLuongToiThieu"),
+        //                        MucLuongToiDa = reader.IsDBNull(reader.GetOrdinal("mucLuongToiDa")) ? null : reader.GetDecimal("mucLuongToiDa"),
+        //                        SoLuongNopHoSo = reader.GetInt32("soLuongNopHoSo"),
+        //                        SoLuongDaTuyen = reader.GetInt32("soLuongDaTuyen")
+        //                    });
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        Console.WriteLine($"Error searching recruitment batches: {ex.Message}");
+        //    }
+        //    finally
+        //    {
+        //        connectDB.closeConnection(conn);
+        //    }
+        //    return batches;
+        //}
     }
 }

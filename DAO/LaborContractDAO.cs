@@ -91,4 +91,19 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "DELETE FROM hopdonglaodong WHERE maHopDong =
+                string query = "DELETE FROM hopdonglaodong WHERE maHopDong =";
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error deleting labor contract: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+
+            return false;
+        }
+    }
+}
