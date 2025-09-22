@@ -77,7 +77,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nhanVienNhapLieu1 = new Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVienNhapLieu();
             this.pnMainGui.SuspendLayout();
             this.pnSideBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -174,7 +173,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label12.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(69, 7);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 35);
             this.label12.TabIndex = 1;
             this.label12.Text = "Đăng xuất";
             this.label12.Click += new System.EventHandler(this.label12_Click);
@@ -594,15 +592,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // nhanVienNhapLieu1
-            // 
-            this.nhanVienNhapLieu1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.nhanVienNhapLieu1.Location = new System.Drawing.Point(336, 53);
-            this.nhanVienNhapLieu1.Name = "nhanVienNhapLieu1";
-            this.nhanVienNhapLieu1.Size = new System.Drawing.Size(1104, 735);
-            this.nhanVienNhapLieu1.TabIndex = 2;
-            // 
+        
             // mainGUI
             // 
             this.ClientSize = new System.Drawing.Size(1440, 786);
