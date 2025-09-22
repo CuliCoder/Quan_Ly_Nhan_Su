@@ -80,16 +80,30 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void pnlbTrangChu_Click(object sender, EventArgs e)
         {
-            bodyContent.Controls.Clear();
+            //bodyContent.Controls.Clear();
 
 
 
-            homePage home = new homePage();
-            home.Dock = DockStyle.Fill;
+            //homePage home = new homePage();
+            //home.Dock = DockStyle.Fill;
 
-            bodyContent.Controls.Add(home);
+            //bodyContent.Controls.Add(home);
 
-            pnlbTrangChu.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
+            //pnlbTrangChu.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+           
+        }
+     
+        private void pnlbHopDong_Click(object sender, EventArgs e)
+        {
+            //bodyContent.Controls.Clear();
+            //ContractGUI contract = new ContractGUI();
+            //contract.Dock = DockStyle.Fill;
+            //bodyContent.Controls.Add(contract);
+            pnlbHopDong.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");  
         }
     }
-}
+    }
