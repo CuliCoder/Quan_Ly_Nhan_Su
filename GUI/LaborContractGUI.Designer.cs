@@ -16,12 +16,14 @@
         #region Component Designer generated code
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageHopDong = new System.Windows.Forms.TabPage();
             this.tabPageKiHopDong = new System.Windows.Forms.TabPage();
             this.tabPageThongKe = new System.Windows.Forms.TabPage();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.dataGridViewNhanVien = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -32,16 +34,29 @@
             this.panelRight = new System.Windows.Forms.Panel();
             this.buttonTaoHopDong = new System.Windows.Forms.Button();
             this.groupBoxThongTin = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelMucLuongValue = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.labelChucVuValue = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.labelPhongBanValue = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.labelChuyenNganhValue = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.labelHocVanValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelCCCDValue = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.labelEmailValue = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.labelSDTValue = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.labelDiaChiValue = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.labelGioiTinhValue = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.labelNgaySinhValue = new System.Windows.Forms.Label();
             this.labelNhanVienValue = new System.Windows.Forms.Label();
             this.labelMucLuong = new System.Windows.Forms.Label();
@@ -63,19 +78,6 @@
             this.labelThoiHan = new System.Windows.Forms.Label();
             this.labelKetThuc = new System.Windows.Forms.Label();
             this.labelBatDau = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -97,14 +99,14 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 1;
-            this.tabControl.Size = new System.Drawing.Size(1307, 40);
+            this.tabControl.Size = new System.Drawing.Size(1307, 48);
             this.tabControl.TabIndex = 0;
             // 
             // tabPageHopDong
             // 
             this.tabPageHopDong.Location = new System.Drawing.Point(4, 29);
             this.tabPageHopDong.Name = "tabPageHopDong";
-            this.tabPageHopDong.Size = new System.Drawing.Size(1299, 7);
+            this.tabPageHopDong.Size = new System.Drawing.Size(1299, 15);
             this.tabPageHopDong.TabIndex = 0;
             this.tabPageHopDong.Text = "HỢP ĐỒNG";
             this.tabPageHopDong.UseVisualStyleBackColor = true;
@@ -133,25 +135,38 @@
             this.panelMain.Controls.Add(this.panelLeft);
             this.panelMain.Controls.Add(this.panelRight);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 40);
+            this.panelMain.Location = new System.Drawing.Point(0, 48);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1307, 791);
+            this.panelMain.Size = new System.Drawing.Size(1307, 783);
             this.panelMain.TabIndex = 1;
             // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.White;
+            this.panelLeft.Controls.Add(this.label14);
             this.panelLeft.Controls.Add(this.dataGridViewNhanVien);
             this.panelLeft.Controls.Add(this.labelDanhSach);
             this.panelLeft.Controls.Add(this.comboBoxPhongBan);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(800, 791);
+            this.panelLeft.Size = new System.Drawing.Size(800, 783);
             this.panelLeft.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(16, 43);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 20);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Phòng ban";
             // 
             // dataGridViewNhanVien
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridViewNhanVien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewNhanVien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -167,7 +182,7 @@
             this.dataGridViewNhanVien.Location = new System.Drawing.Point(4, 74);
             this.dataGridViewNhanVien.Name = "dataGridViewNhanVien";
             this.dataGridViewNhanVien.RowHeadersWidth = 62;
-            this.dataGridViewNhanVien.Size = new System.Drawing.Size(796, 717);
+            this.dataGridViewNhanVien.Size = new System.Drawing.Size(796, 709);
             this.dataGridViewNhanVien.TabIndex = 2;
             this.dataGridViewNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewNhanVien_CellContentClick_1);
             // 
@@ -226,7 +241,7 @@
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.Location = new System.Drawing.Point(800, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(507, 791);
+            this.panelRight.Size = new System.Drawing.Size(507, 783);
             this.panelRight.TabIndex = 1;
             // 
             // buttonTaoHopDong
@@ -290,6 +305,22 @@
             this.groupBoxThongTin.TabStop = false;
             this.groupBoxThongTin.Text = "HỢP ĐỒNG LAO ĐỘNG";
             // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Silver;
+            this.label13.Location = new System.Drawing.Point(160, 415);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(300, 25);
+            this.label13.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Silver;
+            this.label12.Location = new System.Drawing.Point(160, 368);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(300, 25);
+            this.label12.TabIndex = 22;
+            // 
             // labelMucLuongValue
             // 
             this.labelMucLuongValue.BackColor = System.Drawing.Color.Silver;
@@ -297,6 +328,14 @@
             this.labelMucLuongValue.Name = "labelMucLuongValue";
             this.labelMucLuongValue.Size = new System.Drawing.Size(300, 25);
             this.labelMucLuongValue.TabIndex = 23;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.Silver;
+            this.label11.Location = new System.Drawing.Point(160, 329);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(300, 25);
+            this.label11.TabIndex = 21;
             // 
             // labelChucVuValue
             // 
@@ -306,6 +345,14 @@
             this.labelChucVuValue.Size = new System.Drawing.Size(300, 25);
             this.labelChucVuValue.TabIndex = 22;
             // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.Silver;
+            this.label10.Location = new System.Drawing.Point(159, 292);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(300, 25);
+            this.label10.TabIndex = 20;
+            // 
             // labelPhongBanValue
             // 
             this.labelPhongBanValue.BackColor = System.Drawing.Color.Silver;
@@ -313,6 +360,14 @@
             this.labelPhongBanValue.Name = "labelPhongBanValue";
             this.labelPhongBanValue.Size = new System.Drawing.Size(300, 25);
             this.labelPhongBanValue.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.Silver;
+            this.label9.Location = new System.Drawing.Point(159, 251);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(300, 25);
+            this.label9.TabIndex = 19;
             // 
             // labelChuyenNganhValue
             // 
@@ -322,6 +377,14 @@
             this.labelChuyenNganhValue.Size = new System.Drawing.Size(300, 25);
             this.labelChuyenNganhValue.TabIndex = 20;
             // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.Silver;
+            this.label8.Location = new System.Drawing.Point(159, 205);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(300, 25);
+            this.label8.TabIndex = 18;
+            // 
             // labelHocVanValue
             // 
             this.labelHocVanValue.BackColor = System.Drawing.Color.Silver;
@@ -329,6 +392,22 @@
             this.labelHocVanValue.Name = "labelHocVanValue";
             this.labelHocVanValue.Size = new System.Drawing.Size(300, 25);
             this.labelHocVanValue.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Silver;
+            this.label1.Location = new System.Drawing.Point(160, 205);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(300, 25);
+            this.label1.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Silver;
+            this.label7.Location = new System.Drawing.Point(159, 170);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(300, 25);
+            this.label7.TabIndex = 17;
             // 
             // labelCCCDValue
             // 
@@ -338,6 +417,14 @@
             this.labelCCCDValue.Size = new System.Drawing.Size(300, 25);
             this.labelCCCDValue.TabIndex = 18;
             // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.Silver;
+            this.label6.Location = new System.Drawing.Point(159, 135);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(300, 25);
+            this.label6.TabIndex = 16;
+            // 
             // labelEmailValue
             // 
             this.labelEmailValue.BackColor = System.Drawing.Color.Silver;
@@ -345,6 +432,14 @@
             this.labelEmailValue.Name = "labelEmailValue";
             this.labelEmailValue.Size = new System.Drawing.Size(300, 25);
             this.labelEmailValue.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Silver;
+            this.label5.Location = new System.Drawing.Point(159, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(300, 25);
+            this.label5.TabIndex = 15;
             // 
             // labelSDTValue
             // 
@@ -354,6 +449,14 @@
             this.labelSDTValue.Size = new System.Drawing.Size(300, 25);
             this.labelSDTValue.TabIndex = 16;
             // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Silver;
+            this.label4.Location = new System.Drawing.Point(373, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 25);
+            this.label4.TabIndex = 14;
+            // 
             // labelDiaChiValue
             // 
             this.labelDiaChiValue.BackColor = System.Drawing.Color.Silver;
@@ -362,6 +465,14 @@
             this.labelDiaChiValue.Size = new System.Drawing.Size(300, 25);
             this.labelDiaChiValue.TabIndex = 15;
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(159, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 25);
+            this.label3.TabIndex = 13;
+            // 
             // labelGioiTinhValue
             // 
             this.labelGioiTinhValue.BackColor = System.Drawing.Color.Silver;
@@ -369,6 +480,14 @@
             this.labelGioiTinhValue.Name = "labelGioiTinhValue";
             this.labelGioiTinhValue.Size = new System.Drawing.Size(86, 25);
             this.labelGioiTinhValue.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Silver;
+            this.label2.Location = new System.Drawing.Point(159, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(300, 25);
+            this.label2.TabIndex = 12;
             // 
             // labelNgaySinhValue
             // 
@@ -546,110 +665,6 @@
             this.labelBatDau.TabIndex = 0;
             this.labelBatDau.Text = "Bắt đầu hợp đồng";
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(160, 205);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 25);
-            this.label1.TabIndex = 18;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(159, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(300, 25);
-            this.label2.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(159, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 25);
-            this.label3.TabIndex = 13;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(373, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 25);
-            this.label4.TabIndex = 14;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.Silver;
-            this.label5.Location = new System.Drawing.Point(159, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(300, 25);
-            this.label5.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.Silver;
-            this.label6.Location = new System.Drawing.Point(159, 135);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(300, 25);
-            this.label6.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(159, 170);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(300, 25);
-            this.label7.TabIndex = 17;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(159, 205);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(300, 25);
-            this.label8.TabIndex = 18;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(159, 251);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(300, 25);
-            this.label9.TabIndex = 19;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.Silver;
-            this.label10.Location = new System.Drawing.Point(159, 292);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(300, 25);
-            this.label10.TabIndex = 20;
-            // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.Color.Silver;
-            this.label11.Location = new System.Drawing.Point(160, 329);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(300, 25);
-            this.label11.TabIndex = 21;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.Color.Silver;
-            this.label12.Location = new System.Drawing.Point(160, 368);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(300, 25);
-            this.label12.TabIndex = 22;
-            // 
-            // label13
-            // 
-            this.label13.BackColor = System.Drawing.Color.Silver;
-            this.label13.Location = new System.Drawing.Point(160, 415);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(300, 25);
-            this.label13.TabIndex = 23;
-            // 
             // LaborContractGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -732,5 +747,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label14;
     }
 }

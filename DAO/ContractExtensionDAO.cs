@@ -1,125 +1,50 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using Quan_Ly_Nhan_Su.DTO;
+using YourNamespace.DTO;
 using Quan_Ly_Nhan_Su.config;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
     /// <summary>
-    /// Data Access Object for ContractExtension table
+    /// Data Access Object for LaborContract table
     /// </summary>
-    public class ContractExtensionDAO
+    public class LaborContractDAO
     {
         /// <summary>
-        /// Creates a new contract extension in the giahanhopdong table
+        /// Gets all labor contracts with employee and department details
         /// </summary>
-        public bool Create(ContractExtensionDTO extension)
+        public List<LaborContractDTO> GetAllContracts()
         {
+            var contracts = new List<LaborContractDTO>();
             MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "INSERT INTO giahanhopdong (maQuyetDinh, thoiGianGiaHan) VALUES (@maQuyetDinh, @thoiGianGiaHan)";
+                string query = @"
+                    SELECT 
+                        hd.maHopDong, nv.maNhanVien, nv.tenNhanVien, pb.tenPhongBan,
+                        hd.tuNgay, hd.denNgay, hd.loaiHopDong, hd.luongCoBan
+                    FROM hopdonglaodong hd
+                    INNER JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+                    INNER JOIN phongban pb ON nv.maPhongBan = pb.maPhongBan";
                 using (var command = new MySqlCommand(query, conn))
                 {
-                    command.Parameters.AddWithValue("@maQuyetDinh", extension.MaQuyetDinh);
-                    command.Parameters.AddWithValue("@thoiGianGiaHan", extension.ThoiGianGiaHan);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error creating contract extension: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
-
-        /// <summary>
-        /// Updates an existing contract extension in the giahanhopdong table
-        /// </summary>
-        public bool Update(ContractExtensionDTO extension)
-        {
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "UPDATE giahanhopdong SET thoiGianGiaHan = @thoiGianGiaHan WHERE maQuyetDinh = @maQuyetDinh";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@maQuyetDinh", extension.MaQuyetDinh);
-                    command.Parameters.AddWithValue("@thoiGianGiaHan", extension.ThoiGianGiaHan);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error updating contract extension: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
-
-        /// <summary>
-        /// Deletes a contract extension from the giahanhopdong table
-        /// </summary>
-        public bool Delete(string maQuyetDinh)
-        {
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "DELETE FROM giahanhopdong WHERE maQuyetDinh = @maQuyetDinh";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@maQuyetDinh", maQuyetDinh);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error deleting contract extension: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
-
-        /// <summary>
-        /// Searches for contract extensions by maQuyetDinh
-        /// </summary>
-        public List<ContractExtensionDTO> Search(string searchTerm)
-        {
-            var extensions = new List<ContractExtensionDTO>();
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "SELECT * FROM giahanhopdong WHERE maQuyetDinh = @searchTerm";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@searchTerm", searchTerm);
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            extensions.Add(new ContractExtensionDTO
+                            contracts.Add(new LaborContractDTO
                             {
-                                MaQuyetDinh = reader.GetString("maQuyetDinh"),
-                                ThoiGianGiaHan = reader.GetDecimal("thoiGianGiaHan")
+                                MaHopDong = reader.GetString("maHopDong"),
+                                MaNhanVien = reader.GetString("maNhanVien"),
+                                TenNhanVien = reader.GetString("tenNhanVien"),
+                                PhongBan = reader.GetString("tenPhongBan"),
+                                TuNgay = reader.IsDBNull(reader.GetOrdinal("tuNgay")) ? (DateTime?)null : reader.GetDateTime("tuNgay"),
+                                DenNgay = reader.IsDBNull(reader.GetOrdinal("denNgay")) ? (DateTime?)null : reader.GetDateTime("denNgay"),
+                                LoaiHopDong = reader.GetString("loaiHopDong"),
+                                LuongCoBan = reader.GetDecimal("luongCoBan")
                             });
                         }
                     }
@@ -127,13 +52,97 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Error searching contract extensions: {ex.Message}");
+                Console.WriteLine($"Error getting all contracts: {ex.Message}");
+                throw;
             }
             finally
             {
                 connectDB.closeConnection(conn);
             }
-            return extensions;
+            return contracts;
+        }
+
+        /// <summary>
+        /// Searches for labor contracts by keyword (supports partial match)
+        /// </summary>
+        public List<LaborContractDTO> SearchContracts(string searchTerm)
+        {
+            var contracts = new List<LaborContractDTO>();
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = @"
+                    SELECT 
+                        hd.maHopDong, nv.maNhanVien, nv.tenNhanVien, pb.tenPhongBan,
+                        hd.tuNgay, hd.denNgay, hd.loaiHopDong, hd.luongCoBan
+                    FROM hopdonglaodong hd
+                    INNER JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+                    INNER JOIN phongban pb ON nv.maPhongBan = pb.maPhongBan
+                    WHERE nv.maNhanVien LIKE @searchTerm 
+                       OR nv.tenNhanVien LIKE @searchTerm 
+                       OR pb.tenPhongBan LIKE @searchTerm";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            contracts.Add(new LaborContractDTO
+                            {
+                                MaHopDong = reader.GetString("maHopDong"),
+                                MaNhanVien = reader.GetString("maNhanVien"),
+                                TenNhanVien = reader.GetString("tenNhanVien"),
+                                PhongBan = reader.GetString("tenPhongBan"),
+                                TuNgay = reader.IsDBNull(reader.GetOrdinal("tuNgay")) ? (DateTime?)null : reader.GetDateTime("tuNgay"),
+                                DenNgay = reader.IsDBNull(reader.GetOrdinal("denNgay")) ? (DateTime?)null : reader.GetDateTime("denNgay"),
+                                LoaiHopDong = reader.GetString("loaiHopDong"),
+                                LuongCoBan = reader.GetDecimal("luongCoBan")
+                            });
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error searching contracts: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+            return contracts;
+        }
+
+        /// <summary>
+        /// Deletes a labor contract by maHopDong
+        /// </summary>
+        public bool DeleteContract(string maHopDong)
+        {
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = "DELETE FROM hopdonglaodong WHERE maHopDong = @maHopDong";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@maHopDong", maHopDong);
+                    return command.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error deleting contract: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
         }
     }
 }

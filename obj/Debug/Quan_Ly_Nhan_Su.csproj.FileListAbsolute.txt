@@ -131,3 +131,5 @@ C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.pdb
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.LaborContractGUI.resources
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.ContractGUI.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.StatisticsGUI.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.CT_LaborContractGUI.resources

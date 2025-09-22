@@ -1,36 +1,97 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
+using YourNamespace.DTO;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class ContractGUI : UserControl
     {
+        private readonly LaborContractBLL _bll;
+
         public ContractGUI()
         {
             InitializeComponent();
+            _bll = new LaborContractBLL();
             this.dataGridViewContracts.CellPainting += dataGridViewContracts_CellPainting;
+            LoadContracts();
         }
 
         private void ContractGUI_Load(object sender, EventArgs e)
         {
-            // Cấu hình cột cho DataGridView
-            dataGridViewContracts.Columns.Add("STT", "STT");
-            dataGridViewContracts.Columns.Add("Ma_TenNhanVien", "Mã - Tên nhân viên");
-            dataGridViewContracts.Columns.Add("PhongBan", "Phòng ban");
-            dataGridViewContracts.Columns.Add("TuNgay", "Từ ngày");
-            dataGridViewContracts.Columns.Add("DenNgay", "Đến ngày");
-            dataGridViewContracts.Columns.Add("LoaiHopDong", "Loại hợp đồng");
-            dataGridViewContracts.Columns.Add("LuongCoBan", "Lương cơ bản");
+            // Cấu hình cột cho DataGridView (đã được thiết kế trong Designer)
+            // Không cần thêm thủ công nữa vì đã có trong Designer
+        }
 
-            // Thêm dữ liệu mẫu
-            dataGridViewContracts.Rows.Add("1", "NV001 - Nguyen Van A", "Phòng Kế Toán", "01/09/2025", "01/03/2026", "Hợp đồng toàn thời gian", "15,000,000");
-            dataGridViewContracts.Rows.Add("2", "NV002 - Tran Thi B", "Phòng Hành Chính", "15/09/2025", "15/03/2026", "Hợp đồng bán thời gian", "8,000,000");
+        private void LoadContracts()
+        {
+            try
+            {
+                dataGridViewContracts.Rows.Clear();
+                List<LaborContractDTO> contracts = _bll.GetAllContracts();
+                int stt = 1;
+                foreach (var contract in contracts)
+                {
+                    dataGridViewContracts.Rows.Add(
+                        stt++,
+                        contract.TenNhanVien,
+                        contract.PhongBan,
+                        contract.TuNgay?.ToString("dd/MM/yyyy") ?? "",
+                        contract.DenNgay?.ToString("dd/MM/yyyy") ?? "",
+                        contract.LoaiHopDong,
+                        contract.LuongCoBan.ToString("N0") + " VND"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải dữ liệu hợp đồng: {ex.Message}");
+            }
+        }
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = textBoxSearch.Text.Trim();
+            dataGridViewContracts.Rows.Clear();
+            List<LaborContractDTO> contracts = _bll.SearchContracts(keyword);
+            int stt = 1;
+            foreach (var contract in contracts)
+            {
+                dataGridViewContracts.Rows.Add(
+                    stt++,
+                    contract.TenNhanVien,
+                    contract.PhongBan,
+                    contract.TuNgay?.ToString("dd/MM/yyyy") ?? "",
+                    contract.DenNgay?.ToString("dd/MM/yyyy") ?? "",
+                    contract.LoaiHopDong,
+                    contract.LuongCoBan.ToString("N0") + " VND"
+                );
+            }
         }
 
         private void dataGridViewContracts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Xử lý sự kiện nhấp chuột (nếu cần, ví dụ: chỉnh sửa hoặc xóa)
+            if (e.RowIndex >= 0)
+            {
+                string maHopDong = dataGridViewContracts.Rows[e.RowIndex].Cells["Ma_TenNhanVien"].Value.ToString().Split('-')[0].Trim();
+                if (e.ColumnIndex == dataGridViewContracts.Columns["LoaiHopDong"].Index) // Giả sử cột LoaiHopDong là nơi nhấp để xóa
+                {
+                    if (MessageBox.Show("Bạn có muốn xóa hợp đồng này không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (_bll.DeleteContract(maHopDong))
+                        {
+                            MessageBox.Show("Xóa hợp đồng thành công!");
+                            LoadContracts();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa hợp đồng thất bại!");
+                        }
+                    }
+                }
+            }
         }
 
         private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
@@ -48,17 +109,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             e.Graphics.DrawString(tab.Text, font, new SolidBrush(color), x, y);
         }
 
-        private void dataGridViewContracts_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void dataGridViewContracts_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            // Chỉ custom header
             if (e.RowIndex == -1)
             {
-                // STT (cột 0) hoặc Phòng ban (cột 2)
                 if (e.ColumnIndex == 0 || e.ColumnIndex == 2)
                 {
                     e.PaintBackground(e.ClipBounds, false);
@@ -75,6 +129,12 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void labelFrame_Click(object sender, EventArgs e)
         {
 
+        }
+        // Add this method to handle the DataGridView CellContentClick event
+        private void dataGridViewContracts_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            // You can implement your logic here or leave it empty if not needed
+            // Example: Do nothing
         }
     }
 }

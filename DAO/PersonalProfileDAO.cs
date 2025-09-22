@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using Quan_Ly_Nhan_Su.DTO;
+using YourNamespace.DTO;
 using Quan_Ly_Nhan_Su.config;
 
 namespace Quan_Ly_Nhan_Su.DAO

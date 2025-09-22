@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-// Add this at the top of the file if missing
-using System.Windows.Forms.DataVisualization.Charting;
-
+using System.Windows.Forms.DataVisualization.Charting; 
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -40,6 +38,26 @@ namespace Quan_Ly_Nhan_Su.GUI
             // Thêm dữ liệu mẫu cho DataGridView
             dataGridViewStats.Rows.Add("NV001", "Phòng KTCN", "2025-01-01", "2025-12-31", "Hợp đồng toàn thời gian", "15,000,000");
             dataGridViewStats.Rows.Add("NV002", "Phòng KTCN", "2025-02-01", "2025-11-30", "Hợp đồng bán thời gian", "8,000,000");
+        }
+
+        private void labelTotalContracts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTotalValue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

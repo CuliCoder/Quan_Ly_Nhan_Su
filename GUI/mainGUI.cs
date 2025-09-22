@@ -17,11 +17,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             designForm();
-
-            // Gán sự kiện click cho panel, label, pictureBox của Hợp đồng
-            this.pnlbHopDong.Click += pnlbHopDong_Click;
-            this.label5.Click += pnlbHopDong_Click;
-            this.pictureBox9.Click += pnlbHopDong_Click;
         }
         private void designForm()
         {
@@ -83,28 +78,18 @@ namespace Quan_Ly_Nhan_Su.GUI
             Application.Exit();
         }
 
-        private void pnlbHopDong_Click(object sender, EventArgs e)
+        private void pnlbTrangChu_Click(object sender, EventArgs e)
         {
-            this.pnContent.Controls.Clear();
-            var laborContractGUI = new LaborContractGUI();
-            laborContractGUI.Dock = DockStyle.Fill;
-            this.pnContent.Controls.Add(laborContractGUI);
-        }
+            bodyContent.Controls.Clear();
 
-        private void pnlbHopDong_Paint(object sender, PaintEventArgs e)
-        {
-               this.pnContent.Controls.Clear();
-            var laborContractGUI = new LaborContractGUI();
-            laborContractGUI.Dock = DockStyle.Fill;
-            this.pnContent.Controls.Add(laborContractGUI);
-        }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-            this.pnContent.Controls.Clear();
-            var laborContractGUI = new LaborContractGUI();
-            laborContractGUI.Dock = DockStyle.Fill;
-            this.pnContent.Controls.Add(laborContractGUI);
+
+            homePage home = new homePage();
+            home.Dock = DockStyle.Fill;
+
+            bodyContent.Controls.Add(home);
+
+            pnlbTrangChu.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
         }
     }
 }

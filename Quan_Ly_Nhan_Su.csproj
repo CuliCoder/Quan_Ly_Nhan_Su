@@ -84,6 +84,7 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -102,6 +103,22 @@
     <Compile Include="BLL\**\*.cs" />
     <Compile Include="config\design.cs" />
     <Compile Include="DTO\**\*.cs" />
+    <Compile Include="GUI\ContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ContractGUI.Designer.cs" />
+    <Compile Include="GUI\CT_LaborContractGUI.cs" />
+    <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\DepartmentGUI.cs" />
+    <Compile Include="GUI\DepartmentGUI.Designer.cs" />
+    <Compile Include="GUI\LaborContractGUI.cs" />
+    <Compile Include="GUI\LaborContractGUI.Designer.cs" />
+	<Compile Include="GUI\mainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\mainGUI.Designer.cs" />
+    <Compile Include="GUI\StatisticsGUI.cs" />
+    <Compile Include="GUI\StatisticsGUI.Designer.cs" />
     <Compile Include="DAO\**\*.cs" />
     <Compile Include="config\connectDB.cs" />
     <Compile Include="Form1.cs">
@@ -116,17 +133,17 @@
     <Compile Include="GUI\ContractGUI.Designer.cs">
       <DependentUpon>ContractGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\CT_LaborContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\CT_LaborContractGUI.Designer.cs">
+      <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\LaborContractGUI.Designer.cs">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\mainGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\mainGUI.Designer.cs">
-      <DependentUpon>mainGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
@@ -139,11 +156,14 @@
     <EmbeddedResource Include="GUI\ContractGUI.resx">
       <DependentUpon>ContractGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CT_LaborContractGUI.resx">
+      <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\mainGUI.resx">
-      <DependentUpon>mainGUI.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\StatisticsGUI.resx">
+      <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,7 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BUS\" />
-    <Folder Include="DAO\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\timkiem.ico" />
