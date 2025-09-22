@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YourNamespace.DTO
+namespace Quan_Ly_Nhan_Su.DTO
 {
     public class LaborContractDTO
     {
