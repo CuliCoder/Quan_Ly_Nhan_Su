@@ -114,20 +114,33 @@
     <Compile Include="GUI\mainGUI.Designer.cs">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVien.Designer.cs">
+      <DependentUpon>NhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
+      <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\mainGUI.resx">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVien.resx">
+      <DependentUpon>NhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVienNhapLieu.resx">
+      <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,6 +158,24 @@
   <ItemGroup>
     <Folder Include="BUS\" />
     <Folder Include="DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\211817_search_strong_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\them.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\9057101_export_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\img\images.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
