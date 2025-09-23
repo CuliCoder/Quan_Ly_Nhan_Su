@@ -134,3 +134,5 @@ D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVi
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungChild.resources
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
+D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormThemUngVien.resources
+D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormTuyenUngVien.resources

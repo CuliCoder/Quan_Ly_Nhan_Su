@@ -45,7 +45,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tabContainer, 0, 0);
@@ -62,18 +62,25 @@
             // 
             // tabContainer
             // 
-            this.tabContainer.ColumnCount = 2;
-            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tabContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tabContainer.ColumnCount = 8;
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tabContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tabContainer.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tabContainer.Controls.Add(this.flowLayoutPanel2, 0, 0);
-            this.tabContainer.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tabContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabContainer.Location = new System.Drawing.Point(3, 3);
-            this.tabContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.tabContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.RowCount = 1;
-            this.tabContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabContainer.Size = new System.Drawing.Size(245, 37);
+            this.tabContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tabContainer.Size = new System.Drawing.Size(976, 34);
             this.tabContainer.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -86,14 +93,14 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(125, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(117, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(116, 28);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // tuyenDungChecked
             // 
             this.tuyenDungChecked.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tuyenDungChecked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tuyenDungChecked.Location = new System.Drawing.Point(0, 27);
+            this.tuyenDungChecked.Location = new System.Drawing.Point(0, 24);
             this.tuyenDungChecked.Margin = new System.Windows.Forms.Padding(0);
             this.tuyenDungChecked.MaximumSize = new System.Drawing.Size(116, 4);
             this.tuyenDungChecked.MinimumSize = new System.Drawing.Size(116, 4);
@@ -107,7 +114,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(4, 7);
+            this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 17);
@@ -126,14 +133,14 @@
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(116, 31);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(116, 28);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // ungVienChecked
             // 
             this.ungVienChecked.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ungVienChecked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ungVienChecked.Location = new System.Drawing.Point(0, 27);
+            this.ungVienChecked.Location = new System.Drawing.Point(0, 24);
             this.ungVienChecked.Margin = new System.Windows.Forms.Padding(0);
             this.ungVienChecked.MaximumSize = new System.Drawing.Size(116, 4);
             this.ungVienChecked.MinimumSize = new System.Drawing.Size(116, 4);
@@ -147,7 +154,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(3, 7);
+            this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 17);
@@ -158,10 +165,12 @@
             // 
             // panelContainer
             // 
+            this.panelContainer.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(6, 43);
+            this.panelContainer.Location = new System.Drawing.Point(3, 40);
+            this.panelContainer.Margin = new System.Windows.Forms.Padding(0);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(970, 573);
+            this.panelContainer.Size = new System.Drawing.Size(976, 579);
             this.panelContainer.TabIndex = 4;
             // 
             // TuyenDung

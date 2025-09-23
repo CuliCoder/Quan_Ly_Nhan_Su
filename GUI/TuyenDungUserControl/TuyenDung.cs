@@ -15,6 +15,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         public TuyenDung()
         {
             InitializeComponent();
+            UngVien uv = new UngVien();
+            addUserControl(uv, ungVienChecked);
         }
         private void clearColorChecked()
         {
@@ -26,6 +28,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             clearColorChecked();
             userControl.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();
+            panelContainer.Margin = new Padding(0);
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
             colorChecked.BackColor = SystemColors.ActiveCaption;         

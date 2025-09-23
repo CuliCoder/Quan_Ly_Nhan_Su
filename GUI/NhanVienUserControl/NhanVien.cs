@@ -56,5 +56,10 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         {
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
