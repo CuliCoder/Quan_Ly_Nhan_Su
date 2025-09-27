@@ -17,6 +17,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             designForm();
+            pnlbTrangChu_Click(pnlbTrangChu, EventArgs.Empty);
         }
         private void designForm()
         {
@@ -76,6 +77,24 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pnlbTrangChu_Click(object sender, EventArgs e)
+        {
+            bodyContent.Controls.Clear();
+            homePage home = new homePage();
+            home.Dock = DockStyle.Fill;
+            bodyContent.Controls.Add(home);
+            pnlbTrangChu.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
+        }
+
+        private void pnlbPhongBan_Click(object sender, EventArgs e)
+        {
+            bodyContent.Controls.Clear();
+            departmentTab department = new departmentTab();
+            department.Dock = DockStyle.Fill;
+            bodyContent.Controls.Add(department);
+            pnlbPhongBan.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
         }
     }
 }
