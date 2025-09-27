@@ -134,17 +134,23 @@
     <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.Designer.cs">
       <DependentUpon>FormThemUngVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.Designer.cs">
+      <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TuyenDungUserControl\TuyenDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\TuyenDungUserControl\TuyenDung.Designer.cs">
       <DependentUpon>TuyenDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\TuyenDungUserControl\TuyenDungChild.cs">
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDungMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\TuyenDungUserControl\TuyenDungChild.Designer.cs">
-      <DependentUpon>TuyenDungChild.cs</DependentUpon>
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDungMain.Designer.cs">
+      <DependentUpon>TuyenDungMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\TuyenDungUserControl\FormTuyenUngVien.cs">
       <SubType>Form</SubType>
@@ -175,11 +181,14 @@
     <EmbeddedResource Include="GUI\TuyenDungUserControl\FormTuyenUngVien.resx">
       <DependentUpon>FormTuyenUngVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.resx">
+      <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\TuyenDung.resx">
       <DependentUpon>TuyenDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\TuyenDungUserControl\TuyenDungChild.resx">
-      <DependentUpon>TuyenDungChild.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\TuyenDungMain.resx">
+      <DependentUpon>TuyenDungMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\UngVien.resx">
       <DependentUpon>UngVien.cs</DependentUpon>
@@ -234,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\assets\icon\9035021_person_add_icon32X32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\3643746_add_friend_member_people_plus_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
