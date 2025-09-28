@@ -40,7 +40,6 @@ C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.csproj.CoreCompileInputs.
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_.0AC7D4CC.Up2Date
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.pdb
-C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\bin\Debug\Quan_Ly_Nhan_Su.exe.config
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\bin\Debug\Quan_Ly_Nhan_Su.exe
 C:\Users\PC\Desktop\C#\Quan_Ly_Nhan_Su\bin\Debug\Quan_Ly_Nhan_Su.pdb
@@ -145,3 +144,8 @@ C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnQuanLy.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnThongKe.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.departmentTab.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.homePage.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
