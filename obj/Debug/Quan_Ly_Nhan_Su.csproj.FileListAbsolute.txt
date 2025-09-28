@@ -137,3 +137,11 @@ D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormT
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
 D:\Workplace\C#\project\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.ThemTuyenDungForm.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVien.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVienNhapLieu.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormThemUngVien.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormTuyenUngVien.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.ThemTuyenDungForm.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
