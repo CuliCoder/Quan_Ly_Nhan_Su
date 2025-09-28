@@ -109,6 +109,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs">
+      <DependentUpon>DanhGia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs">
+      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
+      <DependentUpon>LuongThuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\mainGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +147,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx">
+      <DependentUpon>DanhGia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx">
+      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
+      <DependentUpon>LuongThuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\mainGUI.resx">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BUS\" />
-    <Folder Include="DAO\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\assets\icon\211817_search_strong_icon.png" />
