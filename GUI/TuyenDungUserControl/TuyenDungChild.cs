@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
+namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
-    public partial class NhanVienNhapLieu : UserControl
+    public partial class TuyenDungChild : UserControl
     {
-        public NhanVienNhapLieu()
+        public TuyenDungChild()
         {
             InitializeComponent();
         }
