@@ -196,3 +196,16 @@ C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.departmentTab.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.homePage.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
 >>>>>>> a85a130866917b6ba693ebbb66b702e9c82b45af
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.AuthControl.Login.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnQuanLy.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnThongKe.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.departmentTab.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.homePage.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVien.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVienNhapLieu.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormThemUngVien.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormTuyenUngVien.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.ThemTuyenDungForm.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
+C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
