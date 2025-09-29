@@ -71,7 +71,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(20, 15);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(325, 32);
+            this.lblTitle.Size = new System.Drawing.Size(331, 31);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "TÀI KHOẢN VÀ PHÂN QUYỀN";
             // 
@@ -107,14 +107,16 @@
             this.dgvNhanVien.Name = "dgvNhanVien";
             this.dgvNhanVien.ReadOnly = true;
             this.dgvNhanVien.RowHeadersVisible = false;
+            this.dgvNhanVien.RowHeadersWidth = 51;
             this.dgvNhanVien.RowTemplate.Height = 35;
             this.dgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNhanVien.Size = new System.Drawing.Size(460, 520);
+            this.dgvNhanVien.Size = new System.Drawing.Size(584, 520);
             this.dgvNhanVien.TabIndex = 1;
             // 
             // colSTT
             // 
             this.colSTT.HeaderText = "STT";
+            this.colSTT.MinimumWidth = 6;
             this.colSTT.Name = "colSTT";
             this.colSTT.ReadOnly = true;
             this.colSTT.Width = 80;
@@ -123,6 +125,7 @@
             // 
             this.colNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colNhanVien.HeaderText = "NHÂN VIÊN";
+            this.colNhanVien.MinimumWidth = 6;
             this.colNhanVien.Name = "colNhanVien";
             this.colNhanVien.ReadOnly = true;
             // 
@@ -154,9 +157,9 @@
             this.panelPhanQuyen.Controls.Add(this.checkBox3);
             this.panelPhanQuyen.Controls.Add(this.checkBox2);
             this.panelPhanQuyen.Controls.Add(this.checkBox1);
-            this.panelPhanQuyen.Location = new System.Drawing.Point(510, 85);
+            this.panelPhanQuyen.Location = new System.Drawing.Point(644, 85);
             this.panelPhanQuyen.Name = "panelPhanQuyen";
-            this.panelPhanQuyen.Size = new System.Drawing.Size(350, 520);
+            this.panelPhanQuyen.Size = new System.Drawing.Size(350, 460);
             this.panelPhanQuyen.TabIndex = 3;
             // 
             // checkBox12

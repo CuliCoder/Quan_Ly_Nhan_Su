@@ -227,6 +227,9 @@
     <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVienNhapLieu.resx">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaiKhoanUserControl\TaiKhoanMain.resx">
+      <DependentUpon>TaiKhoanMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\FormThemUngVien.resx">
       <DependentUpon>FormThemUngVien.cs</DependentUpon>
     </EmbeddedResource>
