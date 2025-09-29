@@ -211,6 +211,10 @@
     <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\TaiKhoanMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\TaiKhoanMain.Designer.cs" />
     <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.cs">
       <SubType>Form</SubType>
     </Compile>
