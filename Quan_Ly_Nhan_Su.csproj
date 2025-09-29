@@ -156,7 +156,9 @@
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs" />
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
+      <DependentUpon>LuongThuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -266,7 +268,9 @@
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx" />
+    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
+      <DependentUpon>LuongThuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\StatisticsGUI.resx">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </EmbeddedResource>
