@@ -117,50 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="images2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAfdJREFUWEftlslqVkEQRs/CuFGibnVrouDC+TXUPEtMdO+wFcWl0zu4cgRfwmkV
+        h62C88qBA9XQlP/9b3f4Ew3kQMOF+rpudVV3V8M2W4xDwAXgMfAC+BrD70fAKrCYJ82CU8AT4HfjMMCT
+        2cl6mANuAr/C8QfgFnAmsrErht9ngduhUeucG8CO7LSVfcDTcPYNuATMZ9EE1FwGvlfZ2JtFY7jykvL3
+        UYJejgJr4eMZsDMLpmHanfgW2J+NHTj3Xfi6no1DuFrrZ9qPZ+M6OBHl+Bnfo5TUW/NZcSV8elSn4m4u
+        u71lw5VjN8Ye4GNoF7Kx5mKIPGottAYgd0K7kg01pkiRZ7qFngCWQvswG2peh+hgNgzQE0Ap78tsqPkS
+        ot3ZEJQfjo1J6FOb/xjk8wYG4KbW9ikbal6FqLWjTfth5nBo7ZyDbMYmfJANNfZzRXa1FnoCuBfa5Wyo
+        +ecXkdg+FdpSZ8XVlvQXfMnYjGwgTc1jBJvbj2hGx7JxCF8yRmwrPZCNHTi3tONr2TgNn1GlFD5ITmdB
+        A672TfjwdHU/zXxGlSAshy3VzTSGGmtu2p3r3d/9JCsYtS8Z66czd/Jd4FxcLN6YDr8959rKbneOae9e
+        +SSOAPerYzc2TPksNvBfeIbt56bVK9XG4ngeR+x8Ryfd5v/gD/i8uIuHHmR6AAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="9035021_person_add_icon32X32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9035021_person_add_icon32X32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAS1JREFUWEftlE0KAjEMhd9CXXsB7yCC4sZDeB3FleANPIX/C08juHWjeATlQQpD
+        mGnaOONqPgjaNnkvpGWAlpbm6ABYAbhL8D/3/kIXwA7AR8VSJzYBzfdi+AIwATCT9U0n1402H8n+NKcB
+        PTYrOGreLc0PJeb85Zr7C+VVijaIRdH8aJiHXJMgnkrR/A1gLPtDAE/Z52SYl0ROAxQ91WlOUhvoNWFO
+        UhpozJxYDdD8IjlVD45vguZJj05jNTA3zDmZYM6Xn43VwFrON7Iump9lQiR8irOxGrjK+VaaCOa8lmBO
+        LJ1KrMJHISeENieWTiWxwoGcsQlOgtfBN6HNSUwnSqywL02kENOJ4i5UuHXchQq3jrtQ4dZxFyrcOu5C
+        hVsnFNYV2WiBX6OlJcoXyqzGIA5osHgAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="211817_search_strong_icon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\211817_search_strong_icon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="211817_search_strong_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\211817_search_strong_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="211817_search_strong_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\211817_search_strong_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="return" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="9035021_person_add_icon48X48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9035021_person_add_icon48X48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="9057101_export_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9057101_export_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3643746_add_friend_member_people_plus_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\3643746_add_friend_member_people_plus_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAN9JREFUSEvt1cGtAWEYheEvoQ00QgVErKnAXZO4DVwVUAEVUAEVUMHVgSWRIN/2
+        5CTOmREb8yZnM/E/MrP5I6r0BhHRx4ef6BoRF3z4rvKNEn+YyzOFvsaeYEWXltw7/3iHeBV2Jp/NXRp2
+        RwK5OyCqtCWQuw2iSksCuVsgqvRLIHczRJVGBHI3RFSpQyB3bUSVmgRy10BUqRYRN4Kpy7N1RNVOBFT3
+        j5hTmcui1OWwJqC6FWJOcwKq+0PM6YeA6saIOfUIqK6LmFMrIu4EfbU8k2dLNTXv5vztBJGq7+sJ0RhF
+        g6+ek/4AAAAASUVORK5CYII=
+</value>
   </data>
 </root>

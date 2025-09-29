@@ -35,7 +35,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainGUI));
             this.pnMainGui = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.laborContractGUI1 = new Quan_Ly_Nhan_Su.GUI.LaborContractGUI();
+            this.tuyenDungMain1 = new Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain();
             this.pnSideBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -79,6 +79,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnMainGui.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnSideBar.SuspendLayout();
@@ -120,29 +121,33 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnMainGui.Controls.Add(this.panel6);
             this.pnMainGui.Controls.Add(this.pnSideBar);
             this.pnMainGui.Controls.Add(this.pnHeader);
+            this.pnMainGui.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMainGui.Location = new System.Drawing.Point(0, 0);
             this.pnMainGui.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMainGui.Name = "pnMainGui";
-            this.pnMainGui.Size = new System.Drawing.Size(1440, 818);
+            this.pnMainGui.Size = new System.Drawing.Size(1440, 786);
             this.pnMainGui.TabIndex = 0;
             this.pnMainGui.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMainGui_Paint);
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.laborContractGUI1);
+            this.panel6.Controls.Add(this.tuyenDungMain1);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(335, 53);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1105, 765);
+            this.panel6.Size = new System.Drawing.Size(1105, 733);
             this.panel6.TabIndex = 2;
             // 
-            // laborContractGUI1
+            // tuyenDungMain1
             // 
-            this.laborContractGUI1.Location = new System.Drawing.Point(0, 2);
-            this.laborContractGUI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.laborContractGUI1.Name = "laborContractGUI1";
-            this.laborContractGUI1.Size = new System.Drawing.Size(1595, 1125);
-            this.laborContractGUI1.TabIndex = 0;
+            this.tuyenDungMain1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tuyenDungMain1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tuyenDungMain1.Location = new System.Drawing.Point(0, 0);
+            this.tuyenDungMain1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tuyenDungMain1.Name = "tuyenDungMain1";
+            this.tuyenDungMain1.Size = new System.Drawing.Size(1105, 733);
+            this.tuyenDungMain1.TabIndex = 0;
             // 
             // pnSideBar
             // 
@@ -153,7 +158,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnSideBar.Location = new System.Drawing.Point(0, 53);
             this.pnSideBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnSideBar.Name = "pnSideBar";
-            this.pnSideBar.Size = new System.Drawing.Size(335, 765);
+            this.pnSideBar.Size = new System.Drawing.Size(335, 733);
             this.pnSideBar.TabIndex = 1;
             // 
             // panel5
@@ -174,7 +179,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(5);
-            this.panel5.Size = new System.Drawing.Size(335, 544);
+            this.panel5.Size = new System.Drawing.Size(335, 512);
             this.panel5.TabIndex = 1;
             // 
             // panel7
@@ -373,7 +378,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlbHopDong.Name = "pnlbHopDong";
             this.pnlbHopDong.Size = new System.Drawing.Size(325, 42);
             this.pnlbHopDong.TabIndex = 3;
-            this.pnlbHopDong.Click += new System.EventHandler(this.pnlbHopDong_click);
             // 
             // label5
             // 
@@ -478,6 +482,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label2.Size = new System.Drawing.Size(102, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Trang chủ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox6
             // 
@@ -571,6 +576,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(51, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -719,6 +725,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         private Label label12;
         private PictureBox pictureBox16;
         private Panel panel6;
-        private LaborContractGUI laborContractGUI1;
+        private TuyenDungUserControl.TuyenDungMain tuyenDungMain1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

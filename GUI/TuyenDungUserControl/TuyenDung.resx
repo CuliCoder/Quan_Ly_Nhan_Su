@@ -117,50 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="images2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAADVJREFUSEtjYBgFowAN/IdimoFRCwiCoWMBzCBSMdEAXSOxmGJANYNwgVELCIKh
+        b8EoGIIAAEy7M81qyY2dAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="9035021_person_add_icon32X32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9035021_person_add_icon32X32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="label7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAZdJREFUSEud1s3LTnEQxvFPCSVWkpIdC/VIyY4lCynlJRFKbGSBWKCUFMVCbKQ8
+        lljJgqXXSMmShZKSJXmNf0BTc2q66zzP5FtT1zVzfueq06+5b2ZnAd7hF35mhX6BxZMP/w/bcWeymb3d
+        k83Z2IknuIubWU/xvvihohezwceZOBvvGGUKz3EVu7IO4XjxQ0UvZoO/hmf5jhm5jKPFzy/felFWEL2Y
+        DRzDpeJHOYkLxe/BjdSns4LoxWzgIk4UP8o+TBe/P79xcDYriF7MBm5hb/GjbMKD4rsBD7Gx+FHW4HXx
+        3YA3WF38KEvxqfhuwGcsKX6UOfhTfDfgb55t8RULU3cC4up+Sd0ids+K1J2AlXibusVjrE/dCdiAR6lb
+        xF7ZlroTsAO3U7eIXXQ4dSfgCK6kbhHr4FzqTsB5nErd4iCup+4ExF46kLrFFtxL3Qm4j82pW6zDy9Sd
+        gFdYm7rFcnxI3Qn4iGWpW8zLH/ZgFbamjvseFUQvZsFvzE3d5ntZFzMRa+LbZLPDGfwof1XGKp4ZvaL/
+        AAMueCFX4OllAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="211817_search_strong_icon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\211817_search_strong_icon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="label3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAARhJREFUSEvt1E0rBmEUxvEfNigveyyUb8DKy0r5DrK1tKTERsQGhR1lK9beUt5T
+        PoTyVeiuUeNkZp55Hsvnv5vrms5132fOGdq0QD9W8YAXPOIVhxiLL9dlFu+YR3dO78AkbrLw9FybVPwO
+        A9HIkQpvYysaVfRlJx+MRgFnmIliGStYiGIJQ7iKYhn36I1iBdc1buwpCg2wi/EoFtFMQPrYU1Es4hmd
+        UazgHMNRLGK/5lT04C2KZYzitsYCrWMxilUsYyeKfzCHT3RFoxE2siVKcx5JbVnDB75wUuPGv0iTcZkt
+        0h42cZH1PLUlDcNBqyGJtEQTmMZI8FLR9HdtOaSMfMhpE2PeECnkKAs5juZ/8ROyFI02pXwDcjIrDwnj
+        61cAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="211817_search_strong_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\211817_search_strong_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="211817_search_strong_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\211817_search_strong_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="return" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="them1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="9035021_person_add_icon48X48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9035021_person_add_icon48X48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="9057101_export_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9057101_export_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3643746_add_friend_member_people_plus_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\3643746_add_friend_member_people_plus_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="dot.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="maTuyenDung.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="chucVu.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="hocVan.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="gioiTinh.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="doTuoi.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="slTuyen.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="slHoSo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="soLuongDaTuyen.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="hanNop.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="mucLuong.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="mucLuongToiThieu.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>
