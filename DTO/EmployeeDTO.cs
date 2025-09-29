@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
@@ -8,12 +8,18 @@ namespace Quan_Ly_Nhan_Su.DTO
     public class EmployeeDTO
     {
         public string MaNhanVien { get; set; }
+        public string HoTen { get; set; }
+        public DateTime? NgaySinh { get; set; }
+        public string GioiTinh { get; set; }
+        public string Email { get; set; }
+        public string Sdt { get; set; }
         public string SoCmnd { get; set; }
-        public string MaLuong { get; set; }
-        public string MaHopDong { get; set; }
-        public string MaTrinhDo { get; set; }
-        public string MaChucVu { get; set; }
-        public string MaTaiKhoan { get; set; }
-        public string MaPhong { get; set; }
+        public string HocVan { get; set; }
+        public string ChuyenNganh { get; set; }
+        public string PhongBan { get; set; }
+        public string ChucVu { get; set; }
+        public decimal MucLuong { get; set; }
+        public string DiaChi { get; set; } // Thêm thuộc tính DiaChi
+        public string HinhAnh { get; set; } // Thêm thuộc tính HinhAnh (path ảnh avatar)
     }
 }

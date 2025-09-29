@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Quan_Ly_Nhan_Su.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
@@ -66,6 +69,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
     </Reference>
@@ -84,6 +88,8 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -100,7 +106,61 @@
   <ItemGroup>
     <Compile Include="BLL\**\*.cs" />
     <Compile Include="config\design.cs" />
+    <Compile Include="GUI\AuthControl\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AuthControl\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\btnQuanLy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\btnQuanLy.Designer.cs">
+      <DependentUpon>btnQuanLy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\btnThongKe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\btnThongKe.Designer.cs">
+      <DependentUpon>btnThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs" />
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs" />
+    <Compile Include="GUI\departmentTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\departmentTab.Designer.cs">
+      <DependentUpon>departmentTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="DTO\**\*.cs" />
+    <Compile Include="GUI\ContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ContractGUI.Designer.cs">
+      <DependentUpon>ContractGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CT_LaborContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\LaborContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs" />
+    <Compile Include="GUI\StatisticsGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\StatisticsGUI.Designer.cs" />
     <Compile Include="DAO\**\*.cs" />
     <Compile Include="config\connectDB.cs" />
     <Compile Include="Form1.cs">
@@ -109,23 +169,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
+    <Compile Include="GUI\CT_LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs">
-      <DependentUpon>DanhGia.cs</DependentUpon>
+    <Compile Include="GUI\CT_LaborContractGUI.Designer.cs">
+      <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.cs">
+    <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs">
-      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    <Compile Include="GUI\LaborContractGUI.Designer.cs">
+      <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
+    <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
-      <DependentUpon>LuongThuong.cs</DependentUpon>
+    <Compile Include="GUI\StatisticsGUI.Designer.cs">
+      <DependentUpon>StatisticsGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\homePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\homePage.Designer.cs">
+      <DependentUpon>homePage.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\mainGUI.cs">
       <SubType>Form</SubType>
@@ -145,19 +211,79 @@
     <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\TaiKhoanMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TaikhoanUserControl\TaikhoanMain.Designer.cs">
+      <DependentUpon>TaikhoanMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.Designer.cs">
+      <DependentUpon>FormThemUngVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.Designer.cs">
+      <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDung.Designer.cs">
+      <DependentUpon>TuyenDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDungMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\TuyenDungMain.Designer.cs">
+      <DependentUpon>TuyenDungMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\FormTuyenUngVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\FormTuyenUngVien.Designer.cs">
+      <DependentUpon>FormTuyenUngVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\UngVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\UngVien.Designer.cs">
+      <DependentUpon>UngVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx">
-      <DependentUpon>DanhGia.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\ContractGUI.resx">
+      <DependentUpon>ContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx">
-      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\CT_LaborContractGUI.resx">
+      <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
-      <DependentUpon>LuongThuong.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx" />
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx" />
+    <EmbeddedResource Include="GUI\LaborContractGUI.resx">
+      <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\mainGUI.resx">
-      <DependentUpon>mainGUI.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx" />
+    <EmbeddedResource Include="GUI\StatisticsGUI.resx">
+      <DependentUpon>StatisticsGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AuthControl\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\btnQuanLy.resx">
+      <DependentUpon>btnQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\btnThongKe.resx">
+      <DependentUpon>btnThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\departmentTab.resx">
+      <DependentUpon>departmentTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\homePage.resx">
+      <DependentUpon>homePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVien.resx">
       <DependentUpon>NhanVien.cs</DependentUpon>
@@ -165,15 +291,50 @@
     <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVienNhapLieu.resx">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaiKhoanUserControl\TaiKhoanMain.resx">
+      <DependentUpon>TaiKhoanMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\FormThemUngVien.resx">
+      <DependentUpon>FormThemUngVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\FormTuyenUngVien.resx">
+      <DependentUpon>FormTuyenUngVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.resx">
+      <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\TuyenDung.resx">
+      <DependentUpon>TuyenDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\TuyenDungMain.resx">
+      <DependentUpon>TuyenDungMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\UngVien.resx">
+      <DependentUpon>UngVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\mainGUI.resx">
+      <DependentUpon>mainGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -185,6 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BUS\" />
+    <Folder Include="Images\Avatars\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\assets\icon\211817_search_strong_icon.png" />
@@ -203,6 +365,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\assets\img\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\9035021_person_add_icon48X48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\9035021_person_add_icon32X32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\assets\icon\3643746_add_friend_member_people_plus_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiem.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

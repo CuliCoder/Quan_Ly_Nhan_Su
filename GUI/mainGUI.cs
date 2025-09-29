@@ -13,16 +13,107 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class mainGUI : Form
     {
+        homePage homePage = new homePage();
+        departmentTab departmentTab = new departmentTab();
+        LaborContractGUI laborContract = new LaborContractGUI();
+        StatisticsGUI statistics = new StatisticsGUI();
+        List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
         {
             InitializeComponent();
             designForm();
+            addUserControl(homePage);
+            pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+            addPanelToList();
+            addEventToPanel();
         }
         private void designForm()
         {
             design.paintBorder(this.panel5, Color.Gray, 4, 30, 0, this.panel5.Width - 30, 0);
             design.paintBorder(this.panel2, Color.Gray, 4, 0, 0, 0, this.panel2.Height);
         }
+        private void addUserControl(UserControl userControl)
+        {
+            //homePage.Dock = DockStyle.Fill;
+            //departmentTab.Dock = DockStyle.Fill;
+            //this.panel6.Controls.Add(homePage);
+            //this.panel6.Controls.Add(departmentTab);
+            //this.panel6.Controls.Add(laborContract);
+            //this.panel6.Controls.Add(statistics);
+            //homePage.BringToFront();
+            //pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+            if (userControl == null)
+            {
+                return;
+            }
+            userControl.Dock = DockStyle.Fill;
+            this.panel6.Controls.Add(userControl);
+            userControl.BringToFront();
+
+        }
+        private void addPanelToList()
+        {
+            listpnlbSideBar.Add(pnlbTrangChu);
+            listpnlbSideBar.Add(pnlbTuyenDung);
+            listpnlbSideBar.Add(pnlbNhanVien);
+            listpnlbSideBar.Add(pnlbPhongBan);
+            listpnlbSideBar.Add(pnlbHopDong);
+            listpnlbSideBar.Add(pnlbChamCong);
+            listpnlbSideBar.Add(pnlbLuongThuong);
+            listpnlbSideBar.Add(pnlbDanhGia);
+            listpnlbSideBar.Add(pnlbTaiKhoan);
+        }
+        private void addEventToPanel()
+        {
+            foreach (Panel pnl in listpnlbSideBar)
+            {
+                pnl.Click += new EventHandler(pnlb_Click);
+                foreach (Control ctl in pnl.Controls)
+                {
+                    ctl.Click += new EventHandler(pnlb_Click);
+                }
+            }
+        }
+        private void pnlb_Click(object sender, EventArgs e)
+        {
+            Panel pnlb = sender as Panel;
+
+            if (pnlb == null && sender is Control ctl)
+            {
+                // Nếu click vào control con thì lấy panel cha
+                pnlb = ctl.Parent as Panel;
+            }
+
+            if (pnlb == null) return; // không phải panel thì bỏ qua
+
+            // Reset lại màu của tất cả panel
+            foreach (Panel pnl in listpnlbSideBar)
+            {
+                pnl.BackColor = System.Drawing.Color.Transparent;
+            }
+
+            // Đổi màu panel được click
+            pnlb.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+
+            // Chuyển tab tương ứng
+            switch (pnlb.Name)
+            {
+                case "pnlbTrangChu":
+                    addUserControl(homePage);
+                    break;
+                case "pnlbPhongBan":
+                    //departmentTab.BringToFront();
+                    addUserControl(departmentTab);
+                    break;
+                case "pnlbHopDong":
+                    //laborContract.BringToFront();
+                    addUserControl(laborContract);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void mainGUI_Load(object sender, EventArgs e)
         {
 
@@ -76,6 +167,21 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pnlbTrangChu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlbPhongBan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlbHopDong_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

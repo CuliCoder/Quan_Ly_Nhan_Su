@@ -13,7 +13,7 @@ namespace Quan_Ly_Nhan_Su
     {
         static void Main()
         {
-            mainGUI mainGUI = new mainGUI();
+          mainGUI mainGUI = new mainGUI();
             Application.Run(mainGUI);
         }
     }

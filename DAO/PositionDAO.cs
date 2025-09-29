@@ -104,7 +104,7 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Searches for positions by maChucVu or tenChucVu
         /// </summary>
-        //public List<PositionDTO> Search(string searchTerm)
+        //pu    blic List<PositionDTO> Search(string searchTerm)
         //{
         //    var positions = new List<PositionDTO>();
         //    MySqlConnection conn = null;

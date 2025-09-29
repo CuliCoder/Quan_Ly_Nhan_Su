@@ -34,6 +34,7 @@ namespace Quan_Ly_Nhan_Su.config
                 return null;
             }
         }
+
         public static void closeConnection(MySqlConnection conn)
         {
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
