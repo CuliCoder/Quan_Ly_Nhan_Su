@@ -135,8 +135,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
-    <Compile Include="GUI\DepartmentGUI.cs" />
-    <Compile Include="GUI\DepartmentGUI.Designer.cs" />
     <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
