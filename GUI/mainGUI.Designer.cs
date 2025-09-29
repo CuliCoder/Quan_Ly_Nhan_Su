@@ -130,8 +130,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnMainGui.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMainGui_Paint);
             // 
             // panel6
-            // 
-            this.panel6.Controls.Add(this.tuyenDungMain1);
+            //
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(335, 53);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);

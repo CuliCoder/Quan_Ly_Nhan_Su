@@ -45,4 +45,16 @@ C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.csproj.CoreCompileInputs.cache
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_.0AC7D4CC.Up2Date
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.pdb
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnQuanLy.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.btnThongKe.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.departmentTab.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.homePage.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVien.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVienNhapLieu.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormThemUngVien.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.FormTuyenUngVien.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.ThemTuyenDungForm.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDung.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
 C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
