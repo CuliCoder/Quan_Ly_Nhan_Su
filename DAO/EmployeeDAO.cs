@@ -1,158 +1,128 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.DTO;
-using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.config; // Giả sử connectDB ở đây
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
-    /// <summary>
-    /// Data Access Object for Employee table
-    /// </summary>
     public class EmployeeDAO
     {
-        /// <summary>
-        /// Creates a new employee in the nhanvien table
-        /// </summary>
-        public bool Create(EmployeeDTO employee)
+        public EmployeeDTO GetEmployeeById(string maNhanVien)
         {
+            EmployeeDTO employee = null;
             MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "INSERT INTO nhanvien (maNhanVien, soCmnd, maluong, mahopdong, maTrinhDo, maChucVu, maTaiKhoan, maPhong) VALUES (@maNhanVien, @soCmnd, @maluong, @mahopdong, @maTrinhDo, @maChucVu, @maTaiKhoan, @maPhong)";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@maNhanVien", employee.MaNhanVien);
-                    command.Parameters.AddWithValue("@soCmnd", employee.SoCmnd);
-                    command.Parameters.AddWithValue("@maluong", employee.MaLuong);
-                    command.Parameters.AddWithValue("@mahopdong", employee.MaHopDong);
-                    command.Parameters.AddWithValue("@maTrinhDo", (object)employee.MaTrinhDo ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maChucVu", (object)employee.MaChucVu ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maTaiKhoan", (object)employee.MaTaiKhoan ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maPhong", (object)employee.MaPhong ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error creating employee: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
+            MySqlDataReader reader = null;
 
-        /// <summary>
-        /// Updates an existing employee in the nhanvien table
-        /// </summary>
-        public bool Update(EmployeeDTO employee)
-        {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "UPDATE nhanvien SET soCmnd = @soCmnd, maluong = @maluong, mahopdong = @mahopdong, maTrinhDo = @maTrinhDo, maChucVu = @maChucVu, maTaiKhoan = @maTaiKhoan, maPhong = @maPhong WHERE maNhanVien = @maNhanVien";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@maNhanVien", employee.MaNhanVien);
-                    command.Parameters.AddWithValue("@soCmnd", employee.SoCmnd);
-                    command.Parameters.AddWithValue("@maluong", employee.MaLuong);
-                    command.Parameters.AddWithValue("@mahopdong", employee.MaHopDong);
-                    command.Parameters.AddWithValue("@maTrinhDo", (object)employee.MaTrinhDo ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maChucVu", (object)employee.MaChucVu ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maTaiKhoan", (object)employee.MaTaiKhoan ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@maPhong", (object)employee.MaPhong ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error updating employee: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
+                string query = @"
+                SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
+                       hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
+                       nv.mucLuong, hs.diaChi
+                FROM nhanvien nv
+                LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+                LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
+                LEFT JOIN chucvu cv ON nv.maChucVu = cv.maChucVu
+                WHERE nv.maNhanVien = @maNhanVien";
 
-        /// <summary>
-        /// Deletes an employee from the nhanvien table
-        /// </summary>
-        public bool Delete(string maNhanVien)
-        {
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "DELETE FROM nhanvien WHERE maNhanVien = @maNhanVien";
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maNhanVien", maNhanVien);
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error deleting employee: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-        }
-
-        /// <summary>
-        /// Searches for employees by maNhanVien or soCmnd
-        /// </summary>
-        public List<EmployeeDTO> Search(string searchTerm)
-        {
-            var employees = new List<EmployeeDTO>();
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "SELECT * FROM nhanvien WHERE maNhanVien = @searchTerm OR soCmnd LIKE @searchTermLike";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@searchTerm", searchTerm);
-                    command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
-                    using (var reader = command.ExecuteReader())
+                    reader = command.ExecuteReader();
+                    if (reader.Read())
                     {
-                        while (reader.Read())
+                        employee = new EmployeeDTO
                         {
-                            employees.Add(new EmployeeDTO
-                            {
-                                MaNhanVien = reader.GetString("maNhanVien"),
-                                SoCmnd = reader.GetString("soCmnd"),
-                                MaLuong = reader.GetString("maluong"),
-                                MaHopDong = reader.GetString("mahopdong"),
-                                MaTrinhDo = reader.IsDBNull(reader.GetOrdinal("maTrinhDo")) ? null : reader.GetString("maTrinhDo"),
-                                MaChucVu = reader.IsDBNull(reader.GetOrdinal("maChucVu")) ? null : reader.GetString("maChucVu"),
-                                MaTaiKhoan = reader.IsDBNull(reader.GetOrdinal("maTaiKhoan")) ? null : reader.GetString("maTaiKhoan"),
-                                MaPhong = reader.IsDBNull(reader.GetOrdinal("maPhong")) ? null : reader.GetString("maPhong")
-                            });
-                        }
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            HoTen = reader["hoTen"].ToString(),
+                            NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : (DateTime?)null,
+                            GioiTinh = reader["gioiTinh"].ToString(),
+                            Email = reader["email"].ToString(),
+                            Sdt = reader["sdt"].ToString(),
+                            SoCmnd = reader["soCmnd"].ToString(),
+                            HocVan = reader["hocVan"].ToString(),
+                            ChuyenNganh = reader["chuyenNganh"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            ChucVu = reader["chucVu"].ToString(),
+                            MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : 0m,
+                            DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "" // Thêm DiaChi
+                        };
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Error searching employees: {ex.Message}");
+                Console.WriteLine($"Error retrieving employee: {ex.Message}");
             }
             finally
             {
+                if (reader != null) reader.Close();
                 connectDB.closeConnection(conn);
             }
-            return employees;
+
+            return employee;
+        }
+
+        // Thêm hàm mới: Lấy thông tin kết hợp nhân viên và hợp đồng cho GUI
+        public LaborContractDTO GetEmployeeContractDetails(string maNhanVien)
+        {
+            LaborContractDTO contract = null;
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = @"
+                    SELECT 
+                        nv.maNhanVien,
+                        hs.hoTen,
+                        pb.tenPhong AS phongBan,
+                        hd.maHopDong,
+                        hd.tuNgay,
+                        hd.denNgay,
+                        hd.loaiHopDong,
+                        hd.luongCoBan
+                    FROM nhanvien nv
+                    LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+                    LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
+                    LEFT JOIN hopdonglaodong hd ON nv.maNhanVien = hd.maNhanVien
+                    WHERE nv.maNhanVien = @maNhanVien";
+
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        contract = new LaborContractDTO
+                        {
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            TenNhanVien = reader["hoTen"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            MaHopDong = reader["maHopDong"].ToString(),
+                            TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
+                            DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
+                            LoaiHopDong = reader["loaiHopDong"].ToString(),
+                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m
+                        };
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error retrieving employee contract details: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return contract;
         }
     }
 }

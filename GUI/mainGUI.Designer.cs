@@ -34,6 +34,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainGUI));
             this.pnMainGui = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.tuyenDungMain1 = new Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain();
             this.pnSideBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -77,8 +79,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nhanVienNhapLieu1 = new Quan_Ly_Nhan_Su.GUI.NhanVienUserControl.NhanVienNhapLieu();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnMainGui.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.pnSideBar.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -115,15 +118,35 @@ namespace Quan_Ly_Nhan_Su.GUI
             // pnMainGui
             // 
             this.pnMainGui.BackColor = System.Drawing.Color.Transparent;
-            this.pnMainGui.Controls.Add(this.nhanVienNhapLieu1);
+            this.pnMainGui.Controls.Add(this.panel6);
             this.pnMainGui.Controls.Add(this.pnSideBar);
             this.pnMainGui.Controls.Add(this.pnHeader);
+            this.pnMainGui.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMainGui.Location = new System.Drawing.Point(0, 0);
             this.pnMainGui.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMainGui.Name = "pnMainGui";
-            this.pnMainGui.Size = new System.Drawing.Size(1440, 818);
+            this.pnMainGui.Size = new System.Drawing.Size(1440, 786);
             this.pnMainGui.TabIndex = 0;
             this.pnMainGui.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMainGui_Paint);
+            // 
+            // panel6
+            //
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(335, 53);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1105, 733);
+            this.panel6.TabIndex = 2;
+            // 
+            // tuyenDungMain1
+            // 
+            this.tuyenDungMain1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tuyenDungMain1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tuyenDungMain1.Location = new System.Drawing.Point(0, 0);
+            this.tuyenDungMain1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tuyenDungMain1.Name = "tuyenDungMain1";
+            this.tuyenDungMain1.Size = new System.Drawing.Size(1105, 733);
+            this.tuyenDungMain1.TabIndex = 0;
             // 
             // pnSideBar
             // 
@@ -134,7 +157,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnSideBar.Location = new System.Drawing.Point(0, 53);
             this.pnSideBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnSideBar.Name = "pnSideBar";
-            this.pnSideBar.Size = new System.Drawing.Size(335, 765);
+            this.pnSideBar.Size = new System.Drawing.Size(335, 733);
             this.pnSideBar.TabIndex = 1;
             // 
             // panel5
@@ -155,7 +178,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(5);
-            this.panel5.Size = new System.Drawing.Size(335, 544);
+            this.panel5.Size = new System.Drawing.Size(335, 512);
             this.panel5.TabIndex = 1;
             // 
             // panel7
@@ -174,7 +197,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label12.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(69, 7);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 35);
+            this.label12.Size = new System.Drawing.Size(108, 28);
             this.label12.TabIndex = 1;
             this.label12.Text = "Đăng xuất";
             this.label12.Click += new System.EventHandler(this.label12_Click);
@@ -206,7 +229,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label10.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(69, 7);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(126, 35);
+            this.label10.Size = new System.Drawing.Size(101, 28);
             this.label10.TabIndex = 1;
             this.label10.Text = "Tài khoản";
             // 
@@ -237,7 +260,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label9.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(69, 7);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 35);
+            this.label9.Size = new System.Drawing.Size(95, 28);
             this.label9.TabIndex = 1;
             this.label9.Text = "Đánh giá";
             // 
@@ -268,7 +291,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label8.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(69, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(186, 35);
+            this.label8.Size = new System.Drawing.Size(153, 28);
             this.label8.TabIndex = 1;
             this.label8.Text = "Lương thưởng";
             // 
@@ -299,7 +322,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label7.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(69, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(143, 35);
+            this.label7.Size = new System.Drawing.Size(116, 28);
             this.label7.TabIndex = 1;
             this.label7.Text = "Chấm công";
             // 
@@ -330,7 +353,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label6.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(69, 7);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 35);
+            this.label6.Size = new System.Drawing.Size(111, 28);
             this.label6.TabIndex = 1;
             this.label6.Text = "Phòng ban";
             // 
@@ -361,7 +384,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label5.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(69, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 35);
+            this.label5.Size = new System.Drawing.Size(107, 28);
             this.label5.TabIndex = 1;
             this.label5.Text = "Hợp đồng";
             // 
@@ -392,7 +415,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(69, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 35);
+            this.label4.Size = new System.Drawing.Size(108, 28);
             this.label4.TabIndex = 1;
             this.label4.Text = "Nhân viên";
             // 
@@ -424,7 +447,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label3.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(69, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 35);
+            this.label3.Size = new System.Drawing.Size(121, 28);
             this.label3.TabIndex = 1;
             this.label3.Text = "Tuyển dụng";
             // 
@@ -455,7 +478,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(69, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 35);
+            this.label2.Size = new System.Drawing.Size(102, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Trang chủ";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -489,7 +512,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(83, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 33);
+            this.label1.Size = new System.Drawing.Size(168, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nguyễn Văn A";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -552,6 +575,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(51, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -595,14 +619,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // nhanVienNhapLieu1
-            // 
-            this.nhanVienNhapLieu1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.nhanVienNhapLieu1.Location = new System.Drawing.Point(336, 53);
-            this.nhanVienNhapLieu1.Name = "nhanVienNhapLieu1";
-            this.nhanVienNhapLieu1.Size = new System.Drawing.Size(1104, 735);
-            this.nhanVienNhapLieu1.TabIndex = 2;
-            // 
             // mainGUI
             // 
             this.ClientSize = new System.Drawing.Size(1440, 786);
@@ -614,6 +630,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.Text = "mainGUI";
             this.Load += new System.EventHandler(this.mainGUI_Load);
             this.pnMainGui.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.pnSideBar.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -706,6 +723,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         private Panel panel7;
         private Label label12;
         private PictureBox pictureBox16;
-        private NhanVienUserControl.NhanVienNhapLieu nhanVienNhapLieu1;
+        private Panel panel6;
+        private TuyenDungUserControl.TuyenDungMain tuyenDungMain1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -12,9 +12,9 @@ namespace Quan_Ly_Nhan_Su.config
         public static MySqlConnection getConnection()
         {
             string server = "localhost";
-            string database = "quan_ly_nhan_su";
+            string database = "qlct";
             string uid = "root";
-            string password = "123456";
+            string password = "kimloan12345";
             string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
 
             try
@@ -34,6 +34,7 @@ namespace Quan_Ly_Nhan_Su.config
                 return null;
             }
         }
+
         public static void closeConnection(MySqlConnection conn)
         {
             if (conn != null && conn.State == System.Data.ConnectionState.Open)
