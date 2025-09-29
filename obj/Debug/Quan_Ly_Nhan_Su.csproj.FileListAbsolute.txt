@@ -277,3 +277,4 @@ C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.Tuyen
 C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
 C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.AuthControl.Login.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl.TaiKhoanMain.resources
