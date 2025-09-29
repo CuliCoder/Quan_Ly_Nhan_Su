@@ -16,5 +16,10 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
         {
             InitializeComponent();
         }
+
+        private void lblAppName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
