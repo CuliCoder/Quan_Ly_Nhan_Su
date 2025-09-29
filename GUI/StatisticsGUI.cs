@@ -23,8 +23,8 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void StatisticsGUI_Load(object sender, EventArgs e)
         {
-            LoadData();  // Tải dữ liệu ban đầu
             SetupChartSeries();  // Thiết lập series cho biểu đồ nếu chưa có
+            LoadData();  // Tải dữ liệu ban đầu
         }
 
         /// <summary>
