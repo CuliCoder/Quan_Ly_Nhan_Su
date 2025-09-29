@@ -22,7 +22,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             designForm();
-            addUserControl();
+            addUserControl(homePage);
+            pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             addPanelToList();
             addEventToPanel();
         }
@@ -31,16 +32,23 @@ namespace Quan_Ly_Nhan_Su.GUI
             design.paintBorder(this.panel5, Color.Gray, 4, 30, 0, this.panel5.Width - 30, 0);
             design.paintBorder(this.panel2, Color.Gray, 4, 0, 0, 0, this.panel2.Height);
         }
-        private void addUserControl()
+        private void addUserControl(UserControl userControl)
         {
-            homePage.Dock = DockStyle.Fill;
-            departmentTab.Dock = DockStyle.Fill;
-            this.panel6.Controls.Add(homePage);
-            this.panel6.Controls.Add(departmentTab);
-            this.panel6.Controls.Add(laborContract);
-            this.panel6.Controls.Add(statistics);
-            homePage.BringToFront();
-            pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+            //homePage.Dock = DockStyle.Fill;
+            //departmentTab.Dock = DockStyle.Fill;
+            //this.panel6.Controls.Add(homePage);
+            //this.panel6.Controls.Add(departmentTab);
+            //this.panel6.Controls.Add(laborContract);
+            //this.panel6.Controls.Add(statistics);
+            //homePage.BringToFront();
+            //pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+            if (userControl == null)
+            {
+                return;
+            }
+            userControl.Dock = DockStyle.Fill;
+            this.panel6.Controls.Add(userControl);
+            userControl.BringToFront();
 
         }
         private void addPanelToList()
@@ -91,13 +99,15 @@ namespace Quan_Ly_Nhan_Su.GUI
             switch (pnlb.Name)
             {
                 case "pnlbTrangChu":
-                    homePage.BringToFront();
+                    addUserControl(homePage);
                     break;
                 case "pnlbPhongBan":
-                    departmentTab.BringToFront();
+                    //departmentTab.BringToFront();
+                    addUserControl(departmentTab);
                     break;
                 case "pnlbHopDong":
-                    laborContract.BringToFront();
+                    //laborContract.BringToFront();
+                    addUserControl(laborContract);
                     break;
                 default:
                     break;
