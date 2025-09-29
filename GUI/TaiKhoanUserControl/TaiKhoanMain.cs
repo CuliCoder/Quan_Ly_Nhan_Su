@@ -16,5 +16,16 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // TaiKhoanMain
+            // 
+            this.Name = "TaiKhoanMain";
+            this.ResumeLayout(false);
+
+        }
     }
 }
