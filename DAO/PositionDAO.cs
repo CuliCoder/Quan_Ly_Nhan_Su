@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using YourNamespace.DTO;
+using Quan_Ly_Nhan_Su.DTO;
 using Quan_Ly_Nhan_Su.config;
 
 namespace Quan_Ly_Nhan_Su.DAO
@@ -104,43 +104,43 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Searches for positions by maChucVu or tenChucVu
         /// </summary>
-        public List<PositionDTO> Search(string searchTerm)
-        {
-            var positions = new List<PositionDTO>();
-            MySqlConnection conn = null;
-            try
-            {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "SELECT * FROM chucvu WHERE maChucVu = @searchTerm OR tenChucVu LIKE @searchTermLike";
-                using (var command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@searchTerm", searchTerm);
-                    command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            positions.Add(new PositionDTO
-                            {
-                                MaChucVu = reader.GetString("maChucVu"),
-                                TenChucVu = reader.GetString("tenChucVu"),
-                                PhuCapChucVu = reader.GetDecimal("phuCapChucVu"),
-                                NgayNhanChuc = reader.IsDBNull(reader.GetOrdinal("ngayNhanChuc")) ? null : reader.GetDateTime("ngayNhanChuc")
-                            });
-                        }
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error searching positions: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-            return positions;
-        }
+        //pu    blic List<PositionDTO> Search(string searchTerm)
+        //{
+        //    var positions = new List<PositionDTO>();
+        //    MySqlConnection conn = null;
+        //    try
+        //    {
+        //        conn = connectDB.getConnection();
+        //        conn.Open();
+        //        string query = "SELECT * FROM chucvu WHERE maChucVu = @searchTerm OR tenChucVu LIKE @searchTermLike";
+        //        using (var command = new MySqlCommand(query, conn))
+        //        {
+        //            command.Parameters.AddWithValue("@searchTerm", searchTerm);
+        //            command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
+        //            using (var reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    positions.Add(new PositionDTO
+        //                    {
+        //                        MaChucVu = reader.GetString("maChucVu"),
+        //                        TenChucVu = reader.GetString("tenChucVu"),
+        //                        PhuCapChucVu = reader.GetDecimal("phuCapChucVu"),
+        //                        NgayNhanChuc = reader.IsDBNull(reader.GetOrdinal("ngayNhanChuc")) ? null : reader.GetDateTime("ngayNhanChuc")
+        //                    });
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        Console.WriteLine($"Error searching positions: {ex.Message}");
+        //    }
+        //    finally
+        //    {
+        //        connectDB.closeConnection(conn);
+        //    }
+        //    return positions;
+        //}
     }
 }

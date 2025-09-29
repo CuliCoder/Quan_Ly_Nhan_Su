@@ -13,21 +13,8 @@ namespace Quan_Ly_Nhan_Su
     {
         static void Main()
         {
-            Console.WriteLine("test");
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            // Tạo một Form chứa UserControl
-            Form hostForm = new Form();
-            hostForm.Text = "Chạy UserControl";
-            hostForm.Size = new System.Drawing.Size(1200, 700);
-
-            // Thay ContractGUI bằng UserControl bạn muốn chạy
-            ContractGUI contractGUI = new ContractGUI();
-            contractGUI.Dock = DockStyle.Fill;
-            hostForm.Controls.Add(contractGUI);
-
-            Application.Run(hostForm);
+          mainGUI mainGUI = new mainGUI();
+            Application.Run(mainGUI);
         }
     }
 }

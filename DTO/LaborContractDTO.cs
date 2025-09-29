@@ -14,5 +14,6 @@ namespace Quan_Ly_Nhan_Su.DTO
         public decimal LuongCoBan { get; set; }
         public string MaNhanVien { get; set; } // Giữ nguyên để sử dụng trong CRUD
         public string MaBangChamCong { get; set; }
+        public string HinhAnh { get; set; }
     }
 }

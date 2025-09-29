@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Quan_Ly_Nhan_Su.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
@@ -106,25 +109,19 @@
     <Compile Include="GUI\ContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\ContractGUI.Designer.cs" />
+    <Compile Include="GUI\ContractGUI.Designer.cs">
+      <DependentUpon>ContractGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
-    <Compile Include="GUI\DepartmentGUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="GUI\DepartmentGUI.cs" />
     <Compile Include="GUI\DepartmentGUI.Designer.cs" />
     <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\LaborContractGUI.Designer.cs" />
-    <Compile Include="GUI\mainGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\mainGUI.Designer.cs">
-      <DependentUpon>mainGUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,12 +133,6 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\ContractGUI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\ContractGUI.Designer.cs">
-      <DependentUpon>ContractGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.cs">
       <SubType>UserControl</SubType>
@@ -161,6 +152,12 @@
     <Compile Include="GUI\StatisticsGUI.Designer.cs">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="mainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainGUI.Designer.cs">
+      <DependentUpon>mainGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\ContractGUI.resx">
@@ -175,7 +172,7 @@
     <EmbeddedResource Include="GUI\StatisticsGUI.resx">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\mainGUI.resx">
+    <EmbeddedResource Include="mainGUI.resx">
       <DependentUpon>mainGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -204,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BUS\" />
+    <Folder Include="Images\Avatars\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\timkiem.ico" />

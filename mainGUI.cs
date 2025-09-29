@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.GUI;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class mainGUI : Form
     {
+        // Khai báo biến để lưu UserControl hợp đồng
+        private LaborContractGUI laborContractGUI;
         public mainGUI()
         {
             InitializeComponent();
@@ -58,9 +61,22 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void pnlbHopDong_click(object sender, EventArgs e)
         {
+            // Xóa các controls hiện tại trong panel6 (nơi hiển thị nội dung chính)
+            panel6.Controls.Clear();
 
+            // Khởi tạo UserControl nếu chưa có
+            if (laborContractGUI == null)
+            {
+                laborContractGUI = new LaborContractGUI();
+            }
+
+            // Thiết lập UserControl để lấp đầy panel6
+            laborContractGUI.Dock = DockStyle.Fill;
+
+            // Thêm UserControl vào panel6
+            panel6.Controls.Add(laborContractGUI);
         }
 
         private void panel8_Paint(object sender, PaintEventArgs e)
@@ -78,32 +94,14 @@ namespace Quan_Ly_Nhan_Su.GUI
             Application.Exit();
         }
 
-        private void pnlbTrangChu_Click(object sender, EventArgs e)
+        private void laborContractGUI1_Load(object sender, EventArgs e)
         {
-            //bodyContent.Controls.Clear();
 
-
-
-            //homePage home = new homePage();
-            //home.Dock = DockStyle.Fill;
-
-            //bodyContent.Controls.Add(home);
-
-            //pnlbTrangChu.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void laborContractGUI1_Load_1(object sender, EventArgs e)
         {
-           
-        }
-     
-        private void pnlbHopDong_Click(object sender, EventArgs e)
-        {
-            //bodyContent.Controls.Clear();
-            //ContractGUI contract = new ContractGUI();
-            //contract.Dock = DockStyle.Fill;
-            //bodyContent.Controls.Add(contract);
-            pnlbHopDong.BackColor = System.Drawing.ColorTranslator.FromHtml("#5DC2A7");  
+
         }
     }
-    }
+}
