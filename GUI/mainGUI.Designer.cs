@@ -35,7 +35,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainGUI));
             this.pnMainGui = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.tuyenDungMain1 = new Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain();
             this.pnSideBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -137,16 +136,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1105, 733);
             this.panel6.TabIndex = 2;
-            // 
-            // tuyenDungMain1
-            // 
-            this.tuyenDungMain1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tuyenDungMain1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tuyenDungMain1.Location = new System.Drawing.Point(0, 0);
-            this.tuyenDungMain1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tuyenDungMain1.Name = "tuyenDungMain1";
-            this.tuyenDungMain1.Size = new System.Drawing.Size(1105, 733);
-            this.tuyenDungMain1.TabIndex = 0;
             // 
             // pnSideBar
             // 
@@ -724,7 +713,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private Label label12;
         private PictureBox pictureBox16;
         private Panel panel6;
-        private TuyenDungUserControl.TuyenDungMain tuyenDungMain1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -93,7 +93,6 @@ C:\C#\School\Quan_Ly_Nhan_Su\bin\Debug\System.Numerics.Vectors.xml
 C:\C#\School\Quan_Ly_Nhan_Su\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\C#\School\Quan_Ly_Nhan_Su\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.csproj.AssemblyReference.cache
-C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.ContractGUI.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.CT_LaborContractGUI.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.LaborContractGUI.resources
@@ -117,3 +116,7 @@ C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.csproj.CoreCompileInputs.
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_.0AC7D4CC.Up2Date
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.pdb
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl.DanhGia.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl.DanhGiaNhanVien.resources
+C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl.LuongThuong.resources

@@ -118,6 +118,14 @@
     <Compile Include="GUI\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs" />
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs" />
     <Compile Include="GUI\departmentTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,6 +147,10 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs" />
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,9 +249,12 @@
     <EmbeddedResource Include="GUI\CT_LaborContractGUI.resx">
       <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx" />
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx" />
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx" />
     <EmbeddedResource Include="GUI\StatisticsGUI.resx">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </EmbeddedResource>
