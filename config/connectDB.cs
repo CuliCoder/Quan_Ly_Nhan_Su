@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration; // để đọc App.config
 using MySql.Data.MySqlClient;
 
 namespace Quan_Ly_Nhan_Su.config
@@ -11,14 +8,13 @@ namespace Quan_Ly_Nhan_Su.config
     {
         public static MySqlConnection getConnection()
         {
-            string server = "localhost";
-            string database = "quan_ly_nhan_su";
-            string uid = "root";
-            string password = "123456";
-            string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
-
             try
             {
+                // Đọc connection string từ App.config
+                string connectionString = ConfigurationManager
+                                          .ConnectionStrings["MyDB"]
+                                          .ConnectionString;
+
                 MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
                 Console.WriteLine("Database connection successful.");
                 return mySqlConnection;
