@@ -14,7 +14,6 @@ namespace Quan_Ly_Nhan_Su.BUS
             _accountBLL = new AccountBLL();
         }
 
-        // Các hàm cũ
         public AccountDTO Login(string username, string password)
         {
             return _accountBLL.Login(username, password);

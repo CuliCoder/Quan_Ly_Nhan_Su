@@ -21,7 +21,7 @@ namespace Quan_Ly_Nhan_Su.BLL
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <returns>Tài khoản nếu thành công, không thì null</returns>
         public AccountDTO Login(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
@@ -32,7 +32,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             List<AccountDTO> accounts = _accountDAO.Search(username);
             AccountDTO account = accounts.FirstOrDefault(acc => acc.TenDangNhap == username);
 
-            // Cần sửa lại logic Login để dùng BCrypt.Verify
+            // Kiểm tra mật khẩu băm
             if (account != null && BCrypt.Net.BCrypt.Verify(password, account.MatKhau))
             {
                 return account;
@@ -41,6 +41,9 @@ namespace Quan_Ly_Nhan_Su.BLL
             return null;
         }
 
+        /// <summary>
+        ///     Tạo tài khoản dev nếu chưa có
+        /// </summary>
         public void EnsureDevAccountExists()
         {
             var accounts = _accountDAO.Search("dev");
