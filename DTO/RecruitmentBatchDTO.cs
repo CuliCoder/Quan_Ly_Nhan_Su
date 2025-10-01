@@ -2,21 +2,108 @@ using System;
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
-    /// <summary>
-    /// DTO for RecruitmentBatch table
-    /// </summary>
     public class RecruitmentBatchDTO
     {
-        public string MaTuyenDung { get; set; }
-        public string ChucVu { get; set; }
-        public string HocVan { get; set; }
-        public string GioiTinh { get; set; }
-        public string DoTuoi { get; set; }
-        public int SoLuongCanTuyen { get; set; }
-        public DateTime HanNopHoSo { get; set; }
-        public decimal? MucLuongToiThieu { get; set; }
-        public decimal? MucLuongToiDa { get; set; }
-        public int SoLuongNopHoSo { get; set; }
-        public int SoLuongDaTuyen { get; set; }
+        private string maTuyenDung;
+        private string chucVu;
+        private string hocVan;
+        private string gioiTinh;
+        private string doTuoi;
+        private int soLuongCanTuyen;
+        private DateTime hanNopHoSo;
+        private decimal? mucLuongToiThieu;
+        private decimal? mucLuongToiDa;
+        private int soLuongNopHoSo;
+        private int soLuongDaTuyen;
+
+        public RecruitmentBatchDTO() { }
+
+        public RecruitmentBatchDTO(string maTuyenDung, string chucVu, string hocVan, string gioiTinh, 
+            string doTuoi, int soLuongCanTuyen, DateTime hanNopHoSo, decimal? mucLuongToiThieu, 
+            decimal? mucLuongToiDa, int soLuongNopHoSo, int soLuongDaTuyen)
+        {
+            this.maTuyenDung = maTuyenDung;
+            this.chucVu = chucVu;
+            this.hocVan = hocVan;
+            this.gioiTinh = gioiTinh;
+            this.doTuoi = doTuoi;
+            this.soLuongCanTuyen = soLuongCanTuyen;
+            this.hanNopHoSo = hanNopHoSo;
+            this.mucLuongToiThieu = mucLuongToiThieu;
+            this.mucLuongToiDa = mucLuongToiDa;
+            this.soLuongNopHoSo = soLuongNopHoSo;
+            this.soLuongDaTuyen = soLuongDaTuyen;
+        }
+        
+        public string MaTuyenDung
+        {
+            get => maTuyenDung;
+            set => maTuyenDung = value;
+        }
+
+        public string ChucVu
+        {
+            get => chucVu;
+            set => chucVu = value;
+        }
+
+        public string HocVan
+        {
+            get => hocVan; set => hocVan = value;
+        }
+
+        public string DoTuoi
+        {
+            get => doTuoi;
+            set => doTuoi = value;
+        }
+        public string GioiTinh
+        {
+            get => gioiTinh;
+            set => gioiTinh = value;
+        }
+        public int SoLuongCanTuyen
+        {
+            get => soLuongCanTuyen;
+            set => soLuongCanTuyen = value;
+        }
+
+        public DateTime HanNopHoSo
+        {
+            get => hanNopHoSo;
+            set => hanNopHoSo = value;
+        }
+
+        public decimal? MucLuongToiThieu
+        {
+            get => mucLuongToiThieu;
+            set => mucLuongToiThieu = value;
+        }
+
+        public decimal? MucLuongToiDa
+        {
+            get => mucLuongToiDa;
+            set => mucLuongToiDa = value;
+        }
+        
+        public int SoLuongNopHoSo
+        {
+            get => soLuongNopHoSo;
+            set => soLuongNopHoSo = value;
+        }
+
+        public int SoLuongDaTuyen
+        {
+            get => soLuongDaTuyen;
+            set => soLuongDaTuyen = value;
+        }
+
+        public override string ToString()
+        {
+            return $"matuyendung: {maTuyenDung}, chucvu: {chucVu}, hocVan: {HocVan}, gioiTinh: {gioiTinh}" +
+                $"doTuoi: { doTuoi}, soLuongCanTuyen: {soLuongCanTuyen}, hanNopHoSo: {hanNopHoSo}, mucLuongToiThieu: {mucLuongToiThieu}" +
+                $"mucLuongToiDa: {mucLuongToiDa}, soLuongNopHoSo: {SoLuongNopHoSo}, soLuongDaTuyen: {soLuongDaTuyen}"
+            ;
+        }
     }
 }

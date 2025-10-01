@@ -1,8 +1,10 @@
-using System;
-using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using Quan_Ly_Nhan_Su.DTO;
 using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
+using System.CodeDom;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -11,12 +13,61 @@ namespace Quan_Ly_Nhan_Su.DAO
     /// </summary>
     public class RecruitmentBatchDAO
     {
-        /// <summary>
-        /// Creates a new recruitment batch in the dottuyendung table
-        /// </summary>
+        private MySqlConnection conn = null;
+
+        public List<RecruitmentBatchDTO> getAll()
+        {
+            List<RecruitmentBatchDTO> list = new List<RecruitmentBatchDTO>();
+
+            try
+            {
+                using (var conn = connectDB.getConnection())
+                {
+                    if (conn == null) return null;
+
+                    conn.Open();
+                    string sql = "SELECT * FROM dottuyendung";
+
+                    using (var command = new MySqlCommand(sql, conn))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            RecruitmentBatchDTO dto = new RecruitmentBatchDTO(
+                                reader["maTuyenDung"].ToString(),
+                                reader["chucVu"].ToString(),
+                                reader["hocVan"].ToString(),
+                                reader["gioiTinh"].ToString(),
+                                reader["doTuoi"].ToString(),
+                                Convert.ToInt32(reader["soLuongCanTuyen"]),
+                                Convert.ToDateTime(reader["HanNopHoSo"]),
+                                reader["MucLuongToiThieu"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiThieu"]),
+                                reader["MucLuongToiDa"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiDa"]),
+                                Convert.ToInt32(reader["SoLuongNopHoSo"]),
+                                Convert.ToInt32(reader["SoLuongDaTuyen"])
+                            );
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return null; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+
+            return list;
+        }
+
+
         public bool Create(RecruitmentBatchDTO batch)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
@@ -54,7 +105,6 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// </summary>
         public bool Update(RecruitmentBatchDTO batch)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
@@ -92,7 +142,6 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// </summary>
         public bool Delete(string maTuyenDung)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
