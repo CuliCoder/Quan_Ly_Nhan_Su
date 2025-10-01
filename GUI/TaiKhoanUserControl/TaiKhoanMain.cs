@@ -16,5 +16,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
         {
             InitializeComponent();
         }
+
     }
 }

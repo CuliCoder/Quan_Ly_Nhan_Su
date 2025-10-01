@@ -1,7 +1,32 @@
-.vs/
+# Build results
 bin/
 obj/
-*.exe
+[Bb]uild/
+[Ll]og/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# Compiled binaries
 *.dll
+*.exe
 *.pdb
 *.cache
+
+# Others
+*.log
