@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
+using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -16,6 +18,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         homePage homePage = new homePage();
         departmentTab departmentTab = new departmentTab();
         LaborContractGUI laborContract = new LaborContractGUI();
+        TuyenDungMain tuyenDungGUI = new TuyenDungMain();
+        NhanVien nhanVienGUI = new NhanVien();
         StatisticsGUI statistics = new StatisticsGUI();
         List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
@@ -108,6 +112,14 @@ namespace Quan_Ly_Nhan_Su.GUI
                 case "pnlbHopDong":
                     //laborContract.BringToFront();
                     addUserControl(laborContract);
+                    break;
+                case "pnlbTuyenDung":
+                    //laborContract.BringToFront();
+                    addUserControl(tuyenDungGUI);
+                    break;
+                case "pnlbNhanVien":
+                    //laborContract.BringToFront();
+                    addUserControl(nhanVienGUI);
                     break;
                 default:
                     break;

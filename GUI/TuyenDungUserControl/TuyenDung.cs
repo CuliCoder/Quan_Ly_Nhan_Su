@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,14 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class TuyenDung : UserControl
     {
+        private static readonly RecruitmentBatchBUS  bus = new RecruitmentBatchBUS();
+        private static List<RecruitmentBatchDTO> list;
+
         public TuyenDung()
         {
             InitializeComponent();
+            list = bus.getAll();
+            fillDataToTable();
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -22,5 +29,13 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             ttd.StartPosition = FormStartPosition.CenterScreen;
             ttd.ShowDialog();
         }
+        private void fillDataToTable()
+        {
+            tableTuyenDung.AutoGenerateColumns = false;
+            tableTuyenDung.DataSource = null;
+            tableTuyenDung.DataSource = list;
+            tableTuyenDung.ClearSelection();
+        }
+
     }
 }

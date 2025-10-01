@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.config;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
@@ -13,17 +13,20 @@ namespace Quan_Ly_Nhan_Su.DAO
     /// </summary>
     public class RecruitmentBatchDAO
     {
-        private MySqlConnection conn = null;
+        private MySqlConnection conn;
 
         public List<RecruitmentBatchDTO> getAll()
         {
             List<RecruitmentBatchDTO> list = new List<RecruitmentBatchDTO>();
-
             try
             {
                 using (var conn = connectDB.getConnection())
                 {
-                    if (conn == null) return null;
+                    if (conn == null)
+                    {
+                        Console.WriteLine("Khong tao duoc connection");
+                        return new List<RecruitmentBatchDTO>();
+                    }
 
                     conn.Open();
                     string sql = "SELECT * FROM dottuyendung";

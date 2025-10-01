@@ -1,22 +1,18 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 
 namespace Quan_Ly_Nhan_Su.config
 {
     public class connectDB
     {
+        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
         public static MySqlConnection getConnection()
         {
-            string server = "localhost";
-            string database = "quan_ly_nhan_su";
-            string uid = "root";
-            string password = "123456";
-            string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
-
             try
             {
                 MySqlConnection mySqlConnection = new MySqlConnection(connectionString);

@@ -30,3 +30,5 @@ project.fragment.lock.json
 
 # Others
 *.log
+
+App.config
