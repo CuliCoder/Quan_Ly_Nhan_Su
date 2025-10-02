@@ -7,8 +7,17 @@ namespace Quan_Ly_Nhan_Su.DTO
     /// </summary>
     public class PermissionGroupDTO
     {
-        public string MaNhomQuyen { get; set; }
+        public int MaNhomQuyen { get; set; }
         public string TenNhomQuyen { get; set; }
-        public string MangChucNang { get; set; } // JSON stored as string
+        public string MoTa { get; set; }
+
+        public PermissionGroupDTO() { }
+
+        public PermissionGroupDTO(int maNhomQuyen, string tenNhomQuyen, string moTa)
+        {
+            MaNhomQuyen = maNhomQuyen;
+            TenNhomQuyen = tenNhomQuyen;
+            MoTa = moTa;
+        }
     }
 }
