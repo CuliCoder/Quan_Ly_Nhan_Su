@@ -35,7 +35,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainGUI));
             this.pnMainGui = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.tuyenDungMain1 = new Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain();
             this.pnSideBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -47,10 +46,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlbDanhGia = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pblbLuongThuong = new System.Windows.Forms.Panel();
+            this.pnlbLuongThuong = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pblbChamCong = new System.Windows.Forms.Panel();
+            this.pnlbChamCong = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pnlbPhongBan = new System.Windows.Forms.Panel();
@@ -81,7 +80,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnMainGui.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.pnSideBar.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -90,9 +88,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.pnlbDanhGia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            this.pblbLuongThuong.SuspendLayout();
+            this.pnlbLuongThuong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            this.pblbChamCong.SuspendLayout();
+            this.pnlbChamCong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.pnlbPhongBan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -130,23 +128,13 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnMainGui.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMainGui_Paint);
             // 
             // panel6
-            //
+            // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(335, 53);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1105, 733);
             this.panel6.TabIndex = 2;
-            // 
-            // tuyenDungMain1
-            // 
-            this.tuyenDungMain1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tuyenDungMain1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tuyenDungMain1.Location = new System.Drawing.Point(0, 0);
-            this.tuyenDungMain1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tuyenDungMain1.Name = "tuyenDungMain1";
-            this.tuyenDungMain1.Size = new System.Drawing.Size(1105, 733);
-            this.tuyenDungMain1.TabIndex = 0;
             // 
             // pnSideBar
             // 
@@ -166,8 +154,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panel5.Controls.Add(this.panel7);
             this.panel5.Controls.Add(this.pnlbTaiKhoan);
             this.panel5.Controls.Add(this.pnlbDanhGia);
-            this.panel5.Controls.Add(this.pblbLuongThuong);
-            this.panel5.Controls.Add(this.pblbChamCong);
+            this.panel5.Controls.Add(this.pnlbLuongThuong);
+            this.panel5.Controls.Add(this.pnlbChamCong);
             this.panel5.Controls.Add(this.pnlbPhongBan);
             this.panel5.Controls.Add(this.pnlbHopDong);
             this.panel5.Controls.Add(this.pnlbNhanVien);
@@ -275,15 +263,15 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox13.TabIndex = 0;
             this.pictureBox13.TabStop = false;
             // 
-            // pblbLuongThuong
+            // pnlbLuongThuong
             // 
-            this.pblbLuongThuong.Controls.Add(this.label8);
-            this.pblbLuongThuong.Controls.Add(this.pictureBox12);
-            this.pblbLuongThuong.Location = new System.Drawing.Point(5, 308);
-            this.pblbLuongThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
-            this.pblbLuongThuong.Name = "pblbLuongThuong";
-            this.pblbLuongThuong.Size = new System.Drawing.Size(325, 42);
-            this.pblbLuongThuong.TabIndex = 6;
+            this.pnlbLuongThuong.Controls.Add(this.label8);
+            this.pnlbLuongThuong.Controls.Add(this.pictureBox12);
+            this.pnlbLuongThuong.Location = new System.Drawing.Point(5, 308);
+            this.pnlbLuongThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.pnlbLuongThuong.Name = "pnlbLuongThuong";
+            this.pnlbLuongThuong.Size = new System.Drawing.Size(325, 42);
+            this.pnlbLuongThuong.TabIndex = 6;
             // 
             // label8
             // 
@@ -306,15 +294,15 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox12.TabIndex = 0;
             this.pictureBox12.TabStop = false;
             // 
-            // pblbChamCong
+            // pnlbChamCong
             // 
-            this.pblbChamCong.Controls.Add(this.label7);
-            this.pblbChamCong.Controls.Add(this.pictureBox11);
-            this.pblbChamCong.Location = new System.Drawing.Point(5, 258);
-            this.pblbChamCong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
-            this.pblbChamCong.Name = "pblbChamCong";
-            this.pblbChamCong.Size = new System.Drawing.Size(325, 42);
-            this.pblbChamCong.TabIndex = 5;
+            this.pnlbChamCong.Controls.Add(this.label7);
+            this.pnlbChamCong.Controls.Add(this.pictureBox11);
+            this.pnlbChamCong.Location = new System.Drawing.Point(5, 258);
+            this.pnlbChamCong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.pnlbChamCong.Name = "pnlbChamCong";
+            this.pnlbChamCong.Size = new System.Drawing.Size(325, 42);
+            this.pnlbChamCong.TabIndex = 5;
             // 
             // label7
             // 
@@ -377,6 +365,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlbHopDong.Name = "pnlbHopDong";
             this.pnlbHopDong.Size = new System.Drawing.Size(325, 42);
             this.pnlbHopDong.TabIndex = 3;
+            this.pnlbHopDong.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlbHopDong_Paint);
             // 
             // label5
             // 
@@ -630,7 +619,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.Text = "mainGUI";
             this.Load += new System.EventHandler(this.mainGUI_Load);
             this.pnMainGui.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.pnSideBar.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -642,11 +630,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlbDanhGia.ResumeLayout(false);
             this.pnlbDanhGia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            this.pblbLuongThuong.ResumeLayout(false);
-            this.pblbLuongThuong.PerformLayout();
+            this.pnlbLuongThuong.ResumeLayout(false);
+            this.pnlbLuongThuong.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            this.pblbChamCong.ResumeLayout(false);
-            this.pblbChamCong.PerformLayout();
+            this.pnlbChamCong.ResumeLayout(false);
+            this.pnlbChamCong.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.pnlbPhongBan.ResumeLayout(false);
             this.pnlbPhongBan.PerformLayout();
@@ -696,7 +684,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.Panel pnlbTrangChu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Panel pblbChamCong;
+        private System.Windows.Forms.Panel pnlbChamCong;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Panel pnlbPhongBan;
@@ -717,14 +705,13 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.Panel pnlbDanhGia;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.Panel pblbLuongThuong;
+        private System.Windows.Forms.Panel pnlbLuongThuong;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox12;
         private Panel panel7;
         private Label label12;
         private PictureBox pictureBox16;
         private Panel panel6;
-        private TuyenDungUserControl.TuyenDungMain tuyenDungMain1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
