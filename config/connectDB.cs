@@ -1,10 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Configuration; // để đọc App.config
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Quan_Ly_Nhan_Su.config
 {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
 
@@ -39,14 +40,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         }
         private void addUserControl(UserControl userControl)
         {
-            //homePage.Dock = DockStyle.Fill;
-            //departmentTab.Dock = DockStyle.Fill;
-            //this.panel6.Controls.Add(homePage);
-            //this.panel6.Controls.Add(departmentTab);
-            //this.panel6.Controls.Add(laborContract);
-            //this.panel6.Controls.Add(statistics);
-            //homePage.BringToFront();
-            //pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             if (userControl == null)
             {
                 return;
@@ -54,7 +47,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             userControl.Dock = DockStyle.Fill;
             this.panel6.Controls.Add(userControl);
             userControl.BringToFront();
-
         }
         private void addPanelToList()
         {
@@ -112,14 +104,14 @@ namespace Quan_Ly_Nhan_Su.GUI
                 case "pnlbHopDong":
                     addUserControl(laborContract);
                     break;
+                case "pnlbTaiKhoan": 
+                    addUserControl(taiKhoanMain);
+                    break;
                 case "pnlbTuyenDung":
                     addUserControl(tuyenDungGUI);
                     break;
                 case "pnlbNhanVien":
                     addUserControl(nhanVienGUI);
-                    break;
-                case "pnlbTaiKhoan": 
-                    addUserControl(taiKhoanMain);
                     break;
                 default:
                     break;
