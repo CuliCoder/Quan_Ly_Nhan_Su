@@ -33,4 +33,3 @@ project.fragment.lock.json
 
 # Setup
 App.config
-connectDB.cs

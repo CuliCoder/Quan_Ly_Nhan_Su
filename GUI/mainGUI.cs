@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.config;
-using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
+using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
+using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -17,6 +18,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         homePage homePage = new homePage();
         departmentTab departmentTab = new departmentTab();
         LaborContractGUI laborContract = new LaborContractGUI();
+        TuyenDungMain tuyenDungGUI = new TuyenDungMain();
+        NhanVien nhanVienGUI = new NhanVien();
         StatisticsGUI statistics = new StatisticsGUI();
         TaiKhoanMain taiKhoanMain = new TaiKhoanMain();
         List<Panel> listpnlbSideBar = new List<Panel>();
@@ -104,12 +107,16 @@ namespace Quan_Ly_Nhan_Su.GUI
                     addUserControl(homePage);
                     break;
                 case "pnlbPhongBan":
-                    //departmentTab.BringToFront();
                     addUserControl(departmentTab);
                     break;
                 case "pnlbHopDong":
-                    //laborContract.BringToFront();
                     addUserControl(laborContract);
+                    break;
+                case "pnlbTuyenDung":
+                    addUserControl(tuyenDungGUI);
+                    break;
+                case "pnlbNhanVien":
+                    addUserControl(nhanVienGUI);
                     break;
                 case "pnlbTaiKhoan": 
                     addUserControl(taiKhoanMain);

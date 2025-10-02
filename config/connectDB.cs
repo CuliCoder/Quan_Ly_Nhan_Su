@@ -1,11 +1,16 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Configuration; // để đọc App.config
-using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Quan_Ly_Nhan_Su.config
 {
     public class connectDB
     {
+        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString;
         public static MySqlConnection getConnection()
         {
             try

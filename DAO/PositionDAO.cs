@@ -11,12 +11,54 @@ namespace Quan_Ly_Nhan_Su.DAO
     /// </summary>
     public class PositionDAO
     {
+        private MySqlConnection conn = null;
+        public List<PositionDTO> getAll()
+        {
+            List<PositionDTO> list = new List<PositionDTO>();
+
+            try
+            {
+                using (var conn = connectDB.getConnection())
+                {
+                    if (conn == null) return null;
+
+                    conn.Open();
+                    string sql = "SELECT * FROM chucvu";
+
+                    using (var command = new MySqlCommand(sql, conn))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PositionDTO dto = new PositionDTO(
+                               reader["maChucVu"].ToString(),
+                               reader["tenChucVu"].ToString(),
+                               reader["phuCapChucVu"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["phuCapChucVu"]),
+                               Convert.ToDateTime(reader["ngayNhanChuc"])
+                            );
+                            list.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+
+            return list;
+        }
         /// <summary>
         /// Creates a new position in the chucvu table
         /// </summary>
         public bool Create(PositionDTO position)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
@@ -47,7 +89,6 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// </summary>
         public bool Update(PositionDTO position)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
@@ -78,7 +119,6 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// </summary>
         public bool Delete(string maChucVu)
         {
-            MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
@@ -104,7 +144,7 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Searches for positions by maChucVu or tenChucVu
         /// </summary>
-        //pu    blic List<PositionDTO> Search(string searchTerm)
+        //public List<PositionDTO> Search(string searchTerm)
         //{
         //    var positions = new List<PositionDTO>();
         //    MySqlConnection conn = null;
