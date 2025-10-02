@@ -167,7 +167,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 labelem.Text = employee.Email ?? "";                     // Email
                 label7.Text = employee.Sdt ?? "";                        // Số điện thoại
                 labeldc.Text = employee.DiaChi ?? "";                    // Địa chỉ
-                label5.Text = employee.HocVan ?? "";                     // Học vấn (trùng lặp, có thể điều chỉnh)
+                labelhv.Text = employee.HocVan ?? "";                     // Học vấn (trùng lặp, có thể điều chỉnh)
                 labelgt.Text = employee.GioiTinh ?? "";                  // Giới tính
                 labelns.Text = employee.NgaySinh.HasValue ? employee.NgaySinh.Value.ToString("dd/MM/yyyy") : ""; // Ngày sinh
                 labelId.Text = employee.MaNhanVien ?? "";                // Mã nhân viên
