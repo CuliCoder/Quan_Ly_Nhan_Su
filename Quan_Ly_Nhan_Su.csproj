@@ -146,6 +146,12 @@
     <Compile Include="GUI\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\CT_ContractGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\CT_ContractGUI.Designer.cs">
+      <DependentUpon>CT_ContractGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\ContractGUI.resx">
       <DependentUpon>ContractGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CT_ContractGUI.resx">
+      <DependentUpon>CT_ContractGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\CT_LaborContractGUI.resx">
       <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>

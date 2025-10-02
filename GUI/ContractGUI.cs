@@ -155,5 +155,10 @@ namespace Quan_Ly_Nhan_Su.GUI
                 }
             }
         }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
