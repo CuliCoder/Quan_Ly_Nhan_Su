@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Quan_Ly_Nhan_Su.DTO;
 using Quan_Ly_Nhan_Su.DAO;
 
@@ -13,6 +14,34 @@ namespace Quan_Ly_Nhan_Su.BLL
             _dao = new EmployeeDAO();
         }
 
+        /// <summary>
+        /// Lấy danh sách tất cả nhân viên.
+        /// </summary>
+        /// <returns>List<EmployeeDTO></returns>
+        public List<EmployeeDTO> GetAllEmployees()
+        {
+            try
+            {
+                return _dao.GetAll();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy danh sách nhân viên: {ex.Message}");
+            }
+        }
+        // Thêm method này vào class EmployeeBLL
+        public List<EmployeeDTO> GetEmployeesWithoutContract()
+        {
+            try
+            {
+                return _dao.GetEmployeesWithoutContract();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy danh sách nhân viên chưa ký hợp đồng: {ex.Message}");
+            }
+        }
+     
         public EmployeeDTO GetEmployeeById(string maNhanVien)
         {
             if (string.IsNullOrEmpty(maNhanVien))

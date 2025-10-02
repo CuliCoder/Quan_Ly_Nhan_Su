@@ -277,3 +277,9 @@ C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.Tuyen
 C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.TuyenDungMain.resources
 C:\Users\LENOVO\Source\Repos\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl.UngVien.resources
 C:\C#\School\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.AuthControl.Login.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.exe.config
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl.DanhGia.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl.DanhGiaNhanVien.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl.LuongThuong.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.AuthControl.Login.resources
+C:\Quan_Ly_Nhan_Su\obj\Debug\Quan_Ly_Nhan_Su.GUI.CT_ContractGUI.resources

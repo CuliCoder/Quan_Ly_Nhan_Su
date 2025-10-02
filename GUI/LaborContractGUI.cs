@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -75,7 +76,33 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void buttonTaoHopDong_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Tạo form mới để chứa CT_ContractGUI
+                Form createContractForm = new Form
+                {
+                    Text = "Tạo Hợp Đồng Lao Động",
+                    Size = new Size(500, 500),  // Kích thước phù hợp với CT_ContractGUI
+                    StartPosition = FormStartPosition.CenterParent,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    MaximizeBox = false,
+                    MinimizeBox = false
+                };
 
+                // Tạo instance của CT_ContractGUI (không prefill dữ liệu, không load gì)
+                CT_ContractGUI contractGui = new CT_ContractGUI();
+
+                // Thêm CT_ContractGUI vào form
+                contractGui.Dock = DockStyle.Fill;
+                createContractForm.Controls.Add(contractGui);
+
+                // Hiển thị form như dialog (parent là form hiện tại)
+                createContractForm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form tạo hợp đồng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void panelRight_Paint(object sender, PaintEventArgs e)
@@ -95,7 +122,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Sự kiện CellClick đã chạy! RowIndex: " + e.RowIndex); // Kiểm tra
+        
             try
             {
                 // Kiểm tra dòng được chọn hợp lệ
@@ -297,6 +324,45 @@ namespace Quan_Ly_Nhan_Su.GUI
             LoadUnsignedEmployees(); // Lọc Grid theo phòng ban đã chọn
         }
 
+        private void labelcn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelcc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelpb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelKetThuc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxThongTin_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelgt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contractGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelEmail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     
