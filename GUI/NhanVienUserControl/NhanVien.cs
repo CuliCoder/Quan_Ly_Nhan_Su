@@ -12,54 +12,31 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVien : UserControl
     {
+        NhanVienNhapLieu nhanVienNhapLieu = new NhanVienNhapLieu();
         public NhanVien()
         {
             InitializeComponent();
+            nhanVienNhapLieu.QuayLaiClicked += (s, e) =>
+            {
+                chuyenMan.Controls.Clear();
+                chuyenMan.Controls.Add(danhSachNhanVienPanel);
+                danhSachNhanVienPanel.Dock = DockStyle.Fill;
+            };
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void addUserControl(UserControl userControl)
         {
+            if (userControl == null) return;
 
+            userControl.Dock = DockStyle.Fill;
+            chuyenMan.Controls.Clear();
+            chuyenMan.Controls.Add(userControl);
+            userControl.BringToFront();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+            addUserControl(nhanVienNhapLieu);
         }
     }
 }

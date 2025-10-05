@@ -12,9 +12,15 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVienNhapLieu : UserControl
     {
+        public event EventHandler QuayLaiClicked;
         public NhanVienNhapLieu()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            QuayLaiClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
