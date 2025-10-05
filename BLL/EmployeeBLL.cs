@@ -41,7 +41,7 @@ namespace Quan_Ly_Nhan_Su.BLL
                 throw new Exception($"Lỗi khi lấy danh sách nhân viên chưa ký hợp đồng: {ex.Message}");
             }
         }
-     
+
         public EmployeeDTO GetEmployeeById(string maNhanVien)
         {
             if (string.IsNullOrEmpty(maNhanVien))

@@ -30,12 +30,13 @@ namespace Quan_Ly_Nhan_Su.DAO
                     {
                         while (reader.Read())
                         {
-                            PositionDTO dto = new PositionDTO(
-                               reader["maChucVu"].ToString(),
-                               reader["tenChucVu"].ToString(),
-                               reader["phuCapChucVu"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["phuCapChucVu"]),
-                               Convert.ToDateTime(reader["ngayNhanChuc"])
-                            );
+                            PositionDTO dto = new PositionDTO()
+                            {
+                                MaChucVu = reader["maChucVu"].ToString(),
+                                TenChucVu = reader["tenChucVu"].ToString(),
+                                PhuCapChucVu = reader["phuCapChucVu"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["phuCapChucVu"]),
+                                NgayNhanChuc = Convert.ToDateTime(reader["ngayNhanChuc"])
+                            };
                             list.Add(dto);
                         }
                     }
@@ -61,26 +62,24 @@ namespace Quan_Ly_Nhan_Su.DAO
         {
             try
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc) VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)";
-                using (var command = new MySqlCommand(query, conn))
+                using (conn = connectDB.getConnection())
                 {
-                    command.Parameters.AddWithValue("@maChucVu", position.MaChucVu);
-                    command.Parameters.AddWithValue("@tenChucVu", position.TenChucVu);
-                    command.Parameters.AddWithValue("@phuCapChucVu", position.PhuCapChucVu);
-                    command.Parameters.AddWithValue("@ngayNhanChuc", (object)position.NgayNhanChuc ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc) VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maChucVu", position.MaChucVu);
+                        command.Parameters.AddWithValue("@tenChucVu", position.TenChucVu);
+                        command.Parameters.AddWithValue("@phuCapChucVu", position.PhuCapChucVu);
+                        command.Parameters.AddWithValue("@ngayNhanChuc", (object)position.NgayNhanChuc ?? DBNull.Value);
+                        return command.ExecuteNonQuery() > 0;
+                    }
                 }
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine($"Error creating position: {ex.Message}");
                 return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
         }
 
@@ -91,26 +90,24 @@ namespace Quan_Ly_Nhan_Su.DAO
         {
             try
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "UPDATE chucvu SET tenChucVu = @tenChucVu, phuCapChucVu = @phuCapChucVu, ngayNhanChuc = @ngayNhanChuc WHERE maChucVu = @maChucVu";
-                using (var command = new MySqlCommand(query, conn))
+                using(conn = connectDB.getConnection())
                 {
-                    command.Parameters.AddWithValue("@maChucVu", position.MaChucVu);
-                    command.Parameters.AddWithValue("@tenChucVu", position.TenChucVu);
-                    command.Parameters.AddWithValue("@phuCapChucVu", position.PhuCapChucVu);
-                    command.Parameters.AddWithValue("@ngayNhanChuc", (object)position.NgayNhanChuc ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "UPDATE chucvu SET tenChucVu = @tenChucVu, phuCapChucVu = @phuCapChucVu, ngayNhanChuc = @ngayNhanChuc WHERE maChucVu = @maChucVu";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maChucVu", position.MaChucVu);
+                        command.Parameters.AddWithValue("@tenChucVu", position.TenChucVu);
+                        command.Parameters.AddWithValue("@phuCapChucVu", position.PhuCapChucVu);
+                        command.Parameters.AddWithValue("@ngayNhanChuc", (object)position.NgayNhanChuc ?? DBNull.Value);
+                        return command.ExecuteNonQuery() > 0;
+                    }
                 }
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine($"Error updating position: {ex.Message}");
                 return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
         }
 
@@ -121,13 +118,15 @@ namespace Quan_Ly_Nhan_Su.DAO
         {
             try
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "DELETE FROM chucvu WHERE maChucVu = @maChucVu";
-                using (var command = new MySqlCommand(query, conn))
+                using(conn = connectDB.getConnection())
                 {
-                    command.Parameters.AddWithValue("@maChucVu", maChucVu);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "DELETE FROM chucvu WHERE maChucVu = @maChucVu";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maChucVu", maChucVu);
+                        return command.ExecuteNonQuery() > 0;
+                    }
                 }
             }
             catch (MySqlException ex)
@@ -135,9 +134,49 @@ namespace Quan_Ly_Nhan_Su.DAO
                 Console.WriteLine($"Error deleting position: {ex.Message}");
                 return false;
             }
-            finally
+        }
+
+
+        public List<PositionDTO> searchPositionDTO(string keyWord)
+        {
+            List<PositionDTO> list = new List<PositionDTO>();
+
+            try
             {
-                connectDB.closeConnection(conn);
+                using (var conn = connectDB.getConnection())
+                {
+                    conn.Open();
+
+                    string sql = @"SELECT * FROM chucvu 
+                           WHERE maChucVu LIKE @keyWord 
+                              OR tenChucVu LIKE @keyWord";
+
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyWord", "%" + keyWord + "%");
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                PositionDTO dto = new PositionDTO(
+                                    reader["maChucVu"].ToString(),
+                                    reader["tenChucVu"].ToString(),
+                                    reader["phuCapChucVu"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["phuCapChucVu"]),
+                                    reader["ngayNhanChuc"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ngayNhanChuc"])
+                                );
+                                list.Add(dto);
+                            }
+                        }
+                    }
+                }
+
+                return list;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"? Error searching positions: {ex.Message}");
+                return null;
             }
         }
 

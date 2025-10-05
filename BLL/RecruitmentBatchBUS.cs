@@ -49,5 +49,12 @@ namespace Quan_Ly_Nhan_Su.BLL
                 }
             }
         }
+         
+        public List<RecruitmentBatchDTO> searchRecruitmentBatch(string keyWord)
+        {          
+            if (string.IsNullOrWhiteSpace(keyWord))
+                return dao.getAll();
+            return dao.searchRecruitmentBatch(keyWord);
+        }
     }
 }

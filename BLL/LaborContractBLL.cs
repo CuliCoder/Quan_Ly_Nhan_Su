@@ -190,7 +190,7 @@ namespace Quan_Ly_Nhan_Su.BLL
         /// <summary>
         /// Lấy danh sách nhân viên chưa ký hợp đồng
         /// </summary>
-        public List<EmployeeDTO> GetUnsignedEmployees(string phongBan = null, string sortBySalary = null)
+        public List<Employee2DTO> GetUnsignedEmployees(string phongBan = null, string sortBySalary = null)
         {
             try
             {
@@ -199,7 +199,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             catch (Exception ex)
             {
                 Console.WriteLine($"Error retrieving unsigned employees: {ex.Message}");
-                return new List<EmployeeDTO>();
+                return new List<Employee2DTO>();
             }
         }
         /// <summary>

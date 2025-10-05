@@ -7,41 +7,47 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class PositionBUS
     {
-        private readonly PositionDAO dao;
+        private readonly PositionDAO _dao;
         private static List<PositionDTO> list;
 
         public PositionBUS()
         {
-            dao = new PositionDAO();
+            _dao = new PositionDAO();
             if (list == null)
-                list = dao.getAll();
+                list = _dao.getAll();
         }
 
         public List<PositionDTO> getAll() => list;
 
         public void insert(PositionDTO position)
         {
-            if(dao.Create(position))
+            if(_dao.Create(position))
                 list.Add(position);
         }
 
         public void update(PositionDTO position)
         {
-            if(dao.Update(position))
+            if(_dao.Update(position))
             {
                 var index = list.FindIndex(x => x.MaChucVu == position.MaChucVu);
                 list[index] = position;
             }
 
         }
-
-        public void delete(String maChucVu)
+        public void delete(string maChucVu)
         {
-            if(dao.Delete(maChucVu))
+            if(_dao.Delete(maChucVu))
             {
                 var item = list.FirstOrDefault(x => x.MaChucVu == maChucVu);
                 list.Remove(item);
             }
         }
+        public List<PositionDTO> searchPositionDTO(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return _dao.getAll();
+            return _dao.searchPositionDTO(keyword);
+        }
+
     }
 }
