@@ -14,37 +14,57 @@ namespace Quan_Ly_Nhan_Su.BLL
         public EmployeeBUS()
         {
             _dao = new Employee2DAO();
-            if(list == null) list = _dao.getAll();
+            if (list == null)
+                list = _dao.getAll();
         }
 
-        public List<Employee2DTO> getAll() => list;
+        public List<Employee2DTO> GetAll() => new List<Employee2DTO>(list);
 
-        public void insert(Employee2DTO employeeDTO) { 
-            if(_dao.createEmployee(employeeDTO))
-            {
+        public bool Insert(Employee2DTO employeeDTO)
+        {
+            if (employeeDTO == null)
+                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
+
+            bool success = _dao.createEmployee(employeeDTO);
+            if (success)
                 list.Add(employeeDTO);
-            }
+
+            return success;
         }
 
-        public void update(Employee2DTO employeeDTO) {
-            if (_dao.updateEmployee(employeeDTO)) {
-                var index = list.FindIndex(x => x.MaNhanVien ==  employeeDTO.MaNhanVien);
-                list[index] = employeeDTO;
-            }
-        }
+        public bool Update(Employee2DTO employeeDTO)
+        {
+            if (employeeDTO == null)
+                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
 
-        public void delete(String maNhanVien) { 
-            if(_dao.deleteEmployee(maNhanVien))
+            bool success = _dao.updateEmployee(employeeDTO);
+            if (success)
             {
-                var item = list.FirstOrDefault(x => x.MaNhanVien == maNhanVien);
-                list.Remove(item);
+                int index = list.FindIndex(x => x.MaNhanVien == employeeDTO.MaNhanVien);
+                if (index != -1)
+                    list[index] = employeeDTO;
             }
+
+            return success;
         }
 
-        public List<Employee2DTO> searchEmployee(string keyword)
+        public bool Delete(string maNhanVien)
+        {
+            if (string.IsNullOrWhiteSpace(maNhanVien))
+                throw new ArgumentException("Mã nhân viên không được để trống!");
+
+            bool success = _dao.deleteEmployee(maNhanVien);
+            if (success)
+                list.RemoveAll(x => x.MaNhanVien == maNhanVien);
+
+            return success;
+        }
+
+        public List<Employee2DTO> SearchEmployee(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                return _dao.getAll();
+                return new List<Employee2DTO>(list);
+
             return _dao.searchEmployee(keyword);
         }
     }

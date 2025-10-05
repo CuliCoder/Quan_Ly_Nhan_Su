@@ -1,60 +1,69 @@
-using Mysqlx.Crud;
-using Quan_Ly_Nhan_Su.DAO;
-using Quan_Ly_Nhan_Su.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Quan_Ly_Nhan_Su.DAO;
+using Quan_Ly_Nhan_Su.DTO;
+
 namespace Quan_Ly_Nhan_Su.BLL
 {
     public class RecruitmentBatchBUS
     {
-        private readonly RecruitmentBatchDAO dao;
+        private readonly RecruitmentBatchDAO _dao;
         private static List<RecruitmentBatchDTO> list;
-
         public RecruitmentBatchBUS()
         {
-            dao = new RecruitmentBatchDAO();
-            if(list == null )
-                list = dao.getAll();
+            _dao = new RecruitmentBatchDAO();
+            if (list == null)
+                list = _dao.getAll();
         }
 
-        public List<RecruitmentBatchDTO> getAll() => list;
+        public List<RecruitmentBatchDTO> GetAll() => new List<RecruitmentBatchDTO>(list);
 
-        public void create(RecruitmentBatchDTO batch)
+        public bool Create(RecruitmentBatchDTO batch)
         {
-            dao.Create(batch);
-            list.Add(batch);
+            if (batch == null)
+                throw new ArgumentNullException(nameof(batch), "Thông tin đợt tuyển dụng không hợp lệ!");
+
+            bool success = _dao.Create(batch);
+            if (success)
+                list.Add(batch);
+
+            return success;
         }
 
-        public void delete(String maTuyenDung) 
+        public bool Update(RecruitmentBatchDTO batch)
         {
-            if(dao.Delete(maTuyenDung))
+            if (batch == null)
+                throw new ArgumentNullException(nameof(batch), "Thông tin đợt tuyển dụng không hợp lệ!");
+
+            bool success = _dao.Update(batch);
+            if (success)
             {
-                var item = list.FirstOrDefault(x => x.MaTuyenDung == maTuyenDung);
-                if (item != null)
-                {
-                    list.Remove(item);
-                }
-            }
-        }
-
-        public void update(RecruitmentBatchDTO batch)
-        {
-            if (dao.Update(batch))
-            {
-                var index = list.FindIndex(x => x.MaTuyenDung == batch.MaTuyenDung);
-                if(index != -1)
-                {
+                int index = list.FindIndex(x => x.MaTuyenDung == batch.MaTuyenDung);
+                if (index != -1)
                     list[index] = batch;
-                }
             }
+
+            return success;
         }
-         
-        public List<RecruitmentBatchDTO> searchRecruitmentBatch(string keyWord)
-        {          
-            if (string.IsNullOrWhiteSpace(keyWord))
-                return dao.getAll();
-            return dao.searchRecruitmentBatch(keyWord);
+
+        public bool Delete(string maTuyenDung)
+        {
+            if (string.IsNullOrWhiteSpace(maTuyenDung))
+                throw new ArgumentException("Mã tuyển dụng không được để trống!");
+
+            bool success = _dao.Delete(maTuyenDung);
+            if (success)
+                list.RemoveAll(x => x.MaTuyenDung == maTuyenDung);
+
+            return success;
+        }
+        public List<RecruitmentBatchDTO> Search(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return new List<RecruitmentBatchDTO>(list);
+
+            return _dao.searchRecruitmentBatch(keyword);
         }
     }
 }

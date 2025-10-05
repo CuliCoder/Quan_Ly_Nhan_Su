@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
+
 namespace Quan_Ly_Nhan_Su.BLL
 {
     public class PositionBUS
@@ -17,37 +18,53 @@ namespace Quan_Ly_Nhan_Su.BLL
                 list = _dao.getAll();
         }
 
-        public List<PositionDTO> getAll() => list;
+        public List<PositionDTO> GetAll() => new List<PositionDTO>(list);
 
-        public void insert(PositionDTO position)
+        public bool Insert(PositionDTO position)
         {
-            if(_dao.Create(position))
+            if (position == null)
+                throw new ArgumentNullException(nameof(position), "Dữ liệu chức vụ không hợp lệ!");
+
+            bool success = _dao.Create(position);
+            if (success)
                 list.Add(position);
+
+            return success;
         }
 
-        public void update(PositionDTO position)
+        public bool Update(PositionDTO position)
         {
-            if(_dao.Update(position))
+            if (position == null)
+                throw new ArgumentNullException(nameof(position), "Dữ liệu chức vụ không hợp lệ!");
+
+            bool success = _dao.Update(position);
+            if (success)
             {
-                var index = list.FindIndex(x => x.MaChucVu == position.MaChucVu);
-                list[index] = position;
+                int index = list.FindIndex(x => x.MaChucVu == position.MaChucVu);
+                if (index != -1)
+                    list[index] = position;
             }
 
+            return success;
         }
-        public void delete(string maChucVu)
+
+        public bool Delete(string maChucVu)
         {
-            if(_dao.Delete(maChucVu))
-            {
-                var item = list.FirstOrDefault(x => x.MaChucVu == maChucVu);
-                list.Remove(item);
-            }
+            if (string.IsNullOrWhiteSpace(maChucVu))
+                throw new ArgumentException("Mã chức vụ không được để trống!");
+
+            bool success = _dao.Delete(maChucVu);
+            if (success)
+                list.RemoveAll(x => x.MaChucVu == maChucVu);
+
+            return success;
         }
-        public List<PositionDTO> searchPositionDTO(string keyword)
+        public List<PositionDTO> Search(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                return _dao.getAll();
+                return new List<PositionDTO>(list);
+
             return _dao.searchPositionDTO(keyword);
         }
-
     }
 }
