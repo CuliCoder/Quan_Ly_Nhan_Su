@@ -17,7 +17,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
     public List<PersonalProfileDTO> GetAll()
     {
-      return dao.Search("");
+      return dao.GetAll();
     }
 
     public bool Create(PersonalProfileDTO pp)
@@ -51,5 +51,15 @@ namespace Quan_Ly_Nhan_Su.BLL
       return dao.Delete(pp.SoCmnd);
     }
 
+    public List<PersonalProfileDTO> Search(string searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Console.WriteLine("Từ khóa tìm kiếm không hợp lệ!");
+            return new List<PersonalProfileDTO>();
+        }
+
+        return dao.Search(searchTerm);
+    }
   }
 }

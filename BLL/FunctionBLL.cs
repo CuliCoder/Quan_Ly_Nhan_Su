@@ -17,7 +17,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
     public List<FunctionDTO> GetAll()
     {
-      return dao.Search("");
+      return dao.GetAll();
     }
 
     public bool Create(FunctionDTO function)
@@ -49,6 +49,17 @@ namespace Quan_Ly_Nhan_Su.BLL
     public bool Delete(string maChucNang)
     {
       return dao.Delete(maChucNang);
+    }
+
+    public List<FunctionDTO> Search(string searchTerm)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Console.WriteLine("Từ khóa tìm kiếm không hợp lệ!");
+            return new List<FunctionDTO>();
+        }
+
+        return dao.Search(searchTerm);
     }
 
   }
