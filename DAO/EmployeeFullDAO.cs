@@ -6,11 +6,11 @@ using Quan_Ly_Nhan_Su.config;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
-    public class EmployeeDAO
+    public class EmployeeFullDAO
     {
-        public List<EmployeeDTO> GetAll()
+        public List<EmployeeFullDTO> GetAll()
         {
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -37,7 +37,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        EmployeeDTO emp = new EmployeeDTO
+                        EmployeeFullDTO emp = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
@@ -71,9 +71,9 @@ namespace Quan_Ly_Nhan_Su.DAO
             return employees;
         }
 
-        public EmployeeDTO GetEmployeeById(string maNhanVien)
+        public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
-            EmployeeDTO employee = null;
+            EmployeeFullDTO employee = null;
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -97,7 +97,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        employee = new EmployeeDTO
+                        employee = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
@@ -130,9 +130,9 @@ namespace Quan_Ly_Nhan_Su.DAO
             return employee;
         }
         // Thêm method này vào class EmployeeDAO
-        public List<EmployeeDTO> GetEmployeesWithoutContract()
+        public List<EmployeeFullDTO> GetEmployeesWithoutContract()
         {
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -161,7 +161,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        EmployeeDTO emp = new EmployeeDTO
+                        EmployeeFullDTO emp = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),

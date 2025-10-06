@@ -3,137 +3,118 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.DTO;
 using Quan_Ly_Nhan_Su.config;
+using System.Linq.Expressions;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
     public class DepartmentDAO
     {
-        /// <summary>
-        /// Lấy danh sách tất cả phòng ban.
-        /// </summary>
-        /// <returns>List<DepartmentDTO> chứa thông tin phòng ban.</returns>
+        private MySqlConnection conn;
         public List<DepartmentDTO> GetAll()
         {
             List<DepartmentDTO> departments = new List<DepartmentDTO>();
-            MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                if (conn == null)
+                using(conn = connectDB.getConnection())
                 {
-                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
-                }
-
-                conn.Open();
-                string query = "SELECT maPhong AS MaPhong, tenPhong AS TenPhong FROM phongban";  // Sửa: Tên bảng + alias cho cột
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    if (conn == null)
                     {
-                        while (reader.Read())
+                        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                    }
+
+                    conn.Open();
+                    string query = "SELECT maPhong AS MaPhong, tenPhong AS TenPhong FROM phongban";  // Sửa: Tên bảng + alias cho cột
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            DepartmentDTO dept = new DepartmentDTO
+                            while (reader.Read())
                             {
-                                MaPhong = reader["MaPhong"].ToString(),  // Giờ dùng alias để khớp property
-                                TenPhong = reader["TenPhong"].ToString()
-                            };
-                            departments.Add(dept);
+                                DepartmentDTO dept = new DepartmentDTO
+                                {
+                                    MaPhong = reader["MaPhong"].ToString(),  // Giờ dùng alias để khớp property
+                                    TenPhong = reader["TenPhong"].ToString()
+                                };
+                                departments.Add(dept);
+                            }
                         }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
-                // Thêm log chi tiết hơn để debug (tùy chọn)
                 Console.WriteLine($"Chi tiết lỗi DAO: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw new Exception($"Lỗi khi lấy danh sách phòng ban: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
             return departments;
         }
 
-        /// <summary>
-        /// Lấy thông tin phòng ban theo mã.
-        /// </summary>
-        /// <param name="maPhong">Mã phòng ban.</param>
-        /// <returns>DepartmentDTO nếu tìm thấy, null nếu không.</returns>
         public DepartmentDTO GetById(string maPhong)
         {
-            DepartmentDTO dept = null;
-            MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                if (conn == null)
+                using(conn = connectDB.getConnection())
                 {
-                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
-                }
-
-                conn.Open();
-                string query = "SELECT MaPhong, TenPhong FROM Departments WHERE MaPhong = @MaPhong";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaPhong", maPhong);
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    if (conn == null)
                     {
-                        if (reader.Read())
+                        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                    }
+
+                    conn.Open();
+                    string query = "SELECT MaPhong, TenPhong FROM Departments WHERE MaPhong = @MaPhong";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaPhong", maPhong);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            dept = new DepartmentDTO
+                            if (reader.Read())
                             {
-                                MaPhong = reader["MaPhong"].ToString(),
-                                TenPhong = reader["TenPhong"].ToString()
-                            };
+                                return new DepartmentDTO
+                                {
+                                    MaPhong = reader["MaPhong"].ToString(),
+                                    TenPhong = reader["TenPhong"].ToString()
+                                };
+                            }
                         }
                     }
-                }
+                }      
             }
             catch (Exception ex)
             {
                 throw new Exception($"Lỗi khi lấy thông tin phòng ban: {ex.Message}");
             }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
-            return dept;
+            return null;
         }
 
-        /// <summary>
         /// Thêm phòng ban mới.
-        /// </summary>
-        /// <param name="department">Thông tin phòng ban cần thêm.</param>
-        /// <returns>True nếu thành công, false nếu thất bại.</returns>
+  
         public bool Insert(DepartmentDTO department)
         {
             MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                if (conn == null)
+               using (conn = connectDB.getConnection())
                 {
-                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
-                }
+                    if (conn == null)
+                    {
+                        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                    }
 
-                conn.Open();
-                string query = "INSERT INTO Departments (MaPhong, TenPhong) VALUES (@MaPhong, @TenPhong)";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
-                    cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    conn.Open();
+                    string query = "INSERT INTO Departments (MaPhong, TenPhong) VALUES (@MaPhong, @TenPhong)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
+                        cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception($"Lỗi khi thêm phòng ban: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
         }
 
@@ -147,29 +128,28 @@ namespace Quan_Ly_Nhan_Su.DAO
             MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                if (conn == null)
+                using(conn = connectDB.getConnection())
                 {
-                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
-                }
+                    if (conn == null)
+                    {
+                        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                    }
 
-                conn.Open();
-                string query = "UPDATE Departments SET TenPhong = @TenPhong WHERE MaPhong = @MaPhong";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
-                    cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    conn.Open();
+                    string query = "UPDATE Departments SET TenPhong = @TenPhong WHERE MaPhong = @MaPhong";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
+                        cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
+               
             }
             catch (Exception ex)
             {
                 throw new Exception($"Lỗi khi cập nhật phòng ban: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
         }
 
@@ -183,29 +163,68 @@ namespace Quan_Ly_Nhan_Su.DAO
             MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                if (conn == null)
+                using(conn = connectDB.getConnection())
                 {
-                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
-                }
+                    if (conn == null)
+                    {
+                        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                    }
 
-                conn.Open();
-                string query = "DELETE FROM Departments WHERE MaPhong = @MaPhong";
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaPhong", maPhong);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    conn.Open();
+                    string query = "DELETE FROM Departments WHERE MaPhong = @MaPhong";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaPhong", maPhong);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception($"Lỗi khi xóa phòng ban: {ex.Message}");
             }
-            finally
+        }
+
+        public List<DepartmentDTO> search(string keyWord)
+        {
+            List<DepartmentDTO> list = new List<DepartmentDTO> ();
+            try
             {
-                connectDB.closeConnection(conn);
+                using(conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = "SELECT * " +
+                        "FROM phongban" +
+                        "WHERE maphong LIKE @keyWord " +
+                        "OR tenphong LIKE @keyWord";
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Parameters.AddWithValue("keyWord", "%" + keyWord + "%");
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DepartmentDTO dto = new DepartmentDTO
+                                {
+                                    MaPhong = reader["maPhong"].ToString(),
+                                    TenPhong = reader["tenPhong"].ToString(),
+                                    NgayThanhLap = reader["ngayThanhLap"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ngayThanhLap"]),
+                                    MaTruongPhong = reader["maTruongPhong"].ToString()
+                                };
+                                list.Add(dto);
+                            }
+                            
+                        }
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                Console.WriteLine($" Error searching employees: {ex.Message}");
+            }
+            return list;             
         }
     }
 }

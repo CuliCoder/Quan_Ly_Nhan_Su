@@ -5,7 +5,7 @@ namespace Quan_Ly_Nhan_Su.DTO
     /// <summary>
     /// DTO for Employee table
     /// </summary>
-    public class EmployeeDTO
+    public class EmployeeFullDTO
     {
         public string MaNhanVien { get; set; }
         public string HoTen { get; set; }

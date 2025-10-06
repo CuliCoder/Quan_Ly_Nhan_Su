@@ -14,7 +14,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class TuyenDung : UserControl
     {
-        private static readonly RecruitmentBatchBUS  bus = new RecruitmentBatchBUS();
+        private static readonly RecruitmentBatchBLL  bus = new RecruitmentBatchBLL();
         private static List<RecruitmentBatchDTO> list;
 
         public TuyenDung()

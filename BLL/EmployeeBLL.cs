@@ -6,12 +6,12 @@ using System.Linq;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class EmployeeBUS
+    public class EmployeeBLL
     {
         private readonly EmployeeDAO _dao;
         private static List<EmployeeDTO> list;
 
-        public EmployeeBUS()
+        public EmployeeBLL()
         {
             _dao = new EmployeeDAO();
             if (list == null)

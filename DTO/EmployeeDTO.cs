@@ -2,7 +2,7 @@
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
-    public class Employee2DTO
+    public class EmployeeDTO
     {
         private string maNhanVien;
         private string soCmnd;
@@ -24,10 +24,10 @@ namespace Quan_Ly_Nhan_Su.DTO
         public string MaPhong { get => maPhong; set => maPhong = value; }
         public decimal? MucLuong { get => mucLuong; set => mucLuong = value; }
 
-        public Employee2DTO() { }
+        public EmployeeDTO() { }
 
  
-        public Employee2DTO(
+        public EmployeeDTO(
             string maNhanVien,
             string soCmnd,
             string maLuong,
@@ -49,7 +49,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             this.mucLuong = mucLuong;
         }
 
-        public Employee2DTO(Employee2DTO other)
+        public EmployeeDTO(Employee2DTO other)
         {
             if (other == null) throw new ArgumentNullException(nameof(other));
 

@@ -108,21 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
-    <Compile Include="BLL\CandidateBUS.cs" />
+    <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\ContractExtensionBLL.cs" />
     <Compile Include="BLL\CT_LaborContractBLL.cs" />
     <Compile Include="BLL\DecisionBLL.cs" />
     <Compile Include="BLL\DepartmentBLL.cs" />
-    <Compile Include="BLL\EmployeeFullBUS.cs" />
-    <Compile Include="BLL\EmployeeBUS.cs" />
+    <Compile Include="BLL\EmployeeFullBLL.cs" />
+    <Compile Include="BLL\EmployeeBLL.cs" />
     <Compile Include="BLL\EvaluationBLL.cs" />
     <Compile Include="BLL\FunctionBLL.cs" />
     <Compile Include="BLL\LaborContractBLL.cs" />
     <Compile Include="BLL\PermissionGroupBLL.cs" />
     <Compile Include="BLL\PersonalProfileBLL.cs" />
-    <Compile Include="BLL\PositionBUS.cs" />
+    <Compile Include="BLL\PositionBLL.cs" />
     <Compile Include="BLL\QualificationBLL.cs" />
-    <Compile Include="BLL\RecruitmentBatchBUS.cs" />
+    <Compile Include="BLL\RecruitmentBatchBLL.cs" />
     <Compile Include="BLL\RecruitmentBatchEmployeeBLL.cs" />
     <Compile Include="BLL\RequestBLL.cs" />
     <Compile Include="BLL\SalaryBLL.cs" />

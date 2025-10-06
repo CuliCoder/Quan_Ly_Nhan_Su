@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    internal class CandidateBUS
+    internal class CandidateBLL
     {
         private readonly CandidateDAO _dao;
         private static List<CandidateDTO> list;
 
-        public CandidateBUS()
+        public CandidateBLL()
         {
             _dao = new CandidateDAO();
             if (list == null)

@@ -5,11 +5,11 @@ using Quan_Ly_Nhan_Su.DAO;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class EmployeeBLL
+    public class EmployeeFullBLL
     {
         private readonly EmployeeFullDAO _dao;
 
-        public EmployeeBLL()
+        public EmployeeFullBLL()
         {
             _dao = new EmployeeFullDAO();
         }
