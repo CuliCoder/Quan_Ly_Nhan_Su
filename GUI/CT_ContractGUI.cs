@@ -14,7 +14,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class CT_ContractGUI : UserControl
     {
-        private EmployeeBLL employeeBLL;
+        private EmployeeFullBUS employeeBLL;
         private DepartmentBLL departmentBLL;
         private LaborContractBLL contractBLL;
 
@@ -27,7 +27,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void InitializeBLL()
         {
-            employeeBLL = new EmployeeBLL();
+            employeeBLL = new EmployeeFullBUS();
             departmentBLL = new DepartmentBLL();
             contractBLL = new LaborContractBLL();
         }

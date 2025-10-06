@@ -7,18 +7,18 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class EmployeeBLL
     {
-        private readonly EmployeeDAO _dao;
+        private readonly EmployeeFullDAO _dao;
 
         public EmployeeBLL()
         {
-            _dao = new EmployeeDAO();
+            _dao = new EmployeeFullDAO();
         }
 
         /// <summary>
         /// Lấy danh sách tất cả nhân viên.
         /// </summary>
         /// <returns>List<EmployeeDTO></returns>
-        public List<EmployeeDTO> GetAllEmployees()
+        public List<EmployeeFullDTO> GetAllEmployees()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
         }
         // Thêm method này vào class EmployeeBLL
-        public List<EmployeeDTO> GetEmployeesWithoutContract()
+        public List<EmployeeFullDTO> GetEmployeesWithoutContract()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
         }
 
-        public EmployeeDTO GetEmployeeById(string maNhanVien)
+        public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
             if (string.IsNullOrEmpty(maNhanVien))
             {

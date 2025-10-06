@@ -8,19 +8,19 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class EmployeeBUS
     {
-        private readonly Employee2DAO _dao;
-        private static List<Employee2DTO> list;
+        private readonly EmployeeDAO _dao;
+        private static List<EmployeeDTO> list;
 
         public EmployeeBUS()
         {
-            _dao = new Employee2DAO();
+            _dao = new EmployeeDAO();
             if (list == null)
                 list = _dao.getAll();
         }
 
-        public List<Employee2DTO> GetAll() => new List<Employee2DTO>(list);
+        public List<EmployeeDTO> GetAll() => new List<EmployeeDTO>(list);
 
-        public bool Insert(Employee2DTO employeeDTO)
+        public bool Insert(EmployeeDTO employeeDTO)
         {
             if (employeeDTO == null)
                 throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
@@ -32,7 +32,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             return success;
         }
 
-        public bool Update(Employee2DTO employeeDTO)
+        public bool Update(EmployeeDTO employeeDTO)
         {
             if (employeeDTO == null)
                 throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
@@ -60,10 +60,10 @@ namespace Quan_Ly_Nhan_Su.BLL
             return success;
         }
 
-        public List<Employee2DTO> SearchEmployee(string keyword)
+        public List<EmployeeDTO> SearchEmployee(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                return new List<Employee2DTO>(list);
+                return new List<EmployeeDTO>(list);
 
             return _dao.searchEmployee(keyword);
         }

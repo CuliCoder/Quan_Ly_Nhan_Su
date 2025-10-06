@@ -345,9 +345,9 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Lấy danh sách nhân viên chưa ký hợp đồng, với filter phòng ban và sort theo lương
         /// </summary>
-        public List<EmployeeDTO> GetUnsignedEmployees(string phongBan = null, string sortBySalary = null)
+        public List<EmployeeFullDTO> GetUnsignedEmployees(string phongBan = null, string sortBySalary = null)
         {
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -388,7 +388,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     int stt = 1;
                     while (reader.Read())
                     {
-                        EmployeeDTO employee = new EmployeeDTO
+                        EmployeeFullDTO employee = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
@@ -563,9 +563,9 @@ namespace Quan_Ly_Nhan_Su.DAO
             return contract;
         }
     
-    public EmployeeDTO GetEmployeeById(string maNhanVien)
+    public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
-            EmployeeDTO employee = null;
+            EmployeeFullDTO employee = null;
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -589,7 +589,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        employee = new EmployeeDTO
+                        employee = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
@@ -625,9 +625,9 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Retrieves all employees by department (phongBan)
         /// </summary>
-        public List<EmployeeDTO> GetEmployeesByDepartment(string phongBan)
+        public List<EmployeeFullDTO> GetEmployeesByDepartment(string phongBan)
         {
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -651,7 +651,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        EmployeeDTO employee = new EmployeeDTO
+                        EmployeeFullDTO employee = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
@@ -760,9 +760,9 @@ namespace Quan_Ly_Nhan_Su.DAO
 /// <summary>
 /// Searches employees by keyword (maNhanVien, hoTen, or phongBan)
 /// </summary>
-public List<EmployeeDTO> SearchEmployees(string keyword)
+public List<EmployeeFullDTO> SearchEmployees(string keyword)
         {
-            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -788,7 +788,7 @@ public List<EmployeeDTO> SearchEmployees(string keyword)
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        EmployeeDTO employee = new EmployeeDTO
+                        EmployeeFullDTO employee = new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),

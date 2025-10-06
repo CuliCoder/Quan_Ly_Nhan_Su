@@ -2,24 +2,74 @@
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
-    /// <summary>
-    /// DTO for Employee table
-    /// </summary>
-    public class EmployeeDTO
+    public class Employee2DTO
     {
-        public string MaNhanVien { get; set; }
-        public string HoTen { get; set; }
-        public DateTime? NgaySinh { get; set; }
-        public string GioiTinh { get; set; }
-        public string Email { get; set; }
-        public string Sdt { get; set; }
-        public string SoCmnd { get; set; }
-        public string HocVan { get; set; }
-        public string ChuyenNganh { get; set; }
-        public string PhongBan { get; set; }
-        public string ChucVu { get; set; }
-        public decimal MucLuong { get; set; }
-        public string DiaChi { get; set; } // Thêm thuộc tính DiaChi
-        public string HinhAnh { get; set; } // Thêm thuộc tính HinhAnh (path ảnh avatar)
+        private string maNhanVien;
+        private string soCmnd;
+        private string maLuong;
+        private string maHopDong;
+        private string maTrinhDo;
+        private string maChucVu;
+        private string maTaiKhoan;
+        private string maPhong;
+        private decimal? mucLuong;
+
+        public string MaNhanVien { get => maNhanVien; set => maNhanVien = value; }
+        public string SoCmnd { get => soCmnd; set => soCmnd = value; }
+        public string MaLuong { get => maLuong; set => maLuong = value; }
+        public string MaHopDong { get => maHopDong; set => maHopDong = value; }
+        public string MaTrinhDo { get => maTrinhDo; set => maTrinhDo = value; }
+        public string MaChucVu { get => maChucVu; set => maChucVu = value; }
+        public string MaTaiKhoan { get => maTaiKhoan; set => maTaiKhoan = value; }
+        public string MaPhong { get => maPhong; set => maPhong = value; }
+        public decimal? MucLuong { get => mucLuong; set => mucLuong = value; }
+
+        public Employee2DTO() { }
+
+ 
+        public Employee2DTO(
+            string maNhanVien,
+            string soCmnd,
+            string maLuong,
+            string maHopDong,
+            string maTrinhDo,
+            string maChucVu,
+            string maTaiKhoan,
+            string maPhong,
+            decimal? mucLuong)
+        {
+            this.maNhanVien = maNhanVien;
+            this.soCmnd = soCmnd;
+            this.maLuong = maLuong;
+            this.maHopDong = maHopDong;
+            this.maTrinhDo = maTrinhDo;
+            this.maChucVu = maChucVu;
+            this.maTaiKhoan = maTaiKhoan;
+            this.maPhong = maPhong;
+            this.mucLuong = mucLuong;
+        }
+
+        public Employee2DTO(Employee2DTO other)
+        {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+
+            this.maNhanVien = other.maNhanVien;
+            this.soCmnd = other.soCmnd;
+            this.maLuong = other.maLuong;
+            this.maHopDong = other.maHopDong;
+            this.maTrinhDo = other.maTrinhDo;
+            this.maChucVu = other.maChucVu;
+            this.maTaiKhoan = other.maTaiKhoan;
+            this.maPhong = other.maPhong;
+            this.mucLuong = other.mucLuong;
+        }
+
+        public override string ToString()
+        {
+            return $"Mã NV: {maNhanVien}, CMND: {soCmnd}, Mã Lương: {maLuong}, " +
+                   $"Mã Hợp Đồng: {maHopDong}, Mã Trình Độ: {maTrinhDo}, " +
+                   $"Mã Chức Vụ: {maChucVu}, Mã Tài Khoản: {maTaiKhoan}, " +
+                   $"Mã Phòng: {maPhong}, Mức Lương: {mucLuong?.ToString("N2") ?? "Chưa có"}";
+        }
     }
 }
