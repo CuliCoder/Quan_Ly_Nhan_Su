@@ -12,6 +12,45 @@ namespace Quan_Ly_Nhan_Su.DAO
     public class RecruitmentBatchEmployeeDAO
     {
         /// <summary>
+        /// Lấy tất cả dữ liệu trong bảng dottuyendung_nhanvien
+        /// </summary>
+        public List<RecruitmentBatchEmployeeDTO> GetAll()
+        {
+            var list = new List<RecruitmentBatchEmployeeDTO>();
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = "SELECT * FROM dottuyendung_nhanvien";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new RecruitmentBatchEmployeeDTO
+                            {
+                                MaTuyenDung = reader.GetString("maTuyenDung"),
+                                MaNhanVien = reader.GetString("maNhanVien"),
+                                NgayTuyenDung = reader.GetDateTime("ngayTuyenDung")
+                            });
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error getting recruitment batch employees: {ex.Message}");
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+            return list;
+        }
+
+        /// <summary>
         /// Creates a new record in the dottuyendung_nhanvien table
         /// </summary>
         public bool Create(RecruitmentBatchEmployeeDTO batchEmployee)
@@ -139,6 +178,32 @@ namespace Quan_Ly_Nhan_Su.DAO
                 connectDB.closeConnection(conn);
             }
             return batchEmployees;
+        }
+
+        public bool Exists(string maTuyenDung, string maNhanVien) {
+            MySqlConnection conn = null;
+            try {
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM dottuyendung_nhanvien WHERE maTuyenDung = @maTuyenDung AND maNhanVien = @maNhanVien";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                    command.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    var count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            }
+            catch (MySqlException ex) {
+                Console.WriteLine($"Error checking recruitment batch employee existence: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
         }
     }
 }
