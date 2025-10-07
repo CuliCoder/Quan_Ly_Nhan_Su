@@ -7,16 +7,67 @@ namespace Quan_Ly_Nhan_Su.DTO
     /// </summary>
     public class SalaryDTO
     {
-        public decimal KhoanTruBaoHiem { get; set; }
-        public decimal KhoanTruKhac { get; set; }
-        public decimal LuongCoBan { get; set; }
-        public decimal? LuongThucTe { get; set; }
-        public decimal LuongThuong { get; set; }
-        public string MaLuong { get; set; }
-        public decimal PhuCapChucVu { get; set; }
-        public decimal PhuCapKhac { get; set; }
-        public decimal? ThucLanh { get; set; }
-        public decimal Thue { get; set; }
+        private decimal khoanTruBaoHiem;
+        private decimal khoanTruKhac;
+        private decimal luongCoBan;
+        private decimal? luongThucTe;
+        private decimal luongThuong;
+        private string maLuong;
+        private decimal phuCapChucVu;
+        private decimal phuCapKhac;
+        private decimal? thucLanh;
+        private decimal thue;
+
+        public decimal KhoanTruBaoHiem
+        {
+            get => khoanTruBaoHiem;
+            set => khoanTruBaoHiem = value;
+        }
+        public decimal KhoanTruKhac
+        {
+            get => khoanTruKhac;
+            set => khoanTruKhac = value;
+        }
+        public decimal LuongCoBan
+        {
+            get => luongCoBan;
+            set => luongCoBan = value;
+        }
+        public decimal? LuongThucTe
+        {
+            get => luongThucTe;
+            set => luongThucTe = value;
+        }
+        public decimal LuongThuong
+        {
+            get => luongThuong;
+            set => luongThuong = value;
+        }
+        public string MaLuong
+        {
+            get => maLuong;
+            set => maLuong = value;
+        }
+        public decimal PhuCapChucVu
+        {
+            get => phuCapChucVu;
+            set => phuCapChucVu = value;
+        }
+        public decimal PhuCapKhac
+        {
+            get => phuCapKhac;
+            set => phuCapKhac = value;
+        }
+        public decimal? ThucLanh
+        {
+            get => thucLanh;
+            set => thucLanh = value;
+        }
+        public decimal Thue
+        {
+            get => thue;
+            set => thue = value;
+        }
 
         public SalaryDTO() { }
 
@@ -32,16 +83,16 @@ namespace Quan_Ly_Nhan_Su.DTO
             decimal thue,
             decimal? thucLanh)
         {
-            KhoanTruBaoHiem = khoanTruBaoHiem;
-            KhoanTruKhac = khoanTruKhac;
-            LuongCoBan = luongCoBan;
-            LuongThucTe = luongThucTe;
-            LuongThuong = luongThuong;
-            MaLuong = maLuong;
-            PhuCapChucVu = phuCapChucVu;
-            PhuCapKhac = phuCapKhac;
-            ThucLanh = thucLanh;
-            Thue = thue;
+            this.khoanTruBaoHiem = khoanTruBaoHiem;
+            this.khoanTruKhac = khoanTruKhac;
+            this.luongCoBan = luongCoBan;
+            this.luongThucTe = luongThucTe;
+            this.luongThuong = luongThuong;
+            this.maLuong = maLuong;
+            this.phuCapChucVu = phuCapChucVu;
+            this.phuCapKhac = phuCapKhac;
+            this.thucLanh = thucLanh;
+            this.thue = thue;
         }
     }
 }
