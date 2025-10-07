@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.DTO;
@@ -21,10 +21,10 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "INSERT INTO chucnang (maChucNang, tenChucNang, tinhTrang) VALUES (@maChucNang, @tenChucNang, @tinhTrang)";
+                // SỬA: Đổi tên cột "tenChucNang" thành "TenCN" để khớp với CSDL
+                string query = "INSERT INTO chucnang (TenCN, TinhTrang) VALUES (@tenChucNang, @tinhTrang)";
                 using (var command = new MySqlCommand(query, conn))
                 {
-                    command.Parameters.AddWithValue("@maChucNang", function.MaChucNang);
                     command.Parameters.AddWithValue("@tenChucNang", function.TenChucNang);
                     command.Parameters.AddWithValue("@tinhTrang", function.TinhTrang);
                     return command.ExecuteNonQuery() > 0;
@@ -51,7 +51,8 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "UPDATE chucnang SET tenChucNang = @tenChucNang, tinhTrang = @tinhTrang WHERE maChucNang = @maChucNang";
+                // SỬA: Đổi tên các cột cho đúng với CSDL ("TenCN", "TinhTrang", "MaCN")
+                string query = "UPDATE chucnang SET TenCN = @tenChucNang, TinhTrang = @tinhTrang WHERE MaCN = @maChucNang";
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maChucNang", function.MaChucNang);
@@ -74,14 +75,14 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Deletes a function from the chucnang table
         /// </summary>
-        public bool Delete(string maChucNang)
+        public bool Delete(int maChucNang)
         {
             MySqlConnection conn = null;
             try
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "DELETE FROM chucnang WHERE maChucNang = @maChucNang";
+                string query = "DELETE FROM chucnang WHERE MaCN = @maChucNang"; // Câu lệnh này đã đúng
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maChucNang", maChucNang);
@@ -100,42 +101,39 @@ namespace Quan_Ly_Nhan_Su.DAO
         }
 
         /// <summary>
-        /// Searches for functions by maChucNang or tenChucNang
+        /// Searches for functions by tenChucNang
         /// </summary>
         public List<FunctionDTO> Search(string searchTerm)
         {
             var functions = new List<FunctionDTO>();
-            MySqlConnection conn = null;
             try
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "SELECT * FROM chucnang WHERE maChucNang = @searchTerm OR tenChucNang LIKE @searchTermLike";
-                using (var command = new MySqlCommand(query, conn))
+                using (var conn = connectDB.getConnection())
                 {
-                    command.Parameters.AddWithValue("@searchTerm", searchTerm);
-                    command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
-                    using (var reader = command.ExecuteReader())
+                    conn.Open();
+                    // Câu lệnh này đã đúng
+                    string query = "SELECT MaCN, TenCN, TinhTrang FROM chucnang WHERE TenCN LIKE @searchTermLike"; // Bỏ điều kiện TinhTrang để tìm kiếm tất cả
+                    using (var command = new MySqlCommand(query, conn))
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
+                        using (var reader = command.ExecuteReader())
                         {
-                            functions.Add(new FunctionDTO
+                            while (reader.Read())
                             {
-                                MaChucNang = reader.GetString("maChucNang"),
-                                TenChucNang = reader.GetString("tenChucNang"),
-                                TinhTrang = reader.GetString("tinhTrang")
-                            });
+                                functions.Add(new FunctionDTO
+                                {
+                                    MaChucNang = reader.GetInt32("MaCN"),
+                                    TenChucNang = reader.GetString("TenCN"),
+                                    TinhTrang = reader.GetBoolean("TinhTrang")
+                                });
+                            }
                         }
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error searching functions: {ex.Message}");
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
             }
             return functions;
         }
