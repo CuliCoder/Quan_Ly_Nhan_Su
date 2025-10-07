@@ -117,6 +117,7 @@
     <Compile Include="BLL\EvaluationBLL.cs" />
     <Compile Include="BLL\FunctionBLL.cs" />
     <Compile Include="BLL\LaborContractBLL.cs" />
+    <Compile Include="BLL\PermissionDetailBLL.cs" />
     <Compile Include="BLL\PermissionGroupBLL.cs" />
     <Compile Include="BLL\PersonalProfileBLL.cs" />
     <Compile Include="BLL\PositionBUS.cs" />
@@ -240,6 +241,18 @@
     </Compile>
     <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmFunctionCU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmFunctionCU.Designer.cs">
+      <DependentUpon>frmFunctionCU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmPermissionGroupCU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmPermissionGroupCU.Designer.cs">
+      <DependentUpon>frmPermissionGroupCU.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\TaiKhoanUserControl\TaiKhoanMain.cs">
       <SubType>UserControl</SubType>

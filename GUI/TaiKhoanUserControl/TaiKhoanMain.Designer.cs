@@ -35,17 +35,13 @@
             this.btnTimKiemTk = new System.Windows.Forms.Button();
             this.txtTimKiemTk = new System.Windows.Forms.TextBox();
             this.tabPagePhanQuyen = new System.Windows.Forms.TabPage();
+            this.dgvChiTietQuyen = new System.Windows.Forms.DataGridView();
             this.dgvPhanQuyen = new System.Windows.Forms.DataGridView();
             this.colPqMaNhom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPqTenNhom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPqMoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPqTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelPhanQuyenControls = new System.Windows.Forms.Panel();
-            this.btnSuaPq = new System.Windows.Forms.Button();
-            this.btnXoaPq = new System.Windows.Forms.Button();
+            this.btnLuuQuyen = new System.Windows.Forms.Button();
             this.btnThemPq = new System.Windows.Forms.Button();
-            this.btnTimKiemPq = new System.Windows.Forms.Button();
-            this.txtTimKiemPq = new System.Windows.Forms.TextBox();
             this.tabPageChucNang = new System.Windows.Forms.TabPage();
             this.dgvChucNang = new System.Windows.Forms.DataGridView();
             this.colCnMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,15 +58,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
             this.panelTaiKhoanControls.SuspendLayout();
             this.tabPagePhanQuyen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietQuyen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhanQuyen)).BeginInit();
             this.panelPhanQuyenControls.SuspendLayout();
             this.tabPageChucNang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChucNang)).BeginInit();
             this.panelChucNangControls.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // tabMain
-            // 
+            //
             this.tabMain.Controls.Add(this.tabPageTaiKhoan);
             this.tabMain.Controls.Add(this.tabPagePhanQuyen);
             this.tabMain.Controls.Add(this.tabPageChucNang);
@@ -81,9 +78,9 @@
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(1020, 630);
             this.tabMain.TabIndex = 0;
-            // 
+            //
             // tabPageTaiKhoan
-            // 
+            //
             this.tabPageTaiKhoan.BackColor = System.Drawing.Color.White;
             this.tabPageTaiKhoan.Controls.Add(this.dgvTaiKhoan);
             this.tabPageTaiKhoan.Controls.Add(this.panelTaiKhoanControls);
@@ -93,9 +90,9 @@
             this.tabPageTaiKhoan.Size = new System.Drawing.Size(1012, 594);
             this.tabPageTaiKhoan.TabIndex = 0;
             this.tabPageTaiKhoan.Text = "Tài Khoản";
-            // 
+            //
             // dgvTaiKhoan
-            // 
+            //
             this.dgvTaiKhoan.AllowUserToAddRows = false;
             this.dgvTaiKhoan.AllowUserToDeleteRows = false;
             this.dgvTaiKhoan.BackgroundColor = System.Drawing.Color.White;
@@ -131,23 +128,23 @@
             this.dgvTaiKhoan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTaiKhoan.Size = new System.Drawing.Size(982, 504);
             this.dgvTaiKhoan.TabIndex = 1;
-            // 
+            //
             // colTkSTT
-            // 
+            //
             this.colTkSTT.HeaderText = "STT";
             this.colTkSTT.Name = "colTkSTT";
             this.colTkSTT.ReadOnly = true;
             this.colTkSTT.Width = 80;
-            // 
+            //
             // colTkNhanVien
-            // 
+            //
             this.colTkNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colTkNhanVien.HeaderText = "NHÂN VIÊN";
             this.colTkNhanVien.Name = "colTkNhanVien";
             this.colTkNhanVien.ReadOnly = true;
-            // 
+            //
             // panelTaiKhoanControls
-            // 
+            //
             this.panelTaiKhoanControls.Controls.Add(this.btnSuaTk);
             this.panelTaiKhoanControls.Controls.Add(this.btnXoaTk);
             this.panelTaiKhoanControls.Controls.Add(this.btnThemTk);
@@ -158,9 +155,9 @@
             this.panelTaiKhoanControls.Name = "panelTaiKhoanControls";
             this.panelTaiKhoanControls.Size = new System.Drawing.Size(982, 60);
             this.panelTaiKhoanControls.TabIndex = 0;
-            // 
+            //
             // btnSuaTk
-            // 
+            //
             this.btnSuaTk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuaTk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
             this.btnSuaTk.FlatAppearance.BorderSize = 0;
@@ -173,9 +170,9 @@
             this.btnSuaTk.TabIndex = 4;
             this.btnSuaTk.Text = "Sửa";
             this.btnSuaTk.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnXoaTk
-            // 
+            //
             this.btnXoaTk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoaTk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnXoaTk.FlatAppearance.BorderSize = 0;
@@ -188,9 +185,9 @@
             this.btnXoaTk.TabIndex = 3;
             this.btnXoaTk.Text = "Xóa";
             this.btnXoaTk.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnThemTk
-            // 
+            //
             this.btnThemTk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThemTk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnThemTk.FlatAppearance.BorderSize = 0;
@@ -203,9 +200,9 @@
             this.btnThemTk.TabIndex = 2;
             this.btnThemTk.Text = "+ Thêm";
             this.btnThemTk.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnTimKiemTk
-            // 
+            //
             this.btnTimKiemTk.BackColor = System.Drawing.Color.Gainsboro;
             this.btnTimKiemTk.FlatAppearance.BorderSize = 0;
             this.btnTimKiemTk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -216,18 +213,19 @@
             this.btnTimKiemTk.Size = new System.Drawing.Size(40, 40);
             this.btnTimKiemTk.TabIndex = 1;
             this.btnTimKiemTk.UseVisualStyleBackColor = false;
-            // 
+            //
             // txtTimKiemTk
-            // 
+            //
             this.txtTimKiemTk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimKiemTk.Location = new System.Drawing.Point(3, 13);
             this.txtTimKiemTk.Name = "txtTimKiemTk";
             this.txtTimKiemTk.Size = new System.Drawing.Size(277, 34);
             this.txtTimKiemTk.TabIndex = 0;
-            // 
+            //
             // tabPagePhanQuyen
-            // 
+            //
             this.tabPagePhanQuyen.BackColor = System.Drawing.Color.White;
+            this.tabPagePhanQuyen.Controls.Add(this.dgvChiTietQuyen);
             this.tabPagePhanQuyen.Controls.Add(this.dgvPhanQuyen);
             this.tabPagePhanQuyen.Controls.Add(this.panelPhanQuyenControls);
             this.tabPagePhanQuyen.Location = new System.Drawing.Point(4, 32);
@@ -236,14 +234,14 @@
             this.tabPagePhanQuyen.Size = new System.Drawing.Size(1012, 594);
             this.tabPagePhanQuyen.TabIndex = 1;
             this.tabPagePhanQuyen.Text = "Phân Quyền";
-            // 
-            // dgvPhanQuyen
-            // 
-            this.dgvPhanQuyen.AllowUserToAddRows = false;
-            this.dgvPhanQuyen.AllowUserToDeleteRows = false;
-            this.dgvPhanQuyen.BackgroundColor = System.Drawing.Color.White;
-            this.dgvPhanQuyen.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvPhanQuyen.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            //
+            // dgvChiTietQuyen
+            //
+            this.dgvChiTietQuyen.AllowUserToAddRows = false;
+            this.dgvChiTietQuyen.AllowUserToDeleteRows = false;
+            this.dgvChiTietQuyen.BackgroundColor = System.Drawing.Color.White;
+            this.dgvChiTietQuyen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvChiTietQuyen.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
@@ -251,141 +249,105 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPhanQuyen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvChiTietQuyen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvChiTietQuyen.ColumnHeadersHeight = 40;
+            this.dgvChiTietQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvChiTietQuyen.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvChiTietQuyen.Location = new System.Drawing.Point(365, 75);
+            this.dgvChiTietQuyen.Name = "dgvChiTietQuyen";
+            this.dgvChiTietQuyen.RowHeadersVisible = false;
+            this.dgvChiTietQuyen.RowTemplate.Height = 35;
+            this.dgvChiTietQuyen.Size = new System.Drawing.Size(632, 504);
+            this.dgvChiTietQuyen.TabIndex = 3;
+            //
+            // dgvPhanQuyen
+            //
+            this.dgvPhanQuyen.AllowUserToAddRows = false;
+            this.dgvPhanQuyen.AllowUserToDeleteRows = false;
+            this.dgvPhanQuyen.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPhanQuyen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPhanQuyen.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPhanQuyen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPhanQuyen.ColumnHeadersHeight = 40;
             this.dgvPhanQuyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPqMaNhom,
-            this.colPqTenNhom,
-            this.colPqMoTa,
-            this.colPqTrangThai});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPhanQuyen.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvPhanQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.colPqTenNhom});
+            this.dgvPhanQuyen.Dock = System.Windows.Forms.DockStyle.Left;
             this.dgvPhanQuyen.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvPhanQuyen.Location = new System.Drawing.Point(15, 75);
+            this.dgvPhanQuyen.MultiSelect = false;
             this.dgvPhanQuyen.Name = "dgvPhanQuyen";
             this.dgvPhanQuyen.ReadOnly = true;
             this.dgvPhanQuyen.RowHeadersVisible = false;
             this.dgvPhanQuyen.RowTemplate.Height = 35;
             this.dgvPhanQuyen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPhanQuyen.Size = new System.Drawing.Size(982, 504);
+            this.dgvPhanQuyen.Size = new System.Drawing.Size(350, 504);
             this.dgvPhanQuyen.TabIndex = 2;
-            // 
+            //
             // colPqMaNhom
-            // 
-            this.colPqMaNhom.HeaderText = "Mã nhóm quyền";
+            //
+            this.colPqMaNhom.DataPropertyName = "MaNhomQuyen";
+            this.colPqMaNhom.HeaderText = "Mã";
             this.colPqMaNhom.Name = "colPqMaNhom";
             this.colPqMaNhom.ReadOnly = true;
-            this.colPqMaNhom.Width = 150;
-            // 
+            this.colPqMaNhom.Width = 60;
+            //
             // colPqTenNhom
-            // 
+            //
             this.colPqTenNhom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPqTenNhom.HeaderText = "Tên Nhóm quyền";
+            this.colPqTenNhom.DataPropertyName = "TenNhomQuyen";
+            this.colPqTenNhom.HeaderText = "Tên Nhóm Quyền";
             this.colPqTenNhom.Name = "colPqTenNhom";
             this.colPqTenNhom.ReadOnly = true;
-            // 
-            // colPqMoTa
-            // 
-            this.colPqMoTa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPqMoTa.HeaderText = "Mô Tả";
-            this.colPqMoTa.Name = "colPqMoTa";
-            this.colPqMoTa.ReadOnly = true;
-            // 
-            // colPqTrangThai
-            // 
-            this.colPqTrangThai.HeaderText = "Trạng thái";
-            this.colPqTrangThai.Name = "colPqTrangThai";
-            this.colPqTrangThai.ReadOnly = true;
-            this.colPqTrangThai.Width = 150;
-            // 
+            //
             // panelPhanQuyenControls
-            // 
-            this.panelPhanQuyenControls.Controls.Add(this.btnSuaPq);
-            this.panelPhanQuyenControls.Controls.Add(this.btnXoaPq);
+            //
+            this.panelPhanQuyenControls.Controls.Add(this.btnLuuQuyen);
             this.panelPhanQuyenControls.Controls.Add(this.btnThemPq);
-            this.panelPhanQuyenControls.Controls.Add(this.btnTimKiemPq);
-            this.panelPhanQuyenControls.Controls.Add(this.txtTimKiemPq);
             this.panelPhanQuyenControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelPhanQuyenControls.Location = new System.Drawing.Point(15, 15);
             this.panelPhanQuyenControls.Name = "panelPhanQuyenControls";
             this.panelPhanQuyenControls.Size = new System.Drawing.Size(982, 60);
             this.panelPhanQuyenControls.TabIndex = 1;
-            // 
-            // btnSuaPq
-            // 
-            this.btnSuaPq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSuaPq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
-            this.btnSuaPq.FlatAppearance.BorderSize = 0;
-            this.btnSuaPq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSuaPq.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaPq.ForeColor = System.Drawing.Color.White;
-            this.btnSuaPq.Location = new System.Drawing.Point(879, 10);
-            this.btnSuaPq.Name = "btnSuaPq";
-            this.btnSuaPq.Size = new System.Drawing.Size(100, 40);
-            this.btnSuaPq.TabIndex = 4;
-            this.btnSuaPq.Text = "Sửa";
-            this.btnSuaPq.UseVisualStyleBackColor = false;
-            // 
-            // btnXoaPq
-            // 
-            this.btnXoaPq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXoaPq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.btnXoaPq.FlatAppearance.BorderSize = 0;
-            this.btnXoaPq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoaPq.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaPq.ForeColor = System.Drawing.Color.White;
-            this.btnXoaPq.Location = new System.Drawing.Point(773, 10);
-            this.btnXoaPq.Name = "btnXoaPq";
-            this.btnXoaPq.Size = new System.Drawing.Size(100, 40);
-            this.btnXoaPq.TabIndex = 3;
-            this.btnXoaPq.Text = "Xóa";
-            this.btnXoaPq.UseVisualStyleBackColor = false;
-            // 
+            //
+            // btnLuuQuyen
+            //
+            this.btnLuuQuyen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLuuQuyen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.btnLuuQuyen.FlatAppearance.BorderSize = 0;
+            this.btnLuuQuyen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLuuQuyen.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuuQuyen.ForeColor = System.Drawing.Color.White;
+            this.btnLuuQuyen.Location = new System.Drawing.Point(857, 10);
+            this.btnLuuQuyen.Name = "btnLuuQuyen";
+            this.btnLuuQuyen.Size = new System.Drawing.Size(122, 40);
+            this.btnLuuQuyen.TabIndex = 3;
+            this.btnLuuQuyen.Text = "Lưu Quyền";
+            this.btnLuuQuyen.UseVisualStyleBackColor = false;
+            //
             // btnThemPq
-            // 
-            this.btnThemPq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            //
             this.btnThemPq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnThemPq.FlatAppearance.BorderSize = 0;
             this.btnThemPq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemPq.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemPq.ForeColor = System.Drawing.Color.White;
-            this.btnThemPq.Location = new System.Drawing.Point(667, 10);
+            this.btnThemPq.Location = new System.Drawing.Point(3, 10);
             this.btnThemPq.Name = "btnThemPq";
-            this.btnThemPq.Size = new System.Drawing.Size(100, 40);
+            this.btnThemPq.Size = new System.Drawing.Size(176, 40);
             this.btnThemPq.TabIndex = 2;
-            this.btnThemPq.Text = "+ Thêm";
+            this.btnThemPq.Text = "+ Thêm Nhóm Quyền";
             this.btnThemPq.UseVisualStyleBackColor = false;
-            // 
-            // btnTimKiemPq
-            // 
-            this.btnTimKiemPq.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnTimKiemPq.FlatAppearance.BorderSize = 0;
-            this.btnTimKiemPq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimKiemPq.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiemPq.ForeColor = System.Drawing.Color.White;
-            this.btnTimKiemPq.Location = new System.Drawing.Point(286, 10);
-            this.btnTimKiemPq.Name = "btnTimKiemPq";
-            this.btnTimKiemPq.Size = new System.Drawing.Size(40, 40);
-            this.btnTimKiemPq.TabIndex = 1;
-            this.btnTimKiemPq.UseVisualStyleBackColor = false;
-            // 
-            // txtTimKiemPq
-            // 
-            this.txtTimKiemPq.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiemPq.Location = new System.Drawing.Point(3, 13);
-            this.txtTimKiemPq.Name = "txtTimKiemPq";
-            this.txtTimKiemPq.Size = new System.Drawing.Size(277, 34);
-            this.txtTimKiemPq.TabIndex = 0;
-            // 
+            //
             // tabPageChucNang
-            // 
+            //
             this.tabPageChucNang.BackColor = System.Drawing.Color.White;
             this.tabPageChucNang.Controls.Add(this.dgvChucNang);
             this.tabPageChucNang.Controls.Add(this.panelChucNangControls);
@@ -395,9 +357,9 @@
             this.tabPageChucNang.Size = new System.Drawing.Size(1012, 594);
             this.tabPageChucNang.TabIndex = 2;
             this.tabPageChucNang.Text = "Chức Năng";
-            // 
+            //
             // dgvChucNang
-            // 
+            //
             this.dgvChucNang.AllowUserToAddRows = false;
             this.dgvChucNang.AllowUserToDeleteRows = false;
             this.dgvChucNang.BackgroundColor = System.Drawing.Color.White;
@@ -434,30 +396,30 @@
             this.dgvChucNang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChucNang.Size = new System.Drawing.Size(982, 504);
             this.dgvChucNang.TabIndex = 2;
-            // 
+            //
             // colCnMa
-            // 
+            //
             this.colCnMa.HeaderText = "Mã chức năng";
             this.colCnMa.Name = "colCnMa";
             this.colCnMa.ReadOnly = true;
             this.colCnMa.Width = 150;
-            // 
+            //
             // colCnTen
-            // 
+            //
             this.colCnTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colCnTen.HeaderText = "Tên chức năng";
             this.colCnTen.Name = "colCnTen";
             this.colCnTen.ReadOnly = true;
-            // 
+            //
             // colCnMoTa
-            // 
+            //
             this.colCnMoTa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colCnMoTa.HeaderText = "Mô tả";
             this.colCnMoTa.Name = "colCnMoTa";
             this.colCnMoTa.ReadOnly = true;
-            // 
+            //
             // panelChucNangControls
-            // 
+            //
             this.panelChucNangControls.Controls.Add(this.btnSuaCn);
             this.panelChucNangControls.Controls.Add(this.btnXoaCn);
             this.panelChucNangControls.Controls.Add(this.btnThemCn);
@@ -468,9 +430,9 @@
             this.panelChucNangControls.Name = "panelChucNangControls";
             this.panelChucNangControls.Size = new System.Drawing.Size(982, 60);
             this.panelChucNangControls.TabIndex = 1;
-            // 
+            //
             // btnSuaCn
-            // 
+            //
             this.btnSuaCn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuaCn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
             this.btnSuaCn.FlatAppearance.BorderSize = 0;
@@ -483,9 +445,9 @@
             this.btnSuaCn.TabIndex = 4;
             this.btnSuaCn.Text = "Sửa";
             this.btnSuaCn.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnXoaCn
-            // 
+            //
             this.btnXoaCn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoaCn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnXoaCn.FlatAppearance.BorderSize = 0;
@@ -498,9 +460,9 @@
             this.btnXoaCn.TabIndex = 3;
             this.btnXoaCn.Text = "Xóa";
             this.btnXoaCn.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnThemCn
-            // 
+            //
             this.btnThemCn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThemCn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnThemCn.FlatAppearance.BorderSize = 0;
@@ -513,9 +475,9 @@
             this.btnThemCn.TabIndex = 2;
             this.btnThemCn.Text = "+ Thêm";
             this.btnThemCn.UseVisualStyleBackColor = false;
-            // 
+            //
             // btnTimKiemCn
-            // 
+            //
             this.btnTimKiemCn.BackColor = System.Drawing.Color.Gainsboro;
             this.btnTimKiemCn.FlatAppearance.BorderSize = 0;
             this.btnTimKiemCn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -526,17 +488,17 @@
             this.btnTimKiemCn.Size = new System.Drawing.Size(40, 40);
             this.btnTimKiemCn.TabIndex = 1;
             this.btnTimKiemCn.UseVisualStyleBackColor = false;
-            // 
+            //
             // txtTimKiemCn
-            // 
+            //
             this.txtTimKiemCn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimKiemCn.Location = new System.Drawing.Point(3, 13);
             this.txtTimKiemCn.Name = "txtTimKiemCn";
             this.txtTimKiemCn.Size = new System.Drawing.Size(277, 34);
             this.txtTimKiemCn.TabIndex = 0;
-            // 
+            //
             // TaiKhoanMain
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -549,9 +511,9 @@
             this.panelTaiKhoanControls.ResumeLayout(false);
             this.panelTaiKhoanControls.PerformLayout();
             this.tabPagePhanQuyen.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietQuyen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhanQuyen)).EndInit();
             this.panelPhanQuyenControls.ResumeLayout(false);
-            this.panelPhanQuyenControls.PerformLayout();
             this.tabPageChucNang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChucNang)).EndInit();
             this.panelChucNangControls.ResumeLayout(false);
@@ -576,16 +538,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTkSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTkNhanVien;
         private System.Windows.Forms.Panel panelPhanQuyenControls;
-        private System.Windows.Forms.Button btnSuaPq;
-        private System.Windows.Forms.Button btnXoaPq;
         private System.Windows.Forms.Button btnThemPq;
-        private System.Windows.Forms.Button btnTimKiemPq;
-        private System.Windows.Forms.TextBox txtTimKiemPq;
         private System.Windows.Forms.DataGridView dgvPhanQuyen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPqMaNhom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPqTenNhom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPqMoTa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPqTrangThai;
         private System.Windows.Forms.Panel panelChucNangControls;
         private System.Windows.Forms.Button btnSuaCn;
         private System.Windows.Forms.Button btnXoaCn;
@@ -596,5 +550,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCnMa;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCnTen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCnMoTa;
+        private System.Windows.Forms.DataGridView dgvChiTietQuyen;
+        private System.Windows.Forms.Button btnLuuQuyen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPqMaNhom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPqTenNhom;
     }
 }
