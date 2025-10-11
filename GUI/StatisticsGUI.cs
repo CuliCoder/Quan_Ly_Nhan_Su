@@ -12,13 +12,13 @@ namespace Quan_Ly_Nhan_Su.GUI
     public partial class StatisticsGUI : UserControl
     {
         private readonly LaborContractBLL _laborContractBLL;
-        private readonly EmployeeFullBUS _employeeBLL;
+        private readonly EmployeeFullBLL _employeeBLL;
 
         public StatisticsGUI()
         {
             InitializeComponent();
             _laborContractBLL = new LaborContractBLL();
-            _employeeBLL = new EmployeeFullBUS();
+            _employeeBLL = new EmployeeFullBLL();
         }
 
         private void StatisticsGUI_Load(object sender, EventArgs e)

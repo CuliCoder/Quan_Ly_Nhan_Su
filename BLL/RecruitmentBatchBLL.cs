@@ -6,11 +6,11 @@ using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class RecruitmentBatchBUS
+    public class RecruitmentBatchBLL
     {
         private readonly RecruitmentBatchDAO _dao;
         private static List<RecruitmentBatchDTO> list;
-        public RecruitmentBatchBUS()
+        public RecruitmentBatchBLL()
         {
             _dao = new RecruitmentBatchDAO();
             if (list == null)

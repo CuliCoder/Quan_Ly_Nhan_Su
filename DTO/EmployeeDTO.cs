@@ -49,7 +49,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             this.mucLuong = mucLuong;
         }
 
-        public EmployeeDTO(Employee2DTO other)
+        public EmployeeDTO(EmployeeDTO other)
         {
             if (other == null) throw new ArgumentNullException(nameof(other));
 
