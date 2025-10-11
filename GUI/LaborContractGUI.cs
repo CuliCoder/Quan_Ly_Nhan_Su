@@ -149,7 +149,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 }
 
                 // Lấy thông tin nhân viên
-                var bll = new EmployeeFullBUS();
+                var bll = new EmployeeFullBLL();
                 EmployeeFullDTO employee = bll.GetEmployeeById(maNhanVien);
                 if (employee == null)
                 {
