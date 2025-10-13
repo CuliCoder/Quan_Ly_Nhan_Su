@@ -12,6 +12,55 @@ namespace Quan_Ly_Nhan_Su.DAO
     public class PersonalProfileDAO
     {
         /// <summary>
+        /// Lấy tất cả hồ sơ cá nhân từ bảng hosocanhan
+        /// </summary>
+        public List<PersonalProfileDTO> GetAll()
+        {
+            var list = new List<PersonalProfileDTO>();
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = "SELECT * FROM hosocanhan";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var profile = new PersonalProfileDTO
+                            {
+                                SoCmnd = reader.GetString("soCmnd"),
+                                HoTen = reader.GetString("hoTen"),
+                                GioiTinh = reader.GetString("gioiTinh"),
+                                NgaySinh = reader.GetDateTime("ngaySinh"),
+                                DiaChi = reader["diachi"] as string,
+                                Email = reader["email"] as string,
+                                Sdt = reader["sdt"] as string,
+                                NoiCap = reader.GetString("noiCap"),
+                                NgayCap = reader.GetDateTime("ngayCap"),
+                                TinhTrangHonNhan = reader["tinhTrangHonNhan"] as string,
+                                DanToc = reader["danToc"] as string
+                            };
+                            list.Add(profile);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error getting personal profiles: {ex.Message}");
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// Creates a new personal profile in the hosocanhan table
         /// </summary>
         public bool Create(PersonalProfileDTO profile)

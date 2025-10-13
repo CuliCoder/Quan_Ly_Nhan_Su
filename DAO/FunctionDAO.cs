@@ -11,6 +11,43 @@ namespace Quan_Ly_Nhan_Su.DAO
     /// </summary>
     public class FunctionDAO
     {
+        public List<FunctionDTO> GetAll()
+        {
+            var list = new List<FunctionDTO>();
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = "SELECT * FROM chucnang";
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var func = new FunctionDTO
+                            {
+                                MaChucNang = reader.GetString("maChucNang"),
+                                TenChucNang = reader.GetString("tenChucNang"),
+                                MoTa = reader["moTa"] as string   // có thể null
+                            };
+                            list.Add(func);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error getting functions: {ex.Message}");
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+            return list;
+        }
+
         /// <summary>
         /// Creates a new function in the chucnang table
         /// </summary>
