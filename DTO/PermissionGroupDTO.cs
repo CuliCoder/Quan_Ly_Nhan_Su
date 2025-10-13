@@ -7,17 +7,33 @@ namespace Quan_Ly_Nhan_Su.DTO
     /// </summary>
     public class PermissionGroupDTO
     {
-        public int MaNhomQuyen { get; set; }
-        public string TenNhomQuyen { get; set; }
-        public string MoTa { get; set; }
+        private int maNhomQuyen;
+        private string tenNhomQuyen;
+        private string moTa;
+
+        public int MaNhomQuyen
+        {
+            get => maNhomQuyen;
+            set => maNhomQuyen = value;
+        }
+        public string TenNhomQuyen
+        {
+            get => tenNhomQuyen;
+            set => tenNhomQuyen = value;
+        }
+        public string MoTa
+        {
+            get => moTa;
+            set => moTa = value;
+        }
 
         public PermissionGroupDTO() { }
 
         public PermissionGroupDTO(int maNhomQuyen, string tenNhomQuyen, string moTa)
         {
-            MaNhomQuyen = maNhomQuyen;
-            TenNhomQuyen = tenNhomQuyen;
-            MoTa = moTa;
+            this.maNhomQuyen = maNhomQuyen;
+            this.tenNhomQuyen = tenNhomQuyen;
+            this.moTa = moTa;
         }
     }
 }
