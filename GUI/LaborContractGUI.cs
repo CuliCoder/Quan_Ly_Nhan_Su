@@ -149,8 +149,8 @@ namespace Quan_Ly_Nhan_Su.GUI
                 }
 
                 // Lấy thông tin nhân viên
-                var bll = new EmployeeBLL();
-                EmployeeDTO employee = bll.GetEmployeeById(maNhanVien);
+                var bll = new EmployeeFullBUS();
+                EmployeeFullDTO employee = bll.GetEmployeeById(maNhanVien);
                 if (employee == null)
                 {
                     MessageBox.Show($"Không tìm thấy nhân viên với mã: {maNhanVien}");
@@ -281,7 +281,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             if (phongBan == "Tất cả") phongBan = null;
 
-            List<EmployeeDTO> employees = _bll.GetUnsignedEmployees(phongBan, sortBySalary);
+            List<EmployeeFullDTO> employees = _bll.GetUnsignedEmployees(phongBan, sortBySalary);
             MessageBox.Show("Số nhân viên chưa ký: " + employees.Count + "\nDanh sách (mẫu): " + (employees.Count > 0 ? employees[0].PhongBan : "Empty"));  // Debug thêm
 
             dataGridView1.Rows.Clear();

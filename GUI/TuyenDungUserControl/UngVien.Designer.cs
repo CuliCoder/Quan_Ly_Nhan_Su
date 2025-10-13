@@ -134,10 +134,10 @@
             comboBox2.Items.AddRange(new object[] {
             "Mã Tuyển Dụng, Họ Tên, SĐT"});
             comboBox2.Location = new System.Drawing.Point(0, 0);
-            comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             comboBox2.Name = "comboBox2";
             comboBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            comboBox2.Size = new System.Drawing.Size(137, 21);
+            comboBox2.Size = new System.Drawing.Size(154, 21);
             comboBox2.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -157,8 +157,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06383F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.36364F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.72727F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 229F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1467, 908);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1650, 1135);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // flowLayoutPanel3
@@ -174,7 +174,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(1467, 75);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1650, 93);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // flowLayoutPanel4
@@ -186,10 +186,10 @@
             this.flowLayoutPanel4.Controls.Add(this.button2);
             this.flowLayoutPanel4.Controls.Add(this.label2);
             this.flowLayoutPanel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(1308, 18);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(24, 18, 24, 4);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1472, 22);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(27, 22, 27, 5);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(135, 33);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(151, 41);
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // button2
@@ -201,7 +201,7 @@
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 31);
+            this.button2.Size = new System.Drawing.Size(112, 39);
             this.button2.TabIndex = 5;
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = true;
@@ -213,12 +213,12 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(100, 0);
+            this.label2.Location = new System.Drawing.Point(112, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.MaximumSize = new System.Drawing.Size(33, 31);
-            this.label2.MinimumSize = new System.Drawing.Size(33, 31);
+            this.label2.MaximumSize = new System.Drawing.Size(37, 39);
+            this.label2.MinimumSize = new System.Drawing.Size(37, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 31);
+            this.label2.Size = new System.Drawing.Size(37, 39);
             this.label2.TabIndex = 4;
             // 
             // flowLayoutPanel2
@@ -230,10 +230,10 @@
             this.flowLayoutPanel2.Controls.Add(this.button3);
             this.flowLayoutPanel2.Controls.Add(this.label7);
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(1145, 18);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(24, 18, 4, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1290, 22);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(27, 22, 4, 5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(135, 33);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(151, 41);
             this.flowLayoutPanel2.TabIndex = 9;
             // 
             // button3
@@ -245,7 +245,7 @@
             this.button3.Location = new System.Drawing.Point(0, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 31);
+            this.button3.Size = new System.Drawing.Size(112, 39);
             this.button3.TabIndex = 7;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = true;
@@ -256,12 +256,12 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(100, 0);
+            this.label7.Location = new System.Drawing.Point(112, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.MaximumSize = new System.Drawing.Size(33, 31);
-            this.label7.MinimumSize = new System.Drawing.Size(33, 31);
+            this.label7.MaximumSize = new System.Drawing.Size(37, 39);
+            this.label7.MinimumSize = new System.Drawing.Size(37, 39);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 31);
+            this.label7.Size = new System.Drawing.Size(37, 39);
             this.label7.TabIndex = 4;
             // 
             // flowLayoutPanel5
@@ -273,10 +273,10 @@
             this.flowLayoutPanel5.Controls.Add(this.button1);
             this.flowLayoutPanel5.Controls.Add(this.label5);
             this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(982, 18);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(24, 18, 4, 4);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(1108, 22);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(27, 22, 4, 5);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(135, 33);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(151, 41);
             this.flowLayoutPanel5.TabIndex = 10;
             // 
             // button1
@@ -288,7 +288,7 @@
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 31);
+            this.button1.Size = new System.Drawing.Size(112, 39);
             this.button1.TabIndex = 6;
             this.button1.Text = "Tuyển";
             this.button1.UseVisualStyleBackColor = true;
@@ -300,12 +300,12 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
-            this.label5.Location = new System.Drawing.Point(100, 0);
+            this.label5.Location = new System.Drawing.Point(112, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.MaximumSize = new System.Drawing.Size(33, 31);
-            this.label5.MinimumSize = new System.Drawing.Size(33, 31);
+            this.label5.MaximumSize = new System.Drawing.Size(37, 39);
+            this.label5.MinimumSize = new System.Drawing.Size(37, 39);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 31);
+            this.label5.Size = new System.Drawing.Size(37, 39);
             this.label5.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -315,10 +315,10 @@
             this.flowLayoutPanel1.Controls.Add(this.tbSearch);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(612, 18);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(8, 18, 8, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(692, 22);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(9, 22, 9, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(338, 38);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(380, 48);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // tbSearch
@@ -327,11 +327,11 @@
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.tbSearch.MaximumSize = new System.Drawing.Size(305, 30);
-            this.tbSearch.MinimumSize = new System.Drawing.Size(305, 30);
+            this.tbSearch.MaximumSize = new System.Drawing.Size(343, 37);
+            this.tbSearch.MinimumSize = new System.Drawing.Size(343, 37);
             this.tbSearch.Multiline = true;
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(305, 30);
+            this.tbSearch.Size = new System.Drawing.Size(343, 37);
             this.tbSearch.TabIndex = 1;
             // 
             // label3
@@ -341,10 +341,10 @@
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(305, 0);
+            this.label3.Location = new System.Drawing.Point(343, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 30);
+            this.label3.Size = new System.Drawing.Size(37, 37);
             this.label3.TabIndex = 0;
             // 
             // panel3
@@ -352,12 +352,12 @@
             this.panel3.AutoSize = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(comboBox2);
-            this.panel3.Location = new System.Drawing.Point(65, 22);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 22, 400, 4);
-            this.panel3.MaximumSize = new System.Drawing.Size(2, 30);
-            this.panel3.MinimumSize = new System.Drawing.Size(139, 30);
+            this.panel3.Location = new System.Drawing.Point(77, 28);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 28, 450, 5);
+            this.panel3.MaximumSize = new System.Drawing.Size(2, 37);
+            this.panel3.MinimumSize = new System.Drawing.Size(156, 37);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(139, 30);
+            this.panel3.Size = new System.Drawing.Size(156, 37);
             this.panel3.TabIndex = 3;
             // 
             // panel1
@@ -366,10 +366,10 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 75);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 93);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1467, 106);
+            this.panel1.Size = new System.Drawing.Size(1650, 133);
             this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -406,7 +406,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1465, 104);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1648, 131);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // showLuongToiDa
@@ -414,11 +414,11 @@
             this.showLuongToiDa.AutoSize = true;
             this.showLuongToiDa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showLuongToiDa.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showLuongToiDa.Location = new System.Drawing.Point(1285, 56);
-            this.showLuongToiDa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showLuongToiDa.Location = new System.Drawing.Point(1446, 70);
+            this.showLuongToiDa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showLuongToiDa.Name = "showLuongToiDa";
-            this.showLuongToiDa.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showLuongToiDa.Size = new System.Drawing.Size(176, 44);
+            this.showLuongToiDa.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showLuongToiDa.Size = new System.Drawing.Size(198, 56);
             this.showLuongToiDa.TabIndex = 15;
             this.showLuongToiDa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -427,11 +427,11 @@
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(4, 4);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label8.Location = new System.Drawing.Point(4, 5);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label8.Size = new System.Drawing.Size(175, 44);
+            this.label8.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label8.Size = new System.Drawing.Size(198, 55);
             this.label8.TabIndex = 0;
             this.label8.Text = "Chức Vụ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -441,11 +441,11 @@
             this.showHanNop.AutoSize = true;
             this.showHanNop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showHanNop.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showHanNop.Location = new System.Drawing.Point(919, 56);
-            this.showHanNop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showHanNop.Location = new System.Drawing.Point(1034, 70);
+            this.showHanNop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showHanNop.Name = "showHanNop";
-            this.showHanNop.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showHanNop.Size = new System.Drawing.Size(175, 44);
+            this.showHanNop.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showHanNop.Size = new System.Drawing.Size(198, 56);
             this.showHanNop.TabIndex = 7;
             this.showHanNop.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -454,11 +454,11 @@
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label14.Location = new System.Drawing.Point(1102, 4);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label14.Location = new System.Drawing.Point(1240, 5);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label14.Name = "label14";
-            this.label14.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label14.Size = new System.Drawing.Size(175, 44);
+            this.label14.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label14.Size = new System.Drawing.Size(198, 55);
             this.label14.TabIndex = 6;
             this.label14.Text = "Hạn Nộp";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -468,11 +468,11 @@
             this.showLuongToiThieu.AutoSize = true;
             this.showLuongToiThieu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showLuongToiThieu.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showLuongToiThieu.Location = new System.Drawing.Point(1285, 4);
-            this.showLuongToiThieu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showLuongToiThieu.Location = new System.Drawing.Point(1446, 5);
+            this.showLuongToiThieu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showLuongToiThieu.Name = "showLuongToiThieu";
-            this.showLuongToiThieu.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showLuongToiThieu.Size = new System.Drawing.Size(176, 44);
+            this.showLuongToiThieu.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showLuongToiThieu.Size = new System.Drawing.Size(198, 55);
             this.showLuongToiThieu.TabIndex = 13;
             this.showLuongToiThieu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -481,11 +481,11 @@
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label16.Location = new System.Drawing.Point(4, 56);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label16.Location = new System.Drawing.Point(4, 70);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label16.Size = new System.Drawing.Size(175, 44);
+            this.label16.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label16.Size = new System.Drawing.Size(198, 56);
             this.label16.TabIndex = 8;
             this.label16.Text = "Hồ sơ đã nộp";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -495,11 +495,11 @@
             this.showTuoi.AutoSize = true;
             this.showTuoi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showTuoi.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showTuoi.Location = new System.Drawing.Point(919, 4);
-            this.showTuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showTuoi.Location = new System.Drawing.Point(1034, 5);
+            this.showTuoi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showTuoi.Name = "showTuoi";
-            this.showTuoi.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showTuoi.Size = new System.Drawing.Size(175, 44);
+            this.showTuoi.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showTuoi.Size = new System.Drawing.Size(198, 55);
             this.showTuoi.TabIndex = 5;
             this.showTuoi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -508,11 +508,11 @@
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label22.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label22.Location = new System.Drawing.Point(1102, 56);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label22.Location = new System.Drawing.Point(1240, 70);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label22.Name = "label22";
-            this.label22.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label22.Size = new System.Drawing.Size(175, 44);
+            this.label22.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label22.Size = new System.Drawing.Size(198, 56);
             this.label22.TabIndex = 14;
             this.label22.Text = "Lương Tối Đa";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,11 +522,11 @@
             this.showChucVu.AutoSize = true;
             this.showChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showChucVu.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showChucVu.Location = new System.Drawing.Point(187, 4);
-            this.showChucVu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showChucVu.Location = new System.Drawing.Point(210, 5);
+            this.showChucVu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showChucVu.Name = "showChucVu";
-            this.showChucVu.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showChucVu.Size = new System.Drawing.Size(175, 44);
+            this.showChucVu.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showChucVu.Size = new System.Drawing.Size(198, 55);
             this.showChucVu.TabIndex = 1;
             this.showChucVu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -535,11 +535,11 @@
             this.showGoiTinh.AutoSize = true;
             this.showGoiTinh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showGoiTinh.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showGoiTinh.Location = new System.Drawing.Point(553, 4);
-            this.showGoiTinh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showGoiTinh.Location = new System.Drawing.Point(622, 5);
+            this.showGoiTinh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showGoiTinh.Name = "showGoiTinh";
-            this.showGoiTinh.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showGoiTinh.Size = new System.Drawing.Size(175, 44);
+            this.showGoiTinh.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showGoiTinh.Size = new System.Drawing.Size(198, 55);
             this.showGoiTinh.TabIndex = 3;
             this.showGoiTinh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -548,11 +548,11 @@
             this.showHoSoNop.AutoSize = true;
             this.showHoSoNop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showHoSoNop.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showHoSoNop.Location = new System.Drawing.Point(187, 56);
-            this.showHoSoNop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showHoSoNop.Location = new System.Drawing.Point(210, 70);
+            this.showHoSoNop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showHoSoNop.Name = "showHoSoNop";
-            this.showHoSoNop.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showHoSoNop.Size = new System.Drawing.Size(175, 44);
+            this.showHoSoNop.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showHoSoNop.Size = new System.Drawing.Size(198, 56);
             this.showHoSoNop.TabIndex = 9;
             this.showHoSoNop.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -561,11 +561,11 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label10.Location = new System.Drawing.Point(370, 4);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label10.Location = new System.Drawing.Point(416, 5);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label10.Size = new System.Drawing.Size(175, 44);
+            this.label10.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label10.Size = new System.Drawing.Size(198, 55);
             this.label10.TabIndex = 2;
             this.label10.Text = "Giới Tính";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -575,11 +575,11 @@
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label18.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label18.Location = new System.Drawing.Point(370, 56);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label18.Location = new System.Drawing.Point(416, 70);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label18.Name = "label18";
-            this.label18.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label18.Size = new System.Drawing.Size(175, 44);
+            this.label18.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label18.Size = new System.Drawing.Size(198, 56);
             this.label18.TabIndex = 10;
             this.label18.Text = "Hồ sơ đã tuyển";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -589,11 +589,11 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label12.Location = new System.Drawing.Point(736, 4);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label12.Location = new System.Drawing.Point(828, 5);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label12.Name = "label12";
-            this.label12.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label12.Size = new System.Drawing.Size(175, 44);
+            this.label12.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label12.Size = new System.Drawing.Size(198, 55);
             this.label12.TabIndex = 4;
             this.label12.Text = "Độ Tuổi";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -603,11 +603,11 @@
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label20.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label20.Location = new System.Drawing.Point(736, 56);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label20.Location = new System.Drawing.Point(828, 70);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label20.Name = "label20";
-            this.label20.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label20.Size = new System.Drawing.Size(175, 44);
+            this.label20.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label20.Size = new System.Drawing.Size(198, 56);
             this.label20.TabIndex = 12;
             this.label20.Text = "Lương Tối Thiểu";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -617,11 +617,11 @@
             this.showHoSoTuyen.AutoSize = true;
             this.showHoSoTuyen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showHoSoTuyen.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showHoSoTuyen.Location = new System.Drawing.Point(553, 56);
-            this.showHoSoTuyen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showHoSoTuyen.Location = new System.Drawing.Point(622, 70);
+            this.showHoSoTuyen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showHoSoTuyen.Name = "showHoSoTuyen";
-            this.showHoSoTuyen.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showHoSoTuyen.Size = new System.Drawing.Size(175, 44);
+            this.showHoSoTuyen.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showHoSoTuyen.Size = new System.Drawing.Size(198, 56);
             this.showHoSoTuyen.TabIndex = 11;
             this.showHoSoTuyen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -631,10 +631,10 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 185);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.panel2.Location = new System.Drawing.Point(0, 231);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1467, 489);
+            this.panel2.Size = new System.Drawing.Size(1650, 611);
             this.panel2.TabIndex = 2;
             // 
             // dataGridView1
@@ -668,13 +668,13 @@
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(1467, 489);
+            this.dataGridView1.Size = new System.Drawing.Size(1650, 611);
             this.dataGridView1.TabIndex = 0;
             // 
             // maTuyenDung
@@ -738,10 +738,10 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.tableLayoutPanel3);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 678);
+            this.panel4.Location = new System.Drawing.Point(0, 847);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1467, 230);
+            this.panel4.Size = new System.Drawing.Size(1650, 288);
             this.panel4.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -757,7 +757,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1465, 228);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1648, 286);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // tableLayoutPanel4
@@ -796,7 +796,7 @@
             this.tableLayoutPanel4.Controls.Add(this.showTenLb, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(235, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(265, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 5;
@@ -805,8 +805,8 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1230, 228);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1383, 286);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label19
@@ -814,11 +814,11 @@
             this.label19.AutoSize = true;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label19.Location = new System.Drawing.Point(1024, 4);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label19.Location = new System.Drawing.Point(1154, 5);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label19.Name = "label19";
-            this.label19.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label19.Size = new System.Drawing.Size(202, 37);
+            this.label19.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label19.Size = new System.Drawing.Size(225, 47);
             this.label19.TabIndex = 46;
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -827,11 +827,11 @@
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label17.Location = new System.Drawing.Point(820, 4);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label17.Location = new System.Drawing.Point(924, 5);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label17.Name = "label17";
-            this.label17.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label17.Size = new System.Drawing.Size(196, 37);
+            this.label17.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label17.Size = new System.Drawing.Size(222, 47);
             this.label17.TabIndex = 45;
             this.label17.Text = "Tôn Giáo";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -841,11 +841,11 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label15.Location = new System.Drawing.Point(616, 184);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label15.Location = new System.Drawing.Point(694, 233);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label15.Name = "label15";
-            this.label15.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label15.Size = new System.Drawing.Size(196, 40);
+            this.label15.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label15.Size = new System.Drawing.Size(222, 48);
             this.label15.TabIndex = 44;
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -854,11 +854,11 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label11.Location = new System.Drawing.Point(412, 184);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label11.Location = new System.Drawing.Point(464, 233);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label11.Name = "label11";
-            this.label11.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label11.Size = new System.Drawing.Size(196, 40);
+            this.label11.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label11.Size = new System.Drawing.Size(222, 48);
             this.label11.TabIndex = 43;
             this.label11.Text = "CCCD";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -868,11 +868,11 @@
             this.showTrinhDoLB.AutoSize = true;
             this.showTrinhDoLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showTrinhDoLB.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showTrinhDoLB.Location = new System.Drawing.Point(1024, 49);
-            this.showTrinhDoLB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showTrinhDoLB.Location = new System.Drawing.Point(1154, 62);
+            this.showTrinhDoLB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showTrinhDoLB.Name = "showTrinhDoLB";
-            this.showTrinhDoLB.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showTrinhDoLB.Size = new System.Drawing.Size(202, 37);
+            this.showTrinhDoLB.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showTrinhDoLB.Size = new System.Drawing.Size(225, 47);
             this.showTrinhDoLB.TabIndex = 42;
             this.showTrinhDoLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -881,11 +881,11 @@
             this.showDanTocLb.AutoSize = true;
             this.showDanTocLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showDanTocLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showDanTocLb.Location = new System.Drawing.Point(1024, 94);
-            this.showDanTocLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showDanTocLb.Location = new System.Drawing.Point(1154, 119);
+            this.showDanTocLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showDanTocLb.Name = "showDanTocLb";
-            this.showDanTocLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showDanTocLb.Size = new System.Drawing.Size(202, 37);
+            this.showDanTocLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showDanTocLb.Size = new System.Drawing.Size(225, 47);
             this.showDanTocLb.TabIndex = 40;
             this.showDanTocLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -894,11 +894,11 @@
             this.showTinhTpLb.AutoSize = true;
             this.showTinhTpLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showTinhTpLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showTinhTpLb.Location = new System.Drawing.Point(616, 139);
-            this.showTinhTpLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showTinhTpLb.Location = new System.Drawing.Point(694, 176);
+            this.showTinhTpLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showTinhTpLb.Name = "showTinhTpLb";
-            this.showTinhTpLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showTinhTpLb.Size = new System.Drawing.Size(196, 37);
+            this.showTinhTpLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showTinhTpLb.Size = new System.Drawing.Size(222, 47);
             this.showTinhTpLb.TabIndex = 37;
             this.showTinhTpLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -907,11 +907,11 @@
             this.showPhuongXaLb.AutoSize = true;
             this.showPhuongXaLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showPhuongXaLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showPhuongXaLb.Location = new System.Drawing.Point(616, 94);
-            this.showPhuongXaLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showPhuongXaLb.Location = new System.Drawing.Point(694, 119);
+            this.showPhuongXaLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showPhuongXaLb.Name = "showPhuongXaLb";
-            this.showPhuongXaLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showPhuongXaLb.Size = new System.Drawing.Size(196, 37);
+            this.showPhuongXaLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showPhuongXaLb.Size = new System.Drawing.Size(222, 47);
             this.showPhuongXaLb.TabIndex = 36;
             this.showPhuongXaLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -920,11 +920,11 @@
             this.showQuanHuyenLb.AutoSize = true;
             this.showQuanHuyenLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showQuanHuyenLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showQuanHuyenLb.Location = new System.Drawing.Point(616, 49);
-            this.showQuanHuyenLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showQuanHuyenLb.Location = new System.Drawing.Point(694, 62);
+            this.showQuanHuyenLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showQuanHuyenLb.Name = "showQuanHuyenLb";
-            this.showQuanHuyenLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showQuanHuyenLb.Size = new System.Drawing.Size(196, 37);
+            this.showQuanHuyenLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showQuanHuyenLb.Size = new System.Drawing.Size(222, 47);
             this.showQuanHuyenLb.TabIndex = 35;
             this.showQuanHuyenLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -933,11 +933,11 @@
             this.showApPhuongLb.AutoSize = true;
             this.showApPhuongLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showApPhuongLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showApPhuongLb.Location = new System.Drawing.Point(616, 4);
-            this.showApPhuongLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showApPhuongLb.Location = new System.Drawing.Point(694, 5);
+            this.showApPhuongLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showApPhuongLb.Name = "showApPhuongLb";
-            this.showApPhuongLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showApPhuongLb.Size = new System.Drawing.Size(196, 37);
+            this.showApPhuongLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showApPhuongLb.Size = new System.Drawing.Size(222, 47);
             this.showApPhuongLb.TabIndex = 34;
             this.showApPhuongLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -946,11 +946,11 @@
             this.showEmailLb.AutoSize = true;
             this.showEmailLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showEmailLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showEmailLb.Location = new System.Drawing.Point(208, 184);
-            this.showEmailLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showEmailLb.Location = new System.Drawing.Point(234, 233);
+            this.showEmailLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showEmailLb.Name = "showEmailLb";
-            this.showEmailLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showEmailLb.Size = new System.Drawing.Size(196, 40);
+            this.showEmailLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showEmailLb.Size = new System.Drawing.Size(222, 48);
             this.showEmailLb.TabIndex = 33;
             this.showEmailLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -959,11 +959,11 @@
             this.showSDTLb.AutoSize = true;
             this.showSDTLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showSDTLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showSDTLb.Location = new System.Drawing.Point(208, 139);
-            this.showSDTLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showSDTLb.Location = new System.Drawing.Point(234, 176);
+            this.showSDTLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showSDTLb.Name = "showSDTLb";
-            this.showSDTLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showSDTLb.Size = new System.Drawing.Size(196, 37);
+            this.showSDTLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showSDTLb.Size = new System.Drawing.Size(222, 47);
             this.showSDTLb.TabIndex = 32;
             this.showSDTLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -972,11 +972,11 @@
             this.showNgaySinhLB.AutoSize = true;
             this.showNgaySinhLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showNgaySinhLB.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showNgaySinhLB.Location = new System.Drawing.Point(208, 94);
-            this.showNgaySinhLB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showNgaySinhLB.Location = new System.Drawing.Point(234, 119);
+            this.showNgaySinhLB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showNgaySinhLB.Name = "showNgaySinhLB";
-            this.showNgaySinhLB.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showNgaySinhLB.Size = new System.Drawing.Size(196, 37);
+            this.showNgaySinhLB.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showNgaySinhLB.Size = new System.Drawing.Size(222, 47);
             this.showNgaySinhLB.TabIndex = 31;
             this.showNgaySinhLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -985,11 +985,11 @@
             this.label40.AutoSize = true;
             this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label40.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label40.Location = new System.Drawing.Point(4, 184);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label40.Location = new System.Drawing.Point(4, 233);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label40.Name = "label40";
-            this.label40.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label40.Size = new System.Drawing.Size(196, 40);
+            this.label40.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label40.Size = new System.Drawing.Size(222, 48);
             this.label40.TabIndex = 25;
             this.label40.Text = "Email";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -999,11 +999,11 @@
             this.label36.AutoSize = true;
             this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label36.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label36.Location = new System.Drawing.Point(412, 139);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label36.Location = new System.Drawing.Point(464, 176);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label36.Name = "label36";
-            this.label36.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label36.Size = new System.Drawing.Size(196, 37);
+            this.label36.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label36.Size = new System.Drawing.Size(222, 47);
             this.label36.TabIndex = 21;
             this.label36.Text = "Tỉnh / TP";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1013,11 +1013,11 @@
             this.label34.AutoSize = true;
             this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label34.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label34.Location = new System.Drawing.Point(4, 139);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label34.Location = new System.Drawing.Point(4, 176);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label34.Name = "label34";
-            this.label34.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label34.Size = new System.Drawing.Size(196, 37);
+            this.label34.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label34.Size = new System.Drawing.Size(222, 47);
             this.label34.TabIndex = 19;
             this.label34.Text = "SDT";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1027,11 +1027,11 @@
             this.label32.AutoSize = true;
             this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label32.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label32.Location = new System.Drawing.Point(820, 94);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label32.Location = new System.Drawing.Point(924, 119);
+            this.label32.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label32.Name = "label32";
-            this.label32.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label32.Size = new System.Drawing.Size(196, 37);
+            this.label32.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label32.Size = new System.Drawing.Size(222, 47);
             this.label32.TabIndex = 17;
             this.label32.Text = "Dân Tộc";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1041,11 +1041,11 @@
             this.label30.AutoSize = true;
             this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label30.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label30.Location = new System.Drawing.Point(412, 94);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label30.Location = new System.Drawing.Point(464, 119);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label30.Name = "label30";
-            this.label30.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label30.Size = new System.Drawing.Size(196, 37);
+            this.label30.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label30.Size = new System.Drawing.Size(222, 47);
             this.label30.TabIndex = 15;
             this.label30.Text = "Phường / Xã";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1055,11 +1055,11 @@
             this.label28.AutoSize = true;
             this.label28.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label28.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label28.Location = new System.Drawing.Point(4, 94);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label28.Location = new System.Drawing.Point(4, 119);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label28.Name = "label28";
-            this.label28.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label28.Size = new System.Drawing.Size(196, 37);
+            this.label28.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label28.Size = new System.Drawing.Size(222, 47);
             this.label28.TabIndex = 13;
             this.label28.Text = "Ngày sinh";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1069,11 +1069,11 @@
             this.label26.AutoSize = true;
             this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label26.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label26.Location = new System.Drawing.Point(820, 49);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label26.Location = new System.Drawing.Point(924, 62);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label26.Name = "label26";
-            this.label26.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label26.Size = new System.Drawing.Size(196, 37);
+            this.label26.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label26.Size = new System.Drawing.Size(222, 47);
             this.label26.TabIndex = 11;
             this.label26.Text = "Trình Độ";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1083,11 +1083,11 @@
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label24.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label24.Location = new System.Drawing.Point(412, 49);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label24.Location = new System.Drawing.Point(464, 62);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label24.Name = "label24";
-            this.label24.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label24.Size = new System.Drawing.Size(196, 37);
+            this.label24.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label24.Size = new System.Drawing.Size(222, 47);
             this.label24.TabIndex = 9;
             this.label24.Text = "Quận / Huyện";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1097,11 +1097,11 @@
             this.showGioiTinhLb.AutoSize = true;
             this.showGioiTinhLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showGioiTinhLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showGioiTinhLb.Location = new System.Drawing.Point(208, 49);
-            this.showGioiTinhLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showGioiTinhLb.Location = new System.Drawing.Point(234, 62);
+            this.showGioiTinhLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showGioiTinhLb.Name = "showGioiTinhLb";
-            this.showGioiTinhLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showGioiTinhLb.Size = new System.Drawing.Size(196, 37);
+            this.showGioiTinhLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showGioiTinhLb.Size = new System.Drawing.Size(222, 47);
             this.showGioiTinhLb.TabIndex = 8;
             this.showGioiTinhLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1110,11 +1110,11 @@
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label21.Location = new System.Drawing.Point(4, 49);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label21.Location = new System.Drawing.Point(4, 62);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label21.Name = "label21";
-            this.label21.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label21.Size = new System.Drawing.Size(196, 37);
+            this.label21.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label21.Size = new System.Drawing.Size(222, 47);
             this.label21.TabIndex = 7;
             this.label21.Text = "Giới tính";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1124,11 +1124,11 @@
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label13.Location = new System.Drawing.Point(412, 4);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label13.Location = new System.Drawing.Point(464, 5);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label13.Name = "label13";
-            this.label13.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label13.Size = new System.Drawing.Size(196, 37);
+            this.label13.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label13.Size = new System.Drawing.Size(222, 47);
             this.label13.TabIndex = 3;
             this.label13.Text = "Ấp / Phường";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1138,11 +1138,11 @@
             this.showTenLb.AutoSize = true;
             this.showTenLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showTenLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.showTenLb.Location = new System.Drawing.Point(208, 4);
-            this.showTenLb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showTenLb.Location = new System.Drawing.Point(234, 5);
+            this.showTenLb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showTenLb.Name = "showTenLb";
-            this.showTenLb.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.showTenLb.Size = new System.Drawing.Size(196, 37);
+            this.showTenLb.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.showTenLb.Size = new System.Drawing.Size(222, 47);
             this.showTenLb.TabIndex = 2;
             this.showTenLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1151,11 +1151,11 @@
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label9.Location = new System.Drawing.Point(4, 4);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label9.Location = new System.Drawing.Point(4, 5);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label9.Name = "label9";
-            this.label9.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label9.Size = new System.Drawing.Size(196, 37);
+            this.label9.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.label9.Size = new System.Drawing.Size(222, 47);
             this.label9.TabIndex = 1;
             this.label9.Text = "Tên ứng viên";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1164,24 +1164,24 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources.images2;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.pictureBox1.Size = new System.Drawing.Size(209, 204);
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.pictureBox1.Size = new System.Drawing.Size(235, 256);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // UngVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UngVien";
-            this.Size = new System.Drawing.Size(1467, 908);
+            this.Size = new System.Drawing.Size(1650, 1135);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();

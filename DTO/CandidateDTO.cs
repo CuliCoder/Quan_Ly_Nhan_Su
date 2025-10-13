@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
@@ -7,12 +7,88 @@ namespace Quan_Ly_Nhan_Su.DTO
     /// </summary>
     public class CandidateDTO
     {
-        public string MaUngVien { get; set; }
-        public string SoCmnd { get; set; }
-        public string MaTuyenDung { get; set; }
-        public decimal? MucLuongDeal { get; set; }
-        public string MaTrinhDo { get; set; }
-        public string ChucVu { get; set; }
-        public string TrangThai { get; set; }
+        private string maUngVien;
+        private string soCmnd;
+        private string maTuyenDung;
+        private decimal? mucLuongDeal;
+        private string maTrinhDo;
+        private string chucVu;
+        private string trangThai;
+
+        public string MaUngVien
+        {
+            get => maUngVien;
+            set => maUngVien = value;
+        }
+
+        public string SoCmnd
+        {
+            get => soCmnd;
+            set => soCmnd = value;
+        }
+
+        public string MaTuyenDung
+        {
+            get => maTuyenDung;
+            set => maTuyenDung = value;
+        }
+
+        public decimal? MucLuongDeal
+        {
+            get => mucLuongDeal;
+            set => mucLuongDeal = value;
+        }
+
+        public string MaTrinhDo
+        {
+            get => maTrinhDo;
+            set => maTrinhDo = value;
+        }
+
+        public string ChucVu
+        {
+            get => chucVu;
+            set => chucVu = value;
+        }
+
+        public string TrangThai
+        {
+            get => trangThai;
+            set => trangThai = value;
+        }
+
+        public CandidateDTO() { }
+
+        public CandidateDTO(string maUngVien, string soCmnd, string maTuyenDung,
+                          decimal? mucLuongDeal, string maTrinhDo,
+                          string chucVu, string trangThai)
+        {
+            this.maUngVien = maUngVien;
+            this.soCmnd = soCmnd;
+            this.maTuyenDung = maTuyenDung;
+            this.mucLuongDeal = mucLuongDeal;
+            this.maTrinhDo = maTrinhDo;
+            this.chucVu = chucVu;
+            this.trangThai = trangThai;
+        }
+
+        public CandidateDTO(CandidateDTO other)
+        {
+            this.maUngVien = other.maUngVien;
+            this.soCmnd = other.soCmnd;
+            this.maTuyenDung = other.maTuyenDung;
+            this.mucLuongDeal = other.mucLuongDeal;
+            this.maTrinhDo = other.maTrinhDo;
+            this.chucVu = other.chucVu;
+            this.trangThai = other.trangThai;
+        }
+        public override string ToString() =>
+            $"Mã Ứng Viên: {maUngVien}, " +
+            $"CMND: {soCmnd}, " +
+            $"Mã Tuyển Dụng: {maTuyenDung}, " +
+            $"Lương Deal: {(mucLuongDeal.HasValue ? mucLuongDeal.Value.ToString("N2") : "N/A")}, " +
+            $"Trình Độ: {maTrinhDo}, " +
+            $"Chức Vụ: {chucVu}, " +
+            $"Trạng Thái: {trangThai}";
     }
 }

@@ -113,6 +113,7 @@
     <Compile Include="BLL\CT_LaborContractBLL.cs" />
     <Compile Include="BLL\DecisionBLL.cs" />
     <Compile Include="BLL\DepartmentBLL.cs" />
+    <Compile Include="BLL\EmployeeFullBLL.cs" />
     <Compile Include="BLL\EmployeeBLL.cs" />
     <Compile Include="BLL\EvaluationBLL.cs" />
     <Compile Include="BLL\FunctionBLL.cs" />
@@ -120,15 +121,17 @@
     <Compile Include="BLL\PermissionDetailBLL.cs" />
     <Compile Include="BLL\PermissionGroupBLL.cs" />
     <Compile Include="BLL\PersonalProfileBLL.cs" />
-    <Compile Include="BLL\PositionBUS.cs" />
+    <Compile Include="BLL\PositionBLL.cs" />
     <Compile Include="BLL\QualificationBLL.cs" />
-    <Compile Include="BLL\RecruitmentBatchBUS.cs" />
+    <Compile Include="BLL\RecruitmentBatchBLL.cs" />
     <Compile Include="BLL\RecruitmentBatchEmployeeBLL.cs" />
     <Compile Include="BLL\RequestBLL.cs" />
     <Compile Include="BLL\SalaryBLL.cs" />
     <Compile Include="BLL\TimesheetBLL.cs" />
     <Compile Include="BUS\AccountBUS.cs" />
     <Compile Include="config\design.cs" />
+    <Compile Include="DAO\CandidateDAO.cs" />
+    <Compile Include="DAO\EmployeeFullDAO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,7 +195,21 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\StatisticsGUI.Designer.cs" />
-    <Compile Include="DAO\**\*.cs" />
+    <Compile Include="DAO\AccountDAO.cs" />
+    <Compile Include="DAO\ContractExtensionDAO.cs" />
+    <Compile Include="DAO\DecisionDAO.cs" />
+    <Compile Include="DAO\DepartmentDAO.cs" />
+    <Compile Include="DAO\EmployeeDAO.cs" />
+    <Compile Include="DAO\EvaluationDAO.cs" />
+    <Compile Include="DAO\FunctionDAO.cs" />
+    <Compile Include="DAO\LaborContractDAO.cs" />
+    <Compile Include="DAO\PermissionGroupDAO.cs" />
+    <Compile Include="DAO\PersonalProfileDAO.cs" />
+    <Compile Include="DAO\PositionDAO.cs" />
+    <Compile Include="DAO\RecruitmentBatchDAO.cs" />
+    <Compile Include="DAO\RecruitmentBatchEmployeeDAO.cs" />
+    <Compile Include="DAO\SalaryDAO.cs" />
+    <Compile Include="DAO\TimesheetDAO.cs" />
     <Compile Include="config\connectDB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

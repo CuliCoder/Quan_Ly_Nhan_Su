@@ -16,14 +16,14 @@ namespace Quan_Ly_Nhan_Su.GUI
     public partial class CT_LaborContractGUI : UserControl
     {
         private readonly LaborContractBLL _bll;
-        private readonly EmployeeBLL _employeeBll;
+        private readonly EmployeeFullBLL _employeeBll;
         private string _contractId;
 
         public CT_LaborContractGUI()
         {
             InitializeComponent();
             _bll = new LaborContractBLL();
-            _employeeBll = new EmployeeBLL();
+            _employeeBll = new EmployeeFullBLL();
             comboBoxGiaHanThem.Items.AddRange(new string[] { "0.5 năm", "1 năm", "1.5 năm", "2 năm", "3 năm", "4 năm" });
             LoadContractDetails();
         }

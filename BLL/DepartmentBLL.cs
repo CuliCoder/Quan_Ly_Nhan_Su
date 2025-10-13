@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mysqlx.Prepare;
 using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 
@@ -7,36 +8,28 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class DepartmentBLL
     {
-        private DepartmentDAO _departmentDAO;  // Sửa: Dùng DepartmentDAO thay vì EmployeeDAO
-
+        private readonly DepartmentDAO _departmentDAO; 
+        private static List<DepartmentDTO> list;
         public DepartmentBLL()
         {
-            _departmentDAO = new DepartmentDAO();  // Sửa: Khởi tạo đúng
+            _departmentDAO = new DepartmentDAO();
+            if (list == null)
+                list = _departmentDAO.GetAll();
         }
 
-        /// <summary>
-        /// Lấy danh sách tất cả phòng ban.
-        /// </summary>
-        /// <returns>List<DepartmentDTO> chứa thông tin phòng ban.</returns>
         public List<DepartmentDTO> GetAllDepartments()
         {
             try
             {
-                return _departmentDAO.GetAll();
+                return new List<DepartmentDTO>(list);
             }
             catch (Exception ex)
             {
-                // Log lỗi nếu cần (sử dụng logger hoặc throw lên)
                 throw new Exception($"Lỗi khi lấy danh sách phòng ban: {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Lấy thông tin phòng ban theo mã.
-        /// </summary>
-        /// <param name="maPhong">Mã phòng ban.</param>
-        /// <returns>DepartmentDTO nếu tìm thấy, null nếu không.</returns>
-        public DepartmentDTO GetDepartmentById(string maPhong)  // Sửa tên method cho đúng
+        public DepartmentDTO GetDepartmentById(string maPhong)  
         {
             if (string.IsNullOrWhiteSpace(maPhong))
             {
@@ -45,7 +38,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             try
             {
-                return _departmentDAO.GetById(maPhong);  // Sửa: Gọi _departmentDAO
+                return _departmentDAO.GetById(maPhong); 
             }
             catch (Exception ex)
             {
@@ -53,11 +46,6 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
         }
 
-        /// <summary>
-        /// Thêm phòng ban mới.
-        /// </summary>
-        /// <param name="department">Thông tin phòng ban cần thêm.</param>
-        /// <returns>True nếu thành công, false nếu thất bại.</returns>
         public bool AddDepartment(DepartmentDTO department)
         {
             if (department == null)
@@ -70,27 +58,19 @@ namespace Quan_Ly_Nhan_Su.BLL
                 throw new ArgumentException("Mã và tên phòng ban không được rỗng.");
             }
 
-            // Kiểm tra trùng mã
             if (GetDepartmentById(department.MaPhong) != null)
             {
                 throw new InvalidOperationException("Mã phòng ban đã tồn tại.");
             }
 
-            try
+            bool success = _departmentDAO.Insert(department);
+            if (success)
             {
-                return _departmentDAO.Insert(department);  // Sửa: Gọi _departmentDAO
+                list.Add(department);
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Lỗi khi thêm phòng ban: {ex.Message}");
-            }
+            return success;
         }
 
-        /// <summary>
-        /// Cập nhật thông tin phòng ban.
-        /// </summary>
-        /// <param name="department">Thông tin phòng ban cần cập nhật.</param>
-        /// <returns>True nếu thành công, false nếu thất bại.</returns>
         public bool UpdateDepartment(DepartmentDTO department)
         {
             if (department == null)
@@ -109,21 +89,14 @@ namespace Quan_Ly_Nhan_Su.BLL
                 throw new InvalidOperationException("Phòng ban không tồn tại.");
             }
 
-            try
+            bool success = _departmentDAO.Update(department);
+            if (success)
             {
-                return _departmentDAO.Update(department);  // Sửa: Gọi _departmentDAO
+                var index = list.FindIndex(x => x.MaPhong == department.MaPhong);
+                list[index] = department;
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Lỗi khi cập nhật phòng ban: {ex.Message}");
-            }
+            return success;
         }
-
-        /// <summary>
-        /// Xóa phòng ban theo mã.
-        /// </summary>
-        /// <param name="maPhong">Mã phòng ban cần xóa.</param>
-        /// <returns>True nếu thành công, false nếu thất bại.</returns>
         public bool DeleteDepartment(string maPhong)
         {
             if (string.IsNullOrWhiteSpace(maPhong))
@@ -131,25 +104,25 @@ namespace Quan_Ly_Nhan_Su.BLL
                 throw new ArgumentException("Mã phòng ban không được rỗng.");
             }
 
-            // Kiểm tra tồn tại
             var dept = GetDepartmentById(maPhong);
             if (dept == null)
             {
                 throw new InvalidOperationException("Phòng ban không tồn tại.");
             }
-
-            // TODO: Kiểm tra có nhân viên không (nếu cần, gọi EmployeeBLL)
-            // var employeeBLL = new EmployeeBLL();
-            // if (employeeBLL.GetEmployeesByDepartment(maPhong).Count > 0) { throw ... }
-
-            try
+            bool success = _departmentDAO.Delete(maPhong);
+            if(success)
             {
-                return _departmentDAO.Delete(maPhong);  // Sửa: Gọi _departmentDAO
+                list.RemoveAll(x => x.MaPhong == maPhong);
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Lỗi khi xóa phòng ban: {ex.Message}");
-            }
+            return success;
+        }
+
+        public List<DepartmentDTO> SearchDepartmentDTO(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return new List<DepartmentDTO>(list);
+
+            return _departmentDAO.search(keyword);
         }
     }
 }
