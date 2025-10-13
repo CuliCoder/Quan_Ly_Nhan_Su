@@ -7,8 +7,9 @@ namespace Quan_Ly_Nhan_Su.DTO
   /// </summary>
   public class FunctionDTO
   {
-    public string MaChucNang { get; set; }
+    public int MaChucNang { get; set; }
     public string TenChucNang { get; set; }
-    public string TinhTrang { get; set; }
+    public string MoTa { get; set; }
+    public bool TinhTrang { get; set; }
   }
 }
