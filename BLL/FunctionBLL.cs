@@ -6,11 +6,11 @@ using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-  public class FunctionBUS
+  public class FunctionBLL
   {
     private readonly FunctionDAO dao;
 
-    public FunctionBUS()
+    public FunctionBLL()
     {
       dao = new FunctionDAO();
     }

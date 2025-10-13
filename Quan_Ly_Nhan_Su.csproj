@@ -313,6 +313,7 @@
     <Compile Include="GUI\TuyenDungUserControl\UngVien.Designer.cs">
       <DependentUpon>UngVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\ContractGUI.resx">
