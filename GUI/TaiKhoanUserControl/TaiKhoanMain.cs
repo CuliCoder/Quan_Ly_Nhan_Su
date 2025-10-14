@@ -10,19 +10,18 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
 {
     public partial class TaiKhoanMain : UserControl
     {
-        // Khai báo các lớp BLL cần thiết để tương tác với logic và CSDL
+        // Khai báo các lớp BLL cần thiết
         private readonly PermissionGroupBLL permissionGroupBLL = new PermissionGroupBLL();
         private readonly FunctionBLL functionBLL = new FunctionBLL();
         private readonly PermissionDetailBLL permissionDetailBLL = new PermissionDetailBLL();
 
-        // Biến này sẽ lưu danh sách TẤT CẢ các chức năng có trong hệ thống
-        // Tải một lần để tái sử dụng, tránh gọi CSDL nhiều lần
+        // Biến lưu danh sách TẤT CẢ các chức năng của hệ thống
         private List<FunctionDTO> allFunctions;
 
         public TaiKhoanMain()
         {
             InitializeComponent();
-            // Cấu hình để tùy chỉnh TabControl
+            // Cấu hình TabControl
             this.tabMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabMain.Appearance = TabAppearance.Buttons;
             this.tabMain.SizeMode = TabSizeMode.Fixed;
@@ -30,21 +29,124 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
 
             // Gắn các sự kiện
             this.tabMain.DrawItem += new DrawItemEventHandler(tabMain_DrawItem);
-            this.Load += TaiKhoanMain_Load; // Sự kiện khi UserControl được tải
-            this.dgvPhanQuyen.SelectionChanged += dgvPhanQuyen_SelectionChanged; // Khi chọn nhóm quyền
-            this.btnLuuQuyen.Click += btnLuuQuyen_Click; // Khi nhấn nút Lưu
+            this.Load += TaiKhoanMain_Load;
+            this.dgvPhanQuyen.SelectionChanged += dgvPhanQuyen_SelectionChanged;
+            this.btnLuuQuyen.Click += btnLuuQuyen_Click;
 
-            // Gắn sự kiện cho các nút CRUD Chức năng
+            // Gắn sự kiện cho CRUD Chức năng
             this.btnThemCn.Click += btnThemCn_Click;
             this.btnSuaCn.Click += btnSuaCn_Click;
             this.btnXoaCn.Click += btnXoaCn_Click;
 
-            // Gắn sự kiện cho các nút CRUD Phân quyền 
+            // Gắn sự kiện cho CRUD Phân quyền
             this.btnThemPq.Click += btnThemPq_Click;
-            // Bạn cần tự thêm 2 nút btnSuaPq và btnXoaPq vào Designer
-            // this.btnSuaPq.Click += btnSuaPq_Click;
+            // this.btnSuaPq.Click += btnSuaPq_Click; // Uncomment if you have these buttons
             // this.btnXoaPq.Click += btnXoaPq_Click;
         }
+
+        private void TaiKhoanMain_Load(object sender, EventArgs e)
+        {
+            // Khi form được tải, thực hiện các công việc khởi tạo
+            ConfigurePermissionDetailsGrid();
+            LoadPermissionGroups();
+            // Tải tất cả dữ liệu chức năng (cho cả 2 tab) chỉ trong 1 lần gọi
+            ReloadAllFunctionData();
+        }
+
+        #region Chức Năng (Tab 2) - CRUD Events
+
+        private void btnThemCn_Click(object sender, EventArgs e)
+        {
+            using (var form = new frmFunctionCU())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var newFunction = form.FunctionData;
+                        if (functionBLL.Create(newFunction))
+                        {
+                            MessageBox.Show("Thêm chức năng thành công!");
+                            ReloadAllFunctionData(); // Tải lại dữ liệu cho cả hai tab
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi thêm chức năng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnSuaCn_Click(object sender, EventArgs e)
+        {
+            if (dgvChucNang.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn một chức năng để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int functionId = Convert.ToInt32(dgvChucNang.CurrentRow.Cells["colCnMa"].Value);
+                // Lấy thông tin chức năng một cách hiệu quả bằng GetById
+                var currentFunction = functionBLL.GetById(functionId);
+
+                if (currentFunction == null)
+                {
+                    MessageBox.Show("Không tìm thấy chức năng này. Dữ liệu có thể đã được thay đổi.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ReloadAllFunctionData();
+                    return;
+                }
+
+                using (var form = new frmFunctionCU(currentFunction))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        var updatedFunction = form.FunctionData;
+                        if (functionBLL.Update(updatedFunction))
+                        {
+                            MessageBox.Show("Cập nhật chức năng thành công!");
+                            ReloadAllFunctionData(); // Tải lại dữ liệu cho cả hai tab
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi sửa chức năng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoaCn_Click(object sender, EventArgs e)
+        {
+            if (dgvChucNang.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn một chức năng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa chức năng này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    int functionId = Convert.ToInt32(dgvChucNang.CurrentRow.Cells["colCnMa"].Value);
+                    if (functionBLL.Delete(functionId))
+                    {
+                        MessageBox.Show("Xóa chức năng thành công!");
+                        ReloadAllFunctionData(); // Tải lại dữ liệu cho cả hai tab
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa chức năng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Phân Quyền (Tab 1) - Events and Methods
 
         private void btnThemPq_Click(object sender, EventArgs e)
         {
@@ -57,261 +159,25 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
                         var newGroup = form.GroupData;
                         permissionGroupBLL.Insert(newGroup);
                         MessageBox.Show("Thêm nhóm quyền thành công!");
-                        LoadPermissionGroups(); // Tải lại lưới
+                        LoadPermissionGroups(); // Chỉ cần tải lại nhóm quyền
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lỗi khi thêm nhóm quyền: " + ex.Message);
+                        MessageBox.Show("Lỗi khi thêm nhóm quyền: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-        }
-
-        // Sửa Nhóm quyền (btnSuaPq)
-        // Tương tự btnSuaCn, bạn tự hoàn thiện nhé!
-
-        // Xóa Nhóm Quyền (btnXoaPq)
-        private void btnXoaPq_Click(object sender, EventArgs e)
-        {
-            if (dgvPhanQuyen.CurrentRow == null)
-            {
-                MessageBox.Show("Vui lòng chọn một nhóm quyền để xóa.");
-                return;
-            }
-
-            if (MessageBox.Show("Xóa nhóm quyền sẽ xóa TẤT CẢ các quyền chi tiết đã cấp. Bạn có chắc chắn?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                try
-                {
-                    int groupId = Convert.ToInt32(dgvPhanQuyen.CurrentRow.Cells["colPqMaNhom"].Value);
-                    permissionGroupBLL.Delete(groupId); // Đây là soft delete (chuyển TinhTrang = 0)
-                    MessageBox.Show("Xóa nhóm quyền thành công!");
-                    LoadPermissionGroups(); // Tải lại
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi xóa nhóm quyền: " + ex.Message);
-                }
-            }
-        }
-
-        private void LoadDataForChucNang()
-        {
-            try
-            {
-                dgvChucNang.Rows.Clear();
-                var functions = functionBLL.GetAll();
-                foreach (var func in functions)
-                {
-                    dgvChucNang.Rows.Add(func.MaChucNang, func.TenChucNang, func.TinhTrang ? "Hoạt động" : "Không hoạt động");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh sách chức năng: " + ex.Message);
-            }
-        }
-
-        private void btnThemCn_Click(object sender, EventArgs e)
-        {
-            using (var form = new frmFunctionCU())
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        var newFunction = form.FunctionData;
-                        functionBLL.Create(newFunction);
-                        MessageBox.Show("Thêm chức năng thành công!");
-                        LoadDataForChucNang(); // Tải lại lưới
-                        LoadAllFunctions(); // Cập nhật lại danh sách cho tab Phân Quyền
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi thêm chức năng: " + ex.Message);
-                    }
-                }
-            }
-        }
-
-        private void btnSuaCn_Click(object sender, EventArgs e)
-        {
-            if (dgvChucNang.CurrentRow == null)
-            {
-                MessageBox.Show("Vui lòng chọn một chức năng để sửa.");
-                return;
-            }
-
-            try
-            {
-                // Lấy ID từ dòng đang chọn và lấy toàn bộ object từ BLL
-                int functionId = Convert.ToInt32(dgvChucNang.CurrentRow.Cells["colCnMa"].Value);
-                var currentFunction = functionBLL.GetAll().FirstOrDefault(f => f.MaChucNang == functionId);
-
-                if (currentFunction == null)
-                {
-                    MessageBox.Show("Không tìm thấy chức năng!");
-                    return;
-                }
-
-                using (var form = new frmFunctionCU(currentFunction))
-                {
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        var updatedFunction = form.FunctionData;
-                        functionBLL.Update(updatedFunction);
-                        MessageBox.Show("Cập nhật chức năng thành công!");
-                        LoadDataForChucNang(); // Tải lại lưới
-                        LoadAllFunctions(); // Cập nhật lại danh sách cho tab Phân Quyền
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi sửa chức năng: " + ex.Message);
-            }
-        }
-
-        private void btnXoaCn_Click(object sender, EventArgs e)
-        {
-            if (dgvChucNang.CurrentRow == null)
-            {
-                MessageBox.Show("Vui lòng chọn một chức năng để xóa.");
-                return;
-            }
-
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa chức năng này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    int functionId = Convert.ToInt32(dgvChucNang.CurrentRow.Cells["colCnMa"].Value);
-                    functionBLL.Delete(functionId);
-                    MessageBox.Show("Xóa chức năng thành công!");
-                    LoadDataForChucNang(); // Tải lại lưới
-                    LoadAllFunctions(); // Cập nhật lại danh sách cho tab Phân Quyền
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi xóa chức năng: " + ex.Message);
-                }
-            }
-        }
-
-        private void TaiKhoanMain_Load(object sender, EventArgs e)
-        {
-            // Khi form được tải lên, thực hiện các công việc khởi tạo
-            ConfigurePermissionDetailsGrid(); // Cấu hình các cột cho lưới chi tiết quyền
-            LoadAllFunctions(); // Tải tất cả chức năng từ CSDL
-            LoadPermissionGroups(); // Tải tất cả nhóm quyền
-            LoadDataForChucNang();
-        }
-
-        private void ConfigurePermissionDetailsGrid()
-        {
-            // Hàm này thiết lập các cột cho DataGridView dgvChiTietQuyen
-            dgvChiTietQuyen.AutoGenerateColumns = false;
-            dgvChiTietQuyen.Columns.Clear();
-
-            // Cột Mã Chức Năng (để lưu ID, nhưng ẩn đi không cho người dùng thấy)
-            dgvChiTietQuyen.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCnId", DataPropertyName = "FunctionID", Visible = false });
-            // Cột Tên Chức Năng (chỉ đọc)
-            dgvChiTietQuyen.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCnTen", HeaderText = "Tên Chức Năng", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
-            // Các cột CheckBox cho từng quyền
-            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnRead", HeaderText = "Xem", Width = 60 });
-            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnCreate", HeaderText = "Thêm", Width = 60 });
-            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnUpdate", HeaderText = "Sửa", Width = 60 });
-            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnDelete", HeaderText = "Xóa", Width = 60 });
-        }
-
-        private void LoadAllFunctions()
-        {
-            try
-            {
-                allFunctions = functionBLL.GetAll();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải danh sách chức năng: " + ex.Message);
-                allFunctions = new List<FunctionDTO>(); // Khởi tạo rỗng để tránh lỗi
-            }
-        }
-
-        private void LoadPermissionGroups()
-        {
-            try
-            {
-                // Tải danh sách nhóm quyền và hiển thị lên dgvPhanQuyen
-                var groups = permissionGroupBLL.GetAll();
-                dgvPhanQuyen.AutoGenerateColumns = false; // Tắt tự động tạo cột
-                dgvPhanQuyen.DataSource = groups;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải danh sách nhóm quyền: " + ex.Message);
             }
         }
 
         private void dgvPhanQuyen_SelectionChanged(object sender, EventArgs e)
         {
-            // Sự kiện này được kích hoạt mỗi khi người dùng chọn một dòng (nhóm quyền) khác
             if (dgvPhanQuyen.CurrentRow == null)
             {
-                dgvChiTietQuyen.Rows.Clear(); // Nếu không có dòng nào được chọn, xóa trắng lưới bên phải
+                dgvChiTietQuyen.Rows.Clear();
                 return;
             }
-
-            // Lấy ID của nhóm quyền vừa được chọn
             int selectedGroupId = Convert.ToInt32(dgvPhanQuyen.CurrentRow.Cells["colPqMaNhom"].Value);
             LoadPermissionsForGroup(selectedGroupId);
-        }
-
-        private void LoadPermissionsForGroup(int groupId)
-        {
-            try
-            {
-                // 1. Lấy danh sách quyền chi tiết hiện tại của nhóm này từ CSDL
-                // Dùng ToDictionary để tra cứu nhanh hơn (key là FunctionID)
-                var currentPermissions = permissionDetailBLL.GetByGroupId(groupId)
-                                                            .ToDictionary(p => p.FunctionID);
-
-                // 2. Xóa dữ liệu cũ và nạp lại từ đầu
-                dgvChiTietQuyen.Rows.Clear();
-
-                // 3. Duyệt qua TẤT CẢ các chức năng của hệ thống
-                foreach (var func in allFunctions)
-                {
-                    // Thêm một dòng mới vào lưới chi tiết quyền
-                    int rowIndex = dgvChiTietQuyen.Rows.Add();
-                    var row = dgvChiTietQuyen.Rows[rowIndex];
-
-                    // Gán giá trị Mã và Tên Chức Năng
-                    row.Cells["colCnId"].Value = func.MaChucNang;
-                    row.Cells["colCnTen"].Value = func.TenChucNang;
-
-                    // 4. KIỂM TRA và TÍCH vào các checkbox tương ứng
-                    if (currentPermissions.ContainsKey(func.MaChucNang))
-                    {
-                        // Nếu chức năng này đã có trong CSDL (đã được cấp quyền)
-                        var permission = currentPermissions[func.MaChucNang];
-                        row.Cells["colCnRead"].Value = permission.CanRead;
-                        row.Cells["colCnCreate"].Value = permission.CanCreate;
-                        row.Cells["colCnUpdate"].Value = permission.CanUpdate;
-                        row.Cells["colCnDelete"].Value = permission.CanDelete;
-                    }
-                    else
-                    {
-                        // Nếu chưa có, mặc định là false (không có quyền)
-                        row.Cells["colCnRead"].Value = false;
-                        row.Cells["colCnCreate"].Value = false;
-                        row.Cells["colCnUpdate"].Value = false;
-                        row.Cells["colCnDelete"].Value = false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải chi tiết quyền: " + ex.Message);
-            }
         }
 
         private void btnLuuQuyen_Click(object sender, EventArgs e)
@@ -322,17 +188,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
                 return;
             }
 
-            // Lấy ID của nhóm quyền đang được chọn
             int selectedGroupId = Convert.ToInt32(dgvPhanQuyen.CurrentRow.Cells["colPqMaNhom"].Value);
-
-            // Tạo một danh sách để chứa thông tin các quyền sẽ được lưu
             var permissionsToSave = new List<PermissionDetailDTO>();
 
-            // Duyệt qua từng dòng trong lưới chi tiết quyền
             foreach (DataGridViewRow row in dgvChiTietQuyen.Rows)
             {
-                // Tạo một đối tượng DTO và lấy trạng thái của các checkbox
-                var dto = new PermissionDetailDTO
+                permissionsToSave.Add(new PermissionDetailDTO
                 {
                     PermissionGroupID = selectedGroupId,
                     FunctionID = Convert.ToInt32(row.Cells["colCnId"].Value),
@@ -340,16 +201,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
                     CanCreate = Convert.ToBoolean(row.Cells["colCnCreate"].Value ?? false),
                     CanUpdate = Convert.ToBoolean(row.Cells["colCnUpdate"].Value ?? false),
                     CanDelete = Convert.ToBoolean(row.Cells["colCnDelete"].Value ?? false)
-                };
-                permissionsToSave.Add(dto);
+                });
             }
 
             try
             {
-                // Gọi BLL để thực hiện lưu vào CSDL
-                bool success = permissionDetailBLL.SavePermissions(selectedGroupId, permissionsToSave);
-
-                if (success)
+                if (permissionDetailBLL.SavePermissions(selectedGroupId, permissionsToSave))
                 {
                     MessageBox.Show("Lưu quyền thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -364,7 +221,112 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
             }
         }
 
-        // ---- Phần code vẽ TabControl cho đẹp, giữ nguyên ----
+        #endregion
+
+        #region Data Loading and Configuration
+
+        /// <summary>
+        /// *** TỐI ƯU HÓA ***
+        /// Tải hoặc tải lại TOÀN BỘ dữ liệu chức năng từ CSDL.
+        /// Cập nhật cả danh sách allFunctions và DataGridView dgvChucNang.
+        /// </summary>
+        private void ReloadAllFunctionData()
+        {
+            try
+            {
+                // 1. Lấy dữ liệu từ BLL (chỉ gọi CSDL một lần)
+                allFunctions = functionBLL.GetAll();
+
+                // 2. Xóa dữ liệu cũ trên grid
+                dgvChucNang.Rows.Clear();
+
+                // 3. Hiển thị dữ liệu mới lên grid
+                foreach (var func in allFunctions)
+                {
+                    dgvChucNang.Rows.Add(func.MaChucNang, func.TenChucNang, func.TinhTrang ? "Hoạt động" : "Không hoạt động");
+                }
+
+                // 4. Tải lại chi tiết quyền cho nhóm đang chọn (nếu có)
+                if (dgvPhanQuyen.CurrentRow != null)
+                {
+                    int selectedGroupId = Convert.ToInt32(dgvPhanQuyen.CurrentRow.Cells["colPqMaNhom"].Value);
+                    LoadPermissionsForGroup(selectedGroupId);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách chức năng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                allFunctions = new List<FunctionDTO>(); // Đảm bảo list không bị null
+            }
+        }
+
+        private void LoadPermissionGroups()
+        {
+            try
+            {
+                var groups = permissionGroupBLL.GetAll();
+                dgvPhanQuyen.DataSource = groups;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách nhóm quyền: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadPermissionsForGroup(int groupId)
+        {
+            try
+            {
+                var currentPermissions = permissionDetailBLL.GetByGroupId(groupId)
+                                                            .ToDictionary(p => p.FunctionID);
+                dgvChiTietQuyen.Rows.Clear();
+
+                foreach (var func in allFunctions)
+                {
+                    int rowIndex = dgvChiTietQuyen.Rows.Add();
+                    var row = dgvChiTietQuyen.Rows[rowIndex];
+
+                    row.Cells["colCnId"].Value = func.MaChucNang;
+                    row.Cells["colCnTen"].Value = func.TenChucNang;
+
+                    if (currentPermissions.TryGetValue(func.MaChucNang, out var permission))
+                    {
+                        row.Cells["colCnRead"].Value = permission.CanRead;
+                        row.Cells["colCnCreate"].Value = permission.CanCreate;
+                        row.Cells["colCnUpdate"].Value = permission.CanUpdate;
+                        row.Cells["colCnDelete"].Value = permission.CanDelete;
+                    }
+                    else
+                    {
+                        row.Cells["colCnRead"].Value = false;
+                        row.Cells["colCnCreate"].Value = false;
+                        row.Cells["colCnUpdate"].Value = false;
+                        row.Cells["colCnDelete"].Value = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải chi tiết quyền: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ConfigurePermissionDetailsGrid()
+        {
+            dgvChiTietQuyen.AutoGenerateColumns = false;
+            dgvChiTietQuyen.Columns.Clear();
+            dgvChiTietQuyen.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCnId", DataPropertyName = "FunctionID", Visible = false });
+            dgvChiTietQuyen.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCnTen", HeaderText = "Tên Chức Năng", ReadOnly = true, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnRead", HeaderText = "Xem", Width = 60 });
+            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnCreate", HeaderText = "Thêm", Width = 60 });
+            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnUpdate", HeaderText = "Sửa", Width = 60 });
+            dgvChiTietQuyen.Columns.Add(new DataGridViewCheckBoxColumn { Name = "colCnDelete", HeaderText = "Xóa", Width = 60 });
+        }
+
+        #endregion
+
+        #region UI Drawing (Giữ nguyên)
+
         private void tabMain_DrawItem(object sender, DrawItemEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -390,9 +352,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
                 LineAlignment = StringAlignment.Center
             };
             g.DrawString(tabPage.Text, tabFont, textBrush, tabBounds, new StringFormat(stringFlags));
-
-            g.Dispose();
-            textBrush.Dispose();
         }
+
+        #endregion
     }
 }
