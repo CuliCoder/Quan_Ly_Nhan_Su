@@ -128,7 +128,6 @@
     <Compile Include="BLL\RequestBLL.cs" />
     <Compile Include="BLL\SalaryBLL.cs" />
     <Compile Include="BLL\TimesheetBLL.cs" />
-    <Compile Include="BUS\AccountBUS.cs" />
     <Compile Include="config\design.cs" />
     <Compile Include="DAO\CandidateDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
