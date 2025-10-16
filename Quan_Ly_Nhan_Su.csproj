@@ -118,6 +118,7 @@
     <Compile Include="BLL\EvaluationBLL.cs" />
     <Compile Include="BLL\FunctionBLL.cs" />
     <Compile Include="BLL\LaborContractBLL.cs" />
+    <Compile Include="BLL\PermissionDetailBLL.cs" />
     <Compile Include="BLL\PermissionGroupBLL.cs" />
     <Compile Include="BLL\PersonalProfileBLL.cs" />
     <Compile Include="BLL\PositionBLL.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="BLL\RequestBLL.cs" />
     <Compile Include="BLL\SalaryBLL.cs" />
     <Compile Include="BLL\TimesheetBLL.cs" />
-    <Compile Include="BUS\AccountBUS.cs" />
     <Compile Include="config\design.cs" />
     <Compile Include="DAO\CandidateDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
@@ -158,11 +158,15 @@
     <Compile Include="GUI\DanhGiaUserControl\DanhGia.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs" />
+    <Compile Include="GUI\DanhGiaUserControl\DanhGia.Designer.cs">
+      <DependentUpon>DanhGia.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs" />
+    <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs">
+      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\departmentTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +262,18 @@
     <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmFunctionCU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmFunctionCU.Designer.cs">
+      <DependentUpon>frmFunctionCU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmPermissionGroupCU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmPermissionGroupCU.Designer.cs">
+      <DependentUpon>frmPermissionGroupCU.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TaiKhoanUserControl\TaiKhoanMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -300,6 +316,7 @@
     <Compile Include="GUI\TuyenDungUserControl\UngVien.Designer.cs">
       <DependentUpon>UngVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\ContractGUI.resx">
@@ -311,8 +328,12 @@
     <EmbeddedResource Include="GUI\CT_LaborContractGUI.resx">
       <DependentUpon>CT_LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx" />
-    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx" />
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGia.resx">
+      <DependentUpon>DanhGia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx">
+      <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
     </EmbeddedResource>

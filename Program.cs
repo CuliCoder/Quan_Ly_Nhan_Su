@@ -1,5 +1,4 @@
-﻿using Quan_Ly_Nhan_Su.BUS;
-using Quan_Ly_Nhan_Su.GUI.AuthControl;
+﻿using Quan_Ly_Nhan_Su.GUI.AuthControl;
 using System;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.GUI;

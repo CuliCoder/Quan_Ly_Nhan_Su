@@ -1,5 +1,4 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.BUS;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Windows.Forms;
@@ -8,12 +7,12 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
 {
     public partial class Login : Form
     {
-        private readonly AccountBUS _accountBUS;
+        private readonly AccountBLL accountBLL;
 
         public Login()
         {
             InitializeComponent();
-            _accountBUS = new AccountBUS();
+            accountBLL = new AccountBLL();
             // Add event handler for the login button
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
         }
@@ -29,7 +28,7 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
                 return;
             }
 
-            AccountDTO loggedInAccount = _accountBUS.Login(username, password);
+            AccountDTO loggedInAccount = accountBLL.Login(username, password);
 
             if (loggedInAccount != null)
             {
