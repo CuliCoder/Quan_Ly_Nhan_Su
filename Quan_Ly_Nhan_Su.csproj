@@ -149,6 +149,18 @@
     <Compile Include="GUI\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucChamCong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucChamCong.Designer.cs">
+      <DependentUpon>ucChamCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.Designer.cs">
+      <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CT_ContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -319,6 +331,9 @@
     <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucChamCong.resx">
+      <DependentUpon>ucChamCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ContractGUI.resx">
       <DependentUpon>ContractGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -398,6 +413,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -413,9 +429,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Avatars\" />

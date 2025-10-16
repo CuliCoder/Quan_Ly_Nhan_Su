@@ -8,6 +8,7 @@ using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
 using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
 using Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl;
+using Quan_Ly_Nhan_Su.GUI.ChamCong;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -21,6 +22,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         DanhGia danhGia = new DanhGia();
         TaiKhoanMain taiKhoanMain = new TaiKhoanMain();
         LuongThuong luongThuong = new LuongThuong();
+        ucChamCong chamCongGUI = new ucChamCong();
+        ucChiTietChamCong chiTietChamCongGUI = new ucChiTietChamCong();
         List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
         {
@@ -30,21 +33,39 @@ namespace Quan_Ly_Nhan_Su.GUI
             pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             addPanelToList();
             addEventToPanel();
+            chamCongGUI.EmployeeSelected += ChamCongGUI_EmployeeSelected;
+            chiTietChamCongGUI.BackButtonClicked += ChiTietChamCongGUI_BackButtonClicked;
         }
+
+        // === CÁC HÀM XỬ LÝ CHO CHỨC NĂNG CHẤM CÔNG ===
+
+        // 1. Khi một nhân viên được chọn (double-click) từ màn hình danh sách
+        private void ChamCongGUI_EmployeeSelected(string maNhanVien)
+        {
+            addUserControl(chiTietChamCongGUI);
+            chiTietChamCongGUI.LoadEmployeeData(maNhanVien); // Truyền mã nhân viên sang màn hình chi tiết
+        }
+
+        // 2. Khi nhấn nút "Back" từ màn hình chi tiết
+        private void ChiTietChamCongGUI_BackButtonClicked(object sender, EventArgs e)
+        {
+            addUserControl(chamCongGUI); // Quay lại màn hình danh sách
+        }
+
+        private void addUserControl(UserControl userControl)
+        {
+            // Xóa control cũ trước khi thêm control mới
+            this.panel6.Controls.Clear();
+
+            userControl.Dock = DockStyle.Fill;
+            this.panel6.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+
         private void designForm()
         {
             design.paintBorder(this.panel5, Color.Gray, 4, 30, 0, this.panel5.Width - 30, 0);
             design.paintBorder(this.panel2, Color.Gray, 4, 0, 0, 0, this.panel2.Height);
-        }
-        private void addUserControl(UserControl userControl)
-        {
-            if (userControl == null)
-            {
-                return;
-            }
-            userControl.Dock = DockStyle.Fill;
-            this.panel6.Controls.Add(userControl);
-            userControl.BringToFront();
         }
         private void addPanelToList()
         {
@@ -116,6 +137,9 @@ namespace Quan_Ly_Nhan_Su.GUI
                     break;
                 case "pnlbDanhGia":
                     addUserControl(danhGia);
+                    break;
+                case "pnlbChamCong": 
+                    addUserControl(chamCongGUI);
                     break;
                 default:
                     break;
