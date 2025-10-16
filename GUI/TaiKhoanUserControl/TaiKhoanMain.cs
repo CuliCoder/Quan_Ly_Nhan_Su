@@ -16,7 +16,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
         private readonly PermissionDetailBLL permissionDetailBLL = new PermissionDetailBLL();
 
         // Biến lưu danh sách TẤT CẢ các chức năng của hệ thống
-        private List<FunctionDTO> allFunctions;
+        private List<FunctionDTO> allFunctions = new List<FunctionDTO>();
 
         public TaiKhoanMain()
         {
@@ -236,7 +236,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
             {
                 // 1. Lấy dữ liệu từ BLL (chỉ gọi CSDL một lần)
                 allFunctions = functionBLL.GetAll();
-
+              
                 // 2. Xóa dữ liệu cũ trên grid
                 dgvChucNang.Rows.Clear();
 
@@ -280,7 +280,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
                 var currentPermissions = permissionDetailBLL.GetByGroupId(groupId)
                                                             .ToDictionary(p => p.FunctionID);
                 dgvChiTietQuyen.Rows.Clear();
-
+                
                 foreach (var func in allFunctions)
                 {
                     int rowIndex = dgvChiTietQuyen.Rows.Add();

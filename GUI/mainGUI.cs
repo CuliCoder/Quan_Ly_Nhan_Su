@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.config;
 using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
+using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
+using Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -21,8 +18,9 @@ namespace Quan_Ly_Nhan_Su.GUI
         LaborContractGUI laborContract = new LaborContractGUI();
         TuyenDungMain tuyenDungGUI = new TuyenDungMain();
         NhanVien nhanVienGUI = new NhanVien();
-        StatisticsGUI statistics = new StatisticsGUI();
+        DanhGia danhGia = new DanhGia();
         TaiKhoanMain taiKhoanMain = new TaiKhoanMain();
+        LuongThuong luongThuong = new LuongThuong();
         List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
         {
@@ -112,6 +110,12 @@ namespace Quan_Ly_Nhan_Su.GUI
                     break;
                 case "pnlbNhanVien":
                     addUserControl(nhanVienGUI);
+                    break;
+                case "pnlbLuongThuong":
+                    addUserControl(luongThuong);
+                    break;
+                case "pnlbDanhGia":
+                    addUserControl(danhGia);
                     break;
                 default:
                     break;
