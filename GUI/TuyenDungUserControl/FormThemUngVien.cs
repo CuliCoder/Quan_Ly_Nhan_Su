@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     {
         private PersonalProfileBLL busPerson = new PersonalProfileBLL();
         private CandidateBLL busCadi = new CandidateBLL();
+        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public event EventHandler luuThongTinForm;
         public FormThemUngVien()
         {
@@ -31,41 +33,29 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private bool kiemTraThognTin()
         {
-            // Kiểm tra mã ứng viên
-            if (string.IsNullOrWhiteSpace(maUngVienTb.Text))
-            {
-                MessageBox.Show("Mã ứng viên không được để trống!");
-                maUngVienTb.Focus();
-                return false;
-            }
-
             // Kiểm tra mã tuyển dụng
             if (string.IsNullOrWhiteSpace(maTuyenDungTb.Text))
             {
                 MessageBox.Show("Mã tuyển dụng không được để trống!");
                 maTuyenDungTb.Focus();
                 return false;
-            }
-
-            // Kiểm tra họ tên
-            if (string.IsNullOrWhiteSpace(hoTenTb.Text))
+            }else if (busBatch.checkedId(maTuyenDungTb.Text))
             {
-                MessageBox.Show("Họ tên không được để trống!");
-                hoTenTb.Focus();
+                MessageBox.Show("Mã Tuyển dụng này không tồn tại");
+                maTuyenDungTb.Focus();
                 return false;
             }
 
-            // Kiểm tra ngày sinh (nếu có dạng TextBox nhập tay)
-            if (string.IsNullOrWhiteSpace(ngaySinhTb.Text))
+            // Kiểm tra mã ứng viên
+            if (string.IsNullOrWhiteSpace(maUngVienTb.Text))
             {
-                MessageBox.Show("Ngày sinh không được để trống!");
-                ngaySinhTb.Focus();
+                MessageBox.Show("Mã ứng viên không được để trống!");
+                maUngVienTb.Focus();
                 return false;
-            }
-            else if (!DateTime.TryParse(ngaySinhTb.Text, out _))
+            }else if(!busCadi.CheckId(maUngVienTb.Text))
             {
-                MessageBox.Show("Ngày sinh không hợp lệ (định dạng phải là dd/MM/yyyy)!");
-                ngaySinhTb.Focus();
+                MessageBox.Show("Mã Tuyển dụng này đã tồn tại");
+                maTuyenDungTb.Focus();
                 return false;
             }
 
@@ -82,30 +72,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 cccdTb.Focus();
                 return false;
             }
-
-            if (!busPerson.checkID(cccdTb.Text))
+            else if (!busPerson.checkID(cccdTb.Text))
             {
                 MessageBox.Show("Lỗi nhập liệu cccd");
                 cccdTb.Focus();
                 return false;
-            }else 
-
-            // Kiểm tra nơi cấp
-            if (string.IsNullOrWhiteSpace(noiCapTb.Text))
-            {
-                MessageBox.Show("Nơi cấp CCCD không được để trống!");
-                noiCapTb.Focus();
-                return false;
             }
 
-            // Kiểm tra ngày cấp
-            if (ngayCapDate.Value > DateTime.Now)
+            // Kiểm tra họ tên
+            if (string.IsNullOrWhiteSpace(hoTenTb.Text))
             {
-                MessageBox.Show("Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
-                ngayCapDate.Focus();
+                MessageBox.Show("Họ tên không được để trống!");
+                hoTenTb.Focus();
                 return false;
             }
-
             // Kiểm tra giới tính
             if (string.IsNullOrWhiteSpace(gioiTinhTb.Text))
             {
@@ -114,27 +94,26 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
-            // Kiểm tra dân tộc
-            if (string.IsNullOrWhiteSpace(danTocTb.Text))
+            // Kiểm tra ngày sinh 
+            if (ngaySinhDate.Value > DateTime.Now)
             {
-                MessageBox.Show("Dân tộc không được để trống!");
-                danTocTb.Focus();
+                MessageBox.Show("Ngày sinh không được lớn hơn ngày hiện tại!");
+                ngaySinhDate.Focus();
                 return false;
             }
 
-            // Kiểm tra hôn nhân
-            if (string.IsNullOrWhiteSpace(honNhanTb.Text))
+
+            // Kiểm tra số điện thoại
+            if (string.IsNullOrWhiteSpace(soDienThoaiTb.Text))
             {
-                MessageBox.Show("Tình trạng hôn nhân không được để trống!");
-                honNhanTb.Focus();
+                MessageBox.Show("Số điện thoại không được để trống!");
+                soDienThoaiTb.Focus();
                 return false;
             }
-
-            // Kiểm tra tôn giáo
-            if (string.IsNullOrWhiteSpace(tonGiaoTb.Text))
+            else if (!soDienThoaiTb.Text.All(char.IsDigit))
             {
-                MessageBox.Show("Tôn giáo không được để trống!");
-                tonGiaoTb.Focus();
+                MessageBox.Show("Số điện thoại chỉ được chứa số!");
+                soDienThoaiTb.Focus();
                 return false;
             }
 
@@ -152,17 +131,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
-            // Kiểm tra số điện thoại
-            if (string.IsNullOrWhiteSpace(soDienThoaiTb.Text))
+
+            // Kiểm tra dân tộc
+            if (string.IsNullOrWhiteSpace(danTocTb.Text))
             {
-                MessageBox.Show("Số điện thoại không được để trống!");
-                soDienThoaiTb.Focus();
-                return false;
-            }
-            else if (!soDienThoaiTb.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Số điện thoại chỉ được chứa số!");
-                soDienThoaiTb.Focus();
+                MessageBox.Show("Dân tộc không được để trống!");
+                danTocTb.Focus();
                 return false;
             }
 
@@ -176,11 +150,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
-            // Kiểm tra học vấn
-            if (string.IsNullOrWhiteSpace(hocVanTb.Text))
+
+            // Kiểm tra nơi cấp
+            if (string.IsNullOrWhiteSpace(noiCapTb.Text))
             {
-                MessageBox.Show("Học vấn không được để trống!");
-                hocVanTb.Focus();
+                MessageBox.Show("Nơi cấp CCCD không được để trống!");
+                noiCapTb.Focus();
+                return false;
+            }
+
+            // Kiểm tra ngày cấp
+            if (ngayCapDate.Value > DateTime.Now)
+            {
+                MessageBox.Show("Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
+                ngayCapDate.Focus();
                 return false;
             }
 
@@ -200,6 +183,22 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
+
+            // Kiểm tra hôn nhân
+            if (string.IsNullOrWhiteSpace(honNhanTb.Text))
+            {
+                MessageBox.Show("Tình trạng hôn nhân không được để trống!");
+                honNhanTb.Focus();
+                return false;
+            }
+
+            // Kiểm tra học vấn
+            if (string.IsNullOrWhiteSpace(hocVanTb.Text))
+            {
+                MessageBox.Show("Học vấn không được để trống!");
+                hocVanTb.Focus();
+                return false;
+            }          
             return true;
         }
 
@@ -235,7 +234,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             {
                 SoCmnd = cccdTb.Text.Trim(),
                 HoTen = hoTenTb.Text.Trim(),
-                NgaySinh = DateTime.Parse(ngaySinhTb.Text),
+                NgaySinh = ngaySinhDate.Value,
                 GioiTinh = gioiTinhTb.Text.Trim(),
                 DiaChi = diaChi, 
                 Email = emailTb.Text.Trim(),
@@ -246,25 +245,71 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 HocVan = hocVanTb.Text.Trim(),
                 HonNhan = honNhanTb.Text.Trim(),
                 ChuyenNganh = chuyenNganhTb.Text.Trim(),
-                HinhAnh = ""
+                HinhAnh = txtPath.Text.Trim() != null ? txtPath.Text.Trim(): "",
             };
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (kiemTraThognTin())
+            if (!kiemTraThognTin())
             {
-                PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
-                if (busPerson.Create(personalProfile))
+                MessageBox.Show("Thông tin nhập chưa hợp lệ. Vui lòng kiểm tra lại các trường dữ liệu.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
+            CandidateDTO candidate = LayDuLieuUngVien();
+
+            if (busCadi.CreateCadidateWPersonalProfile(personalProfile, candidate))
+            {
+                MessageBox.Show("Thêm ứng viên và hồ sơ cá nhân thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                luuThongTinForm?.Invoke(this, EventArgs.Empty);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Thêm thất bại! Dữ liệu đã được hoàn tác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Chọn hình ảnh";
+                openFileDialog.Filter = "Ảnh (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    CandidateDTO candidate = LayDuLieuUngVien();
-                    if (busCadi.Create(candidate))
-                    {
-                        luuThongTinForm?.Invoke(this, EventArgs.Empty);
-                        this.Close();
-                    }          
+                    string fullPath = openFileDialog.FileName;
+                    string fileName = Path.GetFileName(fullPath);
+
+
+                    string projectFolder = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                    string imageFolder = Path.Combine(projectFolder, "Images", "Avatar");
+            
+                    if (!Directory.Exists(imageFolder))
+                        Directory.CreateDirectory(imageFolder);
+
+                   
+                    string destPath = Path.Combine(imageFolder, fileName);
+                    if (!File.Exists(destPath))
+                        File.Copy(fullPath, destPath, true);
+
+                    string relativePath = Path.Combine("Images", "Avatar", fileName);
+                    // Hiển thị ảnh
+                    showHinh.Image = Image.FromFile(destPath);
+                    showHinh.SizeMode = PictureBoxSizeMode.StretchImage;  
+
+                    txtPath.Text = relativePath;
                 }
             }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

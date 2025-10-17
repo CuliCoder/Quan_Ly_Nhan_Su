@@ -26,8 +26,9 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool checkID(string cccd)
         {
-            if(!_dao.CheckCccd(cccd)) // nếu mã đã tồn tại
+            if(!_dao.CheckCccd(cccd)) 
             {
+               
                 return false; 
             }
             return true;

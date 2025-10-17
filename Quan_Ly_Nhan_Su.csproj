@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
+    <Compile Include="BLL\CandidateFullBLL.cs" />
     <Compile Include="BLL\ContractExtensionBLL.cs" />
     <Compile Include="BLL\CT_LaborContractBLL.cs" />
     <Compile Include="BLL\DecisionBLL.cs" />
@@ -130,7 +131,9 @@
     <Compile Include="BLL\TimesheetBLL.cs" />
     <Compile Include="config\design.cs" />
     <Compile Include="DAO\CandidateDAO.cs" />
+    <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
+    <Compile Include="DTO\CandidateFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>

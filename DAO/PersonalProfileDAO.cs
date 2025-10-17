@@ -111,22 +111,22 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
-        public bool CheckCccd(string soCccd) {
-            MySqlConnection conn = null;
+        public bool CheckCccd(string soCccd)
+        {
             try
             {
-                using(conn = connectDB.getConnection())
+                using (var conn = connectDB.getConnection())
                 {
                     conn.Open();
                     string query = "SELECT COUNT(*) FROM hosocanhan WHERE soCmnd = @soCmnd";
-                    using(var cmd = new MySqlCommand())
+
+                    using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@soCmmd", soCccd);
+                        cmd.Parameters.AddWithValue("@soCmnd", soCccd);
 
-                        int count = (int)cmd.ExecuteScalar();
-                        return count == 0;
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count == 0; 
                     }
-
                 }
             }
             catch (MySqlException ex)
@@ -150,18 +150,23 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "INSERT INTO hosocanhan (soCmnd, hoTen, gioiTinh, ngaySinh, diachi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc, hocvan, chuyenNganh, anh) VALUES (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diachi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc, @hocVan, @chuyeNganh, @anh)";
+                string query = @"
+                INSERT INTO hosocanhan 
+                (soCmnd, hoTen, gioiTinh, ngaySinh, diaChi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc, hocVan, chuyenNganh, anh)
+                VALUES 
+                (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diaChi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc, @hocVan, @chuyenNganh, @anh)";
+
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@soCmnd", profile.SoCmnd);
                     command.Parameters.AddWithValue("@hoTen", profile.HoTen);
                     command.Parameters.AddWithValue("@gioiTinh", profile.GioiTinh);
-                    command.Parameters.AddWithValue("@ngaySinh", profile.NgaySinh);
+                    command.Parameters.AddWithValue("@ngaySinh", profile.NgaySinh == DateTime.MinValue ? DateTime.Now : profile.NgaySinh);
                     command.Parameters.AddWithValue("@diaChi", (object)profile.DiaChi ?? DBNull.Value);
                     command.Parameters.AddWithValue("@email", (object)profile.Email ?? DBNull.Value);
                     command.Parameters.AddWithValue("@sdt", (object)profile.SoDienThoai ?? DBNull.Value);
                     command.Parameters.AddWithValue("@noiCap", (object)profile.NoiCap ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@ngayCap", profile.NgayCap);
+                    command.Parameters.AddWithValue("@ngayCap", profile.NgayCap == DateTime.MinValue ? DateTime.Now : profile.NgayCap);
                     command.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.HonNhan ?? DBNull.Value);
                     command.Parameters.AddWithValue("@danToc", (object)profile.DanToc ?? DBNull.Value);
                     command.Parameters.AddWithValue("@hocVan", (object)profile.HocVan ?? DBNull.Value);
