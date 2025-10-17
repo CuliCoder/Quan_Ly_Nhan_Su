@@ -13,14 +13,14 @@ namespace Quan_Ly_Nhan_Su.DTO
         private DateTime hanNopHoSo;
         private decimal? mucLuongToiThieu;
         private decimal? mucLuongToiDa;
-        private int soLuongNopHoSo;
+        private int soLuongNop;
         private int soLuongDaTuyen;
 
         public RecruitmentBatchDTO() { }
 
         public RecruitmentBatchDTO(string maTuyenDung, string chucVu, string hocVan, string gioiTinh, 
             string doTuoi, int soLuongCanTuyen, DateTime hanNopHoSo, decimal? mucLuongToiThieu, 
-            decimal? mucLuongToiDa, int soLuongNopHoSo, int soLuongDaTuyen)
+            decimal? mucLuongToiDa, int soLuongNop, int soLuongDaTuyen)
         {
             this.maTuyenDung = maTuyenDung;
             this.chucVu = chucVu;
@@ -31,7 +31,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             this.hanNopHoSo = hanNopHoSo;
             this.mucLuongToiThieu = mucLuongToiThieu;
             this.mucLuongToiDa = mucLuongToiDa;
-            this.soLuongNopHoSo = soLuongNopHoSo;
+            this.soLuongNop = soLuongNop;
             this.soLuongDaTuyen = soLuongDaTuyen;
         }
         
@@ -86,10 +86,10 @@ namespace Quan_Ly_Nhan_Su.DTO
             set => mucLuongToiDa = value;
         }
         
-        public int SoLuongNopHoSo
+        public int SoLuongNop
         {
-            get => soLuongNopHoSo;
-            set => soLuongNopHoSo = value;
+            get => soLuongNop;
+            set => soLuongNop = value;
         }
 
         public int SoLuongDaTuyen
@@ -102,7 +102,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         {
             return $"matuyendung: {maTuyenDung}, chucvu: {chucVu}, hocVan: {HocVan}, gioiTinh: {gioiTinh}" +
                 $"doTuoi: { doTuoi}, soLuongCanTuyen: {soLuongCanTuyen}, hanNopHoSo: {hanNopHoSo}, mucLuongToiThieu: {mucLuongToiThieu}" +
-                $"mucLuongToiDa: {mucLuongToiDa}, soLuongNopHoSo: {SoLuongNopHoSo}, soLuongDaTuyen: {soLuongDaTuyen}"
+                $"mucLuongToiDa: {mucLuongToiDa}, soLuongNop: {soLuongNop}, soLuongDaTuyen: {soLuongDaTuyen}"
             ;
         }
     }
