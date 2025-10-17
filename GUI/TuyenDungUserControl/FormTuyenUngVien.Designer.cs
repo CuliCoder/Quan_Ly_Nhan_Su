@@ -704,6 +704,7 @@
             this.showTenUV.AutoSize = true;
             this.showTenUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showTenUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.showTenUV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.showTenUV.Location = new System.Drawing.Point(155, 3);
             this.showTenUV.Margin = new System.Windows.Forms.Padding(3);
             this.showTenUV.Name = "showTenUV";
@@ -961,7 +962,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 615);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormTuyenUngVien";
             this.Text = "TuyenUngVien";
             this.panel1.ResumeLayout(false);

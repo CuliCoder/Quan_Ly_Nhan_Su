@@ -1,65 +1,83 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-  public class PersonalProfileBUS
-  {
-    private readonly PersonalProfileDAO dao;
-
-    public PersonalProfileBUS()
+    internal class PersonalProfileBLL
     {
-      dao = new PersonalProfileDAO();
-    }
+        private readonly PersonalProfileDAO _dao;
+        private static List<PersonalProfileDTO> list;
 
-    public List<PersonalProfileDTO> GetAll()
-    {
-      return dao.GetAll();
-    }
-
-    public bool Create(PersonalProfileDTO pp)
-    {
-      if (pp == null || string.IsNullOrWhiteSpace(pp.SoCmnd))
-      {
-        throw new Exception("Dữ liệu không hợp lệ!");
-      }
-
-      var existingProfiles = dao.Search(pp.SoCmnd).FirstOrDefault(f => f.SoCmnd == pp.SoCmnd);
-      if (existingProfiles != null)
-      {
-        throw new Exception("Số CMND đã tồn tại!");
-      }
-
-      return dao.Create(pp);
-    }
-
-    public bool Update(PersonalProfileDTO pp)
-    {
-      if (pp == null || string.IsNullOrWhiteSpace(pp.SoCmnd))
-      {
-        throw new Exception("Dữ liệu không hợp lệ!");
-      }
-
-      return dao.Update(pp);
-    }
-
-    public bool Delete(PersonalProfileDTO pp)
-    {
-      return dao.Delete(pp.SoCmnd);
-    }
-
-    public List<PersonalProfileDTO> Search(string searchTerm)
-    {
-        if (string.IsNullOrWhiteSpace(searchTerm))
+        public PersonalProfileBLL()
         {
-            Console.WriteLine("Từ khóa tìm kiếm không hợp lệ!");
-            return new List<PersonalProfileDTO>();
+            _dao = new PersonalProfileDAO();
+            if (list == null)
+                list = _dao.GetAll();
         }
 
-        return dao.Search(searchTerm);
+        public List<PersonalProfileDTO> GetAll() => new List<PersonalProfileDTO>(list);
+
+        public PersonalProfileDTO GetById(string soCmnd)
+        {
+            return _dao.GetById(soCmnd);
+        }
+
+        public bool checkID(string cccd)
+        {
+            if(!_dao.CheckCccd(cccd)) // nếu mã đã tồn tại
+            {
+                return false; 
+            }
+            return true;
+        }
+        public bool Create(PersonalProfileDTO dto)
+        {
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            bool success = _dao.Create(dto);
+            if (success)
+                list.Add(dto);
+
+            return success;
+        }
+
+        public bool Update(PersonalProfileDTO dto)
+        {
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            bool success = _dao.Update(dto);
+            if (success)
+            {
+                int index = list.FindIndex(x => x.SoCmnd == dto.SoCmnd);
+                if (index != -1)
+                    list[index] = dto;
+            }
+
+            return success;
+        }
+
+        public bool Delete(string soCmnd)
+        {
+            if (string.IsNullOrWhiteSpace(soCmnd))
+                throw new ArgumentException("Số CMND không được để trống!");
+
+            bool success = _dao.Delete(soCmnd);
+            if (success)
+                list.RemoveAll(x => x.SoCmnd == soCmnd);
+
+            return success;
+        }
+
+        public List<PersonalProfileDTO> Search(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return new List<PersonalProfileDTO>(list);
+
+            return _dao.Search(keyword);
+        }
     }
-  }
 }

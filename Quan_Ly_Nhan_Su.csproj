@@ -173,7 +173,27 @@
     <Compile Include="GUI\departmentTab.Designer.cs">
       <DependentUpon>departmentTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="DTO\**\*.cs" />
+    <Compile Include="DTO\AccountDTO.cs" />
+    <Compile Include="DTO\CandidateDTO.cs" />
+    <Compile Include="DTO\ContractExtensionDTO.cs" />
+    <Compile Include="DTO\DecisionDTO.cs" />
+    <Compile Include="DTO\DepartmentDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\EmployeeFullDTO.cs" />
+    <Compile Include="DTO\EvaluationDTO.cs" />
+    <Compile Include="DTO\FunctionDTO.cs" />
+    <Compile Include="DTO\LaborContractDTO.cs" />
+    <Compile Include="DTO\PermissionDetailDTO.cs" />
+    <Compile Include="DTO\PermissionGroupDTO.cs" />
+    <Compile Include="DTO\PersonalProfileDTO.cs" />
+    <Compile Include="DTO\PositionDTO.cs" />
+    <Compile Include="DTO\QualificationDTO.cs" />
+    <Compile Include="DTO\RecruitmentBatchDTO.cs" />
+    <Compile Include="DTO\RecruitmentBatch_EmployeeDTO.cs" />
+    <Compile Include="DTO\RequestDTO.cs" />
+    <Compile Include="DTO\SalaryDTO.cs" />
+    <Compile Include="DTO\TimesheetDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="GUI\ContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>

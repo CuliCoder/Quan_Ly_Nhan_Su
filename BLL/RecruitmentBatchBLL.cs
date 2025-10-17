@@ -24,6 +24,14 @@ namespace Quan_Ly_Nhan_Su.BLL
             return _dao.GetById(maTuyenDung);
         }
 
+        public bool checkedId(string maTuyenDung)
+        {
+            if (!_dao.checkID(maTuyenDung))
+            {
+                return false;
+            }
+            return true;
+        }
         public bool Create(RecruitmentBatchDTO batch)
         {
 

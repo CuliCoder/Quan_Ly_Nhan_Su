@@ -12,6 +12,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class UngVien : UserControl
     {
+
         public UngVien()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void button2_Click(object sender, EventArgs e)
         {
             FormThemUngVien themUngVienForm = new FormThemUngVien();
+            //themUngVienForm.luuThongTinForm += luuThanhcong;
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
@@ -29,5 +31,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             tuyenUngVienForm.ShowDialog();
         }
+
+        //private void luuThanhcong(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("Thêm mới thành công");
+        //    list = bus.GetAll();
+        //    fillDataToTable();
+        //} 
     }
 }

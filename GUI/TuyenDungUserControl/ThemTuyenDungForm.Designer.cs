@@ -162,8 +162,8 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -176,7 +176,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(59, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(183, 50);
             this.label2.TabIndex = 1;
@@ -188,7 +188,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._3643746_add_friend_member_people_plus_icon;
-            this.label1.Location = new System.Drawing.Point(192, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.MaximumSize = new System.Drawing.Size(50, 50);
             this.label1.MinimumSize = new System.Drawing.Size(50, 50);
             this.label1.Name = "label1";
@@ -609,7 +609,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(513, 545);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ThemTuyenDungForm";
             this.Text = "ThemTuyenDungForm";
             this.panel1.ResumeLayout(false);

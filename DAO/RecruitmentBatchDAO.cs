@@ -120,6 +120,36 @@ namespace Quan_Ly_Nhan_Su.DAO
             return null;
         }
 
+        public bool checkID(string maTuyenDung)
+        {
+            
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM dottuyendung WHERE maTuyenDung = @maTuyenDung";
+                    using(var cmd = new  MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        
+                        int count = (int)cmd.ExecuteNonQuery();
+                        return count == 0;
+                    }
+                     
+                }
+            } catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
+
         public bool Create(RecruitmentBatchDTO batch)
         {
             try

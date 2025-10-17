@@ -36,7 +36,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 SoCmnd = reader["soCmnd"].ToString(),
                                 MaTuyenDung = reader["maTuyenDung"].ToString(),
                                 MucLuongDeal = reader["mucLuongDeal"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuongDeal"]),
-                                MaTrinhDo = reader["maTrinhDo"].ToString(),
                                 ChucVu = reader["chucVu"].ToString(),
                                 TrangThai = reader["trangThai"].ToString()
                             };
@@ -73,8 +72,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     MaUngVien = reader["maUngVien"].ToString(),
                                     SoCmnd = reader["soCmnd"].ToString(),
                                     MaTuyenDung = reader["maTuyenDung"].ToString(),
-                                    MucLuongDeal = reader["mucLuongDeal"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuongDeal"]),
-                                    MaTrinhDo = reader["maTrinhDo"].ToString(),
+                                    MucLuongDeal = reader["mucLuongDeal"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuongDeal"]),               
                                     ChucVu = reader["chucVu"].ToString(),
                                     TrangThai = reader["trangThai"].ToString()
                                 };
@@ -107,7 +105,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                         cmd.Parameters.AddWithValue("@soCmnd", dto.SoCmnd);
                         cmd.Parameters.AddWithValue("@maTuyenDung", dto.MaTuyenDung);
                         cmd.Parameters.AddWithValue("@mucLuongDeal", dto.MucLuongDeal);
-                        cmd.Parameters.AddWithValue("@maTrinhDo", dto.MaTrinhDo);
                         cmd.Parameters.AddWithValue("@chucVu", dto.ChucVu);
                         cmd.Parameters.AddWithValue("@trangThai", dto.TrangThai);
                         cmd.ExecuteNonQuery();
@@ -144,7 +141,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                         cmd.Parameters.AddWithValue("@soCmnd", dto.SoCmnd);
                         cmd.Parameters.AddWithValue("@maTuyenDung", dto.MaTuyenDung);
                         cmd.Parameters.AddWithValue("@mucLuongDeal", dto.MucLuongDeal);
-                        cmd.Parameters.AddWithValue("@maTrinhDo", dto.MaTrinhDo);
                         cmd.Parameters.AddWithValue("@chucVu", dto.ChucVu);
                         cmd.Parameters.AddWithValue("@trangThai", dto.TrangThai);
                         cmd.ExecuteNonQuery();
@@ -205,8 +201,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     MaUngVien = reader["maUngVien"].ToString(),
                                     SoCmnd = reader["soCmnd"].ToString(),
                                     MaTuyenDung = reader["maTuyenDung"].ToString(),
-                                    MucLuongDeal = reader["mucLuongDeal"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuongDeal"]),
-                                    MaTrinhDo = reader["maTrinhDo"].ToString(),
+                                    MucLuongDeal = reader["mucLuongDeal"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuongDeal"]),                                 
                                     ChucVu = reader["chucVu"].ToString(),
                                     TrangThai = reader["trangThai"].ToString()
                                 };

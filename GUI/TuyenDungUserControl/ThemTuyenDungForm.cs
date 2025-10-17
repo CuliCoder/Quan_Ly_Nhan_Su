@@ -35,7 +35,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
-            var existing = bus.GetById(maTuyenDungTb.Text);
+            var existing = bus.checkedId(maTuyenDungTb.Text);
             if (existing != null)
             {
                 MessageBox.Show("Mã tuyển dụng đã tồn tại. Vui lòng nhập mã khác!");

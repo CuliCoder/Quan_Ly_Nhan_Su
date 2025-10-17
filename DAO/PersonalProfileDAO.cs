@@ -31,17 +31,20 @@ namespace Quan_Ly_Nhan_Su.DAO
                         {
                             var profile = new PersonalProfileDTO
                             {
-                                SoCmnd = reader.GetString("soCmnd"),
-                                HoTen = reader.GetString("hoTen"),
-                                GioiTinh = reader.GetString("gioiTinh"),
-                                NgaySinh = reader.GetDateTime("ngaySinh"),
-                                DiaChi = reader["diachi"] as string,
-                                Email = reader["email"] as string,
-                                Sdt = reader["sdt"] as string,
-                                NoiCap = reader.GetString("noiCap"),
-                                NgayCap = reader.GetDateTime("ngayCap"),
-                                TinhTrangHonNhan = reader["tinhTrangHonNhan"] as string,
-                                DanToc = reader["danToc"] as string
+                                SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
+                                HoTen = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
+                                NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : DateTime.MinValue,
+                                GioiTinh = reader["gioiTinh"] != DBNull.Value ? reader["gioiTinh"].ToString() : "",
+                                DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
+                                Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "",
+                                SoDienThoai = reader["sdt"] != DBNull.Value ? reader["sdt"].ToString() : "",
+                                NoiCap = reader["noiCap"] != DBNull.Value ? reader["noiCap"].ToString() : "",
+                                NgayCap = reader["ngayCap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayCap"]) : DateTime.MinValue,
+                                DanToc = reader["danToc"] != DBNull.Value ? reader["danToc"].ToString() : "",
+                                HocVan = reader["hocVan"] != DBNull.Value ? reader["hocVan"].ToString() : "",
+                                HonNhan = reader["tinhTrangHonNhan"] != DBNull.Value ? reader["tinhTrangHonNhan"].ToString() : "",
+                                ChuyenNganh = reader["chuyenNganh"] != DBNull.Value ? reader["chuyenNganh"].ToString() : "",
+                                HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
                             };
                             list.Add(profile);
                         }
@@ -60,6 +63,83 @@ namespace Quan_Ly_Nhan_Su.DAO
             return list;
         }
 
+        public PersonalProfileDTO GetById(string cccd)
+        {
+            MySqlConnection conn = null;
+            try
+            {
+                using(conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = "SELECT * FROM hosocanhan WHERE soCccd=@cccd";
+
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@cccd", cccd);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            return new PersonalProfileDTO
+                            {
+                                SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
+                                HoTen = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
+                                NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : DateTime.MinValue,
+                                GioiTinh = reader["gioiTinh"] != DBNull.Value ? reader["gioiTinh"].ToString() : "",
+                                DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
+                                Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "",
+                                SoDienThoai = reader["sdt"] != DBNull.Value ? reader["sdt"].ToString() : "",
+                                NoiCap = reader["noiCap"] != DBNull.Value ? reader["noiCap"].ToString() : "",
+                                NgayCap = reader["ngayCap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayCap"]) : DateTime.MinValue,
+                                DanToc = reader["danToc"] != DBNull.Value ? reader["danToc"].ToString() : "",
+                                HocVan = reader["hocVan"] != DBNull.Value ? reader["hocVan"].ToString() : "",
+                                HonNhan = reader["tinhTrangHonNhan"] != DBNull.Value ? reader["tinhTrangHonNhan"].ToString() : "",
+                                ChuyenNganh = reader["chuyenNganh"] != DBNull.Value ? reader["chuyenNganh"].ToString() : "",
+                                HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
+                            };
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+        }
+
+        public bool CheckCccd(string soCccd) {
+            MySqlConnection conn = null;
+            try
+            {
+                using(conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM hosocanhan WHERE soCmnd = @soCmnd";
+                    using(var cmd = new MySqlCommand())
+                    {
+                        cmd.Parameters.AddWithValue("@soCmmd", soCccd);
+
+                        int count = (int)cmd.ExecuteScalar();
+                        return count == 0;
+                    }
+
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
         /// <summary>
         /// Creates a new personal profile in the hosocanhan table
         /// </summary>
@@ -70,20 +150,24 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "INSERT INTO hosocanhan (soCmnd, hoTen, gioiTinh, ngaySinh, diachi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc) VALUES (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diachi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc)";
+                string query = "INSERT INTO hosocanhan (soCmnd, hoTen, gioiTinh, ngaySinh, diachi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc, hocvan, chuyenNganh, anh) VALUES (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diachi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc, @hocVan, @chuyeNganh, @anh)";
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@soCmnd", profile.SoCmnd);
                     command.Parameters.AddWithValue("@hoTen", profile.HoTen);
                     command.Parameters.AddWithValue("@gioiTinh", profile.GioiTinh);
                     command.Parameters.AddWithValue("@ngaySinh", profile.NgaySinh);
-                    command.Parameters.AddWithValue("@diachi", (object)profile.DiaChi ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@diaChi", (object)profile.DiaChi ?? DBNull.Value);
                     command.Parameters.AddWithValue("@email", (object)profile.Email ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@sdt", (object)profile.Sdt ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@noiCap", profile.NoiCap);
+                    command.Parameters.AddWithValue("@sdt", (object)profile.SoDienThoai ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@noiCap", (object)profile.NoiCap ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ngayCap", profile.NgayCap);
-                    command.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.TinhTrangHonNhan ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.HonNhan ?? DBNull.Value);
                     command.Parameters.AddWithValue("@danToc", (object)profile.DanToc ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@hocVan", (object)profile.HocVan ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@chuyenNganh", (object)profile.ChuyenNganh ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@anh", (object)profile.HinhAnh ?? DBNull.Value);
+
                     return command.ExecuteNonQuery() > 0;
                 }
             }
@@ -115,13 +199,17 @@ namespace Quan_Ly_Nhan_Su.DAO
                     command.Parameters.AddWithValue("@hoTen", profile.HoTen);
                     command.Parameters.AddWithValue("@gioiTinh", profile.GioiTinh);
                     command.Parameters.AddWithValue("@ngaySinh", profile.NgaySinh);
-                    command.Parameters.AddWithValue("@diachi", (object)profile.DiaChi ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@diaChi", (object)profile.DiaChi ?? DBNull.Value);
                     command.Parameters.AddWithValue("@email", (object)profile.Email ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@sdt", (object)profile.Sdt ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@noiCap", profile.NoiCap);
+                    command.Parameters.AddWithValue("@sdt", (object)profile.SoDienThoai ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@noiCap", (object)profile.NoiCap ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ngayCap", profile.NgayCap);
-                    command.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.TinhTrangHonNhan ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.HonNhan ?? DBNull.Value);
                     command.Parameters.AddWithValue("@danToc", (object)profile.DanToc ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@hocVan", (object)profile.HocVan ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@chuyenNganh", (object)profile.ChuyenNganh ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@anh", (object)profile.HinhAnh ?? DBNull.Value);
+
                     return command.ExecuteNonQuery() > 0;
                 }
             }
@@ -186,17 +274,20 @@ namespace Quan_Ly_Nhan_Su.DAO
                         {
                             profiles.Add(new PersonalProfileDTO
                             {
-                                SoCmnd = reader.GetString("soCmnd"),
-                                HoTen = reader.GetString("hoTen"),
-                                GioiTinh = reader.GetString("gioiTinh"),
-                                NgaySinh = reader.GetDateTime("ngaySinh"),
-                                DiaChi = reader.IsDBNull(reader.GetOrdinal("diachi")) ? null : reader.GetString("diachi"),
-                                Email = reader.IsDBNull(reader.GetOrdinal("email")) ? null : reader.GetString("email"),
-                                Sdt = reader.IsDBNull(reader.GetOrdinal("sdt")) ? null : reader.GetString("sdt"),
-                                NoiCap = reader.GetString("noiCap"),
-                                NgayCap = reader.GetDateTime("ngayCap"),
-                                TinhTrangHonNhan = reader.IsDBNull(reader.GetOrdinal("tinhTrangHonNhan")) ? null : reader.GetString("tinhTrangHonNhan"),
-                                DanToc = reader.IsDBNull(reader.GetOrdinal("danToc")) ? null : reader.GetString("danToc")
+                                SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
+                                HoTen = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
+                                NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : DateTime.MinValue,
+                                GioiTinh = reader["gioiTinh"] != DBNull.Value ? reader["gioiTinh"].ToString() : "",
+                                DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
+                                Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "",
+                                SoDienThoai = reader["sdt"] != DBNull.Value ? reader["sdt"].ToString() : "",
+                                NoiCap = reader["noiCap"] != DBNull.Value ? reader["noiCap"].ToString() : "",
+                                NgayCap = reader["ngayCap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayCap"]) : DateTime.MinValue,
+                                DanToc = reader["danToc"] != DBNull.Value ? reader["danToc"].ToString() : "",
+                                HocVan = reader["hocVan"] != DBNull.Value ? reader["hocVan"].ToString() : "",
+                                HonNhan = reader["tinhTrangHonNhan"] != DBNull.Value ? reader["tinhTrangHonNhan"].ToString() : "",
+                                ChuyenNganh = reader["chuyenNganh"] != DBNull.Value ? reader["chuyenNganh"].ToString() : "",
+                                HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
                             });
                         }
                     }
