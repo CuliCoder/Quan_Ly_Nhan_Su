@@ -47,7 +47,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 HanNopHoSo = reader["HanNopHoSo"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["HanNopHoSo"]),
                                 MucLuongToiThieu = reader["MucLuongToiThieu"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiThieu"]),
                                 MucLuongToiDa = reader["MucLuongToiDa"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiDa"]),
-                                SoLuongNopHoSo = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
+                                SoLuongNop = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
                                 SoLuongDaTuyen = reader["SoLuongDaTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongDaTuyen"])
                             };
                             list.Add(dto);
@@ -69,6 +69,86 @@ namespace Quan_Ly_Nhan_Su.DAO
             return list;
         }
 
+        public RecruitmentBatchDTO GetById(String maTuyenDung)
+        {
+            try
+            {
+                using(conn = connectDB.getConnection())
+                {
+                    if(conn == null)
+                    {
+                        throw new Exception("Không thể kết nối đến database");
+                    }
+                    conn.Open();
+                    string query = "SELECT * FROM dottuyendung WHERE maTuyenDung = @maTuyenDung";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        using(MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new RecruitmentBatchDTO
+                                {
+                                    MaTuyenDung = reader["maTuyenDung"].ToString(),
+                                    ChucVu = reader["chucVu"].ToString(),
+                                    HocVan = reader["hocVan"].ToString(),
+                                    GioiTinh = reader["gioiTinh"].ToString(),
+                                    DoTuoi = reader["doTuoi"].ToString(),
+                                    SoLuongCanTuyen = reader["soLuongCanTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["soLuongCanTuyen"]),
+                                    HanNopHoSo = reader["HanNopHoSo"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["HanNopHoSo"]),
+                                    MucLuongToiThieu = reader["MucLuongToiThieu"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiThieu"]),
+                                    MucLuongToiDa = reader["MucLuongToiDa"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiDa"]),
+                                    SoLuongNop = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
+                                    SoLuongDaTuyen = reader["SoLuongDaTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongDaTuyen"])
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+            return null;
+        }
+
+        public bool checkID(string maTuyenDung)
+        {
+            
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM dottuyendung WHERE maTuyenDung = @maTuyenDung";
+                    using(var cmd = new  MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        
+                        int count = (int)cmd.ExecuteNonQuery();
+                        return count == 0;
+                    }
+                     
+                }
+            } catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
 
         public bool Create(RecruitmentBatchDTO batch)
         {
@@ -89,7 +169,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                         command.Parameters.AddWithValue("@hanNopHoSo", batch.HanNopHoSo);
                         command.Parameters.AddWithValue("@mucLuongToiThieu", (object)batch.MucLuongToiThieu ?? DBNull.Value);
                         command.Parameters.AddWithValue("@mucLuongToiDa", (object)batch.MucLuongToiDa ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@soLuongNopHoSo", batch.SoLuongNopHoSo);
+                        command.Parameters.AddWithValue("@soLuongNopHoSo", batch.SoLuongNop);
                         command.Parameters.AddWithValue("@soLuongDaTuyen", batch.SoLuongDaTuyen);
                         return command.ExecuteNonQuery() > 0;
                     }
@@ -124,7 +204,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                         command.Parameters.AddWithValue("@hanNopHoSo", batch.HanNopHoSo);
                         command.Parameters.AddWithValue("@mucLuongToiThieu", (object)batch.MucLuongToiThieu ?? DBNull.Value);
                         command.Parameters.AddWithValue("@mucLuongToiDa", (object)batch.MucLuongToiDa ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@soLuongNopHoSo", batch.SoLuongNopHoSo);
+                        command.Parameters.AddWithValue("@soLuongNopHoSo", batch.SoLuongNop);
                         command.Parameters.AddWithValue("@soLuongDaTuyen", batch.SoLuongDaTuyen);
                         return command.ExecuteNonQuery() > 0;
                     }
@@ -200,7 +280,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     HanNopHoSo = reader["HanNopHoSo"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["HanNopHoSo"]),
                                     MucLuongToiThieu = reader["MucLuongToiThieu"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiThieu"]),
                                     MucLuongToiDa = reader["MucLuongToiDa"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiDa"]),
-                                    SoLuongNopHoSo = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
+                                    SoLuongNop = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
                                     SoLuongDaTuyen = reader["SoLuongDaTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongDaTuyen"])
                                 };
 
@@ -218,53 +298,6 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return list;
         }
-        /// <summary>
-        /// Searches for recruitment batches by maTuyenDung or chucVu
-        /// </summary>
-        //public List<RecruitmentBatchDTO> Search(string searchTerm)
-        //{
-        //    var batches = new List<RecruitmentBatchDTO>();
-        //    MySqlConnection conn = null;
-        //    try
-        //    {
-        //        conn = connectDB.getConnection();
-        //        conn.Open();
-        //        string query = "SELECT * FROM dottuyendung WHERE maTuyenDung = @searchTerm OR chucVu LIKE @searchTermLike";
-        //        using (var command = new MySqlCommand(query, conn))
-        //        {
-        //            command.Parameters.AddWithValue("@searchTerm", searchTerm);
-        //            command.Parameters.AddWithValue("@searchTermLike", $"%{searchTerm}%");
-        //            using (var reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    batches.Add(new RecruitmentBatchDTO
-        //                    {
-        //                        MaTuyenDung = reader.GetString("maTuyenDung"),
-        //                        ChucVu = reader.GetString("chucVu"),
-        //                        HocVan = reader.IsDBNull(reader.GetOrdinal("hocVan")) ? null : reader.GetString("hocVan"),
-        //                        GioiTinh = reader.IsDBNull(reader.GetOrdinal("gioiTinh")) ? null : reader.GetString("gioiTinh"),
-        //                        DoTuoi = reader.IsDBNull(reader.GetOrdinal("doTuoi")) ? null : reader.GetString("doTuoi"),
-        //                        SoLuongCanTuyen = reader.GetInt32("soLuongCanTuyen"),
-        //                        HanNopHoSo = reader.GetDateTime("hanNopHoSo"),
-        //                        MucLuongToiThieu = reader.IsDBNull(reader.GetOrdinal("mucLuongToiThieu")) ? null : reader.GetDecimal("mucLuongToiThieu"),
-        //                        MucLuongToiDa = reader.IsDBNull(reader.GetOrdinal("mucLuongToiDa")) ? null : reader.GetDecimal("mucLuongToiDa"),
-        //                        SoLuongNopHoSo = reader.GetInt32("soLuongNopHoSo"),
-        //                        SoLuongDaTuyen = reader.GetInt32("soLuongDaTuyen")
-        //                    });
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        Console.WriteLine($"Error searching recruitment batches: {ex.Message}");
-        //    }
-        //    finally
-        //    {
-        //        connectDB.closeConnection(conn);
-        //    }
-        //    return batches;
-        //}
+      
     }
 }

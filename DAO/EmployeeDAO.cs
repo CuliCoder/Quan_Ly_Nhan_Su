@@ -28,8 +28,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 MaNhanVien = reader["maNhanVien"].ToString(),
                                 SoCmnd = reader["soCmnd"].ToString(),
                                 MaLuong = reader["maluong"].ToString(),
-                                MaHopDong = reader["mahopdong"].ToString(),
-                                MaTrinhDo = reader["maTrinhDo"] == DBNull.Value ? null : reader["maTrinhDo"].ToString(),
+                                MaHopDong = reader["mahopdong"].ToString(),                     
                                 MaChucVu = reader["maChucVu"] == DBNull.Value ? null : reader["maChucVu"].ToString(),
                                 MaTaiKhoan = reader["maTaiKhoan"] == DBNull.Value ? null : reader["maTaiKhoan"].ToString(),
                                 MaPhong = reader["maPhong"] == DBNull.Value ? null : reader["maPhong"].ToString(),
@@ -72,7 +71,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                         cmd.Parameters.AddWithValue("@soCmnd", employeeDTO.SoCmnd);
                         cmd.Parameters.AddWithValue("@maLuong", employeeDTO.MaLuong);
                         cmd.Parameters.AddWithValue("@maHopDong", employeeDTO.MaHopDong);
-                        cmd.Parameters.AddWithValue("@maTrinhDo", employeeDTO.MaTrinhDo);
                         cmd.Parameters.AddWithValue("@maChucVu", employeeDTO.MaChucVu);
                         cmd.Parameters.AddWithValue("@maTaiKhoan", employeeDTO.MaTaiKhoan);
                         cmd.Parameters.AddWithValue("@maPhong", employeeDTO.MaPhong);
@@ -112,7 +110,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                         cmd.Parameters.AddWithValue("@soCmnd", employeeDTO.SoCmnd);
                         cmd.Parameters.AddWithValue("@maLuong", employeeDTO.MaLuong);
                         cmd.Parameters.AddWithValue("@maHopDong", employeeDTO.MaHopDong);
-                        cmd.Parameters.AddWithValue("@maTrinhDo", employeeDTO.MaTrinhDo ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@maChucVu", employeeDTO.MaChucVu ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@maTaiKhoan", employeeDTO.MaTaiKhoan ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@maPhong", employeeDTO.MaPhong ?? (object)DBNull.Value);

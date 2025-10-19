@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
+    <Compile Include="BLL\CandidateFullBLL.cs" />
     <Compile Include="BLL\ContractExtensionBLL.cs" />
     <Compile Include="BLL\CT_LaborContractBLL.cs" />
     <Compile Include="BLL\DecisionBLL.cs" />
@@ -130,7 +131,9 @@
     <Compile Include="BLL\TimesheetBLL.cs" />
     <Compile Include="config\design.cs" />
     <Compile Include="DAO\CandidateDAO.cs" />
+    <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
+    <Compile Include="DTO\CandidateFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,7 +176,27 @@
     <Compile Include="GUI\departmentTab.Designer.cs">
       <DependentUpon>departmentTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="DTO\**\*.cs" />
+    <Compile Include="DTO\AccountDTO.cs" />
+    <Compile Include="DTO\CandidateDTO.cs" />
+    <Compile Include="DTO\ContractExtensionDTO.cs" />
+    <Compile Include="DTO\DecisionDTO.cs" />
+    <Compile Include="DTO\DepartmentDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\EmployeeFullDTO.cs" />
+    <Compile Include="DTO\EvaluationDTO.cs" />
+    <Compile Include="DTO\FunctionDTO.cs" />
+    <Compile Include="DTO\LaborContractDTO.cs" />
+    <Compile Include="DTO\PermissionDetailDTO.cs" />
+    <Compile Include="DTO\PermissionGroupDTO.cs" />
+    <Compile Include="DTO\PersonalProfileDTO.cs" />
+    <Compile Include="DTO\PositionDTO.cs" />
+    <Compile Include="DTO\QualificationDTO.cs" />
+    <Compile Include="DTO\RecruitmentBatchDTO.cs" />
+    <Compile Include="DTO\RecruitmentBatch_EmployeeDTO.cs" />
+    <Compile Include="DTO\RequestDTO.cs" />
+    <Compile Include="DTO\SalaryDTO.cs" />
+    <Compile Include="DTO\TimesheetDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="GUI\ContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -193,6 +216,12 @@
     </Compile>
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
       <DependentUpon>LuongThuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Popup\Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Popup\Popup.Designer.cs">
+      <DependentUpon>Popup.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
@@ -339,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
       <DependentUpon>LuongThuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Popup\Popup.resx">
+      <DependentUpon>Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\StatisticsGUI.resx">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>

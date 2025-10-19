@@ -11,7 +11,6 @@ namespace Quan_Ly_Nhan_Su.DTO
         private string soCmnd;
         private string maTuyenDung;
         private decimal? mucLuongDeal;
-        private string maTrinhDo;
         private string chucVu;
         private string trangThai;
 
@@ -39,11 +38,6 @@ namespace Quan_Ly_Nhan_Su.DTO
             set => mucLuongDeal = value;
         }
 
-        public string MaTrinhDo
-        {
-            get => maTrinhDo;
-            set => maTrinhDo = value;
-        }
 
         public string ChucVu
         {
@@ -60,14 +54,13 @@ namespace Quan_Ly_Nhan_Su.DTO
         public CandidateDTO() { }
 
         public CandidateDTO(string maUngVien, string soCmnd, string maTuyenDung,
-                          decimal? mucLuongDeal, string maTrinhDo,
+                          decimal? mucLuongDeal,
                           string chucVu, string trangThai)
         {
             this.maUngVien = maUngVien;
             this.soCmnd = soCmnd;
             this.maTuyenDung = maTuyenDung;
             this.mucLuongDeal = mucLuongDeal;
-            this.maTrinhDo = maTrinhDo;
             this.chucVu = chucVu;
             this.trangThai = trangThai;
         }
@@ -78,7 +71,6 @@ namespace Quan_Ly_Nhan_Su.DTO
             this.soCmnd = other.soCmnd;
             this.maTuyenDung = other.maTuyenDung;
             this.mucLuongDeal = other.mucLuongDeal;
-            this.maTrinhDo = other.maTrinhDo;
             this.chucVu = other.chucVu;
             this.trangThai = other.trangThai;
         }
@@ -87,7 +79,6 @@ namespace Quan_Ly_Nhan_Su.DTO
             $"CMND: {soCmnd}, " +
             $"Mã Tuyển Dụng: {maTuyenDung}, " +
             $"Lương Deal: {(mucLuongDeal.HasValue ? mucLuongDeal.Value.ToString("N2") : "N/A")}, " +
-            $"Trình Độ: {maTrinhDo}, " +
             $"Chức Vụ: {chucVu}, " +
             $"Trạng Thái: {trangThai}";
     }

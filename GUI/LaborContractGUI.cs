@@ -41,7 +41,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void LoadDataToGrid()
         {
             List<LaborContractDTO> list = _bll.GetAllContracts();
-            MessageBox.Show("Dữ liệu hợp đồng: " + string.Join("\n", list.Select(x => $"STT: {x.STT}, Tên: {x.TenNhanVien}, Từ: {x.TuNgay}, Đến: {x.DenNgay}")));
             dataGridView1.Rows.Clear();
             foreach (var item in list)
             {

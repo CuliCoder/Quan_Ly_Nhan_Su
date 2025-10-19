@@ -19,10 +19,21 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public List<RecruitmentBatchDTO> GetAll() => new List<RecruitmentBatchDTO>(list);
 
+        public RecruitmentBatchDTO GetById(string maTuyenDung)
+        {
+            return _dao.GetById(maTuyenDung);
+        }
+
+        public bool checkedId(string maTuyenDung)
+        {
+            if (!_dao.checkID(maTuyenDung))
+            {
+                return false;
+            }
+            return true;
+        }
         public bool Create(RecruitmentBatchDTO batch)
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch), "Thông tin đợt tuyển dụng không hợp lệ!");
 
             bool success = _dao.Create(batch);
             if (success)
@@ -33,9 +44,6 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool Update(RecruitmentBatchDTO batch)
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch), "Thông tin đợt tuyển dụng không hợp lệ!");
-
             bool success = _dao.Update(batch);
             if (success)
             {
@@ -49,9 +57,6 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool Delete(string maTuyenDung)
         {
-            if (string.IsNullOrWhiteSpace(maTuyenDung))
-                throw new ArgumentException("Mã tuyển dụng không được để trống!");
-
             bool success = _dao.Delete(maTuyenDung);
             if (success)
                 list.RemoveAll(x => x.MaTuyenDung == maTuyenDung);

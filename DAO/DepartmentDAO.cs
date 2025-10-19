@@ -62,7 +62,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "SELECT MaPhong, TenPhong FROM Departments WHERE MaPhong = @MaPhong";
+                    string query = "SELECT MaPhong, TenPhong FROM phongban WHERE MaPhong = @maPhong";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@MaPhong", maPhong);

@@ -32,12 +32,27 @@ namespace Quan_Ly_Nhan_Su.BLL
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
 
-            if (_dao.create(dto))
+            if (_dao.Create(dto))
             {
                 list.Add(dto);
                 return true;
             }
             return false;
+        }
+
+        public bool CreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
+        {
+            if(_dao.CreateCandidateWithProfile(perDTO, cadiDto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckId(string id)
+        {
+            if(!_dao.CheckId(id)) return false;
+            return true;
         }
 
         public bool Update(CandidateDTO dto)
