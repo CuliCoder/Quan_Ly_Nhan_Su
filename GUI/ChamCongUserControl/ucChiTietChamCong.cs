@@ -2,7 +2,6 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCong
@@ -10,13 +9,18 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
     public partial class ucChiTietChamCong : UserControl
     {
         public event EventHandler BackButtonClicked;
+
         private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
+        // Giả định bạn có BLL cho việc lấy dữ liệu Yêu cầu
+        // private readonly YeuCauBLL yeuCauBLL = new YeuCauBLL(); 
         private EmployeeFullDTO currentEmployee;
-        private List<Button> selectedDayButtons = new List<Button>();
 
         public ucChiTietChamCong()
         {
             InitializeComponent();
+            btnBack.Click += btnBack_Click;
+            cboNam.SelectedIndexChanged += UpdateRequestDisplay;
+            cboThang.SelectedIndexChanged += UpdateRequestDisplay;
         }
 
         public void LoadEmployeeData(string maNhanVien)
@@ -28,7 +32,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                 {
                     lblTenNhanVien.Text = $"{currentEmployee.MaNhanVien} - {currentEmployee.HoTen}";
                     PopulateDateTimeControls();
-                    GenerateCalendar(DateTime.Now.Year, DateTime.Now.Month);
+                    LoadAndDisplayRequests();
                 }
                 else
                 {
@@ -53,52 +57,79 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
             cboThang.SelectedItem = DateTime.Now.Month;
         }
 
-        private void UpdateCalendar(object sender, EventArgs e)
+        private void UpdateRequestDisplay(object sender, EventArgs e)
         {
-            if (cboNam.SelectedItem != null && cboThang.SelectedItem != null)
+            LoadAndDisplayRequests();
+        }
+
+        private void LoadAndDisplayRequests()
+        {
+            if (currentEmployee == null || cboNam.SelectedItem == null || cboThang.SelectedItem == null)
+                return;
+
+            int year = Convert.ToInt32(cboNam.SelectedItem);
+            int month = Convert.ToInt32(cboThang.SelectedItem);
+
+            try
             {
-                GenerateCalendar(Convert.ToInt32(cboNam.SelectedItem), Convert.ToInt32(cboThang.SelectedItem));
+                // **PHẦN QUAN TRỌNG:** Bạn cần triển khai logic để lấy danh sách yêu cầu
+                // List<YeuCauDTO> requests = yeuCauBLL.GetRequestsByEmployeeAndMonth(currentEmployee.MaNhanVien, year, month);
+
+                // Dữ liệu mẫu để minh họa
+                var requests = GetSampleRequests();
+
+                DisplayRequests(requests);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải danh sách yêu cầu: {ex.Message}");
             }
         }
 
-        private void GenerateCalendar(int year, int month)
+        // PHƯƠNG THỨC DÙNG DỮ LIỆU MẪU - HÃY THAY THẾ BẰNG LOGIC GỌI BLL THỰC TẾ
+        private List<YeuCauDTO> GetSampleRequests()
         {
-            flpCalendar.Controls.Clear();
-            var firstDayOfMonth = new DateTime(year, month, 1);
-            int daysInMonth = DateTime.DaysInMonth(year, month);
-            int offsetDays = (int)firstDayOfMonth.DayOfWeek;
-            if (offsetDays == 0) offsetDays = 7; // Sunday
-
-            string[] dayNames = { "T2", "T3", "T4", "T5", "T6", "T7", "CN" };
-            foreach (var name in dayNames)
+            return new List<YeuCauDTO>
             {
-                flpCalendar.Controls.Add(new Label { Text = name, Font = new Font("Segoe UI", 9, FontStyle.Bold), Size = new Size(60, 30), TextAlign = ContentAlignment.MiddleCenter });
-            }
+                new YeuCauDTO { TenNguoiGui = "Nguyễn Ngọc Vân", EmailNguoiGui = "vannn@teky.vn", NgayBatDau = new DateTime(2025, 10, 21), NgayKetThuc = new DateTime(2025, 10, 28), TrangThai = "Draft" },
+                new YeuCauDTO { TenNguoiGui = "Nguyễn Thị Minh Trang", EmailNguoiGui = "mintrang9@gmail.com", NgayBatDau = new DateTime(2025, 10, 21), NgayKetThuc = new DateTime(2025, 11, 2), TrangThai = "Submitted" },
+                new YeuCauDTO { TenNguoiGui = "Nguyễn Thị Quỳnh Mai", EmailNguoiGui = "maiquynh@gmail.com", NgayBatDau = new DateTime(2025, 10, 16), NgayKetThuc = new DateTime(2025, 10, 19), TrangThai = "Approved" },
+                new YeuCauDTO { TenNguoiGui = "Lê Minh Thành", EmailNguoiGui = "thanhlm@teky.vn", NgayBatDau = new DateTime(2025, 10, 16), NgayKetThuc = new DateTime(2025, 10, 31), TrangThai = "Approved" },
+                new YeuCauDTO { TenNguoiGui = "Hoàng Tuấn Sơn", EmailNguoiGui = "tuansonzz13@gmail.com", NgayBatDau = new DateTime(2025, 10, 16), NgayKetThuc = new DateTime(2025, 10, 19), TrangThai = "Submitted" }
+            };
+        }
 
-            for (int i = 1; i < offsetDays; i++)
-            {
-                flpCalendar.Controls.Add(new Panel { Size = new Size(60, 60) });
-            }
+        private void DisplayRequests(List<YeuCauDTO> requests)
+        {
+            flpDraft.Controls.Clear();
+            flpSubmitted.Controls.Clear();
+            flpApproved.Controls.Clear();
 
-            for (int day = 1; day <= daysInMonth; day++)
+            if (requests == null) return;
+
+            foreach (var req in requests)
             {
-                var btnDay = new Button
+                var card = new ucRequestCard();
+                card.LoadData(req);
+
+                // Phân loại card vào đúng cột dựa trên trạng thái
+                switch (req.TrangThai?.ToLower())
                 {
-                    Text = day.ToString(),
-                    Tag = new DateTime(year, month, day),
-                    Size = new Size(60, 60),
-                    Font = new Font("Segoe UI", 10),
-                    BackColor = Color.White,
-                    FlatStyle = FlatStyle.Flat,
-                };
-                btnDay.FlatAppearance.BorderColor = Color.Gainsboro;
-                btnDay.Click += DayButton_Click;
-                flpCalendar.Controls.Add(btnDay);
+                    case "draft":
+                        flpDraft.Controls.Add(card);
+                        break;
+                    case "submitted":
+                        flpSubmitted.Controls.Add(card);
+                        break;
+                    case "approved":
+                        flpApproved.Controls.Add(card);
+                        break;
+                    default:
+                        // Có thể thêm vào một cột mặc định nếu cần
+                        break;
+                }
             }
         }
-
-        private void DayButton_Click(object sender, EventArgs e) { /* Giữ nguyên logic cũ */ }
-        private void btnAction_Click(object sender, EventArgs e) { /* Giữ nguyên logic cũ */ }
 
         private void btnBack_Click(object sender, EventArgs e)
         {

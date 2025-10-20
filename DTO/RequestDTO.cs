@@ -1,18 +1,17 @@
-using System;
+﻿using System;
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
-    /// <summary>
-    /// DTO for Request table
-    /// </summary>
-    public class RequestDTO
+    public class YeuCauDTO
     {
         public string MaYeuCau { get; set; }
         public string MaNguoiGui { get; set; }
+        public string TenNguoiGui { get; set; }
+        public string EmailNguoiGui { get; set; }
         public string ThongTinYeuCau { get; set; }
-        public string LyDo { get; set; }
         public DateTime NgayGui { get; set; }
-        public string NguoiXacNhan { get; set; }
-        public string TrangThai { get; set; }
+        public DateTime? NgayBatDau { get; set; } // Giả định có ngày bắt đầu/kết thúc
+        public DateTime? NgayKetThuc { get; set; }
+        public string TrangThai { get; set; } // Ví dụ: "Draft", "Submitted", "Approved"
     }
 }
