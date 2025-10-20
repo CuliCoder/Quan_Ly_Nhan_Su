@@ -164,6 +164,12 @@
     <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.Designer.cs">
       <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ChangepasswordGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChangepasswordGUI.Designer.cs">
+      <DependentUpon>ChangepasswordGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CT_ContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,6 +240,12 @@
     </Compile>
     <Compile Include="GUI\Popup\Popup.Designer.cs">
       <DependentUpon>Popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ProfileStaffGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ProfileStaffGUI.Designer.cs">
+      <DependentUpon>ProfileStaffGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\StatisticsGUI.cs">
       <SubType>UserControl</SubType>
@@ -363,6 +375,9 @@
     <EmbeddedResource Include="GUI\ChamCongUserControl\ucChamCong.resx">
       <DependentUpon>ucChamCong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChangepasswordGUI.resx">
+      <DependentUpon>ChangepasswordGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ContractGUI.resx">
       <DependentUpon>ContractGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Popup\Popup.resx">
       <DependentUpon>Popup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ProfileStaffGUI.resx">
+      <DependentUpon>ProfileStaffGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\StatisticsGUI.resx">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
