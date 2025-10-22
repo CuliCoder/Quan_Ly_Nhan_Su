@@ -10,47 +10,165 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
 {
     public partial class TaiKhoanMain : UserControl
     {
-        // Khai báo các lớp BLL cần thiết
         private readonly PermissionGroupBLL permissionGroupBLL = new PermissionGroupBLL();
         private readonly FunctionBLL functionBLL = new FunctionBLL();
         private readonly PermissionDetailBLL permissionDetailBLL = new PermissionDetailBLL();
+        private readonly AccountBLL accountBLL = new AccountBLL();
 
-        // Biến lưu danh sách TẤT CẢ các chức năng của hệ thống
         private List<FunctionDTO> allFunctions = new List<FunctionDTO>();
 
         public TaiKhoanMain()
         {
             InitializeComponent();
-            // Cấu hình TabControl
             this.tabMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabMain.Appearance = TabAppearance.Buttons;
             this.tabMain.SizeMode = TabSizeMode.Fixed;
             this.tabMain.ItemSize = new Size(120, 35);
 
-            // Gắn các sự kiện
             this.tabMain.DrawItem += new DrawItemEventHandler(tabMain_DrawItem);
             this.Load += TaiKhoanMain_Load;
             this.dgvPhanQuyen.SelectionChanged += dgvPhanQuyen_SelectionChanged;
             this.btnLuuQuyen.Click += btnLuuQuyen_Click;
-
-            // Gắn sự kiện cho CRUD Chức năng
             this.btnThemCn.Click += btnThemCn_Click;
             this.btnSuaCn.Click += btnSuaCn_Click;
             this.btnXoaCn.Click += btnXoaCn_Click;
-
-            // Gắn sự kiện cho CRUD Phân quyền
             this.btnThemPq.Click += btnThemPq_Click;
-            // this.btnSuaPq.Click += btnSuaPq_Click; // Uncomment if you have these buttons
-            // this.btnXoaPq.Click += btnXoaPq_Click;
+            this.btnThemTk.Click += btnThemTk_Click;
+            this.btnSuaTk.Click += btnSuaTk_Click;
+            this.btnXoaTk.Click += btnXoaTk_Click;
         }
 
         private void TaiKhoanMain_Load(object sender, EventArgs e)
         {
-            // Khi form được tải, thực hiện các công việc khởi tạo
+            LoadAccounts();
             ConfigurePermissionDetailsGrid();
             LoadPermissionGroups();
-            // Tải tất cả dữ liệu chức năng (cho cả 2 tab) chỉ trong 1 lần gọi
             ReloadAllFunctionData();
+        }
+
+        #region Tài Khoản (Tab 0) - CRUD Events
+
+        private void LoadAccounts()
+        {
+            try
+            {
+                var accountViewModels = accountBLL.GetAccountViewModels();
+                dgvTaiKhoan.DataSource = null;
+                dgvTaiKhoan.AutoGenerateColumns = false; // Rất quan trọng!
+                dgvTaiKhoan.DataSource = accountViewModels;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách tài khoản: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnThemTk_Click(object sender, EventArgs e)
+        {
+            using (var form = new frmAccountCU())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var newAccountDto = form.AccountData;
+                        var selectedMaNhanVien = form.SelectedMaNhanVien;
+
+                        // Gọi BLL để lưu vào CSDL
+                        if (accountBLL.Insert(newAccountDto, selectedMaNhanVien))
+                        {
+                            MessageBox.Show("Thêm tài khoản thành công!");
+
+                            // === THAY ĐỔI LỚN BẮT ĐẦU TỪ ĐÂY ===
+
+                            // Lấy thông tin đã chọn từ form
+                            var selectedHoTen = form.SelectedHoTen;
+                            var selectedNhomQuyen = form.SelectedNhomQuyenText;
+
+                            // Tạo ViewModel mới
+                            var newViewModel = new AccountViewModel
+                            {
+                                MaTaiKhoan = newAccountDto.MaTaiKhoan,
+                                TenDangNhap = newAccountDto.TenDangNhap,
+                                MaNhanVien = selectedMaNhanVien,
+                                HoTen = selectedHoTen,          // <-- Dữ liệu đúng
+                                TenNhomQuyen = selectedNhomQuyen,   // <-- Dữ liệu đúng
+                                TinhTrang = newAccountDto.TinhTrang
+                            };
+
+                            // Thêm trực tiếp ViewModel mới vào danh sách hiện tại của DataGridView
+                            var currentList = (dgvTaiKhoan.DataSource as List<AccountViewModel>) ?? new List<AccountViewModel>();
+                            currentList.Add(newViewModel);
+
+                            // Cập nhật lại DataGridView
+                            dgvTaiKhoan.DataSource = null;
+                            dgvTaiKhoan.DataSource = currentList;
+
+                            // Không gọi LoadAccounts(); vì sẽ bị lỗi cache
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnSuaTk_Click(object sender, EventArgs e)
+        {
+            if (dgvTaiKhoan.CurrentRow?.DataBoundItem is AccountViewModel selectedAccountVm)
+            {
+                try
+                {
+                    using (var form = new frmAccountCU(selectedAccountVm.MaTaiKhoan))
+                    {
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            if (accountBLL.Update(form.AccountData))
+                            {
+                                MessageBox.Show("Cập nhật tài khoản thành công!");
+                                LoadAccounts();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi sửa tài khoản: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một tài khoản để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnXoaTk_Click(object sender, EventArgs e)
+        {
+            if (dgvTaiKhoan.CurrentRow?.DataBoundItem is AccountViewModel selectedAccountVm)
+            {
+                string actionText = selectedAccountVm.TinhTrang ? "vô hiệu hóa" : "kích hoạt";
+                if (MessageBox.Show($"Bạn có chắc chắn muốn {actionText} tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (accountBLL.ToggleStatus(selectedAccountVm.MaTaiKhoan))
+                        {
+                            MessageBox.Show($"{char.ToUpper(actionText[0]) + actionText.Substring(1)} tài khoản thành công!");
+                            LoadAccounts();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Lỗi khi {actionText} tài khoản: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một tài khoản.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         #region Chức Năng (Tab 2) - CRUD Events
@@ -356,4 +474,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
 
         #endregion
     }
+
+    #endregion
 }

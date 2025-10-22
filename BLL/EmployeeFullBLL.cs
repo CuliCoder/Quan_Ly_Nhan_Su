@@ -60,5 +60,20 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return _dao.GetEmployeeContractDetails(maNhanVien);
         }
+
+        // Thêm method này để hỗ trợ form frmAccountCU (lấy nhân viên chưa có tài khoản)
+        public List<EmployeeFullDTO> GetEmployeesWithoutAccount()
+        {
+            try
+            {
+                // Phương thức này gọi xuống EmployeeFullDAO.GetEmployeesWithoutAccount()
+                // mà chúng ta đã thảo luận ở bước trước.
+                return _dao.GetEmployeesWithoutAccount();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy danh sách nhân viên chưa có tài khoản: {ex.Message}");
+            }
+        }
     }
 }

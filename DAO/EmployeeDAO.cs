@@ -202,5 +202,47 @@ namespace Quan_Ly_Nhan_Su.DAO
             return list;
         }
 
+        /// <summary>
+        /// Gets a specific employee by their account ID (maTaiKhoan).
+        /// </summary>
+        public EmployeeDTO GetByAccountId(string maTaiKhoan)
+        {
+            using (var conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM nhanvien WHERE maTaiKhoan = @maTaiKhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Giả định bạn có một phương thức helper để map dữ liệu
+                                // Nếu không, bạn có thể map trực tiếp tại đây:
+                                return new EmployeeDTO
+                                {
+                                    MaNhanVien = reader["maNhanVien"].ToString(),
+                                    SoCmnd = reader["soCmnd"].ToString(),
+                                    MaLuong = reader["maluong"].ToString(),
+                                    MaHopDong = reader["mahopdong"].ToString(),
+                                    MaChucVu = reader["maChucVu"] != DBNull.Value ? reader["maChucVu"].ToString() : null,
+                                    MaTaiKhoan = reader["maTaiKhoan"] != DBNull.Value ? reader["maTaiKhoan"].ToString() : null,
+                                    MaPhong = reader["maPhong"] != DBNull.Value ? reader["maPhong"].ToString() : null,
+                                    MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : (decimal?)null
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
+                }
+            }
+            return null; // Trả về null nếu không tìm thấy
+        }
     }
 }

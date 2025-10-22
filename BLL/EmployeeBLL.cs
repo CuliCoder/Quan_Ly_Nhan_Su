@@ -67,5 +67,20 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             return _dao.searchEmployee(keyword);
         }
+
+        // Thêm method này để hỗ trợ form frmAccountCU (tìm nhân viên bằng mã tài khoản)
+        public EmployeeDTO GetByAccountId(string maTaiKhoan)
+        {
+            if (string.IsNullOrWhiteSpace(maTaiKhoan))
+            {
+                throw new ArgumentException("Mã tài khoản không được để trống!");
+            }
+
+            // Phương thức này gọi xuống EmployeeDAO.GetByAccountId()
+            // mà chúng ta đã thảo luận ở bước trước.
+            // Nó không dùng cache 'list' vì đây là một truy vấn cụ thể, 
+            // tương tự như SearchEmployee()
+            return _dao.GetByAccountId(maTaiKhoan);
+        }
     }
 }

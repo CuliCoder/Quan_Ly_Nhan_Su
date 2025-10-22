@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
     <Compile Include="BLL\ContractExtensionBLL.cs" />
@@ -308,6 +309,12 @@
     </Compile>
     <Compile Include="GUI\NhanVienUserControl\NhanVienNhapLieu.Designer.cs">
       <DependentUpon>NhanVienNhapLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmAccountCU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaiKhoanUserControl\frmAccountCU.Designer.cs">
+      <DependentUpon>frmAccountCU.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\TaiKhoanUserControl\frmFunctionCU.cs">
       <SubType>Form</SubType>
