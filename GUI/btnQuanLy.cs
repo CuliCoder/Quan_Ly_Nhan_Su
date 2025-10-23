@@ -88,6 +88,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             // xóa cột xám đứng trước stt
             tbPB.RowHeadersVisible = false;
+            tbPB.RowHeadersVisible = false; // test
 
         }
         private void Table_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
