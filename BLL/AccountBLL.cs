@@ -9,11 +9,62 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class AccountBLL
     {
-        private readonly AccountDAO _accountDAO;
+        private readonly AccountDAO _accountDAO = new AccountDAO();
+        // Giả định bạn đã có các BLL này và chúng hoạt động đúng
+        private readonly EmployeeBLL _employeeBLL = new EmployeeBLL();
+        private readonly PersonalProfileBLL _profileBLL = new PersonalProfileBLL();
+        private readonly PermissionGroupBLL _permissionGroupBLL = new PermissionGroupBLL();
 
-        public AccountBLL()
+        /// <summary>
+        /// Lấy danh sách ViewModel để hiển thị trên giao diện.
+        /// </summary>
+        public List<AccountViewModel> GetAccountViewModels()
         {
-            _accountDAO = new AccountDAO();
+            // 1. Lấy dữ liệu thô từ các nguồn
+            var allAccounts = _accountDAO.GetAll(); // Yêu cầu: AccountDAO.GetAll()
+            var allEmployees = _employeeBLL.GetAll(); // Yêu cầu: EmployeeBLL.GetAllEmployees()
+            var allProfiles = _profileBLL.GetAll();
+            var allGroups = _permissionGroupBLL.GetAll();
+
+            // 2. Tối ưu hóa việc tra cứu bằng Dictionary
+            var employeeDict = allEmployees.Where(e => !string.IsNullOrEmpty(e.MaTaiKhoan))
+                                           .ToDictionary(e => e.MaTaiKhoan);
+            var profileDict = allProfiles.ToDictionary(p => p.SoCmnd);
+            var groupDict = allGroups.ToDictionary(g => g.MaNhomQuyen);
+
+            var viewModelList = new List<AccountViewModel>();
+
+            foreach (var account in allAccounts)
+            {
+                var viewModel = new AccountViewModel
+                {
+                    MaTaiKhoan = account.MaTaiKhoan,
+                    TenDangNhap = account.TenDangNhap,
+                    TinhTrang = account.TinhTrang,
+                    HoTen = "Chưa liên kết NV",
+                    MaNhanVien = "N/A",
+                    TenNhomQuyen = "Chưa gán quyền"
+                };
+
+                // 3. Ghép nối thông tin Nhân viên và Hồ sơ
+                if (employeeDict.TryGetValue(account.MaTaiKhoan, out var employee))
+                {
+                    viewModel.MaNhanVien = employee.MaNhanVien;
+                    if (profileDict.TryGetValue(employee.SoCmnd, out var profile))
+                    {
+                        viewModel.HoTen = profile.HoTen;
+                    }
+                }
+
+                // 4. Ghép nối thông tin Nhóm quyền
+                if (account.MaNhomQuyen.HasValue && groupDict.TryGetValue(account.MaNhomQuyen.Value, out var group))
+                {
+                    viewModel.TenNhomQuyen = group.TenNhomQuyen;
+                }
+
+                viewModelList.Add(viewModel);
+            }
+            return viewModelList;
         }
 
         /// <summary>
@@ -41,116 +92,53 @@ namespace Quan_Ly_Nhan_Su.BLL
             return null;
         }
 
-        /// <summary>
-        ///     Tạo tài khoản dev nếu chưa có
-        /// </summary>
-        public void EnsureDevAccountExists()
+        public AccountDTO GetAccountById(string maTaiKhoan)
         {
-            var accounts = _accountDAO.Search("dev");
-            bool devExists = accounts.Any(acc => acc.TenDangNhap == "dev");
-
-            if (!devExists)
-            {
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword("123");
-                var devAccount = new AccountDTO
-                {
-                    MaTaiKhoan = Guid.NewGuid().ToString(),
-                    TenDangNhap = "dev",
-                    MatKhau = hashedPassword,
-                    MaNhomQuyen = null
-                };
-                _accountDAO.Create(devAccount);
-            }
+            return _accountDAO.GetById(maTaiKhoan); // Yêu cầu: AccountDAO.GetById()
         }
 
-        /// <summary>
-        /// Lấy tất cả tài khoản.
-        /// </summary>
-        /// <returns>Danh sách các tài khoản.</returns>
-        public List<AccountDTO> GetAllAccounts()
+        public bool Insert(AccountDTO newAccount, string maNhanVien)
         {
-            // Gọi Search với chuỗi rỗng để lấy tất cả
-            return _accountDAO.Search("");
-        }
-
-        /// <summary>
-        /// Thêm một tài khoản mới với các quy tắc nghiệp vụ.
-        /// </summary>
-        /// <param name="newAccount">Thông tin tài khoản mới.</param>
-        /// <returns>True nếu thành công, False nếu thất bại.</returns>
-        public bool ThemTaiKhoan(AccountDTO newAccount)
-        {
-            // Validation: Kiểm tra xem tên đăng nhập đã tồn tại chưa
-            var existingAccount = _accountDAO.Search(newAccount.TenDangNhap)
-                                             .FirstOrDefault(a => a.TenDangNhap == newAccount.TenDangNhap);
-            if (existingAccount != null)
-            {
-                // Tên đăng nhập đã tồn tại
-                throw new Exception("Tên đăng nhập đã tồn tại.");
-            }
-
-            // Validation: Các trường thông tin không được để trống
             if (string.IsNullOrWhiteSpace(newAccount.TenDangNhap) || string.IsNullOrWhiteSpace(newAccount.MatKhau))
-            {
-                throw new Exception("Tên đăng nhập và mật khẩu không được để trống.");
-            }
+                throw new ArgumentException("Tên đăng nhập và mật khẩu không được trống.");
 
-            // Băm mật khẩu trước khi lưu
+            if (_accountDAO.GetByUsername(newAccount.TenDangNhap) != null) // Yêu cầu: AccountDAO.GetByUsername()
+                throw new InvalidOperationException("Tên đăng nhập đã tồn tại.");
+
+            newAccount.MaTaiKhoan = Guid.NewGuid().ToString();
             newAccount.MatKhau = BCrypt.Net.BCrypt.HashPassword(newAccount.MatKhau);
 
-            // Tạo MaTaiKhoan mới
-            newAccount.MaTaiKhoan = Guid.NewGuid().ToString();
-
-            return _accountDAO.Create(newAccount);
+            // Yêu cầu: AccountDAO.InsertForEmployee() thực hiện INSERT và UPDATE trong một transaction.
+            return _accountDAO.InsertForEmployee(newAccount, maNhanVien);
         }
 
-        /// <summary>
-        /// Cập nhật thông tin tài khoản.
-        /// </summary>
-        /// <param name="accountToUpdate">Tài khoản cần cập nhật.</param>
-        /// <returns>True nếu thành công.</returns>
-        public bool SuaTaiKhoan(AccountDTO accountToUpdate)
+        public bool Update(AccountDTO accountToUpdate)
         {
-            // Validation: Các trường thông tin không được để trống
-            if (string.IsNullOrWhiteSpace(accountToUpdate.TenDangNhap))
-            {
-                throw new Exception("Tên đăng nhập không được để trống.");
-            }
+            var existingAccount = _accountDAO.GetById(accountToUpdate.MaTaiKhoan);
+            if (existingAccount == null)
+                throw new KeyNotFoundException("Không tìm thấy tài khoản để cập nhật.");
 
-            // Nếu người dùng nhập mật khẩu mới, thì ta băm và cập nhật nó
             if (!string.IsNullOrWhiteSpace(accountToUpdate.MatKhau))
             {
                 accountToUpdate.MatKhau = BCrypt.Net.BCrypt.HashPassword(accountToUpdate.MatKhau);
             }
             else
             {
-                // Nếu không, ta giữ lại mật khẩu cũ.
-                // Lấy lại mật khẩu cũ từ DB để không ghi đè bằng chuỗi rỗng.
-                var currentAccount = _accountDAO.Search(accountToUpdate.MaTaiKhoan).FirstOrDefault();
-                if (currentAccount != null)
-                {
-                    accountToUpdate.MatKhau = currentAccount.MatKhau;
-                }
+                accountToUpdate.MatKhau = existingAccount.MatKhau; // Giữ lại mật khẩu cũ nếu không nhập mới
             }
 
-            return _accountDAO.Update(accountToUpdate);
+            return _accountDAO.Update(accountToUpdate); // Yêu cầu: AccountDAO.Update()
         }
 
-        /// <summary>
-        /// Xóa một tài khoản.
-        /// </summary>
-        /// <param name="maTaiKhoan">Mã tài khoản cần xóa.</param>
-        /// <returns>True nếu thành công.</returns>
-        public bool XoaTaiKhoan(string maTaiKhoan)
+        public bool ToggleStatus(string maTaiKhoan)
         {
-            // Validation: Không cho phép xóa tài khoản 'dev'
-            var accountToDelete = _accountDAO.Search(maTaiKhoan).FirstOrDefault();
-            if (accountToDelete != null && accountToDelete.TenDangNhap == "dev")
-            {
-                throw new Exception("Không thể xóa tài khoản phát triển (dev).");
-            }
+            var account = _accountDAO.GetById(maTaiKhoan);
+            if (account == null)
+                throw new KeyNotFoundException("Không tìm thấy tài khoản.");
 
-            return _accountDAO.Delete(maTaiKhoan);
+            bool newStatus = !account.TinhTrang;
+            // Yêu cầu: AccountDAO.UpdateStatus()
+            return _accountDAO.UpdateStatus(maTaiKhoan, newStatus);
         }
     }
 }

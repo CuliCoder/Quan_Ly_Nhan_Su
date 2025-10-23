@@ -256,5 +256,69 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return contract;
         }
+
+        public List<EmployeeFullDTO> GetEmployeesWithoutAccount()
+        {
+            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                if (conn == null)
+                {
+                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                }
+
+                conn.Open();
+                string query = @"
+            SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
+                   hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
+                   nv.mucLuong, hs.diaChi
+            FROM nhanvien nv
+            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+            LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
+            LEFT JOIN chucvu cv ON nv.maChucVu = cv.maChucVu
+            WHERE nv.maTaiKhoan IS NULL"; // <-- Thêm điều kiện lọc tại đây
+
+                using (var command = new MySqlCommand(query, conn))
+                {
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        EmployeeFullDTO emp = new EmployeeFullDTO
+                        {
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            HoTen = reader["hoTen"].ToString(),
+                            NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : (DateTime?)null,
+                            GioiTinh = reader["gioiTinh"].ToString(),
+                            Email = reader["email"].ToString(),
+                            Sdt = reader["sdt"].ToString(),
+                            SoCmnd = reader["soCmnd"].ToString(),
+                            HocVan = reader["hocVan"].ToString(),
+                            ChuyenNganh = reader["chuyenNganh"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            ChucVu = reader["chucVu"].ToString(),
+                            MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : 0m,
+                            DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : ""
+                        };
+                        employees.Add(emp);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error retrieving employees without account: {ex.Message}");
+                throw new Exception($"Lỗi khi lấy danh sách nhân viên chưa có tài khoản: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return employees;
+        }
     }
 }

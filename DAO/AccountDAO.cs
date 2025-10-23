@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.config;
 using Quan_Ly_Nhan_Su.DTO;
+
 namespace Quan_Ly_Nhan_Su.DAO
 {
     /// <summary>
@@ -11,94 +12,264 @@ namespace Quan_Ly_Nhan_Su.DAO
     public class AccountDAO
     {
         /// <summary>
-        /// Creates a new account in the taikhoan table
+        /// Helper method to map a MySqlDataReader row to an AccountDTO object.
         /// </summary>
-        public bool Create(AccountDTO account)
+        private AccountDTO MapReaderToAccount(MySqlDataReader reader)
         {
-            MySqlConnection conn = null;
-            try
+            return new AccountDTO
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "INSERT INTO taikhoan (maTaiKhoan, tenDangNhap, matKhau, maNhomQuyen) VALUES (@maTaiKhoan, @tenDangNhap, @matKhau, @maNhomQuyen)";
-                using (var command = new MySqlCommand(query, conn))
+                MaTaiKhoan = reader.GetString("maTaiKhoan"),
+                TenDangNhap = reader.GetString("tenDangNhap"),
+                MatKhau = reader.GetString("matKhau"),
+                MaNhomQuyen = reader.IsDBNull(reader.GetOrdinal("maNhomQuyen")) ? (int?)null : reader.GetInt32("maNhomQuyen"),
+                TinhTrang = reader.GetBoolean("TinhTrang")
+            };
+        }
+
+        /// <summary>
+        /// Gets a specific employee by their account ID (maTaiKhoan).
+        /// </summary>
+        public EmployeeDTO GetByAccountId(string maTaiKhoan)
+        {
+            using (var conn = connectDB.getConnection())
+            {
+                try
                 {
-                    command.Parameters.AddWithValue("@maTaiKhoan", account.MaTaiKhoan);
-                    command.Parameters.AddWithValue("@tenDangNhap", account.TenDangNhap);
-                    command.Parameters.AddWithValue("@matKhau", account.MatKhau);
-                    command.Parameters.AddWithValue("@maNhomQuyen", (object)account.MaNhomQuyen ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "SELECT * FROM nhanvien WHERE maTaiKhoan = @maTaiKhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Giả định bạn có một phương thức helper để map dữ liệu
+                                // Nếu không, bạn có thể map trực tiếp tại đây:
+                                return new EmployeeDTO
+                                {
+                                    MaNhanVien = reader["maNhanVien"].ToString(),
+                                    SoCmnd = reader["soCmnd"].ToString(),
+                                    MaLuong = reader["maluong"].ToString(),
+                                    MaHopDong = reader["mahopdong"].ToString(),
+                                    MaChucVu = reader["maChucVu"] != DBNull.Value ? reader["maChucVu"].ToString() : null,
+                                    MaTaiKhoan = reader["maTaiKhoan"] != DBNull.Value ? reader["maTaiKhoan"].ToString() : null,
+                                    MaPhong = reader["maPhong"] != DBNull.Value ? reader["maPhong"].ToString() : null,
+                                    MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : (decimal?)null
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
                 }
             }
-            catch (MySqlException ex)
+            return null; // Trả về null nếu không tìm thấy
+        }
+
+        /// <summary>
+        /// Gets all accounts from the 'taikhoan' table.
+        /// </summary>
+        public List<AccountDTO> GetAll()
+        {
+            var accounts = new List<AccountDTO>();
+            using (var conn = connectDB.getConnection())
             {
-                Console.WriteLine($"Error creating account: {ex.Message}");
-                return false;
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM taikhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            accounts.Add(MapReaderToAccount(reader));
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting all accounts: {ex.Message}");
+                }
             }
-            finally
+            return accounts;
+        }
+
+        /// <summary>
+        /// Gets a specific account by its ID (maTaiKhoan).
+        /// </summary>
+        public AccountDTO GetById(string maTaiKhoan)
+        {
+            using (var conn = connectDB.getConnection())
             {
-                connectDB.closeConnection(conn);
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM taikhoan WHERE maTaiKhoan = @maTaiKhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return MapReaderToAccount(reader);
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting account by ID: {ex.Message}");
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets a specific account by its username.
+        /// </summary>
+        public AccountDTO GetByUsername(string username)
+        {
+            using (var conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM taikhoan WHERE tenDangNhap = @tenDangNhap";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@tenDangNhap", username);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return MapReaderToAccount(reader);
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting account by username: {ex.Message}");
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Inserts a new account and links it to an employee within a transaction.
+        /// </summary>
+        public bool InsertForEmployee(AccountDTO account, string maNhanVien)
+        {
+            using (var conn = connectDB.getConnection())
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // Step 1: Insert the new account
+                        string insertAccountQuery = "INSERT INTO taikhoan (maTaiKhoan, tenDangNhap, matKhau, maNhomQuyen, TinhTrang) VALUES (@maTaiKhoan, @tenDangNhap, @matKhau, @maNhomQuyen, @tinhTrang)";
+                        using (var cmd1 = new MySqlCommand(insertAccountQuery, conn, transaction))
+                        {
+                            cmd1.Parameters.AddWithValue("@maTaiKhoan", account.MaTaiKhoan);
+                            cmd1.Parameters.AddWithValue("@tenDangNhap", account.TenDangNhap);
+                            cmd1.Parameters.AddWithValue("@matKhau", account.MatKhau);
+                            cmd1.Parameters.AddWithValue("@maNhomQuyen", (object)account.MaNhomQuyen ?? DBNull.Value);
+                            cmd1.Parameters.AddWithValue("@tinhTrang", account.TinhTrang);
+                            cmd1.ExecuteNonQuery();
+                        }
+
+                        // Step 2: Update the employee record with the new account ID
+                        string updateEmployeeQuery = "UPDATE nhanvien SET maTaiKhoan = @maTaiKhoan WHERE maNhanVien = @maNhanVien";
+                        using (var cmd2 = new MySqlCommand(updateEmployeeQuery, conn, transaction))
+                        {
+                            cmd2.Parameters.AddWithValue("@maTaiKhoan", account.MaTaiKhoan);
+                            cmd2.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                            cmd2.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine($"Error in transaction: {ex.Message}");
+                        return false;
+                    }
+                }
             }
         }
 
         /// <summary>
-        /// Updates an existing account in the taikhoan table
+        /// Updates an existing account in the taikhoan table.
         /// </summary>
         public bool Update(AccountDTO account)
         {
-            MySqlConnection conn = null;
-            try
+            using (var conn = connectDB.getConnection())
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "UPDATE taikhoan SET tenDangNhap = @tenDangNhap, matKhau = @matKhau, maNhomQuyen = @maNhomQuyen WHERE maTaiKhoan = @maTaiKhoan";
-                using (var command = new MySqlCommand(query, conn))
+                try
                 {
-                    command.Parameters.AddWithValue("@maTaiKhoan", account.MaTaiKhoan);
-                    command.Parameters.AddWithValue("@tenDangNhap", account.TenDangNhap);
-                    command.Parameters.AddWithValue("@matKhau", account.MatKhau);
-                    command.Parameters.AddWithValue("@maNhomQuyen", (object)account.MaNhomQuyen ?? DBNull.Value);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "UPDATE taikhoan SET tenDangNhap = @tenDangNhap, matKhau = @matKhau, maNhomQuyen = @maNhomQuyen, TinhTrang = @tinhTrang WHERE maTaiKhoan = @maTaiKhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@tenDangNhap", account.TenDangNhap);
+                        command.Parameters.AddWithValue("@matKhau", account.MatKhau);
+                        command.Parameters.AddWithValue("@maNhomQuyen", (object)account.MaNhomQuyen ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@tinhTrang", account.TinhTrang);
+                        command.Parameters.AddWithValue("@maTaiKhoan", account.MaTaiKhoan);
+                        return command.ExecuteNonQuery() > 0;
+                    }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error updating account: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error updating account: {ex.Message}");
+                    return false;
+                }
             }
         }
 
         /// <summary>
-        /// Deletes an account from the taikhoan table
+        /// Updates the status (TinhTrang) of an account.
         /// </summary>
-        public bool Delete(string maTaiKhoan)
+        public bool UpdateStatus(string maTaiKhoan, bool newStatus)
         {
-            MySqlConnection conn = null;
-            try
+            using (var conn = connectDB.getConnection())
             {
-                conn = connectDB.getConnection();
-                conn.Open();
-                string query = "DELETE FROM taikhoan WHERE maTaiKhoan = @maTaiKhoan";
-                using (var command = new MySqlCommand(query, conn))
+                try
                 {
-                    command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
-                    return command.ExecuteNonQuery() > 0;
+                    conn.Open();
+                    string query = "UPDATE taikhoan SET TinhTrang = @tinhTrang WHERE maTaiKhoan = @maTaiKhoan";
+                    using (var command = new MySqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@tinhTrang", newStatus);
+                        command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error updating account status: {ex.Message}");
+                    return false;
                 }
             }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error deleting account: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                connectDB.closeConnection(conn);
-            }
         }
+
+        /*
+        /// The physical delete logic is replaced by UpdateStatus (toggling TinhTrang).
+        /// This method is kept here for reference but should not be used.
+        public bool Delete(string maTaiKhoan)
+        {
+            // ... original delete code ...
+        }
+        */
+
 
         /// <summary>
         /// Searches for accounts by maTaiKhoan or tenDangNhap
@@ -125,7 +296,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 MaTaiKhoan = reader.GetString("maTaiKhoan"),
                                 TenDangNhap = reader.GetString("tenDangNhap"),
                                 MatKhau = reader.GetString("matKhau"),
-                                MaNhomQuyen = reader.IsDBNull(reader.GetOrdinal("maNhomQuyen")) ? null : reader.GetString("maNhomQuyen")
+                                TinhTrang = reader.GetBoolean("TinhTrang")
                             });
                         }
                     }
@@ -142,4 +313,5 @@ namespace Quan_Ly_Nhan_Su.DAO
             return accounts;
         }
     }
+
 }
