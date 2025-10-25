@@ -34,6 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel9 = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,7 +66,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.namBt = new System.Windows.Forms.RadioButton();
             this.nuBt = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -167,6 +167,18 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(505, 66);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._3643746_add_friend_member_people_plus_icon;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(50, 50);
+            this.label1.MinimumSize = new System.Drawing.Size(50, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 50);
+            this.label1.TabIndex = 0;
             // 
             // label2
             // 
@@ -590,18 +602,6 @@
             this.nuBt.TabStop = true;
             this.nuBt.Text = "Nữ";
             this.nuBt.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._3643746_add_friend_member_people_plus_icon;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.MaximumSize = new System.Drawing.Size(50, 50);
-            this.label1.MinimumSize = new System.Drawing.Size(50, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 50);
-            this.label1.TabIndex = 0;
             // 
             // ThemTuyenDungForm
             // 

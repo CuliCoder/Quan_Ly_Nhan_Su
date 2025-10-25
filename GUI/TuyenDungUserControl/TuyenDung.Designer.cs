@@ -28,44 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TuyenDung));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TuyenDung));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Label();
+            this.hanNopDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableTuyenDung = new System.Windows.Forms.DataGridView();
             this.maTuyenDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hocVan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.doTuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slHoSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongCanTuyen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongNop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongDaTuyen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hanNop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mucLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hanNopHoSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mucLuongToiDa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mucLuongToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hanNopDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableTuyenDung)).BeginInit();
-            this.flowLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -101,6 +102,24 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1019, 59);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(982, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 25);
+            this.label1.TabIndex = 11;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // flowLayoutPanel4
             // 
             this.flowLayoutPanel4.AutoSize = true;
@@ -130,6 +149,64 @@
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+            this.label2.Location = new System.Drawing.Point(60, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label2.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 25);
+            this.label2.TabIndex = 4;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.AutoSize = true;
+            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel5.Controls.Add(this.button1);
+            this.flowLayoutPanel5.Controls.Add(this.label3);
+            this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(782, 15);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(77, 27);
+            this.flowLayoutPanel5.TabIndex = 14;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Sửa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.Location = new System.Drawing.Point(50, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label3.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 25);
+            this.label3.TabIndex = 4;
             // 
             // flowLayoutPanel2
             // 
@@ -161,6 +238,20 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
+            this.label7.Location = new System.Drawing.Point(75, 0);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label7.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 25);
+            this.label7.TabIndex = 4;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -189,6 +280,40 @@
             this.tbSearch.TabIndex = 1;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_TextChanged);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(229, 0);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(25, 25);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // hanNopDate
+            // 
+            this.hanNopDate.Location = new System.Drawing.Point(213, 15);
+            this.hanNopDate.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.hanNopDate.MaximumSize = new System.Drawing.Size(150, 27);
+            this.hanNopDate.MinimumSize = new System.Drawing.Size(150, 27);
+            this.hanNopDate.Name = "hanNopDate";
+            this.hanNopDate.Size = new System.Drawing.Size(150, 27);
+            this.hanNopDate.TabIndex = 12;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(51, 15);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.dateTimePicker1.MaximumSize = new System.Drawing.Size(150, 27);
+            this.dateTimePicker1.MinimumSize = new System.Drawing.Size(150, 27);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(150, 27);
+            this.dateTimePicker1.TabIndex = 13;
+            // 
             // tableTuyenDung
             // 
             this.tableTuyenDung.AllowUserToAddRows = false;
@@ -213,10 +338,11 @@
             this.hocVan,
             this.gioiTinh,
             this.doTuoi,
-            this.slHoSo,
+            this.soLuongCanTuyen,
+            this.soLuongNop,
             this.soLuongDaTuyen,
-            this.hanNop,
-            this.mucLuong,
+            this.hanNopHoSo,
+            this.mucLuongToiDa,
             this.mucLuongToiThieu});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -271,12 +397,19 @@
             this.doTuoi.Name = "doTuoi";
             this.doTuoi.ReadOnly = true;
             // 
-            // slHoSo
+            // soLuongCanTuyen
             // 
-            this.slHoSo.DataPropertyName = "SoLuongNopHoSo";
-            this.slHoSo.HeaderText = "SL Hồ sơ";
-            this.slHoSo.Name = "slHoSo";
-            this.slHoSo.ReadOnly = true;
+            this.soLuongCanTuyen.DataPropertyName = "SoLuongCanTuyen";
+            this.soLuongCanTuyen.HeaderText = "SL Cần Tuyển";
+            this.soLuongCanTuyen.Name = "soLuongCanTuyen";
+            this.soLuongCanTuyen.ReadOnly = true;
+            // 
+            // soLuongNop
+            // 
+            this.soLuongNop.DataPropertyName = "SoLuongNop";
+            this.soLuongNop.HeaderText = "SL Hồ sơ";
+            this.soLuongNop.Name = "soLuongNop";
+            this.soLuongNop.ReadOnly = true;
             // 
             // soLuongDaTuyen
             // 
@@ -285,19 +418,19 @@
             this.soLuongDaTuyen.Name = "soLuongDaTuyen";
             this.soLuongDaTuyen.ReadOnly = true;
             // 
-            // hanNop
+            // hanNopHoSo
             // 
-            this.hanNop.DataPropertyName = "HanNopHoSo";
-            this.hanNop.HeaderText = "Hạn Nộp";
-            this.hanNop.Name = "hanNop";
-            this.hanNop.ReadOnly = true;
+            this.hanNopHoSo.DataPropertyName = "HanNopHoSo";
+            this.hanNopHoSo.HeaderText = "Hạn Nộp";
+            this.hanNopHoSo.Name = "hanNopHoSo";
+            this.hanNopHoSo.ReadOnly = true;
             // 
-            // mucLuong
+            // mucLuongToiDa
             // 
-            this.mucLuong.DataPropertyName = "MucLuongToiDa";
-            this.mucLuong.HeaderText = "Mức Lương Tối Đa";
-            this.mucLuong.Name = "mucLuong";
-            this.mucLuong.ReadOnly = true;
+            this.mucLuongToiDa.DataPropertyName = "MucLuongToiDa";
+            this.mucLuongToiDa.HeaderText = "Mức Lương Tối Đa";
+            this.mucLuongToiDa.Name = "mucLuongToiDa";
+            this.mucLuongToiDa.ReadOnly = true;
             // 
             // mucLuongToiThieu
             // 
@@ -305,130 +438,6 @@
             this.mucLuongToiThieu.HeaderText = "Mức Lương Tối Thiểu";
             this.mucLuongToiThieu.Name = "mucLuongToiThieu";
             this.mucLuongToiThieu.ReadOnly = true;
-            // 
-            // hanNopDate
-            // 
-            this.hanNopDate.Location = new System.Drawing.Point(213, 15);
-            this.hanNopDate.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.hanNopDate.MaximumSize = new System.Drawing.Size(150, 27);
-            this.hanNopDate.MinimumSize = new System.Drawing.Size(150, 27);
-            this.hanNopDate.Name = "hanNopDate";
-            this.hanNopDate.Size = new System.Drawing.Size(150, 27);
-            this.hanNopDate.TabIndex = 12;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(51, 15);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.dateTimePicker1.MaximumSize = new System.Drawing.Size(150, 27);
-            this.dateTimePicker1.MinimumSize = new System.Drawing.Size(150, 27);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 27);
-            this.dateTimePicker1.TabIndex = 13;
-            // 
-            // flowLayoutPanel5
-            // 
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel5.Controls.Add(this.button1);
-            this.flowLayoutPanel5.Controls.Add(this.label3);
-            this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(782, 15);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(77, 27);
-            this.flowLayoutPanel5.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 25);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Sửa";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(982, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 25);
-            this.label1.TabIndex = 11;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(60, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label2.MinimumSize = new System.Drawing.Size(25, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 25);
-            this.label2.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(50, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label3.MinimumSize = new System.Drawing.Size(25, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 25);
-            this.label3.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(75, 0);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label7.MinimumSize = new System.Drawing.Size(25, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 25);
-            this.label7.TabIndex = 4;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(229, 0);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(25, 25);
-            this.btnSearch.TabIndex = 0;
-            this.btnSearch.Click += new System.EventHandler(this.label3_Click);
             // 
             // TuyenDung
             // 
@@ -443,13 +452,13 @@
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableTuyenDung)).EndInit();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -468,21 +477,22 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label btnSearch;
         private System.Windows.Forms.DataGridView tableTuyenDung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maTuyenDung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn chucVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hocVan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gioiTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doTuoi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slHoSo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDaTuyen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hanNop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuongToiThieu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker hanNopDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maTuyenDung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn chucVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hocVan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gioiTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doTuoi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongCanTuyen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongNop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDaTuyen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hanNopHoSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuongToiDa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuongToiThieu;
     }
 }

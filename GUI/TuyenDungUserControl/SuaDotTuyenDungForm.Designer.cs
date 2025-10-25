@@ -35,6 +35,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel9 = new System.Windows.Forms.FlowLayoutPanel();
@@ -66,7 +67,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.namBt = new System.Windows.Forms.RadioButton();
             this.nuBt = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -142,6 +142,7 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Lưu Thông Tin";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -167,6 +168,18 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(500, 60);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(50, 50);
+            this.label1.MinimumSize = new System.Drawing.Size(50, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 50);
+            this.label1.TabIndex = 0;
             // 
             // label2
             // 
@@ -591,18 +604,6 @@
             this.nuBt.TabStop = true;
             this.nuBt.Text = "Nữ";
             this.nuBt.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.MaximumSize = new System.Drawing.Size(50, 50);
-            this.label1.MinimumSize = new System.Drawing.Size(50, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 50);
-            this.label1.TabIndex = 0;
             // 
             // SuaDotTuyenDungForm
             // 
