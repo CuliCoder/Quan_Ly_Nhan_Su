@@ -77,9 +77,6 @@
             this.flowLayoutPanel10 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel9 = new System.Windows.Forms.FlowLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -97,7 +94,6 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel11.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
-            this.flowLayoutPanel9.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -737,7 +733,6 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel11, 2, 1);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel10, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel9, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel3, 3, 1);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel2, 4, 1);
@@ -771,6 +766,7 @@
             // 
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox10.Location = new System.Drawing.Point(37, 41);
             this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.MinimumSize = new System.Drawing.Size(150, 25);
@@ -809,6 +805,7 @@
             // 
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox9.Location = new System.Drawing.Point(37, 41);
             this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.MinimumSize = new System.Drawing.Size(150, 25);
@@ -827,44 +824,6 @@
             this.label24.Size = new System.Drawing.Size(154, 15);
             this.label24.TabIndex = 0;
             this.label24.Text = "Mã nhân viên";
-            // 
-            // flowLayoutPanel9
-            // 
-            this.flowLayoutPanel9.AutoSize = true;
-            this.flowLayoutPanel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel9.Controls.Add(this.comboBox1);
-            this.flowLayoutPanel9.Controls.Add(this.label12);
-            this.flowLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel9.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel9.Location = new System.Drawing.Point(2, 40);
-            this.flowLayoutPanel9.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel9.Name = "flowLayoutPanel9";
-            this.flowLayoutPanel9.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.flowLayoutPanel9.Size = new System.Drawing.Size(224, 68);
-            this.flowLayoutPanel9.TabIndex = 10;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(38, 44);
-            this.comboBox1.MaximumSize = new System.Drawing.Size(150, 0);
-            this.comboBox1.MinimumSize = new System.Drawing.Size(150, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label12.Location = new System.Drawing.Point(35, 24);
-            this.label12.Margin = new System.Windows.Forms.Padding(0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(156, 17);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Hình thức tuyển";
             // 
             // label3
             // 
@@ -899,6 +858,7 @@
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(37, 41);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.MinimumSize = new System.Drawing.Size(150, 25);
@@ -937,6 +897,7 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(37, 41);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.MinimumSize = new System.Drawing.Size(150, 25);
@@ -979,8 +940,6 @@
             this.flowLayoutPanel11.PerformLayout();
             this.flowLayoutPanel10.ResumeLayout(false);
             this.flowLayoutPanel10.PerformLayout();
-            this.flowLayoutPanel9.ResumeLayout(false);
-            this.flowLayoutPanel9.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
@@ -1041,14 +1000,11 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel10;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label12;
     }
 }

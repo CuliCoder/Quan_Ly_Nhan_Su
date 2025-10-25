@@ -31,6 +31,7 @@
             System.Windows.Forms.ComboBox comboBox2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UngVien));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
@@ -69,6 +70,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtDanTocLb = new System.Windows.Forms.Label();
+            this.txtChuyenNganhLb = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtHonNhanLB = new System.Windows.Forms.Label();
             this.txtHonNhan = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -95,9 +99,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtTenLb = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtChuyenNganhLb = new System.Windows.Forms.Label();
-            this.txtDanTocLb = new System.Windows.Forms.Label();
             comboBox2 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -318,6 +319,7 @@
             // 
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
             this.tbSearch.MaximumSize = new System.Drawing.Size(229, 25);
@@ -641,13 +643,21 @@
             this.tableData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tableData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tableData.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tableData.DefaultCellStyle = dataGridViewCellStyle2;
             this.tableData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableData.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.tableData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -737,6 +747,46 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1019, 186);
             this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // txtDanTocLb
+            // 
+            this.txtDanTocLb.AutoSize = true;
+            this.txtDanTocLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDanTocLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtDanTocLb.Location = new System.Drawing.Point(889, 114);
+            this.txtDanTocLb.Margin = new System.Windows.Forms.Padding(3);
+            this.txtDanTocLb.Name = "txtDanTocLb";
+            this.txtDanTocLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.txtDanTocLb.Size = new System.Drawing.Size(127, 31);
+            this.txtDanTocLb.TabIndex = 54;
+            this.txtDanTocLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtChuyenNganhLb
+            // 
+            this.txtChuyenNganhLb.AutoSize = true;
+            this.txtChuyenNganhLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtChuyenNganhLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtChuyenNganhLb.Location = new System.Drawing.Point(889, 77);
+            this.txtChuyenNganhLb.Margin = new System.Windows.Forms.Padding(3);
+            this.txtChuyenNganhLb.Name = "txtChuyenNganhLb";
+            this.txtChuyenNganhLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.txtChuyenNganhLb.Size = new System.Drawing.Size(127, 31);
+            this.txtChuyenNganhLb.TabIndex = 53;
+            this.txtChuyenNganhLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label4.Location = new System.Drawing.Point(741, 114);
+            this.label4.Margin = new System.Windows.Forms.Padding(3);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.label4.Size = new System.Drawing.Size(142, 31);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "Dân Tộc";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtHonNhanLB
             // 
@@ -1088,46 +1138,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label4.Location = new System.Drawing.Point(741, 114);
-            this.label4.Margin = new System.Windows.Forms.Padding(3);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(142, 31);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "Dân Tộc";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtChuyenNganhLb
-            // 
-            this.txtChuyenNganhLb.AutoSize = true;
-            this.txtChuyenNganhLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtChuyenNganhLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtChuyenNganhLb.Location = new System.Drawing.Point(889, 77);
-            this.txtChuyenNganhLb.Margin = new System.Windows.Forms.Padding(3);
-            this.txtChuyenNganhLb.Name = "txtChuyenNganhLb";
-            this.txtChuyenNganhLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtChuyenNganhLb.Size = new System.Drawing.Size(127, 31);
-            this.txtChuyenNganhLb.TabIndex = 53;
-            this.txtChuyenNganhLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtDanTocLb
-            // 
-            this.txtDanTocLb.AutoSize = true;
-            this.txtDanTocLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDanTocLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtDanTocLb.Location = new System.Drawing.Point(889, 114);
-            this.txtDanTocLb.Margin = new System.Windows.Forms.Padding(3);
-            this.txtDanTocLb.Name = "txtDanTocLb";
-            this.txtDanTocLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtDanTocLb.Size = new System.Drawing.Size(127, 31);
-            this.txtDanTocLb.TabIndex = 54;
-            this.txtDanTocLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UngVien
             // 

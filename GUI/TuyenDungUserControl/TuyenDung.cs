@@ -15,14 +15,14 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         {
             InitializeComponent();
             list = bus.GetAll();
-            fillDataToTable();
+            fillDataToTable(list);
         }
 
-        public void fillDataToTable()
+        public void fillDataToTable(List<RecruitmentBatchDTO> listData)
         {
             tableTuyenDung.AutoGenerateColumns = false;
             tableTuyenDung.DataSource = null;
-            tableTuyenDung.DataSource = list;
+            tableTuyenDung.DataSource = listData;
             tableTuyenDung.ClearSelection();
         }
 
@@ -30,7 +30,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         {
             MessageBox.Show("Thêm mới thành công");
             list = bus.GetAll();
-            fillDataToTable(); 
+            fillDataToTable(list); 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -39,6 +39,13 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             form.luuThongTinForm += luuThanhcong;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.ShowDialog(); 
+        }
+
+        private void getDataSearch()
+        {
+            string keyWord = tbSearch.Text.Trim();
+            List<RecruitmentBatchDTO> listSearch = bus.Search(keyWord);
+            fillDataToTable(listSearch);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -66,13 +73,40 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 {
                     MessageBox.Show("Xóa thành công!");
                     list = bus.GetAll();
-                    fillDataToTable();
+                    fillDataToTable(list);
                 }
                 else
                 {
                     MessageBox.Show("Xóa thất bại!");
                 }
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            getDataSearch();
+        }
+
+        private void tbSearch_TextChanged(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                getDataSearch();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            fillDataToTable(list);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SuaDotTuyenDungForm form = new SuaDotTuyenDungForm();
+            //form.luuThongTinForm += luuThanhcong;
+
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.ShowDialog();
         }
     }
 }
