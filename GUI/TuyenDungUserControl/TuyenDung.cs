@@ -79,7 +79,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         {
             MessageBox.Show(m);
             list = bus.GetAll();
-            fillDataToTable(list); 
+            fillDataToTable(list);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             ThemTuyenDungForm form = new ThemTuyenDungForm();
             form.luuThongTinForm += (s, ev) => notificationAndReset(s, ev, "Lưu thành công");
             form.StartPosition = FormStartPosition.CenterScreen;
-            form.ShowDialog(); 
+            form.ShowDialog();
         }
 
         private void getDataSearch()
@@ -157,6 +157,19 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             form.luuThongTinForm += (s, ev) => notificationAndReset(s, ev, "Sửa thành công");
             form.StartPosition = FormStartPosition.CenterScreen;
             form.ShowDialog();
+        }
+
+        private void btnSearchDay_Click(object sender, EventArgs e)
+        {
+            DateTime startDay = startDaypicker.Value;
+            DateTime endDay = endDayPicker.Value;
+
+            if(startDay > endDay)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                return;
+            }
+            fillDataToTable(bus.searchDay(startDay, endDay));
         }
     }
 }

@@ -70,5 +70,14 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             return _dao.searchRecruitmentBatch(keyword);
         }
+
+        public List<RecruitmentBatchDTO> searchDay (DateTime startDay, DateTime endDay)
+        {
+            if(startDay == null || endDay == null) 
+            {
+                return new List<RecruitmentBatchDTO>(list);
+            }
+            return _dao.searchDayRecruitmentBatch(startDay, endDay);
+        }
     }
 }
