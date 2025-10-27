@@ -19,7 +19,9 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     {
         private PersonalProfileBLL busPerson = new PersonalProfileBLL();
         private CandidateBLL busCadi = new CandidateBLL();
+        private CandidateFullBLL busFullCadi = new CandidateFullBLL();
         private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
+     
         public event EventHandler luuThongTinForm;
         public FormThemUngVien()
         {
@@ -203,8 +205,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         }
 
         public CandidateDTO LayDuLieuUngVien()
-        {
-            // Gộp địa chỉ lại
+        {   
             
             RecruitmentBatchBLL busRe = new RecruitmentBatchBLL();
 
@@ -251,25 +252,18 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (!kiemTraThognTin())
+            if(kiemTraThognTin())
             {
-                MessageBox.Show("Thông tin nhập chưa hợp lệ. Vui lòng kiểm tra lại các trường dữ liệu.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
+                CandidateDTO candidate = LayDuLieuUngVien();
 
-            PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
-            CandidateDTO candidate = LayDuLieuUngVien();
-
-            if (busCadi.CreateCadidateWPersonalProfile(personalProfile, candidate))
-            {
-                MessageBox.Show("Thêm ứng viên và hồ sơ cá nhân thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                luuThongTinForm?.Invoke(this, EventArgs.Empty);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Thêm thất bại! Dữ liệu đã được hoàn tác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                if (busFullCadi.CreateCadidateWPersonalProfile(personalProfile, candidate))
+                {
+                    busBatch.UpdateProfileCreate(candidate.MaTuyenDung);
+                    luuThongTinForm?.Invoke(this, EventArgs.Empty);
+                    this.Close();
+                }
+            }              
         }
 
 

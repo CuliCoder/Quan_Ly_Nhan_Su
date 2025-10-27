@@ -15,19 +15,29 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class UngVien : UserControl
     {
-        private CandidateFullBUS busFullData = new CandidateFullBUS();
-
+        private CandidateFullBLL busFullData = new CandidateFullBLL();
+        private static List<CandidateFullDTO> list;
+        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public UngVien()
         {        
             InitializeComponent();
             tableData.CellClick += tableData_CellClick;
             tableData.DataBindingComplete += dataTable_DataBindingComplete;
-            hienThiData();
+            list = busFullData.GetAll();
+            fillDataToTable(list);
+        }
+
+        private void luuThanhcong(object sender, EventArgs e)
+        {
+            MessageBox.Show("Thêm mới thành công");
+            busFullData.Refresh();
+            list = busFullData.GetAll();
+            fillDataToTable(list);
         }
         private void button2_Click(object sender, EventArgs e)
         {
             FormThemUngVien themUngVienForm = new FormThemUngVien();
-            //themUngVienForm.luuThongTinForm += luuThanhcong;
+            themUngVienForm.luuThongTinForm += luuThanhcong;
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
@@ -39,19 +49,13 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             tuyenUngVienForm.ShowDialog();
         }
 
-       
-        //private void luuThanhcong(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("Thêm mới thành công");
-        //    list = bus.GetAll();
-        //    fillDataToTable();
-        //} 
 
-        private void hienThiData()
+        private void fillDataToTable(List<CandidateFullDTO> list)
         {
-            tableData.DataSource = busFullData.GetAll();
+            tableData.DataSource = null;
+            tableData.DataSource = list;
             //ẩn các bảng cột không cần thiêt
-            tableData.Columns["SoCmnd"].Visible = false;
+          
             tableData.Columns["DiaChi"].Visible = false;
             tableData.Columns["NgaySinh"].Visible = false;
             tableData.Columns["NoiCap"].Visible = false;
@@ -71,6 +75,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             //đổi tên các bảng
             tableData.Columns["MaUngVien"].HeaderText = "Mã Ứng Viên";
             tableData.Columns["MaTuyenDung"].HeaderText = "Mã Tuyển Dụng";
+            tableData.Columns["SoCmnd"].HeaderText = "Số căn cước";
             tableData.Columns["HoTen"].HeaderText = "Họ Tên";
             tableData.Columns["ChucVu"].HeaderText = "Chức Vụ";
             tableData.Columns["Email"].HeaderText = "Email";
@@ -81,6 +86,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Đưa các cột cần lên đầu
             tableData.Columns["MaUngVien"].DisplayIndex = 0;
             tableData.Columns["MaTuyenDung"].DisplayIndex = 1;
+            tableData.Columns["SoCmnd"].DisplayIndex = 2;
 
 
         }
@@ -129,19 +135,18 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             txtHoSoTuyen.Text = candidate.SoLuongDaTuyen.ToString();
             txtTuoi.Text = candidate.DoTuoi;
             txtGoiTinhTuyenDung.Text = candidate.GioiTinhTuyenDung;
-            // Ảnh
-            //try
-            //{
-            //    string imagePath = Path.Combine(Application.StartupPath, "Images", candidate.Anh);
-            //    if (File.Exists(imagePath))
-            //        pictureBox1.Image = Image.FromFile(imagePath);
-            //    else
-            //        pictureBox1.Image = null;
-            //}
-            //catch
-            //{
-            //    pictureBox1.Image = null;
-            //}
+            try
+            {
+                string imagePath = Path.Combine(Application.StartupPath, "Images", candidate.HinhAnh);
+                if (File.Exists(imagePath))     
+                    pictureBox1.Image = Image.FromFile(imagePath);
+                else
+                    pictureBox1.Image = null;
+            }
+            catch
+            {
+                pictureBox1.Image = null;
+            }
         }
 
         private void tableData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -152,10 +157,50 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 string maUngVien = selectedRow.Cells["maUngVien"].Value.ToString();
                 CandidateFullDTO candidateFullDTO = busFullData.GetById(maUngVien);
                 DisplayCandidateDetails(candidateFullDTO);
-                    
+        
             }
         }
 
-   
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (tableData.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xóa");
+                return;
+            }
+
+            DataGridViewRow selectedRow = tableData.CurrentRow;
+            string maUngVien = selectedRow.Cells["MaUngVien"].Value.ToString();
+            string soCccd = selectedRow.Cells["SoCmnd"].Value.ToString();
+            string maTuyenDung = selectedRow.Cells["MaTuyenDung"].Value.ToString();
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc muốn xóa ứng viên '{maUngVien}' không?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                bool isDeleted = busFullData.DeleteCadidateWithProfile(soCccd, maUngVien);
+                if (isDeleted)
+                {
+                    if(busBatch.UpdateProfileDelete(maTuyenDung))
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                        busFullData.Refresh();
+                        list = busFullData.GetAll();
+                        fillDataToTable(list);
+                    }else
+                    {
+                        MessageBox.Show("Cập nhật số lượng thất bại");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!");
+                }
+            }
+        }
     }
 }

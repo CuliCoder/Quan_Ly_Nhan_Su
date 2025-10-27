@@ -9,7 +9,7 @@ namespace Quan_Ly_Nhan_Su.BLL
     {
         private readonly CandidateDAO _dao;
         private static List<CandidateDTO> list;
-
+        
         public CandidateBLL()
         {
             _dao = new CandidateDAO();
@@ -40,14 +40,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             return false;
         }
 
-        public bool CreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
-        {
-            if(_dao.CreateCandidateWithProfile(perDTO, cadiDto))
-            {
-                return true;
-            }
-            return false;
-        }
+
 
         public bool CheckId(string id)
         {
@@ -80,6 +73,16 @@ namespace Quan_Ly_Nhan_Su.BLL
                 list.RemoveAll(x => x.MaUngVien == maUngVien);
 
             return success;
+        }
+
+        public bool DeleteList(string maUngVien)
+        {
+            if (maUngVien.Length > 0)
+            {
+                list.RemoveAll(x => x.MaUngVien == maUngVien);
+                return true;
+            }
+            return false;
         }
 
         public List<CandidateDTO> Search(string keyword)

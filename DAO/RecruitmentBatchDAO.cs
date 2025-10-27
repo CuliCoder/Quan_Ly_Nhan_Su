@@ -5,6 +5,7 @@ using System;
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.DAO
@@ -217,7 +218,58 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return false;
             }
         }
-
+        public bool updateProfileCreate(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soLuongNopHoSo = soLuongNopHoSo + 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
+        public bool updateProfileDelete(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soLuongNopHoSo = soLuongNopHoSo - 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Deletes a recruitment batch from the dottuyendung table
         /// </summary>

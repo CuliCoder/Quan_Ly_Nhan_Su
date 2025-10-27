@@ -55,6 +55,34 @@ namespace Quan_Ly_Nhan_Su.BLL
             return success;
         }
 
+        public bool UpdateProfileCreate(string maTuyenDung)
+        {
+            if (_dao.updateProfileCreate(maTuyenDung))
+            {
+                RecruitmentBatchDTO dto = list.FirstOrDefault(x => x.MaTuyenDung == maTuyenDung);
+                if(dto != null)
+                {
+                    dto.SoLuongNop += 1;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool UpdateProfileDelete(string maTuyenDung)
+        {
+            if (_dao.updateProfileDelete(maTuyenDung))
+            {
+                RecruitmentBatchDTO dto = list.FirstOrDefault(x => x.MaTuyenDung == maTuyenDung);
+                if (dto != null)
+                {
+                    dto.SoLuongNop -= 1;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool Delete(string maTuyenDung)
         {
             bool success = _dao.Delete(maTuyenDung);

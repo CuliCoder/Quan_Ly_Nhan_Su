@@ -134,7 +134,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(718, 659);
+            this.panel1.Size = new System.Drawing.Size(1077, 1014);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -146,13 +146,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(40, 3, 40, 3);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(60, 5, 60, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.20908F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.79092F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 657);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1075, 1012);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -163,7 +163,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(716, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1075, 62);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -171,12 +171,12 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._9035021_person_add_icon32X32;
-            this.label1.Location = new System.Drawing.Point(9, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 3, 3, 3);
-            this.label1.MaximumSize = new System.Drawing.Size(40, 40);
-            this.label1.MinimumSize = new System.Drawing.Size(40, 40);
+            this.label1.Location = new System.Drawing.Point(14, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(14, 5, 4, 5);
+            this.label1.MaximumSize = new System.Drawing.Size(60, 62);
+            this.label1.MinimumSize = new System.Drawing.Size(60, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 40);
+            this.label1.Size = new System.Drawing.Size(60, 62);
             this.label1.TabIndex = 0;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -185,12 +185,12 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label2.Location = new System.Drawing.Point(55, 3);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.MaximumSize = new System.Drawing.Size(107, 40);
-            this.label2.MinimumSize = new System.Drawing.Size(107, 40);
+            this.label2.Location = new System.Drawing.Point(82, 5);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label2.MaximumSize = new System.Drawing.Size(160, 62);
+            this.label2.MinimumSize = new System.Drawing.Size(160, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 40);
+            this.label2.Size = new System.Drawing.Size(160, 62);
             this.label2.TabIndex = 0;
             this.label2.Text = "Thêm ứng viên";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -223,7 +223,8 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel5, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.txtPath, 3, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 43);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 67);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -232,7 +233,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(710, 384);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1067, 590);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // flowLayoutPanel11
@@ -243,10 +244,9 @@
             this.flowLayoutPanel11.Controls.Add(this.label12);
             this.flowLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel11.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel11.Location = new System.Drawing.Point(179, 128);
-            this.flowLayoutPanel11.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel11.Location = new System.Drawing.Point(269, 199);
             this.flowLayoutPanel11.Name = "flowLayoutPanel11";
-            this.flowLayoutPanel11.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel11.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel11.TabIndex = 10;
             // 
             // danTocTb
@@ -254,22 +254,20 @@
             this.danTocTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.danTocTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.danTocTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.danTocTb.Location = new System.Drawing.Point(2, 32);
-            this.danTocTb.Margin = new System.Windows.Forms.Padding(2);
-            this.danTocTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.danTocTb.Location = new System.Drawing.Point(3, 52);
+            this.danTocTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.danTocTb.Multiline = true;
             this.danTocTb.Name = "danTocTb";
-            this.danTocTb.Size = new System.Drawing.Size(150, 25);
+            this.danTocTb.Size = new System.Drawing.Size(224, 37);
             this.danTocTb.TabIndex = 1;
             // 
             // label12
             // 
             this.label12.Dock = System.Windows.Forms.DockStyle.Top;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(2, 15);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(3, 26);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(150, 15);
+            this.label12.Size = new System.Drawing.Size(224, 23);
             this.label12.TabIndex = 0;
             this.label12.Text = "Dân tộc";
             // 
@@ -281,10 +279,9 @@
             this.flowLayoutPanel6.Controls.Add(this.label7);
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel6.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(2, 65);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 101);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel6.TabIndex = 5;
             // 
             // maUngVienTb
@@ -292,22 +289,20 @@
             this.maUngVienTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maUngVienTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.maUngVienTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maUngVienTb.Location = new System.Drawing.Point(2, 32);
-            this.maUngVienTb.Margin = new System.Windows.Forms.Padding(2);
-            this.maUngVienTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.maUngVienTb.Location = new System.Drawing.Point(3, 52);
+            this.maUngVienTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.maUngVienTb.Multiline = true;
             this.maUngVienTb.Name = "maUngVienTb";
-            this.maUngVienTb.Size = new System.Drawing.Size(150, 25);
+            this.maUngVienTb.Size = new System.Drawing.Size(224, 37);
             this.maUngVienTb.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(2, 15);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(3, 26);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 15);
+            this.label7.Size = new System.Drawing.Size(224, 23);
             this.label7.TabIndex = 0;
             this.label7.Text = "Mã ứng viên";
             // 
@@ -319,10 +314,9 @@
             this.flowLayoutPanel2.Controls.Add(this.label4);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // maTuyenDungTb
@@ -330,22 +324,20 @@
             this.maTuyenDungTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maTuyenDungTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.maTuyenDungTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maTuyenDungTb.Location = new System.Drawing.Point(2, 32);
-            this.maTuyenDungTb.Margin = new System.Windows.Forms.Padding(2);
-            this.maTuyenDungTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.maTuyenDungTb.Location = new System.Drawing.Point(3, 52);
+            this.maTuyenDungTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.maTuyenDungTb.Multiline = true;
             this.maTuyenDungTb.Name = "maTuyenDungTb";
-            this.maTuyenDungTb.Size = new System.Drawing.Size(150, 25);
+            this.maTuyenDungTb.Size = new System.Drawing.Size(224, 37);
             this.maTuyenDungTb.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(3, 26);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 15);
+            this.label4.Size = new System.Drawing.Size(224, 23);
             this.label4.TabIndex = 0;
             this.label4.Text = "Mã tuyển dụng";
             // 
@@ -357,10 +349,9 @@
             this.flowLayoutPanel3.Controls.Add(this.label3);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(179, 65);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(269, 101);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel3.TabIndex = 2;
             // 
             // emailTb
@@ -368,22 +359,20 @@
             this.emailTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.emailTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.emailTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTb.Location = new System.Drawing.Point(2, 32);
-            this.emailTb.Margin = new System.Windows.Forms.Padding(2);
-            this.emailTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.emailTb.Location = new System.Drawing.Point(3, 52);
+            this.emailTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.emailTb.Multiline = true;
             this.emailTb.Name = "emailTb";
-            this.emailTb.Size = new System.Drawing.Size(150, 25);
+            this.emailTb.Size = new System.Drawing.Size(224, 37);
             this.emailTb.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 15);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(3, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 15);
+            this.label3.Size = new System.Drawing.Size(224, 23);
             this.label3.TabIndex = 0;
             this.label3.Text = "Email";
             // 
@@ -395,10 +384,9 @@
             this.flowLayoutPanel22.Controls.Add(this.label23);
             this.flowLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel22.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel22.Location = new System.Drawing.Point(179, 2);
-            this.flowLayoutPanel22.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel22.Location = new System.Drawing.Point(269, 3);
             this.flowLayoutPanel22.Name = "flowLayoutPanel22";
-            this.flowLayoutPanel22.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel22.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel22.TabIndex = 21;
             // 
             // soDienThoaiTb
@@ -406,22 +394,20 @@
             this.soDienThoaiTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.soDienThoaiTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.soDienThoaiTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soDienThoaiTb.Location = new System.Drawing.Point(2, 32);
-            this.soDienThoaiTb.Margin = new System.Windows.Forms.Padding(2);
-            this.soDienThoaiTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.soDienThoaiTb.Location = new System.Drawing.Point(3, 52);
+            this.soDienThoaiTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.soDienThoaiTb.Multiline = true;
             this.soDienThoaiTb.Name = "soDienThoaiTb";
-            this.soDienThoaiTb.Size = new System.Drawing.Size(150, 25);
+            this.soDienThoaiTb.Size = new System.Drawing.Size(224, 37);
             this.soDienThoaiTb.TabIndex = 1;
             // 
             // label23
             // 
             this.label23.Dock = System.Windows.Forms.DockStyle.Top;
             this.label23.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(2, 15);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(3, 26);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(150, 15);
+            this.label23.Size = new System.Drawing.Size(224, 23);
             this.label23.TabIndex = 0;
             this.label23.Text = "Số điện thoại";
             // 
@@ -433,30 +419,29 @@
             this.flowLayoutPanel18.Controls.Add(this.label19);
             this.flowLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel18.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel18.Location = new System.Drawing.Point(2, 317);
-            this.flowLayoutPanel18.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel18.Location = new System.Drawing.Point(3, 493);
             this.flowLayoutPanel18.Name = "flowLayoutPanel18";
-            this.flowLayoutPanel18.Size = new System.Drawing.Size(173, 65);
+            this.flowLayoutPanel18.Size = new System.Drawing.Size(260, 94);
             this.flowLayoutPanel18.TabIndex = 17;
             // 
             // ngaySinhDate
             // 
             this.ngaySinhDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ngaySinhDate.Location = new System.Drawing.Point(3, 37);
-            this.ngaySinhDate.MaximumSize = new System.Drawing.Size(150, 25);
-            this.ngaySinhDate.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ngaySinhDate.Location = new System.Drawing.Point(4, 64);
+            this.ngaySinhDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ngaySinhDate.MaximumSize = new System.Drawing.Size(223, 25);
+            this.ngaySinhDate.MinimumSize = new System.Drawing.Size(223, 25);
             this.ngaySinhDate.Name = "ngaySinhDate";
-            this.ngaySinhDate.Size = new System.Drawing.Size(150, 25);
+            this.ngaySinhDate.Size = new System.Drawing.Size(223, 25);
             this.ngaySinhDate.TabIndex = 4;
             // 
             // label19
             // 
             this.label19.Dock = System.Windows.Forms.DockStyle.Top;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(2, 19);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Location = new System.Drawing.Point(3, 36);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(152, 15);
+            this.label19.Size = new System.Drawing.Size(225, 23);
             this.label19.TabIndex = 0;
             this.label19.Text = "Ngày sinh";
             // 
@@ -468,10 +453,9 @@
             this.flowLayoutPanel14.Controls.Add(this.label15);
             this.flowLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel14.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel14.Location = new System.Drawing.Point(2, 254);
-            this.flowLayoutPanel14.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel14.Location = new System.Drawing.Point(3, 395);
             this.flowLayoutPanel14.Name = "flowLayoutPanel14";
-            this.flowLayoutPanel14.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel14.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel14.TabIndex = 13;
             // 
             // gioiTinhTb
@@ -479,22 +463,20 @@
             this.gioiTinhTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gioiTinhTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.gioiTinhTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gioiTinhTb.Location = new System.Drawing.Point(2, 32);
-            this.gioiTinhTb.Margin = new System.Windows.Forms.Padding(2);
-            this.gioiTinhTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.gioiTinhTb.Location = new System.Drawing.Point(3, 52);
+            this.gioiTinhTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.gioiTinhTb.Multiline = true;
             this.gioiTinhTb.Name = "gioiTinhTb";
-            this.gioiTinhTb.Size = new System.Drawing.Size(150, 25);
+            this.gioiTinhTb.Size = new System.Drawing.Size(224, 37);
             this.gioiTinhTb.TabIndex = 1;
             // 
             // label15
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Top;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(2, 15);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(3, 26);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(150, 15);
+            this.label15.Size = new System.Drawing.Size(224, 23);
             this.label15.TabIndex = 0;
             this.label15.Text = "Giới tính";
             // 
@@ -506,10 +488,9 @@
             this.flowLayoutPanel10.Controls.Add(this.label11);
             this.flowLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel10.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel10.Location = new System.Drawing.Point(2, 191);
-            this.flowLayoutPanel10.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel10.Location = new System.Drawing.Point(3, 297);
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
-            this.flowLayoutPanel10.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel10.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel10.TabIndex = 9;
             // 
             // hoTenTb
@@ -517,22 +498,20 @@
             this.hoTenTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hoTenTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.hoTenTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hoTenTb.Location = new System.Drawing.Point(2, 32);
-            this.hoTenTb.Margin = new System.Windows.Forms.Padding(2);
-            this.hoTenTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.hoTenTb.Location = new System.Drawing.Point(3, 52);
+            this.hoTenTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.hoTenTb.Multiline = true;
             this.hoTenTb.Name = "hoTenTb";
-            this.hoTenTb.Size = new System.Drawing.Size(150, 25);
+            this.hoTenTb.Size = new System.Drawing.Size(224, 37);
             this.hoTenTb.TabIndex = 1;
             // 
             // label11
             // 
             this.label11.Dock = System.Windows.Forms.DockStyle.Top;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(2, 15);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(3, 26);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(150, 15);
+            this.label11.Size = new System.Drawing.Size(224, 23);
             this.label11.TabIndex = 0;
             this.label11.Text = "Họ tên";
             // 
@@ -544,10 +523,9 @@
             this.flowLayoutPanel7.Controls.Add(this.label8);
             this.flowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(2, 128);
-            this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(3, 199);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel7.TabIndex = 6;
             // 
             // cccdTb
@@ -555,22 +533,20 @@
             this.cccdTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cccdTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.cccdTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cccdTb.Location = new System.Drawing.Point(2, 32);
-            this.cccdTb.Margin = new System.Windows.Forms.Padding(2);
-            this.cccdTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cccdTb.Location = new System.Drawing.Point(3, 52);
+            this.cccdTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.cccdTb.Multiline = true;
             this.cccdTb.Name = "cccdTb";
-            this.cccdTb.Size = new System.Drawing.Size(150, 25);
+            this.cccdTb.Size = new System.Drawing.Size(224, 37);
             this.cccdTb.TabIndex = 1;
             // 
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Top;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(2, 15);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(3, 26);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(150, 15);
+            this.label8.Size = new System.Drawing.Size(224, 23);
             this.label8.TabIndex = 0;
             this.label8.Text = "CCCD";
             // 
@@ -582,10 +558,9 @@
             this.flowLayoutPanel25.Controls.Add(this.label26);
             this.flowLayoutPanel25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel25.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel25.Location = new System.Drawing.Point(533, 2);
-            this.flowLayoutPanel25.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel25.Location = new System.Drawing.Point(801, 3);
             this.flowLayoutPanel25.Name = "flowLayoutPanel25";
-            this.flowLayoutPanel25.Size = new System.Drawing.Size(175, 59);
+            this.flowLayoutPanel25.Size = new System.Drawing.Size(263, 92);
             this.flowLayoutPanel25.TabIndex = 35;
             // 
             // hocVanTb
@@ -593,22 +568,20 @@
             this.hocVanTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hocVanTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.hocVanTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hocVanTb.Location = new System.Drawing.Point(2, 32);
-            this.hocVanTb.Margin = new System.Windows.Forms.Padding(2);
-            this.hocVanTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.hocVanTb.Location = new System.Drawing.Point(3, 52);
+            this.hocVanTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.hocVanTb.Multiline = true;
             this.hocVanTb.Name = "hocVanTb";
-            this.hocVanTb.Size = new System.Drawing.Size(150, 25);
+            this.hocVanTb.Size = new System.Drawing.Size(224, 37);
             this.hocVanTb.TabIndex = 1;
             // 
             // label26
             // 
             this.label26.Dock = System.Windows.Forms.DockStyle.Top;
             this.label26.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(2, 15);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Location = new System.Drawing.Point(3, 26);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(150, 15);
+            this.label26.Size = new System.Drawing.Size(224, 23);
             this.label26.TabIndex = 0;
             this.label26.Text = "Trình độ học vấn";
             // 
@@ -620,10 +593,9 @@
             this.flowLayoutPanel19.Controls.Add(this.label20);
             this.flowLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel19.Location = new System.Drawing.Point(179, 191);
-            this.flowLayoutPanel19.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel19.Location = new System.Drawing.Point(269, 297);
             this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel19.TabIndex = 18;
             // 
             // duongTb
@@ -631,22 +603,20 @@
             this.duongTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.duongTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.duongTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.duongTb.Location = new System.Drawing.Point(2, 32);
-            this.duongTb.Margin = new System.Windows.Forms.Padding(2);
-            this.duongTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.duongTb.Location = new System.Drawing.Point(3, 52);
+            this.duongTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.duongTb.Multiline = true;
             this.duongTb.Name = "duongTb";
-            this.duongTb.Size = new System.Drawing.Size(150, 25);
+            this.duongTb.Size = new System.Drawing.Size(224, 37);
             this.duongTb.TabIndex = 1;
             // 
             // label20
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Top;
             this.label20.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(2, 15);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Location = new System.Drawing.Point(3, 26);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(150, 15);
+            this.label20.Size = new System.Drawing.Size(224, 23);
             this.label20.TabIndex = 0;
             this.label20.Text = "Đường";
             // 
@@ -658,10 +628,9 @@
             this.flowLayoutPanel23.Controls.Add(this.label24);
             this.flowLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel23.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel23.Location = new System.Drawing.Point(179, 254);
-            this.flowLayoutPanel23.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel23.Location = new System.Drawing.Point(269, 395);
             this.flowLayoutPanel23.Name = "flowLayoutPanel23";
-            this.flowLayoutPanel23.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel23.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel23.TabIndex = 22;
             // 
             // phxaTb
@@ -669,22 +638,20 @@
             this.phxaTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.phxaTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.phxaTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phxaTb.Location = new System.Drawing.Point(2, 32);
-            this.phxaTb.Margin = new System.Windows.Forms.Padding(2);
-            this.phxaTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.phxaTb.Location = new System.Drawing.Point(3, 52);
+            this.phxaTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.phxaTb.Multiline = true;
             this.phxaTb.Name = "phxaTb";
-            this.phxaTb.Size = new System.Drawing.Size(150, 25);
+            this.phxaTb.Size = new System.Drawing.Size(224, 37);
             this.phxaTb.TabIndex = 1;
             // 
             // label24
             // 
             this.label24.Dock = System.Windows.Forms.DockStyle.Top;
             this.label24.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(2, 15);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Location = new System.Drawing.Point(3, 26);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(150, 15);
+            this.label24.Size = new System.Drawing.Size(224, 23);
             this.label24.TabIndex = 0;
             this.label24.Text = "Phường / Xã";
             // 
@@ -696,10 +663,9 @@
             this.flowLayoutPanel4.Controls.Add(this.label5);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(179, 317);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(269, 493);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(173, 65);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(260, 94);
             this.flowLayoutPanel4.TabIndex = 3;
             // 
             // qhTb
@@ -707,22 +673,20 @@
             this.qhTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.qhTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.qhTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qhTb.Location = new System.Drawing.Point(2, 38);
-            this.qhTb.Margin = new System.Windows.Forms.Padding(2);
-            this.qhTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.qhTb.Location = new System.Drawing.Point(3, 54);
+            this.qhTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.qhTb.Multiline = true;
             this.qhTb.Name = "qhTb";
-            this.qhTb.Size = new System.Drawing.Size(150, 25);
+            this.qhTb.Size = new System.Drawing.Size(224, 37);
             this.qhTb.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(2, 21);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(3, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 15);
+            this.label5.Size = new System.Drawing.Size(224, 23);
             this.label5.TabIndex = 0;
             this.label5.Text = "Quận / Huyện";
             // 
@@ -734,10 +698,9 @@
             this.flowLayoutPanel8.Controls.Add(this.label9);
             this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel8.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(356, 2);
-            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(535, 3);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel8.TabIndex = 7;
             // 
             // tTpTb
@@ -745,22 +708,20 @@
             this.tTpTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tTpTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.tTpTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tTpTb.Location = new System.Drawing.Point(2, 32);
-            this.tTpTb.Margin = new System.Windows.Forms.Padding(2);
-            this.tTpTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.tTpTb.Location = new System.Drawing.Point(3, 52);
+            this.tTpTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.tTpTb.Multiline = true;
             this.tTpTb.Name = "tTpTb";
-            this.tTpTb.Size = new System.Drawing.Size(150, 25);
+            this.tTpTb.Size = new System.Drawing.Size(224, 37);
             this.tTpTb.TabIndex = 1;
             // 
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Top;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(2, 15);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(3, 26);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(150, 15);
+            this.label9.Size = new System.Drawing.Size(224, 23);
             this.label9.TabIndex = 0;
             this.label9.Text = "Tỉnh / TP";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -773,10 +734,9 @@
             this.flowLayoutPanel12.Controls.Add(this.label13);
             this.flowLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel12.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel12.Location = new System.Drawing.Point(356, 65);
-            this.flowLayoutPanel12.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel12.Location = new System.Drawing.Point(535, 101);
             this.flowLayoutPanel12.Name = "flowLayoutPanel12";
-            this.flowLayoutPanel12.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel12.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel12.TabIndex = 40;
             // 
             // noiCapTb
@@ -784,22 +744,20 @@
             this.noiCapTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.noiCapTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.noiCapTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noiCapTb.Location = new System.Drawing.Point(2, 32);
-            this.noiCapTb.Margin = new System.Windows.Forms.Padding(2);
-            this.noiCapTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.noiCapTb.Location = new System.Drawing.Point(3, 52);
+            this.noiCapTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.noiCapTb.Multiline = true;
             this.noiCapTb.Name = "noiCapTb";
-            this.noiCapTb.Size = new System.Drawing.Size(150, 25);
+            this.noiCapTb.Size = new System.Drawing.Size(224, 37);
             this.noiCapTb.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Top;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(2, 15);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(3, 26);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(150, 15);
+            this.label13.Size = new System.Drawing.Size(224, 23);
             this.label13.TabIndex = 0;
             this.label13.Text = "Nơi cấp";
             // 
@@ -810,20 +768,20 @@
             this.flowLayoutPanel9.Controls.Add(this.label10);
             this.flowLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel9.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel9.Location = new System.Drawing.Point(356, 128);
-            this.flowLayoutPanel9.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel9.Location = new System.Drawing.Point(535, 199);
             this.flowLayoutPanel9.Name = "flowLayoutPanel9";
-            this.flowLayoutPanel9.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel9.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel9.TabIndex = 30;
             // 
             // ngayCapDate
             // 
             this.ngayCapDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ngayCapDate.Location = new System.Drawing.Point(3, 31);
-            this.ngayCapDate.MaximumSize = new System.Drawing.Size(150, 25);
-            this.ngayCapDate.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ngayCapDate.Location = new System.Drawing.Point(4, 62);
+            this.ngayCapDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ngayCapDate.MaximumSize = new System.Drawing.Size(223, 25);
+            this.ngayCapDate.MinimumSize = new System.Drawing.Size(223, 25);
             this.ngayCapDate.Name = "ngayCapDate";
-            this.ngayCapDate.Size = new System.Drawing.Size(150, 25);
+            this.ngayCapDate.Size = new System.Drawing.Size(223, 25);
             this.ngayCapDate.TabIndex = 3;
             // 
             // label10
@@ -831,10 +789,9 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Top;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 11);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(3, 32);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(152, 17);
+            this.label10.Size = new System.Drawing.Size(225, 25);
             this.label10.TabIndex = 4;
             this.label10.Text = "Ngày cấp";
             // 
@@ -846,10 +803,9 @@
             this.flowLayoutPanel13.Controls.Add(this.label14);
             this.flowLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel13.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel13.Location = new System.Drawing.Point(356, 191);
-            this.flowLayoutPanel13.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel13.Location = new System.Drawing.Point(535, 297);
             this.flowLayoutPanel13.Name = "flowLayoutPanel13";
-            this.flowLayoutPanel13.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel13.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel13.TabIndex = 38;
             // 
             // mucLuongTb
@@ -857,22 +813,20 @@
             this.mucLuongTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mucLuongTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.mucLuongTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mucLuongTb.Location = new System.Drawing.Point(2, 32);
-            this.mucLuongTb.Margin = new System.Windows.Forms.Padding(2);
-            this.mucLuongTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.mucLuongTb.Location = new System.Drawing.Point(3, 52);
+            this.mucLuongTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.mucLuongTb.Multiline = true;
             this.mucLuongTb.Name = "mucLuongTb";
-            this.mucLuongTb.Size = new System.Drawing.Size(150, 25);
+            this.mucLuongTb.Size = new System.Drawing.Size(224, 37);
             this.mucLuongTb.TabIndex = 1;
             // 
             // label14
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Top;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(2, 15);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(3, 26);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(150, 15);
+            this.label14.Size = new System.Drawing.Size(224, 23);
             this.label14.TabIndex = 0;
             this.label14.Text = "Mức lương deal";
             // 
@@ -884,10 +838,9 @@
             this.flowLayoutPanel17.Controls.Add(this.label18);
             this.flowLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel17.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel17.Location = new System.Drawing.Point(356, 254);
-            this.flowLayoutPanel17.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel17.Location = new System.Drawing.Point(535, 395);
             this.flowLayoutPanel17.Name = "flowLayoutPanel17";
-            this.flowLayoutPanel17.Size = new System.Drawing.Size(173, 59);
+            this.flowLayoutPanel17.Size = new System.Drawing.Size(260, 92);
             this.flowLayoutPanel17.TabIndex = 37;
             // 
             // chuyenNganhTb
@@ -895,22 +848,20 @@
             this.chuyenNganhTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.chuyenNganhTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.chuyenNganhTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chuyenNganhTb.Location = new System.Drawing.Point(2, 32);
-            this.chuyenNganhTb.Margin = new System.Windows.Forms.Padding(2);
-            this.chuyenNganhTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.chuyenNganhTb.Location = new System.Drawing.Point(3, 52);
+            this.chuyenNganhTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.chuyenNganhTb.Multiline = true;
             this.chuyenNganhTb.Name = "chuyenNganhTb";
-            this.chuyenNganhTb.Size = new System.Drawing.Size(150, 25);
+            this.chuyenNganhTb.Size = new System.Drawing.Size(224, 37);
             this.chuyenNganhTb.TabIndex = 1;
             // 
             // label18
             // 
             this.label18.Dock = System.Windows.Forms.DockStyle.Top;
             this.label18.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(2, 15);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Location = new System.Drawing.Point(3, 26);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(150, 15);
+            this.label18.Size = new System.Drawing.Size(224, 23);
             this.label18.TabIndex = 0;
             this.label18.Text = "Chuyên ngành";
             // 
@@ -922,10 +873,9 @@
             this.flowLayoutPanel5.Controls.Add(this.label6);
             this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(356, 317);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(535, 493);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(173, 65);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(260, 94);
             this.flowLayoutPanel5.TabIndex = 39;
             // 
             // honNhanTb
@@ -933,22 +883,20 @@
             this.honNhanTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.honNhanTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.honNhanTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.honNhanTb.Location = new System.Drawing.Point(2, 38);
-            this.honNhanTb.Margin = new System.Windows.Forms.Padding(2);
-            this.honNhanTb.MinimumSize = new System.Drawing.Size(150, 25);
+            this.honNhanTb.Location = new System.Drawing.Point(3, 54);
+            this.honNhanTb.MinimumSize = new System.Drawing.Size(224, 37);
             this.honNhanTb.Multiline = true;
             this.honNhanTb.Name = "honNhanTb";
-            this.honNhanTb.Size = new System.Drawing.Size(150, 25);
+            this.honNhanTb.Size = new System.Drawing.Size(224, 37);
             this.honNhanTb.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(2, 21);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(3, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 15);
+            this.label6.Size = new System.Drawing.Size(224, 23);
             this.label6.TabIndex = 0;
             this.label6.Text = "Tình Trạng hôn nhân";
             // 
@@ -956,9 +904,10 @@
             // 
             this.txtPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPath.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtPath.Location = new System.Drawing.Point(534, 63);
+            this.txtPath.Location = new System.Drawing.Point(802, 98);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(173, 63);
+            this.txtPath.Size = new System.Drawing.Size(261, 98);
             this.txtPath.TabIndex = 41;
             this.txtPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -978,11 +927,12 @@
             this.tableLayoutPanel3.Controls.Add(this.button1, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.showHinh, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 433);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 667);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(710, 221);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1067, 340);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // btnChonAnh
@@ -990,11 +940,12 @@
             this.btnChonAnh.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnChonAnh.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnChonAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChonAnh.Location = new System.Drawing.Point(3, 188);
-            this.btnChonAnh.MaximumSize = new System.Drawing.Size(100, 30);
-            this.btnChonAnh.MinimumSize = new System.Drawing.Size(80, 30);
+            this.btnChonAnh.Location = new System.Drawing.Point(4, 289);
+            this.btnChonAnh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnChonAnh.MaximumSize = new System.Drawing.Size(150, 46);
+            this.btnChonAnh.MinimumSize = new System.Drawing.Size(120, 46);
             this.btnChonAnh.Name = "btnChonAnh";
-            this.btnChonAnh.Size = new System.Drawing.Size(98, 30);
+            this.btnChonAnh.Size = new System.Drawing.Size(148, 46);
             this.btnChonAnh.TabIndex = 4;
             this.btnChonAnh.Text = "Chọn Ảnh";
             this.btnChonAnh.UseVisualStyleBackColor = false;
@@ -1005,11 +956,12 @@
             this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(593, 188);
-            this.button3.MaximumSize = new System.Drawing.Size(100, 30);
-            this.button3.MinimumSize = new System.Drawing.Size(80, 30);
+            this.button3.Location = new System.Drawing.Point(890, 289);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button3.MaximumSize = new System.Drawing.Size(150, 46);
+            this.button3.MinimumSize = new System.Drawing.Size(120, 46);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 30);
+            this.button3.Size = new System.Drawing.Size(150, 46);
             this.button3.TabIndex = 2;
             this.button3.Text = "Lưu Thông Tin";
             this.button3.UseVisualStyleBackColor = false;
@@ -1020,11 +972,12 @@
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(504, 188);
-            this.button1.MaximumSize = new System.Drawing.Size(100, 30);
-            this.button1.MinimumSize = new System.Drawing.Size(80, 30);
+            this.button1.Location = new System.Drawing.Point(756, 289);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.MaximumSize = new System.Drawing.Size(150, 46);
+            this.button1.MinimumSize = new System.Drawing.Size(120, 46);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 30);
+            this.button1.Size = new System.Drawing.Size(126, 46);
             this.button1.TabIndex = 3;
             this.button1.Text = "Đóng";
             this.button1.UseVisualStyleBackColor = false;
@@ -1033,20 +986,22 @@
             // showHinh
             // 
             this.showHinh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.showHinh.Location = new System.Drawing.Point(107, 3);
+            this.showHinh.Location = new System.Drawing.Point(160, 5);
+            this.showHinh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.showHinh.Name = "showHinh";
-            this.showHinh.Size = new System.Drawing.Size(207, 215);
+            this.showHinh.Size = new System.Drawing.Size(313, 330);
             this.showHinh.TabIndex = 6;
             this.showHinh.TabStop = false;
             // 
             // FormThemUngVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 659);
+            this.ClientSize = new System.Drawing.Size(1077, 1014);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormThemUngVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ThemUngVienForm";

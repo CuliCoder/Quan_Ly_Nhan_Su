@@ -46,6 +46,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Label();
+            this.btnSearchDay = new System.Windows.Forms.Button();
             this.endDayPicker = new System.Windows.Forms.DateTimePicker();
             this.startDaypicker = new System.Windows.Forms.DateTimePicker();
             this.tableTuyenDung = new System.Windows.Forms.DataGridView();
@@ -60,7 +61,6 @@
             this.hanNopHoSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mucLuongToiDa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mucLuongToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearchDay = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
@@ -78,11 +78,12 @@
             this.tableLayoutPanel1.Controls.Add(this.tableTuyenDung, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.577922F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.42208F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1019, 616);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1528, 948);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -101,7 +102,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(1019, 59);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1528, 90);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // label1
@@ -113,12 +114,12 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(982, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label1.Location = new System.Drawing.Point(1474, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 23, 18, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(36, 37);
+            this.label1.MinimumSize = new System.Drawing.Size(36, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 25);
+            this.label1.Size = new System.Drawing.Size(36, 37);
             this.label1.TabIndex = 11;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -131,10 +132,10 @@
             this.flowLayoutPanel4.Controls.Add(this.button2);
             this.flowLayoutPanel4.Controls.Add(this.label2);
             this.flowLayoutPanel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(877, 15);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(18, 15, 18, 3);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1317, 23);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(27, 23, 27, 5);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(87, 27);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(130, 40);
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // button2
@@ -146,7 +147,7 @@
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(60, 25);
+            this.button2.Size = new System.Drawing.Size(90, 38);
             this.button2.TabIndex = 5;
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = true;
@@ -158,12 +159,12 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(60, 0);
+            this.label2.Location = new System.Drawing.Point(90, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label2.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label2.MaximumSize = new System.Drawing.Size(38, 38);
+            this.label2.MinimumSize = new System.Drawing.Size(38, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 25);
+            this.label2.Size = new System.Drawing.Size(38, 38);
             this.label2.TabIndex = 4;
             // 
             // flowLayoutPanel5
@@ -175,10 +176,10 @@
             this.flowLayoutPanel5.Controls.Add(this.button1);
             this.flowLayoutPanel5.Controls.Add(this.label3);
             this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(782, 15);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(1175, 23);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(27, 23, 0, 5);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(77, 27);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(115, 40);
             this.flowLayoutPanel5.TabIndex = 14;
             // 
             // button1
@@ -190,7 +191,7 @@
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 25);
+            this.button1.Size = new System.Drawing.Size(75, 38);
             this.button1.TabIndex = 5;
             this.button1.Text = "Sửa";
             this.button1.UseVisualStyleBackColor = true;
@@ -202,12 +203,12 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(50, 0);
+            this.label3.Location = new System.Drawing.Point(75, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label3.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label3.MaximumSize = new System.Drawing.Size(38, 38);
+            this.label3.MinimumSize = new System.Drawing.Size(38, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 25);
+            this.label3.Size = new System.Drawing.Size(38, 38);
             this.label3.TabIndex = 4;
             // 
             // flowLayoutPanel2
@@ -219,10 +220,10 @@
             this.flowLayoutPanel2.Controls.Add(this.button3);
             this.flowLayoutPanel2.Controls.Add(this.label7);
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(659, 15);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(18, 15, 3, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(992, 23);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(27, 23, 4, 5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(102, 27);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(152, 40);
             this.flowLayoutPanel2.TabIndex = 9;
             // 
             // button3
@@ -234,7 +235,7 @@
             this.button3.Location = new System.Drawing.Point(0, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.Size = new System.Drawing.Size(112, 38);
             this.button3.TabIndex = 7;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = true;
@@ -246,12 +247,12 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(75, 0);
+            this.label7.Location = new System.Drawing.Point(112, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label7.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label7.MaximumSize = new System.Drawing.Size(38, 38);
+            this.label7.MinimumSize = new System.Drawing.Size(38, 38);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 25);
+            this.label7.Size = new System.Drawing.Size(38, 38);
             this.label7.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -261,10 +262,10 @@
             this.flowLayoutPanel1.Controls.Add(this.tbSearch);
             this.flowLayoutPanel1.Controls.Add(this.btnSearch);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(381, 15);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 15, 6, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(578, 23);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(9, 23, 9, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(254, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(378, 45);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // tbSearch
@@ -274,11 +275,11 @@
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.tbSearch.MaximumSize = new System.Drawing.Size(229, 27);
-            this.tbSearch.MinimumSize = new System.Drawing.Size(229, 27);
+            this.tbSearch.MaximumSize = new System.Drawing.Size(342, 40);
+            this.tbSearch.MinimumSize = new System.Drawing.Size(342, 40);
             this.tbSearch.Multiline = true;
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(229, 27);
+            this.tbSearch.Size = new System.Drawing.Size(342, 40);
             this.tbSearch.TabIndex = 1;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_TextChanged);
             // 
@@ -289,31 +290,49 @@
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(229, 0);
+            this.btnSearch.Location = new System.Drawing.Point(342, 0);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(25, 27);
+            this.btnSearch.Size = new System.Drawing.Size(36, 40);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Click += new System.EventHandler(this.label3_Click);
             // 
+            // btnSearchDay
+            // 
+            this.btnSearchDay.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchDay.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnSearchDay.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSearchDay.Location = new System.Drawing.Point(439, 23);
+            this.btnSearchDay.Margin = new System.Windows.Forms.Padding(0, 23, 18, 0);
+            this.btnSearchDay.MaximumSize = new System.Drawing.Size(112, 42);
+            this.btnSearchDay.MinimumSize = new System.Drawing.Size(112, 42);
+            this.btnSearchDay.Name = "btnSearchDay";
+            this.btnSearchDay.Size = new System.Drawing.Size(112, 42);
+            this.btnSearchDay.TabIndex = 15;
+            this.btnSearchDay.Text = "Lọc";
+            this.btnSearchDay.UseVisualStyleBackColor = false;
+            this.btnSearchDay.Click += new System.EventHandler(this.btnSearchDay_Click);
+            // 
             // endDayPicker
             // 
-            this.endDayPicker.Location = new System.Drawing.Point(156, 15);
-            this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.endDayPicker.MaximumSize = new System.Drawing.Size(120, 27);
-            this.endDayPicker.MinimumSize = new System.Drawing.Size(120, 27);
+            this.endDayPicker.Location = new System.Drawing.Point(243, 23);
+            this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 23, 18, 0);
+            this.endDayPicker.MaximumSize = new System.Drawing.Size(178, 27);
+            this.endDayPicker.MinimumSize = new System.Drawing.Size(178, 27);
             this.endDayPicker.Name = "endDayPicker";
-            this.endDayPicker.Size = new System.Drawing.Size(120, 27);
+            this.endDayPicker.Size = new System.Drawing.Size(178, 27);
             this.endDayPicker.TabIndex = 12;
             // 
             // startDaypicker
             // 
-            this.startDaypicker.Location = new System.Drawing.Point(24, 15);
-            this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.startDaypicker.MaximumSize = new System.Drawing.Size(120, 27);
-            this.startDaypicker.MinimumSize = new System.Drawing.Size(120, 27);
+            this.startDaypicker.Location = new System.Drawing.Point(47, 23);
+            this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 23, 18, 0);
+            this.startDaypicker.MaximumSize = new System.Drawing.Size(178, 27);
+            this.startDaypicker.MinimumSize = new System.Drawing.Size(178, 27);
             this.startDaypicker.Name = "startDaypicker";
-            this.startDaypicker.Size = new System.Drawing.Size(120, 27);
+            this.startDaypicker.Size = new System.Drawing.Size(178, 27);
             this.startDaypicker.TabIndex = 13;
             // 
             // tableTuyenDung
@@ -355,19 +374,21 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.tableTuyenDung.DefaultCellStyle = dataGridViewCellStyle2;
             this.tableTuyenDung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableTuyenDung.Location = new System.Drawing.Point(0, 59);
+            this.tableTuyenDung.Location = new System.Drawing.Point(0, 90);
             this.tableTuyenDung.Margin = new System.Windows.Forms.Padding(0);
             this.tableTuyenDung.Name = "tableTuyenDung";
             this.tableTuyenDung.ReadOnly = true;
             this.tableTuyenDung.RowHeadersVisible = false;
+            this.tableTuyenDung.RowHeadersWidth = 62;
             this.tableTuyenDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tableTuyenDung.Size = new System.Drawing.Size(1019, 557);
+            this.tableTuyenDung.Size = new System.Drawing.Size(1528, 858);
             this.tableTuyenDung.TabIndex = 2;
             // 
             // maTuyenDung
             // 
             this.maTuyenDung.DataPropertyName = "MaTuyenDung";
             this.maTuyenDung.HeaderText = "Mã Tuyển Dụng";
+            this.maTuyenDung.MinimumWidth = 8;
             this.maTuyenDung.Name = "maTuyenDung";
             this.maTuyenDung.ReadOnly = true;
             // 
@@ -375,6 +396,7 @@
             // 
             this.chucVu.DataPropertyName = "ChucVu";
             this.chucVu.HeaderText = "Chức vụ";
+            this.chucVu.MinimumWidth = 8;
             this.chucVu.Name = "chucVu";
             this.chucVu.ReadOnly = true;
             // 
@@ -382,6 +404,7 @@
             // 
             this.hocVan.DataPropertyName = "HocVan";
             this.hocVan.HeaderText = "Học Vấn";
+            this.hocVan.MinimumWidth = 8;
             this.hocVan.Name = "hocVan";
             this.hocVan.ReadOnly = true;
             // 
@@ -389,6 +412,7 @@
             // 
             this.gioiTinh.DataPropertyName = "GioiTinh";
             this.gioiTinh.HeaderText = "Giới Tính";
+            this.gioiTinh.MinimumWidth = 8;
             this.gioiTinh.Name = "gioiTinh";
             this.gioiTinh.ReadOnly = true;
             // 
@@ -396,6 +420,7 @@
             // 
             this.doTuoi.DataPropertyName = "DoTuoi";
             this.doTuoi.HeaderText = "Độ Tuổi";
+            this.doTuoi.MinimumWidth = 8;
             this.doTuoi.Name = "doTuoi";
             this.doTuoi.ReadOnly = true;
             // 
@@ -403,6 +428,7 @@
             // 
             this.soLuongCanTuyen.DataPropertyName = "SoLuongCanTuyen";
             this.soLuongCanTuyen.HeaderText = "SL Cần Tuyển";
+            this.soLuongCanTuyen.MinimumWidth = 8;
             this.soLuongCanTuyen.Name = "soLuongCanTuyen";
             this.soLuongCanTuyen.ReadOnly = true;
             // 
@@ -410,6 +436,7 @@
             // 
             this.soLuongNop.DataPropertyName = "SoLuongNop";
             this.soLuongNop.HeaderText = "SL Hồ sơ";
+            this.soLuongNop.MinimumWidth = 8;
             this.soLuongNop.Name = "soLuongNop";
             this.soLuongNop.ReadOnly = true;
             // 
@@ -417,6 +444,7 @@
             // 
             this.soLuongDaTuyen.DataPropertyName = "SoLuongDaTuyen";
             this.soLuongDaTuyen.HeaderText = "SL đã tuyển";
+            this.soLuongDaTuyen.MinimumWidth = 8;
             this.soLuongDaTuyen.Name = "soLuongDaTuyen";
             this.soLuongDaTuyen.ReadOnly = true;
             // 
@@ -424,6 +452,7 @@
             // 
             this.hanNopHoSo.DataPropertyName = "HanNopHoSo";
             this.hanNopHoSo.HeaderText = "Hạn Nộp";
+            this.hanNopHoSo.MinimumWidth = 8;
             this.hanNopHoSo.Name = "hanNopHoSo";
             this.hanNopHoSo.ReadOnly = true;
             // 
@@ -431,6 +460,7 @@
             // 
             this.mucLuongToiDa.DataPropertyName = "MucLuongToiDa";
             this.mucLuongToiDa.HeaderText = "Mức Lương Tối Đa";
+            this.mucLuongToiDa.MinimumWidth = 8;
             this.mucLuongToiDa.Name = "mucLuongToiDa";
             this.mucLuongToiDa.ReadOnly = true;
             // 
@@ -438,35 +468,19 @@
             // 
             this.mucLuongToiThieu.DataPropertyName = "MucLuongToiThieu";
             this.mucLuongToiThieu.HeaderText = "Mức Lương Tối Thiểu";
+            this.mucLuongToiThieu.MinimumWidth = 8;
             this.mucLuongToiThieu.Name = "mucLuongToiThieu";
             this.mucLuongToiThieu.ReadOnly = true;
             // 
-            // btnSearchDay
-            // 
-            this.btnSearchDay.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSearchDay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchDay.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSearchDay.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSearchDay.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnSearchDay.Location = new System.Drawing.Point(288, 15);
-            this.btnSearchDay.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
-            this.btnSearchDay.MaximumSize = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.MinimumSize = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.Name = "btnSearchDay";
-            this.btnSearchDay.Size = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.TabIndex = 15;
-            this.btnSearchDay.Text = "Lọc";
-            this.btnSearchDay.UseVisualStyleBackColor = false;
-            this.btnSearchDay.Click += new System.EventHandler(this.btnSearchDay_Click);
-            // 
             // TuyenDung
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TuyenDung";
-            this.Size = new System.Drawing.Size(1019, 616);
+            this.Size = new System.Drawing.Size(1528, 948);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
