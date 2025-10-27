@@ -64,7 +64,25 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {        
                     try
                     {
-                        string sqlPo = @"
+                        string maChucVuMoi = "";
+                        string maChucVuLonNhat = "SELECT maChucVu FROM chucvu ORDER BY maChucVu DESC LIMIT 1";
+
+                        using (var cmdChucVu = new MySqlCommand(maChucVuLonNhat, conn, transaction))
+                        {
+                            var result = cmdChucVu.ExecuteScalar(); 
+                            if(result != null)
+                            {
+                                string lastcode  = result.ToString();
+                                int nextNumber = int.Parse(lastcode.Substring(2)) + 1;
+                                maChucVuMoi = "CV" + nextNumber.ToString("D3");
+                            }else
+                            {
+                                maChucVuMoi = "CV001";
+                            }
+                        }
+                        positionDTO.MaChucVu = maChucVuMoi;
+                        employeeDTO.MaChucVu = maChucVuMoi;
+                            string sqlPo = @"
                             INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc)
                             VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)
                             ON DUPLICATE KEY UPDATE
@@ -133,7 +151,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                 }
             }
         }
-
 
         public bool updateEmployee(EmployeeDTO employeeDTO)
         {

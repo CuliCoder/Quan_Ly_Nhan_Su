@@ -83,6 +83,21 @@ namespace Quan_Ly_Nhan_Su.BLL
             return false;
         }
 
+        public bool updateNumberOfRecruited(string maTuyenDung)
+        {
+
+            if (_dao.updateNumberOfRecruited(maTuyenDung))
+            {
+                RecruitmentBatchDTO dto = list.FirstOrDefault(x => x.MaTuyenDung == maTuyenDung);
+                if (dto != null)
+                {
+                    dto.SoLuongDaTuyen += 1;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool Delete(string maTuyenDung)
         {
             bool success = _dao.Delete(maTuyenDung);

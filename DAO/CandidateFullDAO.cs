@@ -43,6 +43,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     td.mucLuongToiDa,
                     td.soLuongNopHoSo AS soLuongNop,
                     td.soLuongDaTuyen,
+                    td.soLuongCanTuyen,
 
                     uv.maUngVien,
                     uv.mucLuongDeal,
@@ -90,7 +91,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             MucLuongToiDa = reader["mucLuongToiDa"] as decimal?,
                             SoLuongNop = Convert.ToInt32(reader["soLuongNop"]),
                             SoLuongDaTuyen = Convert.ToInt32(reader["soLuongDaTuyen"]),
-
+                            SoLuongCanTuyen = Convert.ToInt32(reader["soLuongCanTuyen"]),
                             // Ứng viên
                             MaUngVien = reader["maUngVien"].ToString(),
                             MucLuongDeal = reader["mucLuongDeal"] as decimal?,
@@ -248,6 +249,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     td.mucLuongToiDa,
                     td.soLuongNopHoSo AS soLuongNop,
                     td.soLuongDaTuyen,
+                    td.soLuongCanTuyen,
 
                     uv.maUngVien,
                     uv.mucLuongDeal,
@@ -303,7 +305,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     MucLuongToiDa = reader["mucLuongToiDa"] as decimal?,
                                     SoLuongNop = Convert.ToInt32(reader["soLuongNop"]),
                                     SoLuongDaTuyen = Convert.ToInt32(reader["soLuongDaTuyen"]),
-
+                                    SoLuongCanTuyen = Convert.ToInt32(reader["soLuongCanTuyen"]),
                                     MaUngVien = reader["maUngVien"].ToString(),
                                     MucLuongDeal = reader["mucLuongDeal"] as decimal?,
                                     TrangThai = reader["trangThai"].ToString()
@@ -353,6 +355,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     td.mucLuongToiDa,
                     td.soLuongNopHoSo AS soLuongNop,
                     td.soLuongDaTuyen,
+                    td.soLuongCanTuyen,
 
                     uv.maUngVien,
                     uv.mucLuongDeal,
@@ -403,6 +406,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     MucLuongToiDa = reader["mucLuongToiDa"] == DBNull.Value ? null : (decimal?)Convert.ToDecimal(reader["mucLuongToiDa"]),
                                     SoLuongNop = reader["soLuongNop"] == DBNull.Value ? 0 : Convert.ToInt32(reader["soLuongNop"]),
                                     SoLuongDaTuyen = reader["soLuongDaTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["soLuongDaTuyen"]),
+                                    SoLuongCanTuyen = reader["soLuongCanTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["soLuongCanTuyen"]),
 
                                     // Ứng viên
                                     MaUngVien = reader["maUngVien"]?.ToString(),

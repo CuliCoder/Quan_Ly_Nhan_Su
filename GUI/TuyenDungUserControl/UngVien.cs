@@ -26,6 +26,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             list = busFullData.GetAll();
             fillDataToTable(list);
         }
+        private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            tableData.ClearSelection();
+            tableData.CurrentCell = null;
+        }
+
 
         private void luuThanhcong(object sender, EventArgs e, string message)
         {
@@ -43,8 +49,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             themUngVienForm.ShowDialog();
         }
   
-
-
         private void fillDataToTable(List<CandidateFullDTO> list)
         {
             tableData.DataSource = null;
@@ -66,6 +70,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             tableData.Columns["MucLuongToiDa"].Visible = false;
             tableData.Columns["SoLuongNop"].Visible = false;
             tableData.Columns["SoLuongDaTuyen"].Visible = false;
+            tableData.Columns["SoLuongCanTuyen"].Visible = false;
 
             //đổi tên các bảng
             tableData.Columns["MaUngVien"].HeaderText = "Mã Ứng Viên";
@@ -85,11 +90,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
 
         }
-        private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            tableData.ClearSelection();
-            tableData.CurrentCell = null;
-        }
+       
         
         private void DisplayCandidateDetails(CandidateFullDTO candidate)
         {
@@ -284,6 +285,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             CandidateFullDTO candidate = getDataGirdview();
             if(candidate != null)
             {
+                if(candidate.SoLuongDaTuyen == candidate.SoLuongCanTuyen)
+                {
+                    MessageBox.Show("Tuyển dụng này đã tuyển đủ số lượng ứng viên");
+                    return;
+                }
                 FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien(candidate);
                 tuyenUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Thêm nhân viên thành công");
                 tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;

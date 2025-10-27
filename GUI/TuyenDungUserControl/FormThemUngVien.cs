@@ -25,6 +25,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         public FormThemUngVien()
         {
             InitializeComponent();
+            fillDataToCombobox();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,31 +34,29 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.Close();
         }
 
+        private void fillDataToCombobox()
+        {
+            maTuyenDungCbb.DataSource = busBatch.GetAll();
+            
+            maTuyenDungCbb.DisplayMember = "MaTuyenDung";
+            maTuyenDungCbb.ValueMember = "MaTuyenDung";
+            maTuyenDungCbb.SelectedIndex = -1;
+        }
+
         private bool kiemTraThognTin()
         {
-            // Kiểm tra mã tuyển dụng
-            if (string.IsNullOrWhiteSpace(maTuyenDungTb.Text))
+
+            if(maTuyenDungCbb.SelectedIndex == -1 )
             {
-                MessageBox.Show("Mã tuyển dụng không được để trống!");
-                maTuyenDungTb.Focus();
-                return false;
-            }else if (busBatch.checkedId(maTuyenDungTb.Text))
-            {
-                MessageBox.Show("Mã Tuyển dụng này không tồn tại");
-                maTuyenDungTb.Focus();
+                MessageBox.Show("Vui lòng chọn mã tuyển dụng");
+                maTuyenDungCbb.Focus();
                 return false;
             }
-
             // Kiểm tra mã ứng viên
             if (string.IsNullOrWhiteSpace(maUngVienTb.Text))
             {
                 MessageBox.Show("Mã ứng viên không được để trống!");
                 maUngVienTb.Focus();
-                return false;
-            }else if(!busCadi.CheckId(maUngVienTb.Text))
-            {
-                MessageBox.Show("Mã Tuyển dụng này đã tồn tại");
-                maTuyenDungTb.Focus();
                 return false;
             }
 
@@ -209,23 +208,22 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             
             RecruitmentBatchBLL busRe = new RecruitmentBatchBLL();
 
-            String chucVu = busRe.GetById(maTuyenDungTb.Text).ChucVu;
-            if(chucVu == null)
+            string maTuyenDung = maTuyenDungCbb.SelectedValue.ToString();
+            if(maTuyenDungCbb != null)
             {
-                MessageBox.Show("Mã Tuyển dụng không tồn tại");
-                maTuyenDungTb.Focus();
-                return null;
-            }
+                String chucVu = busRe.GetById(maTuyenDung).ChucVu;
 
-            return new CandidateDTO
-            {
-                MaUngVien = maUngVienTb.Text.Trim(),
-                MaTuyenDung = maTuyenDungTb.Text.Trim(),
-                SoCmnd = cccdTb.Text.Trim(),
-                MucLuongDeal = decimal.Parse(mucLuongTb.Text),
-                TrangThai = "Chưa Tuyển",
-                ChucVu = chucVu
-            };
+                return new CandidateDTO
+                {
+                    MaUngVien = maUngVienTb.Text.Trim(),
+                    MaTuyenDung = maTuyenDung,
+                    SoCmnd = cccdTb.Text.Trim(),
+                    MucLuongDeal = decimal.Parse(mucLuongTb.Text),
+                    TrangThai = "Chưa Tuyển",
+                    ChucVu = chucVu
+                };
+            }
+            return null;
         }
 
         public PersonalProfileDTO LayDuLieuHoSoCaNhan()

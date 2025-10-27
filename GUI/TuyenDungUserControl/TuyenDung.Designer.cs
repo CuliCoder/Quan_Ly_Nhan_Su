@@ -271,7 +271,7 @@
             // 
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
             this.tbSearch.MaximumSize = new System.Drawing.Size(229, 27);
@@ -316,6 +316,7 @@
             // 
             // endDayPicker
             // 
+            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endDayPicker.Location = new System.Drawing.Point(156, 15);
             this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
             this.endDayPicker.MaximumSize = new System.Drawing.Size(120, 27);
@@ -326,6 +327,7 @@
             // 
             // startDaypicker
             // 
+            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startDaypicker.Location = new System.Drawing.Point(24, 15);
             this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
             this.startDaypicker.MaximumSize = new System.Drawing.Size(120, 27);

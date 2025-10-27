@@ -237,6 +237,7 @@
             // 
             // hanNopDate
             // 
+            this.hanNopDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hanNopDate.Location = new System.Drawing.Point(3, 42);
             this.hanNopDate.MaximumSize = new System.Drawing.Size(150, 27);
             this.hanNopDate.MinimumSize = new System.Drawing.Size(150, 27);
@@ -274,7 +275,7 @@
             // 
             this.hocVanToiThieu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hocVanToiThieu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hocVanToiThieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hocVanToiThieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hocVanToiThieu.Location = new System.Drawing.Point(2, 45);
             this.hocVanToiThieu.Margin = new System.Windows.Forms.Padding(2);
             this.hocVanToiThieu.MinimumSize = new System.Drawing.Size(150, 25);
@@ -313,7 +314,7 @@
             // 
             this.luongToiDaTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.luongToiDaTb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.luongToiDaTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luongToiDaTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luongToiDaTb.Location = new System.Drawing.Point(2, 45);
             this.luongToiDaTb.Margin = new System.Windows.Forms.Padding(2);
             this.luongToiDaTb.MinimumSize = new System.Drawing.Size(150, 25);
@@ -352,7 +353,7 @@
             // 
             this.soLuongTuyentb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.soLuongTuyentb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.soLuongTuyentb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soLuongTuyentb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.soLuongTuyentb.Location = new System.Drawing.Point(2, 45);
             this.soLuongTuyentb.Margin = new System.Windows.Forms.Padding(2);
             this.soLuongTuyentb.MinimumSize = new System.Drawing.Size(150, 25);
@@ -391,7 +392,7 @@
             // 
             this.luongToiThieutb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.luongToiThieutb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.luongToiThieutb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luongToiThieutb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luongToiThieutb.Location = new System.Drawing.Point(2, 45);
             this.luongToiThieutb.Margin = new System.Windows.Forms.Padding(2);
             this.luongToiThieutb.MinimumSize = new System.Drawing.Size(150, 25);
@@ -430,7 +431,7 @@
             // 
             this.chuVuTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.chuVuTb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chuVuTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chuVuTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chuVuTb.Location = new System.Drawing.Point(2, 45);
             this.chuVuTb.Margin = new System.Windows.Forms.Padding(2);
             this.chuVuTb.MinimumSize = new System.Drawing.Size(150, 25);
@@ -469,7 +470,7 @@
             // 
             this.doTuoiTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.doTuoiTb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.doTuoiTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doTuoiTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.doTuoiTb.Location = new System.Drawing.Point(2, 45);
             this.doTuoiTb.Margin = new System.Windows.Forms.Padding(2);
             this.doTuoiTb.MinimumSize = new System.Drawing.Size(150, 25);
@@ -509,7 +510,7 @@
             this.maTuyenDungTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maTuyenDungTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.maTuyenDungTb.Enabled = false;
-            this.maTuyenDungTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maTuyenDungTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maTuyenDungTb.Location = new System.Drawing.Point(2, 45);
             this.maTuyenDungTb.Margin = new System.Windows.Forms.Padding(2);
             this.maTuyenDungTb.MinimumSize = new System.Drawing.Size(150, 25);

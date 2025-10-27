@@ -19,13 +19,26 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private CandidateFullDTO dtoFull;
         private EmployeeBLL bus = new EmployeeBLL();
         private CandidateBLL busCandi = new CandidateBLL();
+        private DepartmentBLL department = new DepartmentBLL();
+        private RecruitmentBatchBLL batchBLL = new RecruitmentBatchBLL();
         public event EventHandler luuThongTinForm;
         public FormTuyenUngVien(CandidateFullDTO dtoFullDato)
         {
             InitializeComponent();
             dtoFull = dtoFullDato;
             DisplayCandidateDetails(dtoFull);
+            fillDataToCombobox();
         }
+
+        private void fillDataToCombobox()
+        {
+            maPhongBanCbb.DataSource = department.GetAllDepartments();
+
+            maPhongBanCbb.DisplayMember = "TenPhong";
+            maPhongBanCbb.ValueMember = "MaPhong";
+            maPhongBanCbb.SelectedIndex = -1;
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -95,30 +108,32 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-                     
+           
+            PositionDTO positionDTO = new PositionDTO(
+               null,
+               "Nhân viên",
+               0,
+               DateTime.Today.Date
+            );
+
             EmployeeDTO employeeDTO = new EmployeeDTO(
                     tbMaNhanVien.Text,
                     showCCCDUV.Text,
-                    null,          
-                    null,         
-                    tbChucVu.Text,
-                    null,         
-                    tbPhongBan.Text,
+                    null,
+                    null,
+                    null,
+                    null,
+                    maPhongBanCbb.SelectedValue.ToString(),
                     Convert.ToDecimal(tbLuong.Text)
                 );
 
-            PositionDTO positionDTO = new PositionDTO(
-                tbChucVu.Text,
-                "Nhân viên",
-                0,
-                DateTime.Today.Date
-            );
-
-
+           
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
             if (insertSuccess)
             {
                 busCandi.UpdateStatus(dtoFull.MaUngVien, "Đã Tuyển");
+                batchBLL.updateNumberOfRecruited(dtoFull.MaTuyenDung);
+
                 luuThongTinForm?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Lưu dữ liệu và cập nhật trạng thái ứng viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

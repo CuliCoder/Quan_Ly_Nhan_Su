@@ -31,8 +31,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UngVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
@@ -320,7 +320,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // 
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
             this.tbSearch.MaximumSize = new System.Drawing.Size(229, 25);
@@ -631,23 +631,23 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableData.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tableData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tableData.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tableData.DefaultCellStyle = dataGridViewCellStyle2;
             this.tableData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableData.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.tableData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -726,7 +726,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableLayoutPanel4.Controls.Add(this.label13, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.txtTenLb, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(164, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(163, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 5;
@@ -735,7 +735,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1050, 226);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1051, 226);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // txtDanTocLb
@@ -743,11 +743,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtDanTocLb.AutoSize = true;
             this.txtDanTocLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDanTocLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtDanTocLb.Location = new System.Drawing.Point(852, 138);
+            this.txtDanTocLb.Location = new System.Drawing.Point(854, 138);
             this.txtDanTocLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtDanTocLb.Name = "txtDanTocLb";
             this.txtDanTocLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtDanTocLb.Size = new System.Drawing.Size(195, 39);
+            this.txtDanTocLb.Size = new System.Drawing.Size(194, 39);
             this.txtDanTocLb.TabIndex = 54;
             this.txtDanTocLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -756,11 +756,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtChuyenNganhLb.AutoSize = true;
             this.txtChuyenNganhLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtChuyenNganhLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtChuyenNganhLb.Location = new System.Drawing.Point(852, 93);
+            this.txtChuyenNganhLb.Location = new System.Drawing.Point(854, 93);
             this.txtChuyenNganhLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtChuyenNganhLb.Name = "txtChuyenNganhLb";
             this.txtChuyenNganhLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtChuyenNganhLb.Size = new System.Drawing.Size(195, 39);
+            this.txtChuyenNganhLb.Size = new System.Drawing.Size(194, 39);
             this.txtChuyenNganhLb.TabIndex = 53;
             this.txtChuyenNganhLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -769,7 +769,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label4.Location = new System.Drawing.Point(708, 138);
+            this.label4.Location = new System.Drawing.Point(710, 138);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -783,11 +783,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtHonNhanLB.AutoSize = true;
             this.txtHonNhanLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtHonNhanLB.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtHonNhanLB.Location = new System.Drawing.Point(852, 3);
+            this.txtHonNhanLB.Location = new System.Drawing.Point(854, 3);
             this.txtHonNhanLB.Margin = new System.Windows.Forms.Padding(3);
             this.txtHonNhanLB.Name = "txtHonNhanLB";
             this.txtHonNhanLB.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtHonNhanLB.Size = new System.Drawing.Size(195, 39);
+            this.txtHonNhanLB.Size = new System.Drawing.Size(194, 39);
             this.txtHonNhanLB.TabIndex = 51;
             this.txtHonNhanLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -796,7 +796,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtHonNhan.AutoSize = true;
             this.txtHonNhan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtHonNhan.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtHonNhan.Location = new System.Drawing.Point(708, 3);
+            this.txtHonNhan.Location = new System.Drawing.Point(710, 3);
             this.txtHonNhan.Margin = new System.Windows.Forms.Padding(3);
             this.txtHonNhan.Name = "txtHonNhan";
             this.txtHonNhan.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -824,11 +824,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtCcd.AutoSize = true;
             this.txtCcd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCcd.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtCcd.Location = new System.Drawing.Point(480, 183);
+            this.txtCcd.Location = new System.Drawing.Point(481, 183);
             this.txtCcd.Margin = new System.Windows.Forms.Padding(3);
             this.txtCcd.Name = "txtCcd";
             this.txtCcd.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtCcd.Size = new System.Drawing.Size(222, 40);
+            this.txtCcd.Size = new System.Drawing.Size(223, 40);
             this.txtCcd.TabIndex = 44;
             this.txtCcd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -837,7 +837,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label11.Location = new System.Drawing.Point(362, 183);
+            this.label11.Location = new System.Drawing.Point(363, 183);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -851,11 +851,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtTrinhDoLB.AutoSize = true;
             this.txtTrinhDoLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTrinhDoLB.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtTrinhDoLB.Location = new System.Drawing.Point(852, 48);
+            this.txtTrinhDoLB.Location = new System.Drawing.Point(854, 48);
             this.txtTrinhDoLB.Margin = new System.Windows.Forms.Padding(3);
             this.txtTrinhDoLB.Name = "txtTrinhDoLB";
             this.txtTrinhDoLB.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtTrinhDoLB.Size = new System.Drawing.Size(195, 39);
+            this.txtTrinhDoLB.Size = new System.Drawing.Size(194, 39);
             this.txtTrinhDoLB.TabIndex = 42;
             this.txtTrinhDoLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -864,11 +864,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtTinhTpLb.AutoSize = true;
             this.txtTinhTpLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTinhTpLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtTinhTpLb.Location = new System.Drawing.Point(480, 138);
+            this.txtTinhTpLb.Location = new System.Drawing.Point(481, 138);
             this.txtTinhTpLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtTinhTpLb.Name = "txtTinhTpLb";
             this.txtTinhTpLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtTinhTpLb.Size = new System.Drawing.Size(222, 39);
+            this.txtTinhTpLb.Size = new System.Drawing.Size(223, 39);
             this.txtTinhTpLb.TabIndex = 37;
             this.txtTinhTpLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -877,11 +877,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtQuanHuyenLb.AutoSize = true;
             this.txtQuanHuyenLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtQuanHuyenLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtQuanHuyenLb.Location = new System.Drawing.Point(480, 93);
+            this.txtQuanHuyenLb.Location = new System.Drawing.Point(481, 93);
             this.txtQuanHuyenLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtQuanHuyenLb.Name = "txtQuanHuyenLb";
             this.txtQuanHuyenLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtQuanHuyenLb.Size = new System.Drawing.Size(222, 39);
+            this.txtQuanHuyenLb.Size = new System.Drawing.Size(223, 39);
             this.txtQuanHuyenLb.TabIndex = 36;
             this.txtQuanHuyenLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -890,11 +890,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtPhuongXaLb.AutoSize = true;
             this.txtPhuongXaLb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPhuongXaLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPhuongXaLb.Location = new System.Drawing.Point(480, 48);
+            this.txtPhuongXaLb.Location = new System.Drawing.Point(481, 48);
             this.txtPhuongXaLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtPhuongXaLb.Name = "txtPhuongXaLb";
             this.txtPhuongXaLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtPhuongXaLb.Size = new System.Drawing.Size(222, 39);
+            this.txtPhuongXaLb.Size = new System.Drawing.Size(223, 39);
             this.txtPhuongXaLb.TabIndex = 35;
             this.txtPhuongXaLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -903,11 +903,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtDuongLB.AutoSize = true;
             this.txtDuongLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDuongLB.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtDuongLB.Location = new System.Drawing.Point(480, 3);
+            this.txtDuongLB.Location = new System.Drawing.Point(481, 3);
             this.txtDuongLB.Margin = new System.Windows.Forms.Padding(3);
             this.txtDuongLB.Name = "txtDuongLB";
             this.txtDuongLB.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtDuongLB.Size = new System.Drawing.Size(222, 39);
+            this.txtDuongLB.Size = new System.Drawing.Size(223, 39);
             this.txtDuongLB.TabIndex = 34;
             this.txtDuongLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -920,7 +920,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtEmailLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtEmailLb.Name = "txtEmailLb";
             this.txtEmailLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtEmailLb.Size = new System.Drawing.Size(226, 40);
+            this.txtEmailLb.Size = new System.Drawing.Size(227, 40);
             this.txtEmailLb.TabIndex = 33;
             this.txtEmailLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -933,7 +933,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtSDTLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtSDTLb.Name = "txtSDTLb";
             this.txtSDTLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtSDTLb.Size = new System.Drawing.Size(226, 39);
+            this.txtSDTLb.Size = new System.Drawing.Size(227, 39);
             this.txtSDTLb.TabIndex = 32;
             this.txtSDTLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -946,7 +946,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtNgaySinhLB.Margin = new System.Windows.Forms.Padding(3);
             this.txtNgaySinhLB.Name = "txtNgaySinhLB";
             this.txtNgaySinhLB.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtNgaySinhLB.Size = new System.Drawing.Size(226, 39);
+            this.txtNgaySinhLB.Size = new System.Drawing.Size(227, 39);
             this.txtNgaySinhLB.TabIndex = 31;
             this.txtNgaySinhLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -969,7 +969,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label36.AutoSize = true;
             this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label36.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label36.Location = new System.Drawing.Point(362, 138);
+            this.label36.Location = new System.Drawing.Point(363, 138);
             this.label36.Margin = new System.Windows.Forms.Padding(3);
             this.label36.Name = "label36";
             this.label36.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -997,7 +997,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtDanToc.AutoSize = true;
             this.txtDanToc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDanToc.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtDanToc.Location = new System.Drawing.Point(708, 93);
+            this.txtDanToc.Location = new System.Drawing.Point(710, 93);
             this.txtDanToc.Margin = new System.Windows.Forms.Padding(3);
             this.txtDanToc.Name = "txtDanToc";
             this.txtDanToc.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1011,7 +1011,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label30.AutoSize = true;
             this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label30.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label30.Location = new System.Drawing.Point(362, 93);
+            this.label30.Location = new System.Drawing.Point(363, 93);
             this.label30.Margin = new System.Windows.Forms.Padding(3);
             this.label30.Name = "label30";
             this.label30.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1039,7 +1039,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.Lable222.AutoSize = true;
             this.Lable222.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lable222.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Lable222.Location = new System.Drawing.Point(708, 48);
+            this.Lable222.Location = new System.Drawing.Point(710, 48);
             this.Lable222.Margin = new System.Windows.Forms.Padding(3);
             this.Lable222.Name = "Lable222";
             this.Lable222.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1053,7 +1053,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label24.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label24.Location = new System.Drawing.Point(362, 48);
+            this.label24.Location = new System.Drawing.Point(363, 48);
             this.label24.Margin = new System.Windows.Forms.Padding(3);
             this.label24.Name = "label24";
             this.label24.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1071,7 +1071,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtGioiTinhLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtGioiTinhLb.Name = "txtGioiTinhLb";
             this.txtGioiTinhLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtGioiTinhLb.Size = new System.Drawing.Size(226, 39);
+            this.txtGioiTinhLb.Size = new System.Drawing.Size(227, 39);
             this.txtGioiTinhLb.TabIndex = 8;
             this.txtGioiTinhLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1094,7 +1094,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label13.Location = new System.Drawing.Point(362, 3);
+            this.label13.Location = new System.Drawing.Point(363, 3);
             this.label13.Margin = new System.Windows.Forms.Padding(3);
             this.label13.Name = "label13";
             this.label13.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1112,7 +1112,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.txtTenLb.Margin = new System.Windows.Forms.Padding(3);
             this.txtTenLb.Name = "txtTenLb";
             this.txtTenLb.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.txtTenLb.Size = new System.Drawing.Size(226, 39);
+            this.txtTenLb.Size = new System.Drawing.Size(227, 39);
             this.txtTenLb.TabIndex = 2;
             this.txtTenLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1124,7 +1124,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(10, 30, 10, 30);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.pictureBox1.Size = new System.Drawing.Size(144, 166);
+            this.pictureBox1.Size = new System.Drawing.Size(143, 166);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;

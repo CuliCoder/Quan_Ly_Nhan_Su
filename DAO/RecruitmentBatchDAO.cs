@@ -270,6 +270,33 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return true;
         }
+
+        public bool updateNumberOfRecruited(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soluongdatuyen = soluongdatuyen + 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Deletes a recruitment batch from the dottuyendung table
         /// </summary>
