@@ -249,5 +249,34 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return null;
             }
         }
+
+        public bool UpdateStatus(string maUngVien, string trangThai)
+        {
+            try
+            {
+                string sql = @"
+                    UPDATE ungvien
+                    SET trangthai = @trangThai
+                    WHERE maUngVien = @maUngVien
+                ";
+                using (conn = connectDB.getConnection())                 
+                {
+                    conn.Open();
+                    using (var cmd = new MySqlCommand(sql,conn))
+                    {
+                        cmd.Parameters.AddWithValue("@trangThai", trangThai);
+                        cmd.Parameters.AddWithValue("@maUngVien", maUngVien);
+                        int rowsAffected = cmd.ExecuteNonQuery(); 
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"❌ Lỗi khi cập nhật trạng thái ứng viên: {ex.Message}");
+                return false;
+            }
+
+        }
     }
 }

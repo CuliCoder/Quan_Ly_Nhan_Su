@@ -27,17 +27,18 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             fillDataToTable(list);
         }
 
-        private void luuThanhcong(object sender, EventArgs e)
+        private void luuThanhcong(object sender, EventArgs e, string message)
         {
-            MessageBox.Show("Thêm mới thành công");
+            MessageBox.Show(message);
             busFullData.Refresh();
             list = busFullData.GetAll();
             fillDataToTable(list);
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             FormThemUngVien themUngVienForm = new FormThemUngVien();
-            themUngVienForm.luuThongTinForm += luuThanhcong;
+            themUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Lưu thành công!"); 
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
@@ -237,18 +238,46 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             fillDataToTable(list);
         }
 
-        //Xử lý tuyển ứng viên
         private CandidateFullDTO getDataGirdview()
         {
             DataGridViewRow currentRow = tableData.CurrentRow;
-            string maUngVien = currentRow.Cells["MaUngVien"].Value.ToString();
-            string trangThai = currentRow.Cells["TrangThai"].Value.ToString();
-            if(trangThai.Equals("Đã Tuyển"))
-            {              
+            if (currentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn một ứng viên trong danh sách!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return null;
+            }
+
+            var cellMaUngVien = currentRow.Cells["MaUngVien"]?.Value;
+            var cellTrangThai = currentRow.Cells["TrangThai"]?.Value;
+
+
+            if (cellMaUngVien == null || cellTrangThai == null)
+            {
+                MessageBox.Show("Không thể lấy dữ liệu ứng viên. Vui lòng thử lại!",
+                                "Lỗi dữ liệu",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return null;
+            }
+
+            string maUngVien = cellMaUngVien.ToString();
+            string trangThai = cellTrangThai.ToString();
+
+            if (trangThai.Equals("Đã Tuyển", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Ứng viên này đã được tuyển!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                 return null;
             }
             return busFullData.GetById(maUngVien);
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -256,14 +285,10 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             if(candidate != null)
             {
                 FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien(candidate);
+                tuyenUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Thêm nhân viên thành công");
                 tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
                 tuyenUngVienForm.ShowDialog();
-            }else
-            {
-                MessageBox.Show("Ứng viên này đã được tuyển");
             }
         }
-
-
     }
 }

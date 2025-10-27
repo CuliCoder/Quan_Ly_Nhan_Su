@@ -2,6 +2,7 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
@@ -59,6 +60,22 @@ namespace Quan_Ly_Nhan_Su.BLL
                 int index = list.FindIndex(x => x.MaUngVien == dto.MaUngVien);
                 if (index != -1)
                     list[index] = dto;
+            }
+            return success;
+        }
+
+        public bool UpdateStatus(string maUngVien, string trangThai)
+        {
+            if (string.IsNullOrEmpty(maUngVien) || string.IsNullOrEmpty(trangThai))
+                return false;
+            bool success = _dao.UpdateStatus(maUngVien, trangThai);
+            if (success)
+            {
+                CandidateDTO dto = list.FirstOrDefault(x => x.MaUngVien == maUngVien);
+                if (dto != null)
+                {
+                    dto.TrangThai = trangThai;
+                }
             }
             return success;
         }

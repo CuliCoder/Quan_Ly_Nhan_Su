@@ -1,4 +1,6 @@
-﻿using Quan_Ly_Nhan_Su.DTO;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DAO;
+using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,9 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     public partial class FormTuyenUngVien : Form
     {
         private CandidateFullDTO dtoFull;
+        private EmployeeBLL bus = new EmployeeBLL();
+        private CandidateBLL busCandi = new CandidateBLL();
+        public event EventHandler luuThongTinForm;
         public FormTuyenUngVien(CandidateFullDTO dtoFullDato)
         {
             InitializeComponent();
@@ -90,7 +95,39 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-           
+                     
+            EmployeeDTO employeeDTO = new EmployeeDTO(
+                    tbMaNhanVien.Text,
+                    showCCCDUV.Text,
+                    null,          
+                    null,         
+                    tbChucVu.Text,
+                    null,         
+                    tbPhongBan.Text,
+                    Convert.ToDecimal(tbLuong.Text)
+                );
+
+            PositionDTO positionDTO = new PositionDTO(
+                tbChucVu.Text,
+                "Nhân viên",
+                0,
+                DateTime.Today.Date
+            );
+
+
+            bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
+            if (insertSuccess)
+            {
+                busCandi.UpdateStatus(dtoFull.MaUngVien, "Đã Tuyển");
+                luuThongTinForm?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("Lưu dữ liệu và cập nhật trạng thái ứng viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Không thể lưu dữ liệu. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+             
         }
+
     }
 }
