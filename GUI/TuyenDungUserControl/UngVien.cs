@@ -16,7 +16,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     public partial class UngVien : UserControl
     {
         private CandidateFullBLL busFullData = new CandidateFullBLL();
-        private static List<CandidateFullDTO> list;
+        private List<CandidateFullDTO> list;
         private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public UngVien()
         {        
@@ -41,13 +41,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien();
-            tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
-            tuyenUngVienForm.ShowDialog();
-        }
+  
 
 
         private void fillDataToTable(List<CandidateFullDTO> list)
@@ -95,6 +89,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             tableData.ClearSelection();
             tableData.CurrentCell = null;
         }
+        
         private void DisplayCandidateDetails(CandidateFullDTO candidate)
         {
             // Thông tin cá nhân
@@ -136,16 +131,28 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             txtTuoi.Text = candidate.DoTuoi;
             txtGoiTinhTuyenDung.Text = candidate.GioiTinhTuyenDung;
             try
-            {
-                string imagePath = Path.Combine(Application.StartupPath, "Images", candidate.HinhAnh);
-                if (File.Exists(imagePath))     
-                    pictureBox1.Image = Image.FromFile(imagePath);
+            {   
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, candidate.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(candidate.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    pictureBox1.Image = Image.FromFile(finalPath);
                 else
                     pictureBox1.Image = null;
             }
-            catch
+            catch (Exception ex)
             {
                 pictureBox1.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
             }
         }
 
@@ -202,5 +209,61 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 }
             }
         }
+
+
+        private List<CandidateFullDTO> handledSearch ()
+        {
+            string keyWord = tbSearch.Text.Trim();
+            return busFullData.Search(keyWord);
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+            fillDataToTable(handledSearch());
+        }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                fillDataToTable(handledSearch());
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            list = busFullData.GetAll();
+            fillDataToTable(list);
+        }
+
+        //Xử lý tuyển ứng viên
+        private CandidateFullDTO getDataGirdview()
+        {
+            DataGridViewRow currentRow = tableData.CurrentRow;
+            string maUngVien = currentRow.Cells["MaUngVien"].Value.ToString();
+            string trangThai = currentRow.Cells["TrangThai"].Value.ToString();
+            if(trangThai.Equals("Đã Tuyển"))
+            {              
+                return null;
+            }
+            return busFullData.GetById(maUngVien);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CandidateFullDTO candidate = getDataGirdview();
+            if(candidate != null)
+            {
+                FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien(candidate);
+                tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
+                tuyenUngVienForm.ShowDialog();
+            }else
+            {
+                MessageBox.Show("Ứng viên này đã được tuyển");
+            }
+        }
+
+
     }
 }

@@ -52,5 +52,18 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return false;
         }
+
+        public List<CandidateFullDTO> Search(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                list = _dao.GetAll();
+                return new List<CandidateFullDTO>(list);
+            }
+
+            var result = _dao.Search(keyword);
+            return result ?? new List<CandidateFullDTO>();
+        }
+
     }
 }

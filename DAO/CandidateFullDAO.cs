@@ -213,6 +213,116 @@ namespace Quan_Ly_Nhan_Su.DAO
                 }
             }
         }
+
+        public List<CandidateFullDTO> Search(string keyWord)
+        {
+            List<CandidateFullDTO> list = new List<CandidateFullDTO>();
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                SELECT 
+                    hs.soCmnd,
+                    hs.hoTen,
+                    DATE(hs.ngaySinh) AS ngaySinh,      
+                    hs.gioiTinh,
+                    hs.diaChi,
+                    hs.email,
+                    hs.sdt AS soDienThoai,
+                    hs.noiCap,
+                    DATE(hs.ngayCap) AS ngayCap,         
+                    hs.danToc,
+                    hs.hocVan AS trinhDoHocVan,
+                    hs.tinhTrangHonNhan AS honNhan,
+                    hs.chuyenNganh,
+                    hs.anh AS hinhAnh,
+
+                    td.maTuyenDung,
+                    td.chucVu,
+                    td.gioiTinh AS gioiTinhTuyenDung,
+                    td.doTuoi,
+                    DATE(td.hanNopHoSo) AS hanNopHoSo,   
+                    td.mucLuongToiThieu,
+                    td.mucLuongToiDa,
+                    td.soLuongNopHoSo AS soLuongNop,
+                    td.soLuongDaTuyen,
+
+                    uv.maUngVien,
+                    uv.mucLuongDeal,
+                    uv.trangThai
+                FROM ungvien uv
+                LEFT JOIN hosocanhan hs ON uv.soCmnd = hs.soCmnd
+                LEFT JOIN dottuyendung td ON uv.maTuyenDung = td.maTuyenDung
+                WHERE (
+                    @keyword IS NULL 
+                    OR uv.maTuyenDung LIKE CONCAT('%', @keyword, '%')
+                    OR uv.maUngVien LIKE CONCAT('%', @keyword, '%')
+                    OR hs.hoTen LIKE CONCAT('%', @keyword, '%')
+                    OR td.chucVu LIKE CONCAT('%', @keyword, '%')
+                    OR uv.soCmnd LIKE CONCAT('%', @keyword, '%')
+                    OR hs.gioiTinh LIKE CONCAT('%', @keyword, '%')
+                    OR hs.email LIKE CONCAT('%', @keyword, '%')
+                    OR hs.sdt LIKE CONCAT('%', @keyword, '%')
+                    OR uv.trangThai LIKE CONCAT('%', @keyword, '%')
+                )
+            ";
+
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", keyWord);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                CandidateFullDTO dto = new CandidateFullDTO
+                                {
+                                    SoCmnd = reader["soCmnd"].ToString(),
+                                    HoTen = reader["hoTen"].ToString(),
+                                    NgaySinh = Convert.ToDateTime(reader["ngaySinh"]),
+                                    GioiTinh = reader["gioiTinh"].ToString(),
+                                    DiaChi = reader["diaChi"].ToString(),
+                                    Email = reader["email"].ToString(),
+                                    SoDienThoai = reader["soDienThoai"].ToString(),
+                                    NoiCap = reader["noiCap"].ToString(),
+                                    NgayCap = Convert.ToDateTime(reader["ngayCap"]),
+                                    DanToc = reader["danToc"].ToString(),
+                                    TrinhDoHocVan = reader["trinhDoHocVan"].ToString(),
+                                    HonNhan = reader["honNhan"].ToString(),
+                                    ChuyenNganh = reader["chuyenNganh"].ToString(),
+                                    HinhAnh = reader["hinhAnh"].ToString(),
+
+                                    MaTuyenDung = reader["maTuyenDung"].ToString(),
+                                    ChucVu = reader["chucVu"].ToString(),
+                                    GioiTinhTuyenDung = reader["gioiTinhTuyenDung"].ToString(),
+                                    DoTuoi = reader["doTuoi"].ToString(),
+                                    HanNopHoSo = Convert.ToDateTime(reader["hanNopHoSo"]),
+                                    MucLuongToiThieu = reader["mucLuongToiThieu"] as decimal?,
+                                    MucLuongToiDa = reader["mucLuongToiDa"] as decimal?,
+                                    SoLuongNop = Convert.ToInt32(reader["soLuongNop"]),
+                                    SoLuongDaTuyen = Convert.ToInt32(reader["soLuongDaTuyen"]),
+
+                                    MaUngVien = reader["maUngVien"].ToString(),
+                                    MucLuongDeal = reader["mucLuongDeal"] as decimal?,
+                                    TrangThai = reader["trangThai"].ToString()
+                                };
+
+                                list.Add(dto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Lỗi khi lấy ứng viên: {ex.Message}");
+                return null;
+            }
+            return list;
+        }
+
         public CandidateFullDTO GetByID(string maUngVien)
         {
             try

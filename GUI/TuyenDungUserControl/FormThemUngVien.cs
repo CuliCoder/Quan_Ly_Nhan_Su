@@ -21,12 +21,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private CandidateBLL busCadi = new CandidateBLL();
         private CandidateFullBLL busFullCadi = new CandidateFullBLL();
         private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
-     
         public event EventHandler luuThongTinForm;
         public FormThemUngVien()
         {
             InitializeComponent();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -303,7 +303,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void label9_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
