@@ -1,5 +1,4 @@
-﻿
-using Quan_Ly_Nhan_Su.BLL;
+﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -10,40 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
-    public partial class ThemTuyenDungForm : Form
+    public partial class SuaDotTuyenDungForm : Form 
     {
         public event EventHandler luuThongTinForm;
         private static readonly RecruitmentBatchBLL bus = new RecruitmentBatchBLL();
-        public ThemTuyenDungForm()
+        private RecruitmentBatchDTO batchDTO;
+        public SuaDotTuyenDungForm(RecruitmentBatchDTO dto)
         {
             InitializeComponent();
+            batchDTO = dto;
         }
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
+
         private bool ValidateInputs()
         {
-            // Mã tuyển dụng
-            if (string.IsNullOrWhiteSpace(maTuyenDungTb.Text))
-            {
-                MessageBox.Show("Mã tuyển dụng không được để trống!");
-                maTuyenDungTb.Focus();
-                return false;
-            }
-
-            var existing = bus.checkedId(maTuyenDungTb.Text);
-            MessageBox.Show(existing.ToString());
-            if (existing)
-            {
-                MessageBox.Show("Mã tuyển dụng đã tồn tại. Vui lòng nhập mã khác!");
-                maTuyenDungTb.Focus();
-                return false;
-            }
-
             // Chức vụ
             if (string.IsNullOrWhiteSpace(chuVuTb.Text))
             {
@@ -76,13 +57,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return false;
             }
 
-            // Hạn nộp hồ sơ
-            if (hanNopDate.Value < DateTime.Today)
-            {
-                MessageBox.Show("Hạn nộp hồ sơ không được nhỏ hơn ngày hiện tại!");
-                hanNopDate.Focus();
-                return false;
-            }
 
             // Mức lương tối thiểu
             if (string.IsNullOrWhiteSpace(luongToiThieutb.Text))
@@ -114,52 +88,53 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             return true;
         }
 
-        public RecruitmentBatchDTO layDuLieuTextBox()
+        private void button4_Click(object sender, EventArgs e)
         {
-            string gioiTinh = namBt.Checked 
-                                ? namBt.Text 
-                                : nuBt.Checked 
-                                ? nuBt.Text : khongBT.Text;
-
-            decimal? luongToiThieu = null;
-            decimal? luongToiDa = null;
-
-            if (decimal.TryParse(luongToiThieutb.Text, out decimal tmpThieu))
-                luongToiThieu = tmpThieu;
-
-            if (decimal.TryParse(luongToiDaTb.Text, out decimal tmpDa))
-                luongToiDa = tmpDa;
-
-            return new RecruitmentBatchDTO(
-                maTuyenDungTb.Text,
-                chuVuTb.Text,
-                hocVanToiThieu.Text,
-                gioiTinh,
-                doTuoiTb.Text,
-                int.Parse(soLuongTuyentb.Text),           
-                hanNopDate.Value,
-                luongToiThieu,
-                luongToiDa,
-                0,
-                0
-            );
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
-        private void themTuyenDung(object sender, EventArgs e)
-        {
-            if (!ValidateInputs()) return;
-            RecruitmentBatchDTO tuyenDungData = layDuLieuTextBox();
 
-            if (bus.Create(tuyenDungData))
-            {
-                luuThongTinForm?.Invoke(this, EventArgs.Empty); 
-                this.Close();
-            }
+        public void setDataInToTextBox() { 
+            maTuyenDungTb.Text = batchDTO.MaTuyenDung;
+            chuVuTb.Text = batchDTO.ChucVu;
+            soLuongTuyentb.Text = batchDTO.SoLuongCanTuyen.ToString();
+            hocVanToiThieu.Text = batchDTO.HocVan.ToString();
+            doTuoiTb.Text = batchDTO.DoTuoi.ToString();
+            luongToiThieutb.Text = batchDTO.MucLuongToiThieu.ToString();
+            luongToiDaTb.Text = batchDTO.SoLuongDaTuyen.ToString();
+            hanNopDate.Value = batchDTO.HanNopHoSo;
+            if (batchDTO.GioiTinh.Equals("Nam"))
+                namBt.Checked = true;
+            else if (batchDTO.GioiTinh.Equals("Nữ"))
+                nuBt.Checked = true;
             else
-            {
-                MessageBox.Show("Thêm thất bại!");
-            }
+                khongBT.Checked = true;
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(ValidateInputs())
+            {
+                batchDTO.MaTuyenDung = maTuyenDungTb.Text;
+                batchDTO.ChucVu = chuVuTb.Text;
+                batchDTO.HocVan = hocVanToiThieu.Text;
+                batchDTO.DoTuoi = doTuoiTb.Text;
+                batchDTO.MucLuongToiThieu = decimal.TryParse(luongToiThieutb.Text, out decimal luongMin) ? luongMin : 0;
+                batchDTO.HanNopHoSo = hanNopDate.Value.Date;
+                batchDTO.SoLuongCanTuyen = int.TryParse(soLuongTuyentb.Text, out int soLuong) ? soLuong : 0;
+                batchDTO.MucLuongToiDa = decimal.TryParse(luongToiDaTb.Text, out decimal luongMax) ? luongMax : 0;
 
+                if (namBt.Checked)
+                    batchDTO.GioiTinh = "Nam";
+                else if (nuBt.Checked)
+                    batchDTO.GioiTinh = "Nữ";
+                else
+                    batchDTO.GioiTinh = "Không";
+
+                bus.Update(batchDTO);
+                luuThongTinForm?.Invoke(this, EventArgs.Empty);
+                this.Close();
+            }  
+        }
     }
 }

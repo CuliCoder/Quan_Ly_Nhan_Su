@@ -355,6 +355,12 @@
     <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.Designer.cs">
       <DependentUpon>FormThemUngVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.Designer.cs">
+      <DependentUpon>SuaDotTuyenDungForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\FormTuyenUngVien.resx">
       <DependentUpon>FormTuyenUngVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.resx">
+      <DependentUpon>SuaDotTuyenDungForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.resx">
       <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>

@@ -15,43 +15,46 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class UngVien : UserControl
     {
-        private CandidateFullBUS busFullData = new CandidateFullBUS();
-
+        private CandidateFullBLL busFullData = new CandidateFullBLL();
+        private List<CandidateFullDTO> list;
+        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public UngVien()
         {        
             InitializeComponent();
             tableData.CellClick += tableData_CellClick;
             tableData.DataBindingComplete += dataTable_DataBindingComplete;
-            hienThiData();
+            list = busFullData.GetAll();
+            fillDataToTable(list);
         }
+        private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            tableData.ClearSelection();
+            tableData.CurrentCell = null;
+        }
+
+
+        private void luuThanhcong(object sender, EventArgs e, string message)
+        {
+            MessageBox.Show(message);
+            busFullData.Refresh();
+            list = busFullData.GetAll();
+            fillDataToTable(list);
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             FormThemUngVien themUngVienForm = new FormThemUngVien();
-            //themUngVienForm.luuThongTinForm += luuThanhcong;
+            themUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Lưu thành công!"); 
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+  
+        private void fillDataToTable(List<CandidateFullDTO> list)
         {
-            FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien();
-            tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
-            tuyenUngVienForm.ShowDialog();
-        }
-
-       
-        //private void luuThanhcong(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("Thêm mới thành công");
-        //    list = bus.GetAll();
-        //    fillDataToTable();
-        //} 
-
-        private void hienThiData()
-        {
-            tableData.DataSource = busFullData.GetAll();
+            tableData.DataSource = null;
+            tableData.DataSource = list;
             //ẩn các bảng cột không cần thiêt
-            tableData.Columns["SoCmnd"].Visible = false;
+          
             tableData.Columns["DiaChi"].Visible = false;
             tableData.Columns["NgaySinh"].Visible = false;
             tableData.Columns["NoiCap"].Visible = false;
@@ -67,10 +70,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             tableData.Columns["MucLuongToiDa"].Visible = false;
             tableData.Columns["SoLuongNop"].Visible = false;
             tableData.Columns["SoLuongDaTuyen"].Visible = false;
+            tableData.Columns["SoLuongCanTuyen"].Visible = false;
 
             //đổi tên các bảng
             tableData.Columns["MaUngVien"].HeaderText = "Mã Ứng Viên";
             tableData.Columns["MaTuyenDung"].HeaderText = "Mã Tuyển Dụng";
+            tableData.Columns["SoCmnd"].HeaderText = "Số căn cước";
             tableData.Columns["HoTen"].HeaderText = "Họ Tên";
             tableData.Columns["ChucVu"].HeaderText = "Chức Vụ";
             tableData.Columns["Email"].HeaderText = "Email";
@@ -81,14 +86,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Đưa các cột cần lên đầu
             tableData.Columns["MaUngVien"].DisplayIndex = 0;
             tableData.Columns["MaTuyenDung"].DisplayIndex = 1;
+            tableData.Columns["SoCmnd"].DisplayIndex = 2;
 
 
         }
-        private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            tableData.ClearSelection();
-            tableData.CurrentCell = null;
-        }
+       
+        
         private void DisplayCandidateDetails(CandidateFullDTO candidate)
         {
             // Thông tin cá nhân
@@ -129,19 +132,30 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             txtHoSoTuyen.Text = candidate.SoLuongDaTuyen.ToString();
             txtTuoi.Text = candidate.DoTuoi;
             txtGoiTinhTuyenDung.Text = candidate.GioiTinhTuyenDung;
-            // Ảnh
-            //try
-            //{
-            //    string imagePath = Path.Combine(Application.StartupPath, "Images", candidate.Anh);
-            //    if (File.Exists(imagePath))
-            //        pictureBox1.Image = Image.FromFile(imagePath);
-            //    else
-            //        pictureBox1.Image = null;
-            //}
-            //catch
-            //{
-            //    pictureBox1.Image = null;
-            //}
+            try
+            {   
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, candidate.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(candidate.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    pictureBox1.Image = Image.FromFile(finalPath);
+                else
+                    pictureBox1.Image = null;
+            }
+            catch (Exception ex)
+            {
+                pictureBox1.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
+            }
         }
 
         private void tableData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -152,10 +166,135 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 string maUngVien = selectedRow.Cells["maUngVien"].Value.ToString();
                 CandidateFullDTO candidateFullDTO = busFullData.GetById(maUngVien);
                 DisplayCandidateDetails(candidateFullDTO);
-                    
+        
             }
         }
 
-   
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (tableData.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xóa");
+                return;
+            }
+
+            DataGridViewRow selectedRow = tableData.CurrentRow;
+            string maUngVien = selectedRow.Cells["MaUngVien"].Value.ToString();
+            string soCccd = selectedRow.Cells["SoCmnd"].Value.ToString();
+            string maTuyenDung = selectedRow.Cells["MaTuyenDung"].Value.ToString();
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc muốn xóa ứng viên '{maUngVien}' không?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                bool isDeleted = busFullData.DeleteCadidateWithProfile(soCccd, maUngVien);
+                if (isDeleted)
+                {
+                    if(busBatch.UpdateProfileDelete(maTuyenDung))
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                        busFullData.Refresh();
+                        list = busFullData.GetAll();
+                        fillDataToTable(list);
+                    }else
+                    {
+                        MessageBox.Show("Cập nhật số lượng thất bại");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!");
+                }
+            }
+        }
+
+
+        private List<CandidateFullDTO> handledSearch ()
+        {
+            string keyWord = tbSearch.Text.Trim();
+            return busFullData.Search(keyWord);
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+            fillDataToTable(handledSearch());
+        }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                fillDataToTable(handledSearch());
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            list = busFullData.GetAll();
+            fillDataToTable(list);
+        }
+
+        private CandidateFullDTO getDataGirdview()
+        {
+            DataGridViewRow currentRow = tableData.CurrentRow;
+            if (currentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn một ứng viên trong danh sách!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return null;
+            }
+
+            var cellMaUngVien = currentRow.Cells["MaUngVien"]?.Value;
+            var cellTrangThai = currentRow.Cells["TrangThai"]?.Value;
+
+
+            if (cellMaUngVien == null || cellTrangThai == null)
+            {
+                MessageBox.Show("Không thể lấy dữ liệu ứng viên. Vui lòng thử lại!",
+                                "Lỗi dữ liệu",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return null;
+            }
+
+            string maUngVien = cellMaUngVien.ToString();
+            string trangThai = cellTrangThai.ToString();
+
+            if (trangThai.Equals("Đã Tuyển", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Ứng viên này đã được tuyển!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                return null;
+            }
+            return busFullData.GetById(maUngVien);
+        }
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CandidateFullDTO candidate = getDataGirdview();
+            if(candidate != null)
+            {
+                if(candidate.SoLuongDaTuyen == candidate.SoLuongCanTuyen)
+                {
+                    MessageBox.Show("Tuyển dụng này đã tuyển đủ số lượng ứng viên");
+                    return;
+                }
+                FormTuyenUngVien tuyenUngVienForm = new FormTuyenUngVien(candidate);
+                tuyenUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Thêm nhân viên thành công");
+                tuyenUngVienForm.StartPosition = FormStartPosition.CenterScreen;
+                tuyenUngVienForm.ShowDialog();
+            }
+        }
     }
 }

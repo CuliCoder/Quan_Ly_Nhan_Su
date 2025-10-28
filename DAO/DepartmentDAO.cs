@@ -23,7 +23,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "SELECT maPhong AS MaPhong, tenPhong AS TenPhong FROM phongban";  // Sửa: Tên bảng + alias cho cột
+                    string query = "SELECT * FROM phongban";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -32,8 +32,10 @@ namespace Quan_Ly_Nhan_Su.DAO
                             {
                                 DepartmentDTO dept = new DepartmentDTO
                                 {
-                                    MaPhong = reader["MaPhong"].ToString(),  // Giờ dùng alias để khớp property
-                                    TenPhong = reader["TenPhong"].ToString()
+                                    MaPhong = reader["maPhong"].ToString(),
+                                    TenPhong = reader["tenPhong"].ToString(),
+                                    NgayThanhLap = reader["ngayThanhLap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayThanhLap"]) : DateTime.MinValue,
+                                    MaTruongPhong = reader["maTruongPhong"].ToString()
                                 };
                                 departments.Add(dept);
                             }

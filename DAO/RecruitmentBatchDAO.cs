@@ -5,6 +5,8 @@ using System;
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -216,7 +218,85 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return false;
             }
         }
+        public bool updateProfileCreate(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soLuongNopHoSo = soLuongNopHoSo + 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
+        public bool updateProfileDelete(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soLuongNopHoSo = soLuongNopHoSo - 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
 
+        public bool updateNumberOfRecruited(string maTuyenDung)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            UPDATE dottuyendung
+                            SET soluongdatuyen = soluongdatuyen + 1
+                            WHERE maTuyenDung = @maTuyenDung; 
+                            ";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating recruitment batch: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Deletes a recruitment batch from the dottuyendung table
         /// </summary>
@@ -298,6 +378,64 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return list;
         }
-      
+
+        public List<RecruitmentBatchDTO> searchDayRecruitmentBatch(DateTime startDay, DateTime endDay)
+        {
+            List<RecruitmentBatchDTO> list = new List<RecruitmentBatchDTO>();
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"
+                            SELECT *
+                            FROM dottuyendung
+                            WHERE 
+                            (
+                                (@NgayTu = @NgayDen AND DATE(hanNopHoso) = @NgayTu)
+                            )
+                            OR
+                            (
+                                (@NgayTu <> @NgayDen AND DATE(hanNopHoso) BETWEEN @NgayTu AND @NgayDen)
+                            )
+                           ";
+
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@NgayTu", startDay.Date);
+                        cmd.Parameters.AddWithValue("@NgayDen", endDay.Date);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                RecruitmentBatchDTO dto = new RecruitmentBatchDTO()
+                                {
+                                    MaTuyenDung = reader["maTuyenDung"].ToString(),
+                                    ChucVu = reader["chucVu"].ToString(),
+                                    HocVan = reader["hocVan"].ToString(),
+                                    GioiTinh = reader["gioiTinh"].ToString(),
+                                    DoTuoi = reader["doTuoi"].ToString(),
+                                    SoLuongCanTuyen = reader["soLuongCanTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["soLuongCanTuyen"]),
+                                    HanNopHoSo = reader["HanNopHoSo"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["HanNopHoSo"]),
+                                    MucLuongToiThieu = reader["MucLuongToiThieu"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiThieu"]),
+                                    MucLuongToiDa = reader["MucLuongToiDa"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["MucLuongToiDa"]),
+                                    SoLuongNop = reader["SoLuongNopHoSo"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongNopHoSo"]),
+                                    SoLuongDaTuyen = reader["SoLuongDaTuyen"] == DBNull.Value ? 0 : Convert.ToInt32(reader["SoLuongDaTuyen"])
+                                };
+
+                                list.Add(dto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Lỗi khi tìm kiếm: {ex.Message}");
+                return null;
+            }
+            return list;
+        }
     }
 }

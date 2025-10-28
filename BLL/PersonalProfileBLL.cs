@@ -73,6 +73,16 @@ namespace Quan_Ly_Nhan_Su.BLL
             return success;
         }
 
+        public bool DeleteList(string soCmnd)
+        {
+            if(soCmnd.Length > 0)
+            {
+                list.RemoveAll(x => x.SoCmnd == soCmnd);
+                return true;
+            }
+            return false;
+        }
+
         public List<PersonalProfileDTO> Search(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
