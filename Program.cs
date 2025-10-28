@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.GUI;
+using Quan_Ly_Nhan_Su.BLL;
 
 namespace Quan_Ly_Nhan_Su
 {
@@ -15,8 +16,8 @@ namespace Quan_Ly_Nhan_Su
 
             // AUTOMATICALLY CREATE DEV ACCOUNT IF IT DOESN'T EXIST
             // ===========================================
-            //AccountBUS accountBUS = new AccountBUS();
-            //accountBUS.EnsureDevAccountExists();
+            //AccountBLL accountBLL = new AccountBLL();
+            //AccountBLL.EnsureDevAccountExists();
             //// ===========================================
 
             //Login loginForm = new Login();
@@ -24,7 +25,7 @@ namespace Quan_Ly_Nhan_Su
 
             //if (result == DialogResult.OK)
             //{
-                
+
             //}
             Application.Run(new mainGUI());
         }

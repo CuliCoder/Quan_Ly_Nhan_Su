@@ -19,8 +19,8 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
             lblEmail.Text = $"<{request.EmailNguoiGui}>";
 
             // Format the date range
-            string startDate = request.NgayBatDau?.ToString("dd/MM/yyyy") ?? "N/A";
-            string endDate = request.NgayKetThuc?.ToString("dd/MM/yyyy") ?? "N/A";
+            string startDate = request.NgayBatDau?.ToString("dd/MM/yyyy HH:mm") ?? "N/A";
+            string endDate = request.NgayKetThuc?.ToString("dd/MM/yyyy HH:mm") ?? "N/A";
             lblDateRange.Text = $"{startDate} - {endDate}";
 
             // You can set the picStatus image based on the request type or other properties

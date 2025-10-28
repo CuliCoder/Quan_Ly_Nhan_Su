@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using Quan_Ly_Nhan_Su.BLL;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class ProfileStaffGUI : UserControl
-    {
+    {   
+        AttendanceBLL attendanceBLL = new AttendanceBLL();
         public ProfileStaffGUI()
         {
             InitializeComponent();
@@ -63,6 +65,11 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void changepasswordGUI1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnChamCong_Click(object sender, EventArgs e)
+        {
+            attendanceBLL.addAttendance("NV003");
         }
     }
 }

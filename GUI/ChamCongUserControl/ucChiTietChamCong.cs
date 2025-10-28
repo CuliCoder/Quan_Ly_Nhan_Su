@@ -9,7 +9,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
     public partial class ucChiTietChamCong : UserControl
     {
         public event EventHandler BackButtonClicked;
-
+        private AttendanceBLL AttendanceBLL = new AttendanceBLL();
         private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
         // Giả định bạn có BLL cho việc lấy dữ liệu Yêu cầu
         // private readonly YeuCauBLL yeuCauBLL = new YeuCauBLL(); 
@@ -76,9 +76,9 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                 // List<YeuCauDTO> requests = yeuCauBLL.GetRequestsByEmployeeAndMonth(currentEmployee.MaNhanVien, year, month);
 
                 // Dữ liệu mẫu để minh họa
-                var requests = GetSampleRequests();
+                List<AttendanceDTO> attendance = AttendanceBLL.getAttendanceByEmployeeId("NV003");
 
-                DisplayRequests(requests);
+                DisplayRequests(attendance);
             }
             catch (Exception ex)
             {
@@ -99,30 +99,39 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
             };
         }
 
-        private void DisplayRequests(List<YeuCauDTO> requests)
+        private void DisplayRequests(List<AttendanceDTO> attendanceDTOs)
         {
-            flpDraft.Controls.Clear();
             flpSubmitted.Controls.Clear();
             flpApproved.Controls.Clear();
+            flpReject.Controls.Clear();
 
-            if (requests == null) return;
+            if (attendanceDTOs == null) return;
 
-            foreach (var req in requests)
+            foreach (var req in attendanceDTOs)
             {
+                EmployeeFullDTO employee = employeeBLL.GetEmployeeById(req.MaNhanVien);
+                YeuCauDTO yeuCau = new YeuCauDTO
+                {
+                    TenNguoiGui = employee.HoTen,
+                    EmailNguoiGui = employee.Email,
+                    NgayBatDau = req.CheckInTime,
+                    NgayKetThuc = req.CheckOutTime,
+                    TrangThai = req.TrangThai
+                };
                 var card = new ucRequestCard();
-                card.LoadData(req);
+                card.LoadData(yeuCau);
 
                 // Phân loại card vào đúng cột dựa trên trạng thái
                 switch (req.TrangThai?.ToLower())
                 {
-                    case "draft":
-                        flpDraft.Controls.Add(card);
-                        break;
                     case "submitted":
                         flpSubmitted.Controls.Add(card);
                         break;
                     case "approved":
                         flpApproved.Controls.Add(card);
+                        break;
+                    case "reject":
+                        flpReject.Controls.Add(card);
                         break;
                     default:
                         // Có thể thêm vào một cột mặc định nếu cần
@@ -134,6 +143,11 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
         private void btnBack_Click(object sender, EventArgs e)
         {
             BackButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void lblDraftHeader_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,14 +21,14 @@
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.pnlApproved = new System.Windows.Forms.Panel();
+            this.flpReject = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblRejectHeader = new System.Windows.Forms.Label();
+            this.pnlSubmitted = new System.Windows.Forms.Panel();
             this.flpApproved = new System.Windows.Forms.FlowLayoutPanel();
             this.lblApprovedHeader = new System.Windows.Forms.Label();
-            this.pnlSubmitted = new System.Windows.Forms.Panel();
+            this.pnlDraft = new System.Windows.Forms.Panel();
             this.flpSubmitted = new System.Windows.Forms.FlowLayoutPanel();
             this.lblSubmittedHeader = new System.Windows.Forms.Label();
-            this.pnlDraft = new System.Windows.Forms.Panel();
-            this.flpDraft = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblDraftHeader = new System.Windows.Forms.Label();
             this.lblTenNhanVien = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -69,9 +69,9 @@
             // tblMainLayout
             // 
             this.tblMainLayout.ColumnCount = 3;
-            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.7963F));
+            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.27778F));
+            this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.83333F));
             this.tblMainLayout.Controls.Add(this.pnlApproved, 2, 0);
             this.tblMainLayout.Controls.Add(this.pnlSubmitted, 1, 0);
             this.tblMainLayout.Controls.Add(this.pnlDraft, 0, 0);
@@ -85,14 +85,47 @@
             // 
             // pnlApproved
             // 
-            this.pnlApproved.Controls.Add(this.flpApproved);
-            this.pnlApproved.Controls.Add(this.lblApprovedHeader);
+            this.pnlApproved.Controls.Add(this.flpReject);
+            this.pnlApproved.Controls.Add(this.lblRejectHeader);
             this.pnlApproved.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlApproved.Location = new System.Drawing.Point(723, 3);
+            this.pnlApproved.Location = new System.Drawing.Point(749, 3);
             this.pnlApproved.Name = "pnlApproved";
             this.pnlApproved.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlApproved.Size = new System.Drawing.Size(354, 574);
+            this.pnlApproved.Size = new System.Drawing.Size(328, 574);
             this.pnlApproved.TabIndex = 2;
+            // 
+            // flpReject
+            // 
+            this.flpReject.AutoScroll = true;
+            this.flpReject.BackColor = System.Drawing.Color.White;
+            this.flpReject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpReject.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpReject.Location = new System.Drawing.Point(5, 35);
+            this.flpReject.Name = "flpReject";
+            this.flpReject.Size = new System.Drawing.Size(318, 534);
+            this.flpReject.TabIndex = 1;
+            this.flpReject.WrapContents = false;
+            // 
+            // lblRejectHeader
+            // 
+            this.lblRejectHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblRejectHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRejectHeader.Location = new System.Drawing.Point(5, 5);
+            this.lblRejectHeader.Name = "lblRejectHeader";
+            this.lblRejectHeader.Size = new System.Drawing.Size(318, 30);
+            this.lblRejectHeader.TabIndex = 0;
+            this.lblRejectHeader.Text = "Reject";
+            // 
+            // pnlSubmitted
+            // 
+            this.pnlSubmitted.Controls.Add(this.flpApproved);
+            this.pnlSubmitted.Controls.Add(this.lblApprovedHeader);
+            this.pnlSubmitted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSubmitted.Location = new System.Drawing.Point(368, 3);
+            this.pnlSubmitted.Name = "pnlSubmitted";
+            this.pnlSubmitted.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlSubmitted.Size = new System.Drawing.Size(375, 574);
+            this.pnlSubmitted.TabIndex = 1;
             // 
             // flpApproved
             // 
@@ -102,7 +135,7 @@
             this.flpApproved.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpApproved.Location = new System.Drawing.Point(5, 35);
             this.flpApproved.Name = "flpApproved";
-            this.flpApproved.Size = new System.Drawing.Size(344, 534);
+            this.flpApproved.Size = new System.Drawing.Size(365, 534);
             this.flpApproved.TabIndex = 1;
             this.flpApproved.WrapContents = false;
             // 
@@ -112,20 +145,20 @@
             this.lblApprovedHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApprovedHeader.Location = new System.Drawing.Point(5, 5);
             this.lblApprovedHeader.Name = "lblApprovedHeader";
-            this.lblApprovedHeader.Size = new System.Drawing.Size(344, 30);
+            this.lblApprovedHeader.Size = new System.Drawing.Size(365, 30);
             this.lblApprovedHeader.TabIndex = 0;
             this.lblApprovedHeader.Text = "Approved";
             // 
-            // pnlSubmitted
+            // pnlDraft
             // 
-            this.pnlSubmitted.Controls.Add(this.flpSubmitted);
-            this.pnlSubmitted.Controls.Add(this.lblSubmittedHeader);
-            this.pnlSubmitted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSubmitted.Location = new System.Drawing.Point(363, 3);
-            this.pnlSubmitted.Name = "pnlSubmitted";
-            this.pnlSubmitted.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlSubmitted.Size = new System.Drawing.Size(354, 574);
-            this.pnlSubmitted.TabIndex = 1;
+            this.pnlDraft.Controls.Add(this.flpSubmitted);
+            this.pnlDraft.Controls.Add(this.lblSubmittedHeader);
+            this.pnlDraft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDraft.Location = new System.Drawing.Point(3, 3);
+            this.pnlDraft.Name = "pnlDraft";
+            this.pnlDraft.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlDraft.Size = new System.Drawing.Size(359, 574);
+            this.pnlDraft.TabIndex = 0;
             // 
             // flpSubmitted
             // 
@@ -135,7 +168,7 @@
             this.flpSubmitted.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpSubmitted.Location = new System.Drawing.Point(5, 35);
             this.flpSubmitted.Name = "flpSubmitted";
-            this.flpSubmitted.Size = new System.Drawing.Size(344, 534);
+            this.flpSubmitted.Size = new System.Drawing.Size(349, 534);
             this.flpSubmitted.TabIndex = 1;
             this.flpSubmitted.WrapContents = false;
             // 
@@ -145,42 +178,10 @@
             this.lblSubmittedHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubmittedHeader.Location = new System.Drawing.Point(5, 5);
             this.lblSubmittedHeader.Name = "lblSubmittedHeader";
-            this.lblSubmittedHeader.Size = new System.Drawing.Size(344, 30);
+            this.lblSubmittedHeader.Size = new System.Drawing.Size(349, 30);
             this.lblSubmittedHeader.TabIndex = 0;
             this.lblSubmittedHeader.Text = "Submitted";
-            // 
-            // pnlDraft
-            // 
-            this.pnlDraft.Controls.Add(this.flpDraft);
-            this.pnlDraft.Controls.Add(this.lblDraftHeader);
-            this.pnlDraft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDraft.Location = new System.Drawing.Point(3, 3);
-            this.pnlDraft.Name = "pnlDraft";
-            this.pnlDraft.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlDraft.Size = new System.Drawing.Size(354, 574);
-            this.pnlDraft.TabIndex = 0;
-            // 
-            // flpDraft
-            // 
-            this.flpDraft.AutoScroll = true;
-            this.flpDraft.BackColor = System.Drawing.Color.White;
-            this.flpDraft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpDraft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDraft.Location = new System.Drawing.Point(5, 35);
-            this.flpDraft.Name = "flpDraft";
-            this.flpDraft.Size = new System.Drawing.Size(344, 534);
-            this.flpDraft.TabIndex = 1;
-            this.flpDraft.WrapContents = false;
-            // 
-            // lblDraftHeader
-            // 
-            this.lblDraftHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDraftHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDraftHeader.Location = new System.Drawing.Point(5, 5);
-            this.lblDraftHeader.Name = "lblDraftHeader";
-            this.lblDraftHeader.Size = new System.Drawing.Size(344, 30);
-            this.lblDraftHeader.TabIndex = 0;
-            this.lblDraftHeader.Text = "Draft";
+            this.lblSubmittedHeader.Click += new System.EventHandler(this.lblDraftHeader_Click);
             // 
             // lblTenNhanVien
             // 
@@ -229,7 +230,7 @@
             this.cboNam.FormattingEnabled = true;
             this.cboNam.Location = new System.Drawing.Point(196, 15);
             this.cboNam.Name = "cboNam";
-            this.cboNam.Size = new System.Drawing.Size(121, 29);
+            this.cboNam.Size = new System.Drawing.Size(121, 31);
             this.cboNam.TabIndex = 2;
             // 
             // cboThang
@@ -238,7 +239,7 @@
             this.cboThang.FormattingEnabled = true;
             this.cboThang.Location = new System.Drawing.Point(69, 15);
             this.cboThang.Name = "cboThang";
-            this.cboThang.Size = new System.Drawing.Size(121, 29);
+            this.cboThang.Size = new System.Drawing.Size(121, 31);
             this.cboThang.TabIndex = 1;
             // 
             // btnBack
@@ -266,6 +267,7 @@
             this.pnlDraft.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -282,11 +284,11 @@
         private System.Windows.Forms.Panel pnlApproved;
         private System.Windows.Forms.Panel pnlSubmitted;
         private System.Windows.Forms.Panel pnlDraft;
+        private System.Windows.Forms.Label lblRejectHeader;
         private System.Windows.Forms.Label lblApprovedHeader;
         private System.Windows.Forms.Label lblSubmittedHeader;
-        private System.Windows.Forms.Label lblDraftHeader;
+        private System.Windows.Forms.FlowLayoutPanel flpReject;
         private System.Windows.Forms.FlowLayoutPanel flpApproved;
         private System.Windows.Forms.FlowLayoutPanel flpSubmitted;
-        private System.Windows.Forms.FlowLayoutPanel flpDraft;
     }
 }

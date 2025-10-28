@@ -64,7 +64,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void designForm()
         {
-            design.paintBorder(this.panel5, Color.Gray, 4, 30, 0, this.panel5.Width - 30, 0);
+            design.paintBorder(this.flowLayoutPanel1, Color.Gray, 4, 30, 0, this.flowLayoutPanel1.Width - 30, 0);
             design.paintBorder(this.panel2, Color.Gray, 4, 0, 0, 0, this.panel2.Height);
         }
         private void addPanelToList()
@@ -83,6 +83,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             foreach (Panel pnl in listpnlbSideBar)
             {
+                //pnl.Visible = false; // Ẩn tất cả panel trước khi thêm sự kiện
                 pnl.Click += new EventHandler(pnlb_Click);
                 foreach (Control ctl in pnl.Controls)
                 {
@@ -212,6 +213,11 @@ namespace Quan_Ly_Nhan_Su.GUI
         }
 
         private void pnlbHopDong_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel6_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

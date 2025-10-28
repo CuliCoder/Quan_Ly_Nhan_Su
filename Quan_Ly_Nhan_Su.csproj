@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="DAO\CandidateDAO.cs" />
     <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
+    <Compile Include="DTO\AttendanceDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
@@ -388,6 +391,12 @@
     <EmbeddedResource Include="GUI\ChamCongUserControl\ucChamCong.resx">
       <DependentUpon>ucChamCong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucChiTietChamCong.resx">
+      <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucRequestCard.resx">
+      <DependentUpon>ucRequestCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChangepasswordGUI.resx">
       <DependentUpon>ChangepasswordGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,6 +540,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\user %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,6 +29,7 @@
             this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnChamCong = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +86,7 @@
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 0, 0, 7);
-            this.lblTitle.Size = new System.Drawing.Size(534, 57);
+            this.lblTitle.Size = new System.Drawing.Size(544, 57);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Chọn nhân viên để chấm công";
             // 
@@ -123,6 +124,7 @@
             this.dgvNhanVien.Name = "dgvNhanVien";
             this.dgvNhanVien.ReadOnly = true;
             this.dgvNhanVien.RowHeadersVisible = false;
+            this.dgvNhanVien.RowHeadersWidth = 51;
             this.dgvNhanVien.RowTemplate.Height = 35;
             this.dgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNhanVien.Size = new System.Drawing.Size(1065, 566);
@@ -133,6 +135,7 @@
             // 
             this.colMaNV.DataPropertyName = "MaNhanVien";
             this.colMaNV.HeaderText = "Mã NV";
+            this.colMaNV.MinimumWidth = 6;
             this.colMaNV.Name = "colMaNV";
             this.colMaNV.ReadOnly = true;
             this.colMaNV.Width = 120;
@@ -142,6 +145,7 @@
             this.colHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colHoTen.DataPropertyName = "HoTen";
             this.colHoTen.HeaderText = "Họ và Tên";
+            this.colHoTen.MinimumWidth = 6;
             this.colHoTen.Name = "colHoTen";
             this.colHoTen.ReadOnly = true;
             // 
@@ -149,6 +153,7 @@
             // 
             this.colChucVu.DataPropertyName = "ChucVu";
             this.colChucVu.HeaderText = "Chức vụ";
+            this.colChucVu.MinimumWidth = 6;
             this.colChucVu.Name = "colChucVu";
             this.colChucVu.ReadOnly = true;
             this.colChucVu.Width = 200;
@@ -157,15 +162,27 @@
             // 
             this.colPhongBan.DataPropertyName = "PhongBan";
             this.colPhongBan.HeaderText = "Phòng Ban";
+            this.colPhongBan.MinimumWidth = 6;
             this.colPhongBan.Name = "colPhongBan";
             this.colPhongBan.ReadOnly = true;
             this.colPhongBan.Width = 200;
+            // 
+            // btnChamCong
+            // 
+            this.btnChamCong.Location = new System.Drawing.Point(488, 453);
+            this.btnChamCong.Name = "btnChamCong";
+            this.btnChamCong.Size = new System.Drawing.Size(190, 91);
+            this.btnChamCong.TabIndex = 3;
+            this.btnChamCong.Text = "CHẤM CÔNG";
+            this.btnChamCong.UseVisualStyleBackColor = true;
+            this.btnChamCong.Click += new System.EventHandler(this.button1_Click);
             // 
             // ucChamCong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.Controls.Add(this.btnChamCong);
             this.Controls.Add(this.dgvNhanVien);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.lblTitle);
@@ -178,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -193,5 +211,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoTen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colChucVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPhongBan;
+        private System.Windows.Forms.Button btnChamCong;
     }
 }

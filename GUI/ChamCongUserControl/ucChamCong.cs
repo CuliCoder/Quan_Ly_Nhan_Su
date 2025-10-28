@@ -10,7 +10,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
     {
         public event Action<string> EmployeeSelected;
         private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
-
+        private AttendanceBLL attendanceBLL = new AttendanceBLL();
         public ucChamCong()
         {
             InitializeComponent();
@@ -51,6 +51,11 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Chức năng tìm kiếm đang được phát triển.");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("" + attendanceBLL.addAttendance("NV003"));
         }
     }
 }
