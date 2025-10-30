@@ -21,7 +21,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
         public TaiKhoanMain()
         {
             InitializeComponent();
-            Console.WriteLine(SessionManager.Instance.Username);
             this.tabMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabMain.Appearance = TabAppearance.Buttons;
             this.tabMain.SizeMode = TabSizeMode.Fixed;

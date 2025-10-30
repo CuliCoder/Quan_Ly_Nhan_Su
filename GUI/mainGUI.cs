@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Quan_Ly_Nhan_Su.GUI
@@ -42,6 +43,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             ConfigureMenuByPermission();
         }
 
+
         // ===== KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP =====
         private void CheckLoginStatus()
         {
@@ -66,6 +68,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             // lblUsername.Text = SessionManager.Instance.Username;
             // lblFullName.Text = SessionManager.Instance.FullName;
+            label1.Text = SessionManager.Instance.FullName;
             // lblRole.Text = SessionManager.Instance.PermissionGroupName;
 
             // Nếu có ảnh đại diện:
@@ -295,6 +298,11 @@ namespace Quan_Ly_Nhan_Su.GUI
         }
 
         private void panel6_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
         {
 
         }
