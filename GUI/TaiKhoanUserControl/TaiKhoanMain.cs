@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
 {
@@ -20,6 +21,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl
         public TaiKhoanMain()
         {
             InitializeComponent();
+            Console.WriteLine(SessionManager.Instance.Username);
             this.tabMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabMain.Appearance = TabAppearance.Buttons;
             this.tabMain.SizeMode = TabSizeMode.Fixed;
