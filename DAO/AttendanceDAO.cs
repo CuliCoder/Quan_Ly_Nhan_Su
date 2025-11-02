@@ -21,8 +21,12 @@ namespace Quan_Ly_Nhan_Su.DAO
             string status = reader.GetString("status");
             string approved_by = reader.IsDBNull(reader.GetOrdinal("approved_by")) ? null : reader.GetString("approved_by");
             DateTime? approved_date = reader.IsDBNull(reader.GetOrdinal("approved_date")) ? (DateTime?)null : reader.GetDateTime("approved_date");
+            int go_late = reader.IsDBNull(reader.GetOrdinal("go_late")) ? 0 : reader.GetInt32("go_late");
+            int leave_early = reader.IsDBNull(reader.GetOrdinal("leave_early")) ? 0 : reader.GetInt32("leave_early");
+            float sogiolamviec = reader.IsDBNull(reader.GetOrdinal("sogiolamviec")) ? 0 : reader.GetFloat("sogiolamviec");
+            int soca = reader.IsDBNull(reader.GetOrdinal("soca")) ? 0 : reader.GetInt32("soca");
             string notes = reader.IsDBNull(reader.GetOrdinal("notes")) ? null : reader.GetString("notes");
-            return new AttendanceDTO(machamcong, maNV, ngayChamCong, checkIn, checkOut, status, approved_by, approved_date, notes);
+            return new AttendanceDTO(machamcong, maNV, ngayChamCong, checkIn, checkOut, status, approved_by, approved_date, go_late, leave_early, sogiolamviec, soca, notes);
         }
         public List<AttendanceDTO> get_attendance_by_ID_NhanVien(string maNhanVien)
         {
@@ -61,7 +65,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {
                     try
                     {
-                        string insertSQL = "insert into bangchamcong (maBangChamCong, maNV, ngayChamCong, checkIn, checkOut, approved_by, approved_date, notes) VALUES (@maBangChamCong, @maNV, @ngayChamCong, @checkIn, @checkOut, @approved_by, @approved_date, @notes)";
+                        string insertSQL = "insert into bangchamcong (maBangChamCong, maNV, ngayChamCong, checkIn, checkOut, approved_by, approved_date, go_late, leave_early, sogiolamviec, soca, notes) VALUES (@maBangChamCong, @maNV, @ngayChamCong, @checkIn, @checkOut, @approved_by, @approved_date, @go_late, @leave_early, @sogiolamviec, @soca, @notes)";
                         using (MySqlCommand cmd = new MySqlCommand(insertSQL, conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@maBangChamCong", attendance.IdChamCong);
@@ -73,6 +77,10 @@ namespace Quan_Ly_Nhan_Su.DAO
 
                             cmd.Parameters.AddWithValue("@approved_by", attendance.Approved_by ?? (object)DBNull.Value);
                             cmd.Parameters.AddWithValue("@approved_date", attendance.Approved_date.HasValue ? (object)attendance.Approved_date.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("@go_late", attendance.Go_late);
+                            cmd.Parameters.AddWithValue("@leave_early", attendance.Leave_early);
+                            cmd.Parameters.AddWithValue("@sogiolamviec", attendance.Sogiolamviec);
+                            cmd.Parameters.AddWithValue("@soca", attendance.Soca);
                             cmd.Parameters.AddWithValue("@notes", attendance.Notes ?? (object)DBNull.Value);
 
                             cmd.ExecuteNonQuery();
@@ -102,7 +110,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {
                     try
                     {
-                        string updateSQL = "UPDATE bangchamcong SET maNV = @maNV, ngayChamCong = @ngayChamCong, checkIn = @checkIn, checkOut = @checkOut, status = @status, approved_by = @approved_by, approved_date = @approved_date, notes = @notes WHERE maBangChamCong = @id";
+                        string updateSQL = "UPDATE bangchamcong SET maNV = @maNV, ngayChamCong = @ngayChamCong, checkIn = @checkIn, checkOut = @checkOut, status = @status, approved_by = @approved_by, approved_date = @approved_date, go_late = @go_late, leave_early = @leave_early, sogiolamviec = @sogiolamviec, soca = @soca, notes = @notes WHERE maBangChamCong = @id";
                         using (MySqlCommand cmd = new MySqlCommand(updateSQL, conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@maNV", attendance.MaNhanVien ?? (object)DBNull.Value);
@@ -114,6 +122,10 @@ namespace Quan_Ly_Nhan_Su.DAO
                             cmd.Parameters.AddWithValue("@status", attendance.TrangThai ?? (object)DBNull.Value);
                             cmd.Parameters.AddWithValue("@approved_by", attendance.Approved_by ?? (object)DBNull.Value);
                             cmd.Parameters.AddWithValue("@approved_date", attendance.Approved_date.HasValue ? (object)attendance.Approved_date.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("@go_late", attendance.Go_late);
+                            cmd.Parameters.AddWithValue("@leave_early", attendance.Leave_early);
+                            cmd.Parameters.AddWithValue("@sogiolamviec", attendance.Sogiolamviec);
+                            cmd.Parameters.AddWithValue("@soca", attendance.Soca);
                             cmd.Parameters.AddWithValue("@notes", attendance.Notes ?? (object)DBNull.Value);
 
                             cmd.Parameters.AddWithValue("@id", attendance.IdChamCong);

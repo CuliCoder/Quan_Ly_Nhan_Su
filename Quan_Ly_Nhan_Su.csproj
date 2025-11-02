@@ -137,6 +137,7 @@
     <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
     <Compile Include="DTO\AttendanceDTO.cs" />
+    <Compile Include="DTO\calamviecDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
