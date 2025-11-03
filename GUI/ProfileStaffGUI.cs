@@ -71,5 +71,10 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             attendanceBLL.addAttendance("NV003");
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
