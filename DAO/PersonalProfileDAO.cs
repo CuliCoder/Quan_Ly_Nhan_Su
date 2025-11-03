@@ -65,36 +65,44 @@ namespace Quan_Ly_Nhan_Su.DAO
 
         public PersonalProfileDTO GetById(string cccd)
         {
-            MySqlConnection conn = null;
             try
             {
-                using(conn = connectDB.getConnection())
+                using (var conn = connectDB.getConnection())
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM hosocanhan WHERE soCccd=@cccd";
+                    string sql = "SELECT * FROM hosocanhan WHERE soCmnd=@cccd";
 
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@cccd", cccd);
+
                         using (var reader = cmd.ExecuteReader())
                         {
-                            return new PersonalProfileDTO
+                            if (reader.Read()) // ✅ Di chuyển tới bản ghi đầu tiên
                             {
-                                SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
-                                HoTen = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
-                                NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : DateTime.MinValue,
-                                GioiTinh = reader["gioiTinh"] != DBNull.Value ? reader["gioiTinh"].ToString() : "",
-                                DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
-                                Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "",
-                                SoDienThoai = reader["sdt"] != DBNull.Value ? reader["sdt"].ToString() : "",
-                                NoiCap = reader["noiCap"] != DBNull.Value ? reader["noiCap"].ToString() : "",
-                                NgayCap = reader["ngayCap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayCap"]) : DateTime.MinValue,
-                                DanToc = reader["danToc"] != DBNull.Value ? reader["danToc"].ToString() : "",
-                                HocVan = reader["hocVan"] != DBNull.Value ? reader["hocVan"].ToString() : "",
-                                HonNhan = reader["tinhTrangHonNhan"] != DBNull.Value ? reader["tinhTrangHonNhan"].ToString() : "",
-                                ChuyenNganh = reader["chuyenNganh"] != DBNull.Value ? reader["chuyenNganh"].ToString() : "",
-                                HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
-                            };
+                                return new PersonalProfileDTO
+                                {
+                                    SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
+                                    HoTen = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
+                                    NgaySinh = reader["ngaySinh"] != DBNull.Value ? Convert.ToDateTime(reader["ngaySinh"]) : DateTime.MinValue,
+                                    GioiTinh = reader["gioiTinh"] != DBNull.Value ? reader["gioiTinh"].ToString() : "",
+                                    DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
+                                    Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "",
+                                    SoDienThoai = reader["sdt"] != DBNull.Value ? reader["sdt"].ToString() : "",
+                                    NoiCap = reader["noiCap"] != DBNull.Value ? reader["noiCap"].ToString() : "",
+                                    NgayCap = reader["ngayCap"] != DBNull.Value ? Convert.ToDateTime(reader["ngayCap"]) : DateTime.MinValue,
+                                    DanToc = reader["danToc"] != DBNull.Value ? reader["danToc"].ToString() : "",
+                                    HocVan = reader["hocVan"] != DBNull.Value ? reader["hocVan"].ToString() : "",
+                                    HonNhan = reader["tinhTrangHonNhan"] != DBNull.Value ? reader["tinhTrangHonNhan"].ToString() : "",
+                                    ChuyenNganh = reader["chuyenNganh"] != DBNull.Value ? reader["chuyenNganh"].ToString() : "",
+                                    HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
+                                };
+                            }
+                            else
+                            {
+                                // Không tìm thấy dữ liệu
+                                return null;
+                            }
                         }
                     }
                 }
@@ -110,6 +118,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return null;
             }
         }
+
 
         public bool CheckCccd(string soCccd)
         {

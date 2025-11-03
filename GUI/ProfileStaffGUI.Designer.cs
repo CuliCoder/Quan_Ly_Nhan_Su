@@ -7,6 +7,90 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        private void ImproveDesign()
+        {
+            // 1. Cải thiện TabControl
+            tabControl1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new System.Drawing.Size(200, 40);
+            tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+
+            // 2. Cải thiện Label tiêu đề
+            label3.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            label3.ForeColor = System.Drawing.Color.FromArgb(93, 194, 167);
+            label3.Padding = new System.Windows.Forms.Padding(10);
+            label3.BackColor = System.Drawing.Color.FromArgb(240, 248, 255);
+
+            // 3. Cải thiện PictureBox avatar
+            pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pictureBox1.BackColor = System.Drawing.Color.White;
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
+            // 4. Cải thiện nút thay ảnh
+            button1.BackColor = System.Drawing.Color.FromArgb(93, 194, 167);
+            button1.ForeColor = System.Drawing.Color.White;
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            button1.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // 5. Cải thiện nút chấm công
+            BtnChamCong.BackColor = System.Drawing.Color.FromArgb(52, 152, 219);
+            BtnChamCong.ForeColor = System.Drawing.Color.White;
+            BtnChamCong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            BtnChamCong.FlatAppearance.BorderSize = 0;
+            BtnChamCong.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            BtnChamCong.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // 6. Cải thiện tất cả Labels
+            ImproveLabels();
+
+            // 7. Cải thiện tất cả TextBoxes
+            ImproveTextBoxes();
+        }
+
+        private void ImproveLabels()
+        {
+            // Danh sách các labels cần cải thiện
+            System.Windows.Forms.Label[] labels = {
+                label4, label5, label6, label7, label8, label9, label10,
+                label11, label12, label13, label14, label15, label16,
+                label17, label18, label19, label20, label21, label22,
+                label24, label25, label26
+            };
+
+            foreach (var label in labels)
+            {
+                if (label != null)
+                {
+                    label.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+                    label.ForeColor = System.Drawing.Color.FromArgb(52, 73, 94);
+                }
+            }
+        }
+
+        private void ImproveTextBoxes()
+        {
+            // Danh sách các textboxes
+            System.Windows.Forms.TextBox[] textBoxes = {
+                textBox1, textBox2, textBox3, textBox4, textBox5, textBox6,
+                textBox7, textBox8, textBox9, textBox10, textBox11, textBox12,
+                textBox13, textBox14, textBox15, textBox16, textBox17, textBox18,
+                textBox19, textBox21, textBox22, textBox23
+            };
+
+            foreach (var textBox in textBoxes)
+            {
+                if (textBox != null)
+                {
+                    textBox.Font = new System.Drawing.Font("Segoe UI", 10F);
+                    textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                    textBox.BackColor = System.Drawing.Color.White;
+                    textBox.ForeColor = System.Drawing.Color.FromArgb(52, 73, 94);
+                }
+            }
+        }
+    
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -171,11 +255,9 @@
             this.tabControl1.Controls.Add(this.ĐOIMATKHAU);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1378, 951);
             this.tabControl1.TabIndex = 1;
             // 
             // THONGTINCANHAN
@@ -1213,11 +1295,10 @@
             // changepasswordGUI1
             // 
             this.changepasswordGUI1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.changepasswordGUI1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.changepasswordGUI1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.changepasswordGUI1.Location = new System.Drawing.Point(3, 0);
             this.changepasswordGUI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.changepasswordGUI1.Name = "changepasswordGUI1";
-            this.changepasswordGUI1.Size = new System.Drawing.Size(880, 662);
             this.changepasswordGUI1.TabIndex = 0;
             // 
             // contextMenuStrip1
