@@ -186,7 +186,14 @@ namespace Quan_Ly_Nhan_Su.BLL
                 return new List<string>();
             }
         }
+        public string GetMaHopDongByMaNhanVien(string maNhanVien)
+          => _dao.GetMaHopDongByMaNhanVien(maNhanVien);
 
+        public List<ExtensionHistoryDTO> GetExtensionHistory(string maNhanVien)
+            => _dao.GetExtensionHistory(maNhanVien);
+
+        public EmployeeFullDTO GetEmployeeDetailsById(string maNhanVien)
+            => _dao.GetEmployeeById(maNhanVien);
         /// <summary>
         /// Lấy danh sách nhân viên chưa ký hợp đồng
         /// </summary>
@@ -263,12 +270,12 @@ namespace Quan_Ly_Nhan_Su.BLL
                 return new List<LaborContractDTO>();
             }
         }
-    
 
-/// <summary>
-/// Tạo mới hợp đồng lao động
-/// </summary>
-public bool CreateContract(LaborContractDTO contract)
+
+        /// <summary>
+        /// Tạo mới hợp đồng lao động
+        /// </summary>
+        public bool CreateContract(LaborContractDTO contract)
         {
             if (string.IsNullOrEmpty(contract.MaHopDong) || string.IsNullOrEmpty(contract.MaNhanVien))
             {
