@@ -204,6 +204,93 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
+
+        public List<ExtensionHistoryDTO> GetExtensionHistory(string maNhanVien)
+        {
+            var list = new List<ExtensionHistoryDTO>();
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                // Giả định bảng:
+                // - quyetdinh(maQuyetDinh, maNhanVien, ngayQuyetDinh, ...)
+                // - giahanhopdong(maQuyetDinh, thoiGianGiaHan)
+                string query = @"
+                    SELECT qd.maQuyetDinh, qd.maNhanVien, qd.ngayQuyetDinh, gh.thoiGianGiaHan
+                    FROM quyetdinh qd
+                    INNER JOIN giahanhopdong gh ON qd.maQuyetDinh = gh.maQuyetDinh
+                    WHERE qd.maNhanVien = @maNhanVien
+                    ORDER BY qd.ngayQuyetDinh DESC;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        list.Add(new ExtensionHistoryDTO
+                        {
+                            MaQuyetDinh = reader["maQuyetDinh"].ToString(),
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            NgayQuyetDinh = reader["ngayQuyetDinh"] != DBNull.Value
+                                ? Convert.ToDateTime(reader["ngayQuyetDinh"])
+                                : DateTime.MinValue,
+                            ThoiGianGiaHan = reader["thoiGianGiaHan"] != DBNull.Value
+                                ? Convert.ToDecimal(reader["thoiGianGiaHan"])
+                                : 0m
+                        });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error GetExtensionHistory: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return list;
+        }
+        public string GetMaHopDongByMaNhanVien(string maNhanVien)
+        {
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                // Lấy HĐ mới nhất theo tuNgay (hoặc denNgay nếu bạn muốn)
+                string query = @"
+                    SELECT maHopDong 
+                    FROM hopdonglaodong 
+                    WHERE maNhanVien = @maNhanVien
+                    ORDER BY IFNULL(denNgay, tuNgay) DESC
+                    LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    var result = cmd.ExecuteScalar();
+                    return result?.ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error GetMaHopDongByMaNhanVien: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+        }
         /// <summary>
         /// Updates an existing labor contract in the hopdonglaodong table
         /// </summary>
@@ -562,8 +649,8 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return contract;
         }
-    
-    public EmployeeFullDTO GetEmployeeById(string maNhanVien)
+
+        public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
             EmployeeFullDTO employee = null;
             MySqlConnection conn = null;
@@ -684,7 +771,7 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return employees;
         }
-    
+
 
         // Nếu cần lọc hợp đồng (không phải nhân viên), thêm phương thức tương tự
         public List<LaborContractDTO> GetContractsByDepartment(string phongBan, string sortBySalary = null)
@@ -755,12 +842,12 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return contracts;
         }
-    
 
-/// <summary>
-/// Searches employees by keyword (maNhanVien, hoTen, or phongBan)
-/// </summary>
-public List<EmployeeFullDTO> SearchEmployees(string keyword)
+
+        /// <summary>
+        /// Searches employees by keyword (maNhanVien, hoTen, or phongBan)
+        /// </summary>
+        public List<EmployeeFullDTO> SearchEmployees(string keyword)
         {
             List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;

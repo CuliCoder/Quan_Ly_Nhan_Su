@@ -128,39 +128,37 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
-                string maNhanVien = AuthService.MaNhanVien;
+                string maNhanVien = SessionManager.Instance.CurrentEmployee?.MaNhanVien; // <— đổi dòng này
                 if (string.IsNullOrWhiteSpace(maNhanVien))
                 {
                     ClearHistoryLabels();
-                    return; // Không có mã NV, không cần tải
+                    return;
                 }
 
-                // Lấy danh sách lịch sử từ BLL
-                List<ExtensionHistoryDTO> history = _contractBLL.GetExtensionHistory(maNhanVien);
+                var history = _contractBLL.GetExtensionHistory(maNhanVien);
+                var latestHistory = history.FirstOrDefault();
 
-                // Lấy bản ghi mới nhất (DAO đã sắp xếp DESC)
-                ExtensionHistoryDTO latestHistory = history.FirstOrDefault();
-
-                if (latestHistory != null)
+                if (latestHistory == null)
                 {
-                    // Gán dữ liệu cho các labels trong panel3
-                    // Đảm bảo LblHoTen đã được tải từ LoadContractDetails
-                    label12.Text = string.IsNullOrEmpty(LblHoTen.Text) || LblHoTen.Text == "N/A" ? maNhanVien : LblHoTen.Text;
-                    label16.Text = latestHistory.NgayQuyetDinh.ToString("dd/MM/yyyy");
-                    label24.Text = latestHistory.ThoiGianGiaHan.ToString("N1") + " năm"; // Hiển thị "1.5 năm"
-                }
-                else
-                {
-                    // Nếu không có lịch sử
                     ClearHistoryLabels();
+                    return;
                 }
+
+                label12.Text = string.IsNullOrWhiteSpace(LblHoTen.Text) || LblHoTen.Text == "N/A"
+                                ? maNhanVien
+                                : LblHoTen.Text;
+
+                label16.Text = latestHistory.NgayQuyetDinh.ToString("dd/MM/yyyy");
+                label24.Text = $"{latestHistory.ThoiGianGiaHan:N1} năm";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải lịch sử gia hạn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải lịch sử gia hạn: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearHistoryLabels();
             }
         }
+
 
         /// <summary>
         /// Xóa văn bản trên các Label chi tiết hợp đồng
