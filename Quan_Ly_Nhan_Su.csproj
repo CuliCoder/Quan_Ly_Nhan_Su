@@ -253,12 +253,6 @@
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
       <DependentUpon>LuongThuong.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Popup\Popup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Popup\Popup.Designer.cs">
-      <DependentUpon>Popup.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\ProfileStaffGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -437,9 +431,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
       <DependentUpon>LuongThuong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Popup\Popup.resx">
-      <DependentUpon>Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ProfileStaffGUI.resx">
       <DependentUpon>ProfileStaffGUI.cs</DependentUpon>

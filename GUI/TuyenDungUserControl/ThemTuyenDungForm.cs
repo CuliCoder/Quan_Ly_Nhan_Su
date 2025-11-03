@@ -36,7 +36,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             }
 
             var existing = bus.checkedId(maTuyenDungTb.Text);
-            MessageBox.Show(existing.ToString());
             if (existing)
             {
                 MessageBox.Show("Mã tuyển dụng đã tồn tại. Vui lòng nhập mã khác!");
