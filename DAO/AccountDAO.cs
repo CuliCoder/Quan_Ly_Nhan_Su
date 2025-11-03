@@ -312,6 +312,66 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return accounts;
         }
+
+        /// <summary>
+        /// Migrate any plaintext (non-bcrypt) passwords to bcrypt hashes.
+        /// Returns number of accounts updated.
+        /// Call this once (or run from an admin tool) if you want to bulk-convert passwords.
+        /// </summary>
+        public int MigratePlaintextPasswords()
+        {
+            var updates = new List<Tuple<string, string>>();
+            using (var conn = connectDB.getConnection())
+            {
+                if (conn == null) return 0;
+                conn.Open();
+
+                // Read all accounts (only id + password)
+                using (var cmd = new MySqlCommand("SELECT maTaiKhoan, matKhau FROM taikhoan", conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var id = reader.IsDBNull(reader.GetOrdinal("maTaiKhoan")) ? null : reader.GetString("maTaiKhoan");
+                        var pwd = reader.IsDBNull(reader.GetOrdinal("matKhau")) ? null : reader.GetString("matKhau");
+                        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(pwd))
+                            continue;
+
+                        // Basic bcrypt detection: bcrypt hashes start with "$2"
+                        if (!pwd.StartsWith("$2"))
+                        {
+                            var hashed = BCrypt.Net.BCrypt.HashPassword(pwd);
+                            updates.Add(Tuple.Create(id, hashed));
+                        }
+                    }
+                }
+
+                if (updates.Count == 0) return 0;
+
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var t in updates)
+                        {
+                            using (var upd = new MySqlCommand("UPDATE taikhoan SET matKhau = @matKhau WHERE maTaiKhoan = @maTaiKhoan", conn, transaction))
+                            {
+                                upd.Parameters.AddWithValue("@matKhau", t.Item2);
+                                upd.Parameters.AddWithValue("@maTaiKhoan", t.Item1);
+                                upd.ExecuteNonQuery();
+                            }
+                        }
+                        transaction.Commit();
+                        return updates.Count;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
     }
 
 }
