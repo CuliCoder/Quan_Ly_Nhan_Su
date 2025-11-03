@@ -1,8 +1,9 @@
+using MySql.Data.MySqlClient;
+using Quan_Ly_Nhan_Su.config;
+using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using Quan_Ly_Nhan_Su.DTO;
-using Quan_Ly_Nhan_Su.config;
+using System.Data.SqlClient;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -11,6 +12,111 @@ namespace Quan_Ly_Nhan_Su.DAO
     /// </summary>
     public class PersonalProfileDAO
     {
+        /// <summary>
+        /// Lấy thông tin hồ sơ cá nhân từ bảng hosocanhan theo mã nhân viên
+        /// </summary>
+        public PersonalProfileDTO GetProfileByEmployeeId(string maNhanVien)
+        {
+            PersonalProfileDTO profile = null;
+            MySqlConnection conn = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                string query = @"
+                    SELECT hs.soCmnd, hs.hoTen, hs.ngaySinh, hs.gioiTinh, 
+                           hs.diaChi, hs.email, hs.sdt, hs.noiCap, 
+                           hs.ngayCap, hs.danToc, hs.hocVan, hs.tinhTrangHonNhan, 
+                           hs.chuyenNganh, hs.anh
+                    FROM hosocanhan hs
+                    INNER JOIN nhanvien nv ON hs.soCmnd = nv.soCmnd
+                    WHERE nv.maNhanVien = @MaNhanVien";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaNhanVien", maNhanVien);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            profile = new PersonalProfileDTO
+                            {
+                                SoCmnd = reader["soCmnd"]?.ToString() ?? "",
+                                HoTen = reader["hoTen"]?.ToString() ?? "",
+                                NgaySinh = reader["ngaySinh"] != DBNull.Value
+                                    ? Convert.ToDateTime(reader["ngaySinh"])
+                                    : DateTime.MinValue,
+                                GioiTinh = reader["gioiTinh"]?.ToString() ?? "",
+                                DiaChi = reader["diaChi"]?.ToString() ?? "",
+                                Email = reader["email"]?.ToString() ?? "",
+                                SoDienThoai = reader["sdt"]?.ToString() ?? "",
+                                NoiCap = reader["noiCap"]?.ToString() ?? "",
+                                NgayCap = reader["ngayCap"] != DBNull.Value
+                                    ? Convert.ToDateTime(reader["ngayCap"])
+                                    : DateTime.MinValue,
+                                DanToc = reader["danToc"]?.ToString() ?? "",
+                                HocVan = reader["hocVan"]?.ToString() ?? "",
+                                HonNhan = reader["tinhTrangHonNhan"]?.ToString() ?? "",
+                                ChuyenNganh = reader["chuyenNganh"]?.ToString() ?? "",
+                                HinhAnh = reader["anh"]?.ToString() ?? ""
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi DAO - GetProfileByEmployeeId: {ex.Message}", ex);
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+
+            return profile;
+        }
+
+        /// <summary>
+        /// Lấy số CMND từ mã nhân viên
+        /// </summary>
+        public string GetCMNDByEmployeeId(string maNhanVien)
+        {
+            string cmnd = null;
+            MySqlConnection conn = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                string query = "SELECT soCmnd FROM nhanvien WHERE maNhanVien = @MaNhanVien";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaNhanVien", maNhanVien);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        cmnd = result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi DAO - GetCMNDByEmployeeId: {ex.Message}", ex);
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+
+            return cmnd;
+        }
+
         /// <summary>
         /// Lấy tất cả hồ sơ cá nhân từ bảng hosocanhan
         /// </summary>
