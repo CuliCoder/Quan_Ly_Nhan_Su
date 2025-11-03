@@ -27,6 +27,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         LuongThuong luongThuong = new LuongThuong();
         ucChamCong chamCongGUI = new ucChamCong();
         ucChiTietChamCong chiTietChamCongGUI = new ucChiTietChamCong();
+        User_LabtracGUI user_LabtracGUI = new User_LabtracGUI();
+        ProfileStaffGUI profileStaffGUI = new ProfileStaffGUI();
         List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
         {
@@ -158,6 +160,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             listpnlbSideBar.Add(pnlbLuongThuong);
             listpnlbSideBar.Add(pnlbDanhGia);
             listpnlbSideBar.Add(pnlbTaiKhoan);
+            listpnlbSideBar.Add(pnlbHopdongcanhan);
+            listpnlbSideBar.Add(pnlbQLTTCN);
         }
         private void addEventToPanel()
         {
@@ -221,6 +225,12 @@ namespace Quan_Ly_Nhan_Su.GUI
                     break;
                 case "pnlbChamCong": 
                     addUserControl(chamCongGUI);
+                    break;
+                case "pnlbHopdongcanhan":
+                    addUserControl(user_LabtracGUI);
+                    break;
+                case "pnlbQLTTCN":
+                    addUserControl(profileStaffGUI);
                     break;
                 default:
                     break;
