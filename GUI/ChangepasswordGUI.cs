@@ -86,5 +86,15 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
 
         }
+
+        private void lblOldPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblConfirmPassword_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

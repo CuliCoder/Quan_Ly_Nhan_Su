@@ -70,9 +70,6 @@ namespace Quan_Ly_Nhan_Su.BLL
         /// <summary>
         ///     Đăng nhập
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns>Tài khoản nếu thành công, không thì null</returns>
         public AccountDTO Login(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
@@ -83,10 +80,40 @@ namespace Quan_Ly_Nhan_Su.BLL
             List<AccountDTO> accounts = _accountDAO.Search(username);
             AccountDTO account = accounts.FirstOrDefault(acc => acc.TenDangNhap == username);
 
-            // Kiểm tra mật khẩu băm
-            if (account != null && BCrypt.Net.BCrypt.Verify(password, account.MatKhau))
+            if (account == null)
+                return null;
+
+            // First try: normal bcrypt verify
+            try
             {
-                return account;
+                if (BCrypt.Net.BCrypt.Verify(password, account.MatKhau))
+                {
+                    return account;
+                }
+            }
+            catch (Exception)
+            {
+                // Verify can throw for non-bcrypt stored values (invalid salt/version)
+                // Fall through to legacy/plaintext handling below
+            }
+
+            // Fallback: stored value may be plaintext (legacy). Compare directly.
+            // If it matches, re-hash the password and update the DB so subsequent logins use bcrypt.
+            try
+            {
+                if (account.MatKhau == password)
+                {
+                    // Re-hash and persist
+                    account.MatKhau = BCrypt.Net.BCrypt.HashPassword(password);
+                    // Update will keep other fields; AccountDAO.Update expects MaTaiKhoan present
+                    _accountDAO.Update(account);
+                    return account;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log and return null (do not expose details to UI)
+                Console.WriteLine($"Error during plaintext fallback login: {ex.Message}");
             }
 
             return null;
