@@ -16,18 +16,17 @@ namespace Quan_Ly_Nhan_Su
 
             // AUTOMATICALLY CREATE DEV ACCOUNT IF IT DOESN'T EXIST
             // ===========================================
-            //AccountBLL accountBLL = new AccountBLL();
+            AccountBLL accountBLL = new AccountBLL();
             //AccountBLL.EnsureDevAccountExists();
-            //// ===========================================
+            // ===========================================
 
-            //Login loginForm = new Login();
-            //DialogResult result = loginForm.ShowDialog();
+            Login loginForm = new Login();
+            DialogResult result = loginForm.ShowDialog();
 
-            //if (result == DialogResult.OK)
-            //{
-
-            //}
-            Application.Run(new mainGUI());
+            if (result == DialogResult.OK)
+            {
+                Application.Run(new mainGUI());
+            }
         }
     }
 }

@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="BLL\SessionManager.cs" />
     <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
