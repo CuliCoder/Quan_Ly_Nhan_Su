@@ -237,6 +237,10 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\hosocanhan\User_LabtracGUI.cs" />
+    <Compile Include="GUI\hosocanhan\User_LabtracGUI.Designer.cs">
+      <DependentUpon>User_LabtracGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -422,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx">
       <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\hosocanhan\User_LabtracGUI.resx">
+      <DependentUpon>User_LabtracGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
