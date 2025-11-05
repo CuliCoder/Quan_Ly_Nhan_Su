@@ -63,21 +63,23 @@ namespace Quan_Ly_Nhan_Su.DAO
             return list;
         }
 
-        public PersonalProfileDTO GetById(string cccd)
+        public PersonalProfileDTO GetById(string soCmnd)
         {
             MySqlConnection conn = null;
             try
             {
-                using(conn = connectDB.getConnection())
+                using (conn = connectDB.getConnection())
                 {
                     conn.Open();
-                    string sql = "SELECT * FROM hosocanhan WHERE soCccd=@cccd";
+                    string sql = "SELECT * FROM hosocanhan WHERE soCmnd = @soCmnd";
 
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@cccd", cccd);
+                        cmd.Parameters.AddWithValue("@soCmnd", soCmnd);
                         using (var reader = cmd.ExecuteReader())
                         {
+                            if (!reader.Read())
+                                return null;
                             return new PersonalProfileDTO
                             {
                                 SoCmnd = reader["soCmnd"] != DBNull.Value ? reader["soCmnd"].ToString() : "",
@@ -125,7 +127,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                         cmd.Parameters.AddWithValue("@soCmnd", soCccd);
 
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
-                        return count == 0; 
+                        return count == 0;
                     }
                 }
             }

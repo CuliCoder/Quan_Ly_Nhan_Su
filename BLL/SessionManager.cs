@@ -112,8 +112,8 @@ namespace Quan_Ly_Nhan_Su.BLL
         /// <param name="employee">Thông tin nhân viên (có thể null)</param>
         /// <param name="profile">Thông tin hồ sơ cá nhân (có thể null)</param>
         /// <param name="permissionGroupName">Tên nhóm quyền (có thể null)</param>
-        public void Login(AccountDTO account, EmployeeDTO employee = null,
-                         PersonalProfileDTO profile = null, string permissionGroupName = null)
+        public void Login(AccountDTO account, EmployeeDTO employee,
+                         PersonalProfileDTO profile, string permissionGroupName)
         {
             _currentAccount = account;
             _currentEmployee = employee;

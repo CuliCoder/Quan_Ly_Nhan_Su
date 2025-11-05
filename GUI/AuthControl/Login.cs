@@ -60,11 +60,11 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
             {
                 // Lấy thông tin nhân viên từ mã tài khoản
                 employee = employeeBLL.GetByAccountId(loggedInAccount.MaTaiKhoan);
-
                 // Nếu có nhân viên, lấy thông tin profile
                 if (employee != null && !string.IsNullOrEmpty(employee.SoCmnd))
                 {
                     profile = profileBLL.GetById(employee.SoCmnd);
+                    Console.WriteLine($"Đã lấy profile cho nhân viên: {profile?.HoTen}");
                 }
             }
             catch (Exception ex)

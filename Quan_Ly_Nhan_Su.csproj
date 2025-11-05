@@ -158,17 +158,23 @@
     <Compile Include="GUI\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChamCong.cs">
+    <Compile Include="GUI\ChamCongUserControl\AttendanceGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChamCong.Designer.cs">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
+    <Compile Include="GUI\ChamCongUserControl\AttendanceGUI.Designer.cs">
+      <DependentUpon>AttendanceGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.cs">
+    <Compile Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.Designer.cs">
-      <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
+    <Compile Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.Designer.cs">
+      <DependentUpon>ucDanhSachNhanVienAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucKiemTraCongCa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucKiemTraCongCa.Designer.cs">
+      <DependentUpon>ucKiemTraCongCa.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ChamCongUserControl\ucRequestCard.cs">
       <SubType>UserControl</SubType>
@@ -400,11 +406,14 @@
     <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\ChamCongUserControl\ucChamCong.resx">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\AttendanceGUI.resx">
+      <DependentUpon>AttendanceGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\ChamCongUserControl\ucChiTietChamCong.resx">
-      <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.resx">
+      <DependentUpon>ucDanhSachNhanVienAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucKiemTraCongCa.resx">
+      <DependentUpon>ucKiemTraCongCa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChamCongUserControl\ucRequestCard.resx">
       <DependentUpon>ucRequestCard.cs</DependentUpon>
@@ -558,6 +567,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\arrows_14074366.png" />
+    <None Include="Resources\check in_bigSize.png" />
+    <None Include="Resources\check in2.png" />
+    <None Include="Resources\check in1.png" />
+    <None Include="Resources\check in.png" />
     <None Include="Resources\user %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
