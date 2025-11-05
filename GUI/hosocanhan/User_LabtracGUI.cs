@@ -1,4 +1,4 @@
-﻿using Quan_Ly_Nhan_Su.BLL; // Sử dụng BLL
+﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -9,19 +9,9 @@ using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
-    /// <summary>
-    /// LỚP MÔ PHỎNG ĐĂNG NHẬP (Tạm thời)
-    /// Thay thế bằng logic lấy mã nhân viên đã đăng nhập của bạn
-    /// </summary>
-    public static class AuthService
-    {
-        // TODO: Thay bằng mã NV lấy từ phiên đăng nhập
-        public static string MaNhanVien = "NV001"; // Ví dụ mã nhân viên
-    }
-
     public partial class User_LabtracGUI : UserControl
     {
-        // Khai báo BLL
+        // BLL
         private LaborContractBLL _contractBLL;
 
         public User_LabtracGUI()
@@ -29,17 +19,15 @@ namespace Quan_Ly_Nhan_Su.GUI
             InitializeComponent();
         }
 
-        // Thêm sự kiện Load cho UserControl
         private void User_LabtracGUI_Load(object sender, EventArgs e)
         {
             // Ngăn code chạy khi đang ở chế độ Design
             if (DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
-            // Khởi tạo BLL
             _contractBLL = new LaborContractBLL();
 
-            // Tải thông tin
+            // Tải dữ liệu
             LoadContractDetails();
             LoadExtensionHistory();
         }
@@ -51,64 +39,62 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
-                // 1. Lấy mã nhân viên đang đăng nhập
-                string maNhanVien = AuthService.MaNhanVien;
+                string maNhanVien = SessionManager.Instance.CurrentEmployee?.MaNhanVien;
+
                 if (string.IsNullOrWhiteSpace(maNhanVien))
                 {
-                    MessageBox.Show("Không thể xác định người dùng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        "Không xác định được mã nhân viên từ phiên đăng nhập. Vui lòng đăng nhập lại.",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                     ClearContractLabels();
                     return;
                 }
 
-                // 2. Lấy MaHopDong từ MaNhanVien (qua BLL)
                 string maHopDong = _contractBLL.GetMaHopDongByMaNhanVien(maNhanVien);
+
                 if (string.IsNullOrWhiteSpace(maHopDong))
                 {
-                    MessageBox.Show("Nhân viên này chưa có hợp đồng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Vẫn tải thông tin cá nhân dù chưa có HĐ
                     LoadEmployeeDetailsOnly(maNhanVien);
-                    ClearContractLabels(false); // Chỉ xóa label hợp đồng
+                    ClearContractLabels(false);
                     return;
                 }
 
-                // 3. Lấy chi tiết hợp đồng (qua BLL)
                 LaborContractDTO contract = _contractBLL.GetContractById(maHopDong);
                 if (contract == null)
                 {
-                    MessageBox.Show("Không tìm thấy chi tiết hợp đồng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không tìm thấy chi tiết hợp đồng.", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ClearContractLabels();
                     return;
                 }
 
-                // 4. Gán dữ liệu lên các Labels
-                CultureInfo ci = new CultureInfo("vi-VN"); // Để định dạng tiền tệ
+                var ci = new CultureInfo("vi-VN");
+
                 LblMaNhanVien.Text = contract.MaNhanVien;
-                LblHoTen.Text = contract.TenNhanVien; // DAO đã format "Họ Tên (Mã NV)"
+                LblHoTen.Text = contract.TenNhanVien;
                 LblPhongBan.Text = contract.PhongBan;
                 LblMaHopDong.Text = contract.MaHopDong;
                 LblNgayBatDau.Text = contract.TuNgay?.ToString("dd/MM/yyyy") ?? "N/A";
                 LblNgayHetHan.Text = contract.DenNgay?.ToString("dd/MM/yyyy") ?? "N/A";
                 LblLoaiHopDong.Text = contract.LoaiHopDong;
-                LblMucLuong.Text = contract.LuongCoBan.ToString("C0", ci); // Định dạng VNĐ
+                LblMucLuong.Text = contract.LuongCoBan.ToString("C0", ci);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải thông tin hợp đồng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải thông tin hợp đồng: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearContractLabels();
             }
         }
 
-        /// <summary>
-        /// Hàm này chỉ tải thông tin cơ bản của NV nếu họ chưa có hợp đồng
-        /// </summary>
         private void LoadEmployeeDetailsOnly(string maNhanVien)
         {
             try
             {
-                // Sử dụng hàm GetEmployeeById từ DAO (thông qua BLL)
-                // Bạn cần thêm hàm này vào BLL (xem bước 3)
                 EmployeeFullDTO employee = _contractBLL.GetEmployeeDetailsById(maNhanVien);
-
                 if (employee != null)
                 {
                     LblMaNhanVien.Text = employee.MaNhanVien;
@@ -119,37 +105,40 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải thông tin nhân viên: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải thông tin nhân viên: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
+        /// <summary>
+        /// Tải lịch sử gia hạn hợp đồng
+        /// </summary>
         private void LoadExtensionHistory()
         {
             try
             {
-                string maNhanVien = SessionManager.Instance.CurrentEmployee?.MaNhanVien; // <— đổi dòng này
+                string maNhanVien = SessionManager.Instance.CurrentEmployee?.MaNhanVien;
                 if (string.IsNullOrWhiteSpace(maNhanVien))
                 {
                     ClearHistoryLabels();
                     return;
                 }
 
-                var history = _contractBLL.GetExtensionHistory(maNhanVien);
-                var latestHistory = history.FirstOrDefault();
+                List<ExtensionHistoryDTO> history = _contractBLL.GetExtensionHistory(maNhanVien);
+                var latest = history?.FirstOrDefault();
 
-                if (latestHistory == null)
+                if (latest == null)
                 {
                     ClearHistoryLabels();
                     return;
                 }
 
                 label12.Text = string.IsNullOrWhiteSpace(LblHoTen.Text) || LblHoTen.Text == "N/A"
-                                ? maNhanVien
-                                : LblHoTen.Text;
+                    ? maNhanVien
+                    : LblHoTen.Text;
 
-                label16.Text = latestHistory.NgayQuyetDinh.ToString("dd/MM/yyyy");
-                label24.Text = $"{latestHistory.ThoiGianGiaHan:N1} năm";
+                label16.Text = latest.NgayQuyetDinh.ToString("dd/MM/yyyy");
+                label24.Text = $"{latest.ThoiGianGiaHan:N1} năm";
             }
             catch (Exception ex)
             {
@@ -159,10 +148,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
-
-        /// <summary>
-        /// Xóa văn bản trên các Label chi tiết hợp đồng
-        /// </summary>
         private void ClearContractLabels(bool clearAll = true)
         {
             if (clearAll)
@@ -172,32 +157,32 @@ namespace Quan_Ly_Nhan_Su.GUI
                 LblPhongBan.Text = "N/A";
                 LblMucLuong.Text = "N/A";
             }
+
             LblMaHopDong.Text = "N/A";
             LblNgayBatDau.Text = "N/A";
             LblNgayHetHan.Text = "N/A";
             LblLoaiHopDong.Text = "N/A";
         }
 
-        /// <summary>
-        /// Xóa văn bản trên các Label lịch sử gia hạn
-        /// </summary>
         private void ClearHistoryLabels()
         {
-            label12.Text = "N/A"; // Nhân viên
-            label16.Text = "N/A"; // Ngày cập nhật
-            label24.Text = "N/A"; // Gia hạn thêm
+            label12.Text = "N/A";
+            label16.Text = "N/A";
+            label24.Text = "N/A";
         }
 
-
-        // Các sự kiện click trống (đã có trong tệp .cs bạn tải lên)
-        private void label1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Refresh toàn bộ dữ liệu
+        /// </summary>
+        public void RefreshData()
         {
-            // Có thể dùng để refresh
+            LoadContractDetails();
+            LoadExtensionHistory();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-            // Có thể dùng để refresh
-        }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void label2_Click(object sender, EventArgs e) { }
+        private void label24_Click(object sender, EventArgs e) { }
+        private void LblNgayHetHan_Click(object sender, EventArgs e) { }
     }
 }

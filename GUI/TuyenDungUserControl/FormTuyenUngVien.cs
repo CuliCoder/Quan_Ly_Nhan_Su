@@ -117,7 +117,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             );
 
             EmployeeDTO employeeDTO = new EmployeeDTO(
-                    tbMaNhanVien.Text,
+                    null,
                     showCCCDUV.Text,
                     null,
                     null,
@@ -125,7 +125,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                     null,
                     maPhongBanCbb.SelectedValue.ToString(),
                     Convert.ToDecimal(tbLuong.Text)
-                );
+                ); ;
 
            
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
@@ -135,7 +135,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 batchBLL.updateNumberOfRecruited(dtoFull.MaTuyenDung);
 
                 luuThongTinForm?.Invoke(this, EventArgs.Empty);
-                MessageBox.Show("Lưu dữ liệu và cập nhật trạng thái ứng viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             else
             {

@@ -243,7 +243,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
-    <Compile Include="GUI\hosocanhan\User_LabtracGUI.cs" />
+    <Compile Include="GUI\hosocanhan\User_LabtracGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\hosocanhan\User_LabtracGUI.Designer.cs">
       <DependentUpon>User_LabtracGUI.cs</DependentUpon>
     </Compile>
@@ -256,12 +258,6 @@
     </Compile>
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
       <DependentUpon>LuongThuong.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Popup\Popup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Popup\Popup.Designer.cs">
-      <DependentUpon>Popup.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ProfileStaffGUI.cs">
       <SubType>UserControl</SubType>
@@ -444,9 +440,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
       <DependentUpon>LuongThuong.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Popup\Popup.resx">
-      <DependentUpon>Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ProfileStaffGUI.resx">
       <DependentUpon>ProfileStaffGUI.cs</DependentUpon>
