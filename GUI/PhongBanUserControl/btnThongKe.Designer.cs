@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartNVien_Luong = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_QuantityNV = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -47,33 +47,35 @@
             // 
             // chartNVien_Luong
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartNVien_Luong.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartNVien_Luong.Legends.Add(legend3);
-            this.chartNVien_Luong.Location = new System.Drawing.Point(3, 38);
+            chartArea1.Name = "ChartArea1";
+            this.chartNVien_Luong.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartNVien_Luong.Legends.Add(legend1);
+            this.chartNVien_Luong.Location = new System.Drawing.Point(4, 47);
+            this.chartNVien_Luong.Margin = new System.Windows.Forms.Padding(4);
             this.chartNVien_Luong.Name = "chartNVien_Luong";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartNVien_Luong.Series.Add(series3);
-            this.chartNVien_Luong.Size = new System.Drawing.Size(544, 262);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartNVien_Luong.Series.Add(series1);
+            this.chartNVien_Luong.Size = new System.Drawing.Size(725, 322);
             this.chartNVien_Luong.TabIndex = 1;
             this.chartNVien_Luong.Text = "chart2";
             // 
             // chart_QuantityNV
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart_QuantityNV.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart_QuantityNV.Legends.Add(legend4);
-            this.chart_QuantityNV.Location = new System.Drawing.Point(547, 0);
+            chartArea2.Name = "ChartArea1";
+            this.chart_QuantityNV.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart_QuantityNV.Legends.Add(legend2);
+            this.chart_QuantityNV.Location = new System.Drawing.Point(729, 0);
+            this.chart_QuantityNV.Margin = new System.Windows.Forms.Padding(4);
             this.chart_QuantityNV.Name = "chart_QuantityNV";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart_QuantityNV.Series.Add(series4);
-            this.chart_QuantityNV.Size = new System.Drawing.Size(551, 300);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart_QuantityNV.Series.Add(series2);
+            this.chart_QuantityNV.Size = new System.Drawing.Size(735, 369);
             this.chart_QuantityNV.TabIndex = 2;
             this.chart_QuantityNV.Text = "chart1";
             // 
@@ -81,39 +83,45 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 306);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 377);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1095, 343);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1460, 422);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // cbbListNVinPhongBan
             // 
             this.cbbListNVinPhongBan.FormattingEnabled = true;
-            this.cbbListNVinPhongBan.Location = new System.Drawing.Point(57, 11);
+            this.cbbListNVinPhongBan.Location = new System.Drawing.Point(76, 14);
+            this.cbbListNVinPhongBan.Margin = new System.Windows.Forms.Padding(4);
             this.cbbListNVinPhongBan.Name = "cbbListNVinPhongBan";
-            this.cbbListNVinPhongBan.Size = new System.Drawing.Size(121, 21);
+            this.cbbListNVinPhongBan.Size = new System.Drawing.Size(496, 24);
             this.cbbListNVinPhongBan.TabIndex = 4;
+            this.cbbListNVinPhongBan.SelectedIndexChanged += cbbListNVinPhongBan_SelectedIndexChanged;
             // 
             // tableTongQuan
             // 
             this.tableTongQuan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableTongQuan.Location = new System.Drawing.Point(3, 306);
+            this.tableTongQuan.Location = new System.Drawing.Point(4, 377);
+            this.tableTongQuan.Margin = new System.Windows.Forms.Padding(4);
             this.tableTongQuan.Name = "tableTongQuan";
-            this.tableTongQuan.Size = new System.Drawing.Size(1095, 343);
+            this.tableTongQuan.RowHeadersWidth = 51;
+            this.tableTongQuan.Size = new System.Drawing.Size(1460, 422);
             this.tableTongQuan.TabIndex = 5;
             // 
             // btnThongKe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableTongQuan);
             this.Controls.Add(this.cbbListNVinPhongBan);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart_QuantityNV);
             this.Controls.Add(this.chartNVien_Luong);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "btnThongKe";
-            this.Size = new System.Drawing.Size(1101, 665);
+            this.Size = new System.Drawing.Size(1468, 818);
             ((System.ComponentModel.ISupportInitialize)(this.chartNVien_Luong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_QuantityNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

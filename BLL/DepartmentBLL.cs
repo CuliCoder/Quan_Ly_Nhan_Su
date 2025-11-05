@@ -17,7 +17,9 @@ namespace Quan_Ly_Nhan_Su.BLL
                 list = _departmentDAO.GetAll();
         }
 
-        public List<DepartmentDTO> GetAllDepartments()
+        public List<DepartmentDTO> 
+            
+            GetAllDepartments()
         {
             try
             {
@@ -62,7 +64,13 @@ namespace Quan_Ly_Nhan_Su.BLL
             {
                 throw new InvalidOperationException("Mã phòng ban đã tồn tại.");
             }
-
+            foreach (var dept in GetAllDepartments())
+            {
+                if (dept.TenPhong.Equals(department.TenPhong, StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidOperationException("Tên phòng ban đã tồn tại.");
+                }
+            }
             bool success = _departmentDAO.Insert(department);
             if (success)
             {

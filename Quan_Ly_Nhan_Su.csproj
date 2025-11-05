@@ -141,16 +141,22 @@
     <Compile Include="GUI\AuthControl\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\btnQuanLy.cs">
+    <Compile Include="GUI\PhongBanUserControl\addDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PhongBanUserControl\addDepartment.Designer.cs">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PhongBanUserControl\btnQuanLy.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\btnQuanLy.Designer.cs">
+    <Compile Include="GUI\PhongBanUserControl\btnQuanLy.Designer.cs">
       <DependentUpon>btnQuanLy.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\btnThongKe.cs">
+    <Compile Include="GUI\PhongBanUserControl\btnThongKe.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\btnThongKe.Designer.cs">
+    <Compile Include="GUI\PhongBanUserControl\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ChamCongUserControl\ucChamCong.cs">
@@ -195,10 +201,10 @@
     <Compile Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.Designer.cs">
       <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\departmentTab.cs">
+    <Compile Include="GUI\PhongBanUserControl\departmentTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\departmentTab.Designer.cs">
+    <Compile Include="GUI\PhongBanUserControl\departmentTab.Designer.cs">
       <DependentUpon>departmentTab.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\AccountDTO.cs" />
@@ -241,6 +247,12 @@
     </Compile>
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
       <DependentUpon>LuongThuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PhongBanUserControl\editDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PhongBanUserControl\editDepartment.Designer.cs">
+      <DependentUpon>editDepartment.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Popup\Popup.cs">
       <SubType>Form</SubType>
@@ -298,10 +310,10 @@
     <Compile Include="GUI\StatisticsGUI.Designer.cs">
       <DependentUpon>StatisticsGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\homePage.cs">
+    <Compile Include="GUI\TrangChuUserControl\homePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\homePage.Designer.cs">
+    <Compile Include="GUI\TrangChuUserControl\homePage.Designer.cs">
       <DependentUpon>homePage.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\mainGUI.cs">
@@ -412,6 +424,12 @@
     <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
       <DependentUpon>LuongThuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PhongBanUserControl\addDepartment.resx">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PhongBanUserControl\editDepartment.resx">
+      <DependentUpon>editDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Popup\Popup.resx">
       <DependentUpon>Popup.cs</DependentUpon>
     </EmbeddedResource>
@@ -424,16 +442,16 @@
     <EmbeddedResource Include="GUI\AuthControl\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\btnQuanLy.resx">
+    <EmbeddedResource Include="GUI\PhongBanUserControl\btnQuanLy.resx">
       <DependentUpon>btnQuanLy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\btnThongKe.resx">
+    <EmbeddedResource Include="GUI\PhongBanUserControl\btnThongKe.resx">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\departmentTab.resx">
+    <EmbeddedResource Include="GUI\PhongBanUserControl\departmentTab.resx">
       <DependentUpon>departmentTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\homePage.resx">
+    <EmbeddedResource Include="GUI\TrangChuUserControl\homePage.resx">
       <DependentUpon>homePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVien.resx">

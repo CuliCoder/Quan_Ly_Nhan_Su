@@ -182,7 +182,6 @@ namespace Quan_Ly_Nhan_Su.DAO
                                     reader["maluong"].ToString(),
                                     reader["mahopdong"].ToString(),
                                     reader["maTrinhDo"] == DBNull.Value ? null : reader["maTrinhDo"].ToString(),
-                                    reader["maChucVu"] == DBNull.Value ? null : reader["maChucVu"].ToString(),
                                     reader["maTaiKhoan"] == DBNull.Value ? null : reader["maTaiKhoan"].ToString(),
                                     reader["maPhong"] == DBNull.Value ? null : reader["maPhong"].ToString(),
                                     reader["mucLuong"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["mucLuong"])
@@ -243,6 +242,30 @@ namespace Quan_Ly_Nhan_Su.DAO
                 }
             }
             return null; // Trả về null nếu không tìm thấy
+        }
+        public bool updateChucVu(string MaNV, string ChucVu)
+        {
+            try
+            {
+                using (var conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"UPDATE nhanvien 
+                           SET maChucVu = @maChucVu
+                           WHERE maNhanVien = @maNhanVien";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maNhanVien", MaNV);
+                        cmd.Parameters.AddWithValue("@maChucVu", ChucVu);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error updating employee: {ex.Message}");
+                return false;
+            }
         }
     }
 }

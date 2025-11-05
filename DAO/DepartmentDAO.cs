@@ -23,7 +23,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "SELECT maPhong AS MaPhong, tenPhong AS TenPhong FROM phongban";  // Sửa: Tên bảng + alias cho cột
+                    string query = "SELECT maPhong AS MaPhong, tenPhong AS TenPhong, ngayThanhLap AS NgayThanhLap, maTruongPhong AS MaTruongPhong FROM phongban";  // Sửa: Tên bảng + alias cho cột
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -33,7 +33,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 DepartmentDTO dept = new DepartmentDTO
                                 {
                                     MaPhong = reader["MaPhong"].ToString(),  // Giờ dùng alias để khớp property
-                                    TenPhong = reader["TenPhong"].ToString()
+                                    TenPhong = reader["TenPhong"].ToString(),
+                                    NgayThanhLap = reader["NgayThanhLap"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["NgayThanhLap"]),
+                                    MaTruongPhong = reader["MaTruongPhong"].ToString()
                                 };
                                 departments.Add(dept);
                             }
@@ -62,7 +64,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "SELECT MaPhong, TenPhong FROM phongban WHERE MaPhong = @maPhong";
+                    string query = "SELECT MaPhong, TenPhong, maTruongPhong, ngayThanhLap FROM phongban WHERE MaPhong = @maPhong";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@MaPhong", maPhong);
@@ -73,7 +75,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 return new DepartmentDTO
                                 {
                                     MaPhong = reader["MaPhong"].ToString(),
-                                    TenPhong = reader["TenPhong"].ToString()
+                                    TenPhong = reader["TenPhong"].ToString(),
+                                    MaTruongPhong = reader["maTruongPhong"].ToString(),
+                                    NgayThanhLap = reader["ngayThanhLap"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ngayThanhLap"])
                                 };
                             }
                         }
@@ -102,11 +106,12 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "INSERT INTO Departments (MaPhong, TenPhong) VALUES (@MaPhong, @TenPhong)";
+                    string query = "INSERT INTO phongban (MaPhong, TenPhong, ngayThanhLap) VALUES (@MaPhong, @TenPhong, @ngayThanhLap)";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
                         cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
+                        cmd.Parameters.AddWithValue("@ngayThanhLap", department.NgayThanhLap);
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
@@ -136,11 +141,12 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "UPDATE Departments SET TenPhong = @TenPhong WHERE MaPhong = @MaPhong";
+                    string query = "UPDATE phongban SET TenPhong = @TenPhong, maTruongPhong = @TruongPhong WHERE MaPhong = @MaPhong";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@MaPhong", department.MaPhong);
                         cmd.Parameters.AddWithValue("@TenPhong", department.TenPhong);
+                        cmd.Parameters.AddWithValue("@TruongPhong", department.MaTruongPhong);
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
@@ -171,7 +177,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
 
                     conn.Open();
-                    string query = "DELETE FROM Departments WHERE MaPhong = @MaPhong";
+                    string query = "DELETE FROM phongban WHERE MaPhong = @MaPhong";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@MaPhong", maPhong);

@@ -47,6 +47,20 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             return success;
         }
+        public bool UpdateChucVu(string maNV, string maChucvu)
+        {
+            if (maNV == null || maChucvu == null)
+                throw new ArgumentException("Mã nhân viên và mã chức vụ không được để trống!");
+
+            bool success = _dao.updateChucVu(maNV, maChucvu);
+            if (success)
+            {
+                int index = list.FindIndex(x => x.MaNhanVien == maNV);
+                if (index != -1)
+                    list[index].MaChucVu = maChucvu;
+            }
+            return success;
+        }
 
         public bool Delete(string maNhanVien)
         {

@@ -32,7 +32,6 @@ namespace Quan_Ly_Nhan_Su.DTO
             string soCmnd,
             string maLuong,
             string maHopDong,
-            string maTrinhDo,
             string maChucVu,
             string maTaiKhoan,
             string maPhong,
