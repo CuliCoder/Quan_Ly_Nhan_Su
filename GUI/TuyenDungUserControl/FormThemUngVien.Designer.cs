@@ -41,6 +41,7 @@
             this.maUngVienTb = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.maTuyenDungCbb = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.emailTb = new System.Windows.Forms.TextBox();
@@ -96,7 +97,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.showHinh = new System.Windows.Forms.PictureBox();
-            this.maTuyenDungCbb = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -325,11 +325,21 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(173, 59);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
+            // maTuyenDungCbb
+            // 
+            this.maTuyenDungCbb.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.maTuyenDungCbb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maTuyenDungCbb.FormattingEnabled = true;
+            this.maTuyenDungCbb.Location = new System.Drawing.Point(3, 30);
+            this.maTuyenDungCbb.Name = "maTuyenDungCbb";
+            this.maTuyenDungCbb.Size = new System.Drawing.Size(150, 26);
+            this.maTuyenDungCbb.TabIndex = 42;
+            // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 13);
+            this.label4.Location = new System.Drawing.Point(2, 12);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 15);
@@ -430,18 +440,18 @@
             // 
             this.ngaySinhDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ngaySinhDate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ngaySinhDate.Location = new System.Drawing.Point(3, 37);
-            this.ngaySinhDate.MaximumSize = new System.Drawing.Size(150, 25);
-            this.ngaySinhDate.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ngaySinhDate.Location = new System.Drawing.Point(3, 25);
+            this.ngaySinhDate.MaximumSize = new System.Drawing.Size(150, 37);
+            this.ngaySinhDate.MinimumSize = new System.Drawing.Size(150, 37);
             this.ngaySinhDate.Name = "ngaySinhDate";
-            this.ngaySinhDate.Size = new System.Drawing.Size(150, 25);
+            this.ngaySinhDate.Size = new System.Drawing.Size(150, 37);
             this.ngaySinhDate.TabIndex = 4;
             // 
             // label19
             // 
             this.label19.Dock = System.Windows.Forms.DockStyle.Top;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(2, 19);
+            this.label19.Location = new System.Drawing.Point(2, 7);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(152, 15);
@@ -1026,16 +1036,6 @@
             this.showHinh.Size = new System.Drawing.Size(207, 215);
             this.showHinh.TabIndex = 6;
             this.showHinh.TabStop = false;
-            // 
-            // maTuyenDungCbb
-            // 
-            this.maTuyenDungCbb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.maTuyenDungCbb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maTuyenDungCbb.FormattingEnabled = true;
-            this.maTuyenDungCbb.Location = new System.Drawing.Point(3, 31);
-            this.maTuyenDungCbb.Name = "maTuyenDungCbb";
-            this.maTuyenDungCbb.Size = new System.Drawing.Size(150, 26);
-            this.maTuyenDungCbb.TabIndex = 42;
             // 
             // FormThemUngVien
             // 

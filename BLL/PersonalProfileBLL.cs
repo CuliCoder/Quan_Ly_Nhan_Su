@@ -24,15 +24,55 @@ namespace Quan_Ly_Nhan_Su.BLL
             return _dao.GetById(soCmnd);
         }
 
+        /// <summary>
+        /// Lấy thông tin hồ sơ cá nhân theo mã nhân viên
+        /// </summary>
+        public PersonalProfileDTO GetProfileByEmployeeId(string maNhanVien)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(maNhanVien))
+                {
+                    throw new ArgumentException("Mã nhân viên không được để trống");
+                }
+
+                return _dao.GetProfileByEmployeeId(maNhanVien);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi BLL - GetProfileByEmployeeId: {ex.Message}", ex);
+            }
+        }
+
+        /// <summary>
+        /// Lấy số CMND từ mã nhân viên
+        /// </summary>
+        public string GetCMNDByEmployeeId(string maNhanVien)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(maNhanVien))
+                {
+                    return null;
+                }
+
+                return _dao.GetCMNDByEmployeeId(maNhanVien);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi BLL - GetCMNDByEmployeeId: {ex.Message}", ex);
+            }
+        }
+
         public bool checkID(string cccd)
         {
-            if(!_dao.CheckCccd(cccd)) 
+            if (!_dao.CheckCccd(cccd))
             {
-               
-                return false; 
+                return false;
             }
             return true;
         }
+
         public bool Create(PersonalProfileDTO dto)
         {
             if (dto == null)
@@ -75,7 +115,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool DeleteList(string soCmnd)
         {
-            if(soCmnd.Length > 0)
+            if (soCmnd.Length > 0)
             {
                 list.RemoveAll(x => x.SoCmnd == soCmnd);
                 return true;
