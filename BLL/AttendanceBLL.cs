@@ -40,7 +40,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
                 int go_late = calculateLateMinutes(attendanceToday.CheckInTime);
                 int leave_early = calculateEarlyLeaveMinutes(attendanceToday.CheckOutTime);
-                float sogiolamviec = calculateWorkHours(go_late, leave_early);
+                float sogiolamviec = calculateWorkHours(go_late, attendanceToday.CheckOutTime);
 
                 attendanceToday.Go_late = go_late;
                 attendanceToday.Leave_early = leave_early;
@@ -66,14 +66,14 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return attendanceDAO.get_attendance_by_ID_NhanVien(maNhanVien);
         }
-        private float calculateWorkHours(int lateMinutes, int earlyLeaveMinutes)
+        private float calculateWorkHours(int lateMinutes, DateTime? checkOutTime)
         {
-            float totalWorkedHours = (float)Math.Round((standardWorkMinutesPerDay - lateMinutes - earlyLeaveMinutes) / 60.0f, 2);
+            float totalWorkedHours = (float)Math.Round(((int)(checkOutTime.Value.TimeOfDay - calamviecDTO.StartTime).TotalMinutes - lateMinutes) / 60.0f, 2);
             if (totalWorkedHours >= 5)
             {
                 totalWorkedHours -= 1;
             }
-            return totalWorkedHours;
+            return totalWorkedHours < 0 ? 0 : totalWorkedHours;
         }
         private int calculateLateMinutes(DateTime? checkInTime)
         {
@@ -88,7 +88,7 @@ namespace Quan_Ly_Nhan_Su.BLL
                 {
                     return 0;
                 }
-                return (int)(checkIn - calamviecDTO.StartTime).TotalMinutes;
+                return (int)Math.Round((checkIn - calamviecDTO.StartTime).TotalMinutes, 0);
             }
             return 8 * 60;
         }
@@ -105,7 +105,7 @@ namespace Quan_Ly_Nhan_Su.BLL
                 {
                     return 0;
                 }
-                return (int)(calamviecDTO.EndTime - checkOut).TotalMinutes;
+                return (int)Math.Round((calamviecDTO.EndTime - checkOut).TotalMinutes, 0);
             }
             return 8 * 60;
         }
