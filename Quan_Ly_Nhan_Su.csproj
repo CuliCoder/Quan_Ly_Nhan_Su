@@ -146,6 +146,12 @@
     <Compile Include="GUI\AuthControl\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\BillFormGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BillFormGUI.Designer.cs">
+      <DependentUpon>BillFormGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\btnQuanLy.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -402,6 +408,9 @@
     <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\BillFormGUI.resx">
+      <DependentUpon>BillFormGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChamCongUserControl\AttendanceGUI.resx">
       <DependentUpon>AttendanceGUI.cs</DependentUpon>
     </EmbeddedResource>

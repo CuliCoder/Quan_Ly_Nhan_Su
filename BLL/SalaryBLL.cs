@@ -1,4 +1,4 @@
-using Quan_Ly_Nhan_Su.DAO;
+﻿using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System.Collections.Generic;
 
@@ -8,71 +8,59 @@ namespace Quan_Ly_Nhan_Su.BLL
     {
         private readonly SalaryDAO _dao = new SalaryDAO();
 
-        // ALL
-        public List<SalaryDTO> GetAll()
-        {
-            return _dao.GetAll(); 
-        }
+        // LẤY TẤT CẢ
+        public List<SalaryDTO> GetAll() => _dao.GetAll();
 
-        // get by ID
+        // LẤY THEO MÃ LƯƠNG
         public SalaryDTO GetById(string maLuong)
         {
-            if (string.IsNullOrWhiteSpace(maLuong))
-                return null;
+            if (string.IsNullOrWhiteSpace(maLuong)) return null;
             return _dao.GetById(maLuong);
         }
 
-        // Th�m
-        public bool Insert(SalaryDTO salary)
+        // THÊM
+        public bool Insert(SalaryDTO s)
         {
-            if (salary == null ||
-                string.IsNullOrWhiteSpace(salary.MaLuong) ||
-                salary.LuongCoBan < 0 ||
-                salary.LuongThuong < 0 ||
-                salary.PhuCapChucVu < 0 ||
-                salary.PhuCapKhac < 0 ||
-                salary.KhoanTruBaoHiem < 0 ||
-                salary.KhoanTruKhac < 0 ||
-                salary.Thue < 0)
-            {
-                return false;
-            }
-            if (_dao.GetById(salary.MaLuong) != null)
-                return false;
-
-            return _dao.Insert(salary);
+            if (!IsValidForSave(s)) return false;
+            if (_dao.GetById(s.MaLuong) != null) return false; // đã tồn tại
+            return _dao.Insert(s);
         }
 
-        // Update
-        public bool Update(SalaryDTO salary)
+        // CẬP NHẬT
+        public bool Update(SalaryDTO s)
         {
-            if (salary == null ||
-                string.IsNullOrWhiteSpace(salary.MaLuong) ||
-                salary.LuongCoBan < 0 ||
-                salary.LuongThuong < 0 ||
-                salary.PhuCapChucVu < 0 ||
-                salary.PhuCapKhac < 0 ||
-                salary.KhoanTruBaoHiem < 0 ||
-                salary.KhoanTruKhac < 0 ||
-                salary.Thue < 0)
-            {
-                return false;
-            }
-            if (_dao.GetById(salary.MaLuong) == null)
-                return false;
-
-            return _dao.Update(salary);
+            if (!IsValidForSave(s)) return false;
+            if (_dao.GetById(s.MaLuong) == null) return false; // không tồn tại
+            return _dao.Update(s);
         }
 
-        // X�a (set TinhTrang = 0)
+        // XÓA MỀM
         public bool Delete(string maLuong)
         {
-            if (string.IsNullOrWhiteSpace(maLuong))
-                return false;
-            if (_dao.GetById(maLuong) == null)
+            if (string.IsNullOrWhiteSpace(maLuong)) return false;
+            if (_dao.GetById(maLuong) == null) return false;
+            return _dao.Delete(maLuong);
+        }
+
+        // LẤY PHIẾU LƯƠNG THEO MÃ NHÂN VIÊN
+        public SalaryDTO GetSalaryByEmployee(string maNhanVien)
+        {
+            if (string.IsNullOrWhiteSpace(maNhanVien)) return null;
+            return _dao.GetSalaryByEmployee(maNhanVien);
+        }
+
+        // Validate căn bản cho Insert/Update
+        private static bool IsValidForSave(SalaryDTO s)
+        {
+            if (s == null) return false;
+            if (string.IsNullOrWhiteSpace(s.MaLuong)) return false;
+            if (s.LuongCoBan < 0 || s.LuongThuong < 0 ||
+                s.PhuCapChucVu < 0 || s.PhuCapKhac < 0 ||
+                s.KhoanTruBaoHiem < 0 || s.KhoanTruKhac < 0 ||
+                s.Thue < 0)
                 return false;
 
-            return _dao.Delete(maLuong);
+            return true;
         }
     }
 }
