@@ -1,4 +1,5 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                     MessageBox.Show("Nhân viên không tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                lbInfo.Text= $"Mã NV: {currentEmployee.MaNhanVien} | Họ Tên: {currentEmployee.HoTen} | Email: {currentEmployee.Email}";
+                lbInfo.Text = $"Mã NV: {currentEmployee.MaNhanVien} | Họ Tên: {currentEmployee.HoTen} | Email: {currentEmployee.Email}";
                 attendanceRecords = AttendanceBLL.getAttendanceByEmployeeId(maNhanVien);
                 dgvCheckCongCa.Rows.Clear();
                 if (attendanceRecords == null || attendanceRecords.Count == 0)
@@ -59,27 +60,21 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                         record.Sogiolamviec
                     );
                 }
+                AttendanceTotalOfMonthDTO totalOfMonth = AttendanceBLL.calculateTotalOfMonth(maNhanVien, DateTime.Now.Month, DateTime.Now.Year);
+                dgvCheckCongCa.Rows.Add(
+                    "Tổng tháng",
+                    "",
+                    "",
+                    totalOfMonth.GoLate,
+                    totalOfMonth.LeaveEarly,
+                    totalOfMonth.TotalHours + "/" + AttendanceBLL.TinhTongGioLam(DateTime.Now.Month, DateTime.Now.Year)
+                );
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi tải thông tin nhân viên: {ex.Message}");
             }
         }
-
-        private void PopulateDateTimeControls()
-        {
-            cboNam.Items.Clear();
-            cboThang.Items.Clear();
-            int currentYear = DateTime.Now.Year;
-            for (int i = currentYear - 5; i <= currentYear + 5; i++) cboNam.Items.Add(i);
-            cboNam.SelectedItem = currentYear;
-            for (int i = 1; i <= 12; i++) cboThang.Items.Add(i);
-            cboThang.SelectedItem = DateTime.Now.Month;
-        }
-
-        
- 
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             BackButtonClicked?.Invoke(this, EventArgs.Empty);
