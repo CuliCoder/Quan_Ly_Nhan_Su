@@ -116,10 +116,12 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return 8 * 60;
         }
+        // Tính tổng số giờ làm việc, số lần đi muộn và số lần về sớm trong một tháng của nhân viên
         public AttendanceTotalOfMonthDTO calculateTotalOfMonth(string maNV, int month, int year)
         {
             return attendanceDAO.calculateTotalOfMonth(maNV, month, year);
         }
+        // Tính tổng số giờ làm việc trong một tháng, giả sử mỗi ngày làm việc là 8 giờ và không tính ngày cuối tuần
         public static int TinhTongGioLam(int thang, int nam)
         {
 
