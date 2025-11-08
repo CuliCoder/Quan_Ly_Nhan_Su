@@ -47,9 +47,9 @@
             this.pnlMain.Controls.Add(this.pnlHeader);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
-            this.pnlMain.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(999, 596);
+            this.pnlMain.Size = new System.Drawing.Size(1332, 734);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlContainer
@@ -57,11 +57,11 @@
             this.pnlContainer.Controls.Add(this.dgvCheckCongCa);
             this.pnlContainer.Controls.Add(this.lbInfo);
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContainer.Location = new System.Drawing.Point(0, 49);
-            this.pnlContainer.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContainer.Location = new System.Drawing.Point(0, 60);
+            this.pnlContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlContainer.Size = new System.Drawing.Size(999, 547);
+            this.pnlContainer.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
+            this.pnlContainer.Size = new System.Drawing.Size(1332, 674);
             this.pnlContainer.TabIndex = 2;
             // 
             // dgvCheckCongCa
@@ -91,13 +91,13 @@
             this.colLeave_early,
             this.colTotalHours});
             this.dgvCheckCongCa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCheckCongCa.Location = new System.Drawing.Point(8, 43);
-            this.dgvCheckCongCa.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvCheckCongCa.Location = new System.Drawing.Point(11, 53);
+            this.dgvCheckCongCa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCheckCongCa.Name = "dgvCheckCongCa";
             this.dgvCheckCongCa.RowHeadersVisible = false;
             this.dgvCheckCongCa.RowHeadersWidth = 51;
             this.dgvCheckCongCa.RowTemplate.Height = 24;
-            this.dgvCheckCongCa.Size = new System.Drawing.Size(983, 496);
+            this.dgvCheckCongCa.Size = new System.Drawing.Size(1310, 611);
             this.dgvCheckCongCa.TabIndex = 0;
             this.dgvCheckCongCa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -161,11 +161,11 @@
             this.lbInfo.AutoSize = true;
             this.lbInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInfo.Location = new System.Drawing.Point(8, 8);
-            this.lbInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 8);
+            this.lbInfo.Location = new System.Drawing.Point(11, 10);
+            this.lbInfo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.lbInfo.Name = "lbInfo";
-            this.lbInfo.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
-            this.lbInfo.Size = new System.Drawing.Size(990, 35);
+            this.lbInfo.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.lbInfo.Size = new System.Drawing.Size(1203, 43);
             this.lbInfo.TabIndex = 1;
             this.lbInfo.Text = "Nguyễn Văn A - TE11520 - nguyencongtrung@gmail.commmmmmmmmmmmmm";
             // 
@@ -178,17 +178,18 @@
             this.pnlHeader.Controls.Add(this.btnBack);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(999, 49);
+            this.pnlHeader.Size = new System.Drawing.Size(1332, 60);
             this.pnlHeader.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources.arrows_14074366;
-            this.pictureBox1.Location = new System.Drawing.Point(244, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(325, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.Size = new System.Drawing.Size(37, 34);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -198,29 +199,31 @@
             // 
             this.cboNam.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboNam.FormattingEnabled = true;
-            this.cboNam.Location = new System.Drawing.Point(147, 12);
-            this.cboNam.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNam.Location = new System.Drawing.Point(196, 15);
+            this.cboNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNam.Name = "cboNam";
-            this.cboNam.Size = new System.Drawing.Size(92, 25);
+            this.cboNam.Size = new System.Drawing.Size(121, 31);
             this.cboNam.TabIndex = 2;
+            this.cboNam.SelectedIndexChanged += new System.EventHandler(this.CboNam_SelectedIndexChanged);
             // 
             // cboThang
             // 
             this.cboThang.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboThang.FormattingEnabled = true;
-            this.cboThang.Location = new System.Drawing.Point(52, 12);
-            this.cboThang.Margin = new System.Windows.Forms.Padding(2);
+            this.cboThang.Location = new System.Drawing.Point(69, 15);
+            this.cboThang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboThang.Name = "cboThang";
-            this.cboThang.Size = new System.Drawing.Size(92, 25);
+            this.cboThang.Size = new System.Drawing.Size(121, 31);
             this.cboThang.TabIndex = 1;
+            this.cboThang.SelectedIndexChanged += new System.EventHandler(this.CboThang_SelectedIndexChanged);
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Segoe UI Emoji", 12F);
-            this.btnBack.Location = new System.Drawing.Point(8, 10);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBack.Location = new System.Drawing.Point(11, 12);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(30, 28);
+            this.btnBack.Size = new System.Drawing.Size(40, 34);
             this.btnBack.TabIndex = 0;
             this.btnBack.Text = "⬅️";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -228,12 +231,12 @@
             // 
             // ucKiemTraCongCa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucKiemTraCongCa";
-            this.Size = new System.Drawing.Size(999, 596);
+            this.Size = new System.Drawing.Size(1332, 734);
             this.pnlMain.ResumeLayout(false);
             this.pnlContainer.ResumeLayout(false);
             this.pnlContainer.PerformLayout();

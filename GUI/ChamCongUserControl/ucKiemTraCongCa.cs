@@ -3,6 +3,7 @@ using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCong
@@ -13,8 +14,6 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
         private AttendanceBLL AttendanceBLL = new AttendanceBLL();
         private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
         private List<AttendanceDTO> attendanceRecords = new List<AttendanceDTO>();
-        // Giả định bạn có BLL cho việc lấy dữ liệu Yêu cầu
-        // private readonly YeuCauBLL yeuCauBLL = new YeuCauBLL(); 
         private EmployeeFullDTO currentEmployee;
 
         public ucKiemTraCongCa()
@@ -25,14 +24,15 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
             }
             InitializeComponent();
             btnBack.Visible = false;
-            LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien);
+            loadCmb();
+            LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
         }
         public void checkCongCaByIDNV(string maNhanVien)
         {
             btnBack.Visible = true;
-            LoadEmployeeData(maNhanVien);
+            LoadEmployeeData(maNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
         }
-        public void LoadEmployeeData(string maNhanVien)
+        public void LoadEmployeeData(string maNhanVien, int thang, int nam)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                     return;
                 }
                 lbInfo.Text = $"Mã NV: {currentEmployee.MaNhanVien} | Họ Tên: {currentEmployee.HoTen} | Email: {currentEmployee.Email}";
-                attendanceRecords = AttendanceBLL.getAttendanceByEmployeeId(maNhanVien);
+                attendanceRecords = AttendanceBLL.filterByTime(maNhanVien, thang, nam);
                 dgvCheckCongCa.Rows.Clear();
                 if (attendanceRecords == null || attendanceRecords.Count == 0)
                 {
@@ -75,6 +75,56 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
                 MessageBox.Show($"Lỗi khi tải thông tin nhân viên: {ex.Message}");
             }
         }
+        private void loadCmb()
+        {
+            // Load combobox Tháng
+            DataTable dtcboThang = new DataTable();
+            dtcboThang.Columns.Add("key", typeof(int));
+            dtcboThang.Columns.Add("value", typeof(string));
+            for (int i = 1; i <= 12; i++)
+            {
+                dtcboThang.Rows.Add(i, "Tháng " + i);
+            }
+            cboThang.DataSource = dtcboThang;
+            cboThang.DisplayMember = "value";
+            cboThang.ValueMember = "key";
+            cboThang.SelectedValue = DateTime.Now.Month;
+            cboThang.DropDownStyle = ComboBoxStyle.DropDownList;
+            // Load combobox Năm
+            DataTable dtcboNam = new DataTable();
+            dtcboNam.Columns.Add("key", typeof(int));
+            dtcboNam.Columns.Add("value", typeof(string));
+            for (int i = 2020; i <= DateTime.Now.Year; i++)
+            {
+                dtcboNam.Rows.Add(i, "Năm " + i);
+            }
+            cboNam.DataSource = dtcboNam;
+            cboNam.DisplayMember = "value";
+            cboNam.ValueMember = "key";
+            cboNam.SelectedValue = DateTime.Now.Year;
+            cboNam.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void CboThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (currentEmployee == null)
+            {
+                return;
+            }
+            LoadEmployeeData(currentEmployee.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+        }
+        private void CboNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (currentEmployee == null)
+            {
+                return;
+            }
+            LoadEmployeeData(currentEmployee.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+        }
+        private List<AttendanceDTO> filterDataByTime(string maNV, int thang, int nam)
+        {
+            return AttendanceBLL.filterByTime(maNV, thang, nam);
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             BackButtonClicked?.Invoke(this, EventArgs.Empty);
@@ -92,8 +142,15 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            LoadEmployeeData(currentEmployee.MaNhanVien);
+            LoadEmployeeData(currentEmployee.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
         }
-
+        public int getSelectedMonth()
+        {
+            return (int)cboThang.SelectedValue;
+        }
+        public int getSelectedYear()
+        {
+            return (int)cboNam.SelectedValue;
+        }
     }
 }

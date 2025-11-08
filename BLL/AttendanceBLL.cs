@@ -146,5 +146,9 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             return tongGio;
         }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            return attendanceDAO.filterByTime(manv, thang, nam);
+        }
     }
 }

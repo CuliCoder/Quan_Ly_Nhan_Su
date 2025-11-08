@@ -223,5 +223,35 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return new AttendanceTotalOfMonthDTO(totalHours, goLate, leaveEarly);
         }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            List<AttendanceDTO> attendance_ = new List<AttendanceDTO>();
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "select * from bangchamcong where MONTH(ngayChamCong) = @thang AND YEAR(ngayChamCong) = @nam AND maNV = @maNV ORDER BY maBangChamCong DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@thang", thang);
+                        cmd.Parameters.AddWithValue("@nam", nam);
+                        cmd.Parameters.AddWithValue("@maNV", manv);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                attendance_.Add(MapReaderToAttendance(reader));
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting all accounts: {ex.Message}");
+                }
+            }
+            return attendance_;
+        }
     }
 }
