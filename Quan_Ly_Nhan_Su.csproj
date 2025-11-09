@@ -108,9 +108,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\AllowanceDeductionBLL.cs" />
     <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="BLL\BonusBLL.cs" />
+    <Compile Include="BLL\SalaryFullBLL.cs" />
     <Compile Include="BLL\SessionManager.cs" />
+    <Compile Include="DAO\AllowanceDeductionDAO.cs" />
     <Compile Include="DAO\AttendanceDAO.cs" />
+    <Compile Include="DAO\BonusDAO.cs" />
+    <Compile Include="DAO\SalaryFullDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
@@ -137,10 +143,13 @@
     <Compile Include="DAO\CandidateDAO.cs" />
     <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
+    <Compile Include="DTO\AllowanceDeductionDTO.cs" />
     <Compile Include="DTO\AttendanceDTO.cs" />
     <Compile Include="DTO\AttendanceTotalOfMonthDTO.cs" />
+    <Compile Include="DTO\BonusDTO.cs" />
     <Compile Include="DTO\calamviecDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
+    <Compile Include="DTO\SalaryFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>
