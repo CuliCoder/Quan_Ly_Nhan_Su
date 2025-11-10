@@ -2,9 +2,9 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System.Collections.Generic;
 
-namespace Quan_Ly_Nhan_Su.BULL
+namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class SalaryBULL
+    public class SalaryBLL
     {
         private readonly SalaryDAO dao = new SalaryDAO();
 

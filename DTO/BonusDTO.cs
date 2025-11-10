@@ -16,9 +16,8 @@ namespace Quan_Ly_Nhan_Su.DTO
 
         public BonusDTO() { }
 
-        public BonusDTO(int maThuong, string maNhanVien, string tenThuong, decimal phanTramThuong, int thangApDung, int namApDung)
+        public BonusDTO(string maNhanVien, string tenThuong, decimal phanTramThuong, int thangApDung, int namApDung)
         {
-            MaThuong = maThuong;
             MaNhanVien = maNhanVien;
             TenThuong = tenThuong;
             PhanTramThuong = phanTramThuong;

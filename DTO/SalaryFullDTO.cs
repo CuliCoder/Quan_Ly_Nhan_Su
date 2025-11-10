@@ -8,6 +8,7 @@
         public decimal LuongTheoGio { get; set; }
         public decimal TongPhuCap { get; set; }
         public decimal TongKhoanTru { get; set; }
+        public decimal TongThuong { get; set; }
         public float TongGioLam { get; set; }
         public decimal LuongThucLanh { get; set; }
 
