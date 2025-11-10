@@ -18,15 +18,10 @@ namespace Quan_Ly_Nhan_Su.DAO
             DateTime ngayChamCong = reader.GetDateTime("ngayChamCong");
             DateTime? checkIn = reader.GetDateTime("checkIn");
             DateTime? checkOut = reader.IsDBNull(reader.GetOrdinal("checkOut")) ? (DateTime?)null : reader.GetDateTime("checkOut");
-            string status = reader.GetString("status");
-            string approved_by = reader.IsDBNull(reader.GetOrdinal("approved_by")) ? null : reader.GetString("approved_by");
-            DateTime? approved_date = reader.IsDBNull(reader.GetOrdinal("approved_date")) ? (DateTime?)null : reader.GetDateTime("approved_date");
             int go_late = reader.IsDBNull(reader.GetOrdinal("go_late")) ? 0 : reader.GetInt32("go_late");
             int leave_early = reader.IsDBNull(reader.GetOrdinal("leave_early")) ? 0 : reader.GetInt32("leave_early");
             float sogiolamviec = reader.IsDBNull(reader.GetOrdinal("sogiolamviec")) ? 0 : reader.GetFloat("sogiolamviec");
-            int soca = reader.IsDBNull(reader.GetOrdinal("soca")) ? 0 : reader.GetInt32("soca");
-            string notes = reader.IsDBNull(reader.GetOrdinal("notes")) ? null : reader.GetString("notes");
-            return new AttendanceDTO(machamcong, maNV, ngayChamCong, checkIn, checkOut, status, approved_by, approved_date, go_late, leave_early, sogiolamviec, soca, notes);
+            return new AttendanceDTO(machamcong, maNV, ngayChamCong, checkIn, checkOut, go_late, leave_early, sogiolamviec);
         }
         public List<AttendanceDTO> get_attendance_by_ID_NhanVien(string maNhanVien)
         {
@@ -65,7 +60,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {
                     try
                     {
-                        string insertSQL = "insert into bangchamcong (maBangChamCong, maNV, ngayChamCong, checkIn, checkOut, approved_by, approved_date, go_late, leave_early, sogiolamviec, soca, notes) VALUES (@maBangChamCong, @maNV, @ngayChamCong, @checkIn, @checkOut, @approved_by, @approved_date, @go_late, @leave_early, @sogiolamviec, @soca, @notes)";
+                        string insertSQL = "insert into bangchamcong (maBangChamCong, maNV, ngayChamCong, checkIn, checkOut, go_late, leave_early, sogiolamviec) VALUES (@maBangChamCong, @maNV, @ngayChamCong, @checkIn, @checkOut, @go_late, @leave_early, @sogiolamviec)";
                         using (MySqlCommand cmd = new MySqlCommand(insertSQL, conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@maBangChamCong", attendance.IdChamCong);
@@ -75,13 +70,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                             cmd.Parameters.AddWithValue("@checkIn", attendance.CheckInTime.HasValue ? (object)attendance.CheckInTime.Value : DBNull.Value);
                             cmd.Parameters.AddWithValue("@checkOut", attendance.CheckOutTime.HasValue ? (object)attendance.CheckOutTime.Value : DBNull.Value);
 
-                            cmd.Parameters.AddWithValue("@approved_by", attendance.Approved_by ?? (object)DBNull.Value);
-                            cmd.Parameters.AddWithValue("@approved_date", attendance.Approved_date.HasValue ? (object)attendance.Approved_date.Value : DBNull.Value);
                             cmd.Parameters.AddWithValue("@go_late", attendance.Go_late);
                             cmd.Parameters.AddWithValue("@leave_early", attendance.Leave_early);
                             cmd.Parameters.AddWithValue("@sogiolamviec", attendance.Sogiolamviec);
-                            cmd.Parameters.AddWithValue("@soca", attendance.Soca);
-                            cmd.Parameters.AddWithValue("@notes", attendance.Notes ?? (object)DBNull.Value);
 
                             cmd.ExecuteNonQuery();
                         }
@@ -110,7 +101,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {
                     try
                     {
-                        string updateSQL = "UPDATE bangchamcong SET maNV = @maNV, ngayChamCong = @ngayChamCong, checkIn = @checkIn, checkOut = @checkOut, status = @status, approved_by = @approved_by, approved_date = @approved_date, go_late = @go_late, leave_early = @leave_early, sogiolamviec = @sogiolamviec, soca = @soca, notes = @notes WHERE maBangChamCong = @id";
+                        string updateSQL = "UPDATE bangchamcong SET maNV = @maNV, ngayChamCong = @ngayChamCong, checkIn = @checkIn, checkOut = @checkOut, go_late = @go_late, leave_early = @leave_early, sogiolamviec = @sogiolamviec WHERE maBangChamCong = @id";
                         using (MySqlCommand cmd = new MySqlCommand(updateSQL, conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@maNV", attendance.MaNhanVien ?? (object)DBNull.Value);
@@ -119,14 +110,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                             cmd.Parameters.AddWithValue("@checkIn", attendance.CheckInTime.HasValue ? (object)attendance.CheckInTime.Value : DBNull.Value);
                             cmd.Parameters.AddWithValue("@checkOut", attendance.CheckOutTime.HasValue ? (object)attendance.CheckOutTime.Value : DBNull.Value);
 
-                            cmd.Parameters.AddWithValue("@status", attendance.TrangThai ?? (object)DBNull.Value);
-                            cmd.Parameters.AddWithValue("@approved_by", attendance.Approved_by ?? (object)DBNull.Value);
-                            cmd.Parameters.AddWithValue("@approved_date", attendance.Approved_date.HasValue ? (object)attendance.Approved_date.Value : DBNull.Value);
                             cmd.Parameters.AddWithValue("@go_late", attendance.Go_late);
                             cmd.Parameters.AddWithValue("@leave_early", attendance.Leave_early);
                             cmd.Parameters.AddWithValue("@sogiolamviec", attendance.Sogiolamviec);
-                            cmd.Parameters.AddWithValue("@soca", attendance.Soca);
-                            cmd.Parameters.AddWithValue("@notes", attendance.Notes ?? (object)DBNull.Value);
 
                             cmd.Parameters.AddWithValue("@id", attendance.IdChamCong);
 
@@ -202,6 +188,70 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
 
             return null;
+        }
+        public AttendanceTotalOfMonthDTO calculateTotalOfMonth(string maNV, int month, int year)
+        {
+            float totalHours = 0;
+            int goLate = 0;
+            int leaveEarly = 0;
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT SUM(sogiolamviec) AS TotalHours, SUM(go_late) as Go_Late, SUM(leave_early) as Leave_Early FROM bangchamcong WHERE maNV = @maNV AND MONTH(ngayChamCong) = @month AND YEAR(ngayChamCong) = @year";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maNV", maNV);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@year", year);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                totalHours = reader.IsDBNull(reader.GetOrdinal("TotalHours")) ? 0 : reader.GetFloat("TotalHours");
+                                goLate = reader.IsDBNull(reader.GetOrdinal("Go_Late")) ? 0 : reader.GetInt32("Go_Late");
+                                leaveEarly = reader.IsDBNull(reader.GetOrdinal("Leave_Early")) ? 0 : reader.GetInt32("Leave_Early");
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error calculating work hours: {ex.Message}");
+                }
+            }
+            return new AttendanceTotalOfMonthDTO(totalHours, goLate, leaveEarly);
+        }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            List<AttendanceDTO> attendance_ = new List<AttendanceDTO>();
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "select * from bangchamcong where MONTH(ngayChamCong) = @thang AND YEAR(ngayChamCong) = @nam AND maNV = @maNV ORDER BY maBangChamCong DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@thang", thang);
+                        cmd.Parameters.AddWithValue("@nam", nam);
+                        cmd.Parameters.AddWithValue("@maNV", manv);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                attendance_.Add(MapReaderToAttendance(reader));
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting all accounts: {ex.Message}");
+                }
+            }
+            return attendance_;
         }
     }
 }

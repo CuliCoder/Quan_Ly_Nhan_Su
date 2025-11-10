@@ -9,12 +9,7 @@ namespace Quan_Ly_Nhan_Su.BLL
     public class AttendanceBLL
     {
         private AttendanceDAO attendanceDAO = new AttendanceDAO();
-        private readonly List<calamviecDTO> calamviecList = new List<calamviecDTO> {
-            new calamviecDTO("Ca sáng",TimeSpan.FromHours(8), TimeSpan.FromHours(12)),
-            new calamviecDTO("Ca chiều",TimeSpan.FromHours(13), TimeSpan.FromHours(17)),
-            new calamviecDTO("Ca tối",TimeSpan.FromHours(18), TimeSpan.FromHours(22))
-     };
-        private readonly int standardWorkMinutesPerDay = 4 * 3 * 60;
+        private readonly calamviecDTO calamviecDTO = new calamviecDTO("Giờ hành chính", TimeSpan.FromHours(8), TimeSpan.FromHours(17));
         public AttendanceBLL()
         {
 
@@ -35,10 +30,7 @@ namespace Quan_Ly_Nhan_Su.BLL
                 DateTime ngayChamCong = today;
                 DateTime? checkIn = now;
                 DateTime? checkOut = null;
-                string approved_by = null;
-                DateTime? approved_date = null;
-                string notes = null;
-                AttendanceDTO newAttendance = new AttendanceDTO(idChamCong, maNV, ngayChamCong, checkIn, checkOut, "", approved_by, approved_date, 0, 0, 0, 0, notes);
+                AttendanceDTO newAttendance = new AttendanceDTO(idChamCong, maNV, ngayChamCong, checkIn, checkOut, 0, 0, 0);
                 return attendanceDAO.addAttendance(newAttendance);
             }
             else
@@ -47,13 +39,11 @@ namespace Quan_Ly_Nhan_Su.BLL
 
                 int go_late = calculateLateMinutes(attendanceToday.CheckInTime);
                 int leave_early = calculateEarlyLeaveMinutes(attendanceToday.CheckOutTime);
-                float sogiolamviec = (float)Math.Round(standardWorkMinutesPerDay - (go_late + leave_early) / 60f, 2);
-                int soca = calculateSoCa(attendanceToday.CheckInTime, attendanceToday.CheckOutTime);
+                float sogiolamviec = calculateWorkHours(go_late, attendanceToday.CheckInTime, attendanceToday.CheckOutTime);
 
                 attendanceToday.Go_late = go_late;
                 attendanceToday.Leave_early = leave_early;
                 attendanceToday.Sogiolamviec = sogiolamviec;
-                attendanceToday.Soca = soca;
 
                 return attendanceDAO.updateAttendance(attendanceToday);
             }
@@ -75,31 +65,22 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return attendanceDAO.get_attendance_by_ID_NhanVien(maNhanVien);
         }
-        private int calculateSoCa(DateTime? checkInTime, DateTime? checkOutTime)
+        private float calculateWorkHours(int lateMinutes, DateTime? CheckInTime, DateTime? checkOutTime)
         {
-            if (checkInTime == null || checkOutTime == null)
+            float totalWorkedHours = 0;
+            if (CheckInTime.Value.TimeOfDay < calamviecDTO.StartTime)
             {
-                return 0;
+                totalWorkedHours = (float)Math.Round(((int)(checkOutTime.Value.TimeOfDay - calamviecDTO.StartTime).TotalMinutes - lateMinutes) / 60.0f, 2);
             }
-            int soCa = 0;
-            foreach (calamviecDTO calamviec in calamviecList)
+            else
             {
-                if (checkCalam(checkInTime, checkOutTime, calamviec))
-                    soCa++;
+                totalWorkedHours = (float)Math.Round((int)(checkOutTime.Value.TimeOfDay - CheckInTime.Value.TimeOfDay).TotalMinutes / 60.0f, 2);
             }
-            return 0;
-        }
-        private bool checkCalam(DateTime? checkInTime, DateTime? checkOutTime, calamviecDTO calamviec)
-        {
-            if (checkInTime == null || checkOutTime == null)
+            if (totalWorkedHours >= 5)
             {
-                return false;
+                totalWorkedHours -= 1;
             }
-            TimeSpan shiftStartTime = calamviec.StartTime;
-            TimeSpan shiftEndTime = calamviec.EndTime;
-            TimeSpan actualCheckInTime = checkInTime.Value.TimeOfDay;
-            TimeSpan actualCheckOutTime = checkOutTime.Value.TimeOfDay;
-            return actualCheckInTime <= shiftEndTime && actualCheckOutTime >= shiftStartTime && actualCheckInTime <= shiftEndTime;
+            return totalWorkedHours < 0 ? 0 : totalWorkedHours;
         }
         private int calculateLateMinutes(DateTime? checkInTime)
         {
@@ -107,19 +88,16 @@ namespace Quan_Ly_Nhan_Su.BLL
             {
                 return 0;
             }
-            foreach (calamviecDTO calamviec in calamviecList)
+            TimeSpan checkIn = checkInTime.Value.TimeOfDay;
+            if (checkIn <= calamviecDTO.EndTime)
             {
-                TimeSpan checkIn = checkInTime.Value.TimeOfDay;
-                if (checkIn <= calamviec.EndTime)
+                if (checkIn < calamviecDTO.StartTime)
                 {
-                    if (checkIn <= calamviec.StartTime)
-                    {
-                        return 0;
-                    }
-                    return (int)(checkIn - calamviec.StartTime).TotalMinutes;
+                    return 0;
                 }
+                return (int)Math.Round((checkIn - calamviecDTO.StartTime).TotalMinutes, 0);
             }
-            return 0;
+            return 8 * 60;
         }
         private int calculateEarlyLeaveMinutes(DateTime? checkOutTime)
         {
@@ -127,19 +105,50 @@ namespace Quan_Ly_Nhan_Su.BLL
             {
                 return 0;
             }
-            foreach (calamviecDTO calamviec in calamviecList.AsEnumerable().Reverse())
+            TimeSpan checkOut = checkOutTime.Value.TimeOfDay;
+            if (checkOut >= calamviecDTO.StartTime)
             {
-                TimeSpan checkOut = checkOutTime.Value.TimeOfDay;
-                if (checkOut >= calamviec.StartTime)
+                if (checkOut > calamviecDTO.EndTime)
                 {
-                    if (checkOut >= calamviec.EndTime)
-                    {
-                        return 0;
-                    }
-                    return (int)(calamviec.EndTime - checkOut).TotalMinutes;
+                    return 0;
                 }
+                return (int)Math.Round((calamviecDTO.EndTime - checkOut).TotalMinutes, 0);
             }
-            return 0;
+            return 8 * 60;
+        }
+        // Tính tổng số giờ làm việc, số lần đi muộn và số lần về sớm trong một tháng của nhân viên
+        public AttendanceTotalOfMonthDTO calculateTotalOfMonth(string maNV, int month, int year)
+        {
+            return attendanceDAO.calculateTotalOfMonth(maNV, month, year);
+        }
+        // Tính tổng số giờ làm việc trong một tháng, giả sử mỗi ngày làm việc là 8 giờ và không tính ngày cuối tuần
+        public static int TinhTongGioLam(int thang, int nam)
+        {
+
+            // Lấy số ngày trong tháng
+            int soNgay = DateTime.DaysInMonth(nam, thang);
+
+            // Khởi tạo tổng giờ làm
+            int tongGio = 0;
+
+            // Duyệt qua từng ngày trong tháng
+            for (int ngay = 1; ngay <= soNgay; ngay++)
+            {
+                DateTime ngayHienTai = new DateTime(nam, thang, ngay);
+                // Kiểm tra nếu là thứ Bảy (6) hoặc Chủ Nhật (0)
+                if (ngayHienTai.DayOfWeek == DayOfWeek.Saturday || ngayHienTai.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    continue;
+                }
+                // Cộng 8 giờ cho ngày làm việc
+                tongGio += 8;
+            }
+
+            return tongGio;
+        }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            return attendanceDAO.filterByTime(manv, thang, nam);
         }
     }
 }

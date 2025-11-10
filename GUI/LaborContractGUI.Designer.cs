@@ -20,9 +20,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageHopDong = new System.Windows.Forms.TabPage();
             this.contractGUI = new Quan_Ly_Nhan_Su.GUI.ContractGUI();
@@ -70,9 +69,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.labelKetThuc = new System.Windows.Forms.Label();
             this.labelBatDau = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.tabPageThongKe = new System.Windows.Forms.TabPage();
-            this.statisticsGUI1 = new Quan_Ly_Nhan_Su.GUI.StatisticsGUI();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            this.statisticsGUI1 = new Quan_Ly_Nhan_Su.GUI.StatisticsGUI();
+            this.tabPageThongKe = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPageHopDong.SuspendLayout();
             this.tabPageKiHopDong.SuspendLayout();
@@ -155,37 +155,29 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.comboBox6.Location = new System.Drawing.Point(354, 35);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(307, 37);
+            this.comboBox6.Size = new System.Drawing.Size(307, 33);
             this.comboBox6.TabIndex = 9;
             this.comboBox6.Text = "sắp xếp";
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle49.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle50.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Times New Roman", 12F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
             this.Nhanvien,
             this.phongban,
             this.thuviectu});
-            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle51.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle51.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle51.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle51.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle51;
             this.dataGridView1.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
             this.dataGridView1.Location = new System.Drawing.Point(3, 84);
@@ -233,7 +225,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 29);
+            this.label1.Size = new System.Drawing.Size(296, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Danh sách nhân viên thử việc";
             // 
@@ -547,7 +539,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.textBoxThoiHan.Location = new System.Drawing.Point(40, 217);
             this.textBoxThoiHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxThoiHan.Name = "textBoxThoiHan";
-            this.textBoxThoiHan.Size = new System.Drawing.Size(362, 40);
+            this.textBoxThoiHan.Size = new System.Drawing.Size(362, 34);
             this.textBoxThoiHan.TabIndex = 5;
             // 
             // textBoxKetThuc
@@ -557,7 +549,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.textBoxKetThuc.Location = new System.Drawing.Point(270, 95);
             this.textBoxKetThuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxKetThuc.Name = "textBoxKetThuc";
-            this.textBoxKetThuc.Size = new System.Drawing.Size(227, 40);
+            this.textBoxKetThuc.Size = new System.Drawing.Size(227, 34);
             this.textBoxKetThuc.TabIndex = 4;
             // 
             // textBoxBatDau
@@ -566,7 +558,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.textBoxBatDau.Location = new System.Drawing.Point(4, 95);
             this.textBoxBatDau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxBatDau.Name = "textBoxBatDau";
-            this.textBoxBatDau.Size = new System.Drawing.Size(187, 40);
+            this.textBoxBatDau.Size = new System.Drawing.Size(187, 34);
             this.textBoxBatDau.TabIndex = 3;
             // 
             // labelThoiHan
@@ -607,35 +599,46 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.comboBox1.Location = new System.Drawing.Point(9, 35);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(338, 37);
+            this.comboBox1.Size = new System.Drawing.Size(338, 33);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // tabPageThongKe
-            // 
-            this.tabPageThongKe.Controls.Add(this.statisticsGUI1);
-            this.tabPageThongKe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageThongKe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageThongKe.Name = "tabPageThongKe";
-            this.tabPageThongKe.Size = new System.Drawing.Size(1949, 65502);
-            this.tabPageThongKe.TabIndex = 2;
-            this.tabPageThongKe.Text = "THỐNG KÊ";
-            this.tabPageThongKe.UseVisualStyleBackColor = true;
-            // 
-            // statisticsGUI1
-            // 
-            this.statisticsGUI1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.statisticsGUI1.Location = new System.Drawing.Point(61, 0);
-            this.statisticsGUI1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.statisticsGUI1.Name = "statisticsGUI1";
-            this.statisticsGUI1.Size = new System.Drawing.Size(1483, 939);
-            this.statisticsGUI1.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // mySqlCommand1
+            // 
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
+            // 
+            // statisticsGUI1
+            // 
+            this.statisticsGUI1.AutoScroll = true;
+            this.statisticsGUI1.AutoSize = true;
+            this.statisticsGUI1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.statisticsGUI1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.statisticsGUI1.Location = new System.Drawing.Point(-4, 0);
+            this.statisticsGUI1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.statisticsGUI1.Name = "statisticsGUI1";
+            this.statisticsGUI1.Size = new System.Drawing.Size(1631, 1107);
+            this.statisticsGUI1.TabIndex = 0;
+            // 
+            // tabPageThongKe
+            // 
+            this.tabPageThongKe.AutoScroll = true;
+            this.tabPageThongKe.Controls.Add(this.statisticsGUI1);
+            this.tabPageThongKe.Location = new System.Drawing.Point(4, 29);
+            this.tabPageThongKe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPageThongKe.Name = "tabPageThongKe";
+            this.tabPageThongKe.Size = new System.Drawing.Size(1623, 65502);
+            this.tabPageThongKe.TabIndex = 2;
+            this.tabPageThongKe.Text = "THỐNG KÊ";
+            this.tabPageThongKe.UseVisualStyleBackColor = true;
             // 
             // LaborContractGUI
             // 
@@ -656,6 +659,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.groupBoxBoSung.ResumeLayout(false);
             this.groupBoxBoSung.PerformLayout();
             this.tabPageThongKe.ResumeLayout(false);
+            this.tabPageThongKe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -664,7 +668,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageHopDong;
         private System.Windows.Forms.TabPage tabPageKiHopDong;
-        private System.Windows.Forms.TabPage tabPageThongKe;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.GroupBox groupBoxThongTin;
@@ -698,7 +701,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.Label labelem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labeldc;
-        private StatisticsGUI statisticsGUI1;
         private System.Windows.Forms.Label labelgt;
         private System.Windows.Forms.Label labelns;
         private System.Windows.Forms.Label labelId;
@@ -711,5 +713,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn phongban;
         private System.Windows.Forms.DataGridViewTextBoxColumn thuviectu;
         private System.Windows.Forms.ComboBox comboBox6;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
+        private TabPage tabPageThongKe;
+        private StatisticsGUI statisticsGUI1;
     }
 }
