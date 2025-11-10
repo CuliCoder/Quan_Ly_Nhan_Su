@@ -209,9 +209,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                         {
                             if (reader.Read())
                             {
-                                totalHours = reader.GetFloat("TotalHours");
-                                goLate = reader.GetInt32("Go_Late");
-                                leaveEarly = reader.GetInt32("Leave_Early");
+                                totalHours = reader.IsDBNull(reader.GetOrdinal("TotalHours")) ? 0 : reader.GetFloat("TotalHours");
+                                goLate = reader.IsDBNull(reader.GetOrdinal("Go_Late")) ? 0 : reader.GetInt32("Go_Late");
+                                leaveEarly = reader.IsDBNull(reader.GetOrdinal("Leave_Early")) ? 0 : reader.GetInt32("Leave_Early");
                             }
                         }
                     }
