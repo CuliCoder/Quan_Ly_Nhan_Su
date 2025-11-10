@@ -94,14 +94,16 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.Close();
         }
 
-        public void setDataInToTextBox() { 
+        public void setDataInToTextBox()
+        {
+
             maTuyenDungTb.Text = batchDTO.MaTuyenDung;
             chuVuTb.Text = batchDTO.ChucVu;
             soLuongTuyentb.Text = batchDTO.SoLuongCanTuyen.ToString();
             hocVanToiThieu.Text = batchDTO.HocVan.ToString();
             doTuoiTb.Text = batchDTO.DoTuoi.ToString();
             luongToiThieutb.Text = batchDTO.MucLuongToiThieu.ToString();
-            luongToiDaTb.Text = batchDTO.SoLuongDaTuyen.ToString();
+            luongToiDaTb.Text = batchDTO.MucLuongToiDa.ToString();
             hanNopDate.Value = batchDTO.HanNopHoSo;
             if (batchDTO.GioiTinh.Equals("Nam"))
                 namBt.Checked = true;

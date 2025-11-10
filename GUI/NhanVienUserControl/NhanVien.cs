@@ -14,21 +14,21 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVien : UserControl
     {
-
+        //phần này chưa được validate
         NhanVienNhapLieu nhanVienNhapLieu = new NhanVienNhapLieu();
         private EmployeeFullBLL employeeFullBLL = new EmployeeFullBLL();
-        private List<EmployeeFullDTO> listEmployyeFull;
+        private List<EmployeeFullDTO> listEmployyeFull = new List<EmployeeFullDTO>();
         public NhanVien()
         {
             InitializeComponent();
+            showDataToTable();
             nhanVienNhapLieu.QuayLaiClicked += (s, e) =>
             {
                 chuyenMan.Controls.Clear();
                 chuyenMan.Controls.Add(danhSachNhanVienPanel);
                 danhSachNhanVienPanel.Dock = DockStyle.Fill;
+                showDataToTable();
             };
-            listEmployyeFull = employeeFullBLL.GetAllEmployees();
-            fillDataToTable(listEmployyeFull);
         }
 
         private void fillDataToTable(List<EmployeeFullDTO> listEmployyeFull)
@@ -57,6 +57,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             tableData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
         }
+        private void showDataToTable()
+        {
+            listEmployyeFull = employeeFullBLL.GetAllEmployees();
+            fillDataToTable(listEmployyeFull);
+        }
 
         private void addUserControl(UserControl userControl)
         {
@@ -73,6 +78,34 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             addUserControl(nhanVienNhapLieu);
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+            showDataToTable();
+        }
 
+        private void searchEmployee()
+        {
+            List< EmployeeFullDTO> filteredList = new List<EmployeeFullDTO>();
+            string keyword = tbSearch.Text.Trim().ToLower();
+            filteredList = employeeFullBLL.SearchEmployeesLINQ(keyword);
+            fillDataToTable(filteredList);
+        }
+        private void tbSearch_TextChanged(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                searchEmployee();
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            searchEmployee();
+        }
+
+        private void btnSearchDay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

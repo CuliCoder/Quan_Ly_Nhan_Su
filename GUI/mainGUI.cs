@@ -6,6 +6,7 @@ using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
+using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,10 +26,10 @@ namespace Quan_Ly_Nhan_Su.GUI
         DanhGia danhGia = new DanhGia();
         TaiKhoanMain taiKhoanMain = new TaiKhoanMain();
         LuongThuong luongThuong = new LuongThuong();
-        ucChamCong chamCongGUI = new ucChamCong();
-        ucChiTietChamCong chiTietChamCongGUI = new ucChiTietChamCong();
+        ucKiemTraCongCa chiTietChamCongGUI = new ucKiemTraCongCa();
         User_LabtracGUI user_LabtracGUI = new User_LabtracGUI();
         ProfileStaffGUI profileStaffGUI = new ProfileStaffGUI();
+        AttendanceGUI attendanceGUI = new AttendanceGUI();
         List<Panel> listpnlbSideBar = new List<Panel>();
         public mainGUI()
         {
@@ -39,7 +40,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             addPanelToList();
             addEventToPanel();
-            chamCongGUI.EmployeeSelected += ChamCongGUI_EmployeeSelected;
+            attendanceGUI.getDanhSachNhanVienGUI().EmployeeSelected += ChamCongGUI_EmployeeSelected;
             chiTietChamCongGUI.BackButtonClicked += ChiTietChamCongGUI_BackButtonClicked;
             DisplayUserInfo();
             ConfigureMenuByPermission();
@@ -124,14 +125,17 @@ namespace Quan_Ly_Nhan_Su.GUI
         // 1. Khi một nhân viên được chọn (double-click) từ màn hình danh sách
         private void ChamCongGUI_EmployeeSelected(string maNhanVien)
         {
+            Console.WriteLine($"Đã chọn nhân viên với mã: {maNhanVien}");
+            chiTietChamCongGUI.checkCongCaByIDNV(maNhanVien);
             addUserControl(chiTietChamCongGUI);
-            chiTietChamCongGUI.LoadEmployeeData(maNhanVien); // Truyền mã nhân viên sang màn hình chi tiết
         }
 
         // 2. Khi nhấn nút "Back" từ màn hình chi tiết
         private void ChiTietChamCongGUI_BackButtonClicked(object sender, EventArgs e)
         {
-            addUserControl(chamCongGUI); // Quay lại màn hình danh sách
+            Console.WriteLine("Quay lại danh sách nhân viên chấm công");
+            attendanceGUI.backDanhSachNhanVien();
+            addUserControl(attendanceGUI); // Quay lại màn hình danh sách
         }
 
         private void addUserControl(UserControl userControl)
@@ -224,7 +228,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                     addUserControl(danhGia);
                     break;
                 case "pnlbChamCong": 
-                    addUserControl(chamCongGUI);
+                    addUserControl(attendanceGUI);
                     break;
                 case "pnlbHopdongcanhan":
                     addUserControl(user_LabtracGUI);

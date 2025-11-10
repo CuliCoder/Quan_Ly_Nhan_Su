@@ -127,35 +127,50 @@
   <data name="9035021_person_add_icon32X32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\icon\9035021_person_add_icon32X32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="images1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="check in" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="them2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="check in_bigSize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check in_bigSize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="211817_search_strong_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\211817_search_strong_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="9035021_person_add_icon48X48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\9035021_person_add_icon48X48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="them2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="return" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="211817_search_strong_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\icon\211817_search_strong_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="return" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GUI\assets\icon\return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="them" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="them1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check in1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check in1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="211817_search_strong_icon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\211817_search_strong_icon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="9035021_person_add_icon48X48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GUI\assets\icon\9035021_person_add_icon48X48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="9057101_export_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\icon\9057101_export_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="them" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GUI\assets\icon\them.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="check in2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check in2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\img\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,7 +178,7 @@
   <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GUI\assets\icon\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrows_14074366" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrows_14074366.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
