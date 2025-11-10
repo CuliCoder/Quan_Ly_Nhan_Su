@@ -145,8 +145,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 cccdTb.Text,
                 null,
                 null,
-                null,
-                null,
                 maPhongBanCbb.SelectedValue.ToString(),
                 Convert.ToDecimal(mucLuongTb.Text)
             );
