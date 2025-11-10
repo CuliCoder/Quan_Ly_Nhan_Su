@@ -204,6 +204,128 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
+        // *** HÀM MỚI 1 (PRIVATE): Hỗ trợ tạo mã lương ***
+        private string GenerateNewMaLuong(MySqlConnection conn, MySqlTransaction transaction)
+        {
+            string newMaLuong = "L001"; // Giá trị mặc định nếu bảng trống
+            // Lấy mã lương lớn nhất hiện tại, ví dụ 'L006'
+            string query = @"
+                SELECT MaLuong FROM luong 
+                WHERE MaLuong LIKE 'L%' 
+                ORDER BY CAST(SUBSTRING(MaLuong, 2) AS UNSIGNED) DESC 
+                LIMIT 1";
+
+            using (var command = new MySqlCommand(query, conn, transaction))
+            {
+                var result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    string lastMaLuong = result.ToString();
+                    if (int.TryParse(lastMaLuong.Substring(1), out int lastNum))
+                    {
+                        // Tăng lên 1 (ví dụ: L006 -> L007)
+                        newMaLuong = "L" + (lastNum + 1).ToString("D3");
+                    }
+                }
+            }
+            return newMaLuong;
+        }
+
+        // *** HÀM MỚI 2 (PUBLIC): HÀM GỘP 3-TRONG-1 ***
+        public bool CreateContractAndSalary_Transaction(LaborContractDTO contract, decimal luongTheoGio)
+        {
+            MySqlConnection conn = null;
+            MySqlTransaction transaction = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                transaction = conn.BeginTransaction();
+
+                // === Bước 1 & 2: Tạo Lương và lấy mã lương mới ===
+                string newMaLuong = GenerateNewMaLuong(conn, transaction);
+                string queryLuong = @"
+                    INSERT INTO luong (MaLuong, MaNhanVien, LuongCoBan, LuongTheoGio, Thang, Nam) 
+                    VALUES (@MaLuong, @MaNhanVien, @LuongCoBan, @LuongTheoGio, @Thang, @Nam)";
+
+                using (var cmdLuong = new MySqlCommand(queryLuong, conn, transaction))
+                {
+                    cmdLuong.Parameters.AddWithValue("@MaLuong", newMaLuong);
+                    cmdLuong.Parameters.AddWithValue("@MaNhanVien", contract.MaNhanVien);
+                    cmdLuong.Parameters.AddWithValue("@LuongCoBan", contract.LuongCoBan); // Lấy từ DTO
+                    cmdLuong.Parameters.AddWithValue("@LuongTheoGio", luongTheoGio);
+                    cmdLuong.Parameters.AddWithValue("@Thang", DateTime.Now.Month);
+                    cmdLuong.Parameters.AddWithValue("@Nam", DateTime.Now.Year);
+
+                    if (cmdLuong.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Tạo bản ghi lương thất bại.");
+                    }
+                }
+
+                // === Bước 3: Cập nhật Nhân Viên ===
+                string queryNhanVien = @"
+                    UPDATE nhanvien 
+                    SET maluong = @maLuong 
+                    WHERE maNhanVien = @maNhanVien";
+
+                using (var cmdNhanVien = new MySqlCommand(queryNhanVien, conn, transaction))
+                {
+                    cmdNhanVien.Parameters.AddWithValue("@maLuong", newMaLuong);
+                    cmdNhanVien.Parameters.AddWithValue("@maNhanVien", contract.MaNhanVien);
+
+                    if (cmdNhanVien.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Cập nhật mã lương cho nhân viên thất bại.");
+                    }
+                }
+
+                // === Bước 4: Tạo Hợp đồng (KHÔNG CÓ LƯƠNG) ===
+                string queryHopDong = @"
+                    INSERT INTO hopdonglaodong (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, maBangChamCong) 
+                    VALUES (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @maBangChamCong)";
+
+                using (var cmdHopDong = new MySqlCommand(queryHopDong, conn, transaction))
+                {
+                    cmdHopDong.Parameters.AddWithValue("@maHopDong", contract.MaHopDong);
+                    cmdHopDong.Parameters.AddWithValue("@maNhanVien", contract.MaNhanVien);
+                    cmdHopDong.Parameters.AddWithValue("@tuNgay", contract.TuNgay);
+                    cmdHopDong.Parameters.AddWithValue("@denNgay", (object)contract.DenNgay ?? DBNull.Value);
+                    cmdHopDong.Parameters.AddWithValue("@loaiHopDong", contract.LoaiHopDong);
+                    cmdHopDong.Parameters.AddWithValue("@phongBan", contract.PhongBan);
+                    cmdHopDong.Parameters.AddWithValue("@maBangChamCong", (object)contract.MaBangChamCong ?? DBNull.Value);
+
+                    if (cmdHopDong.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Tạo hợp đồng lao động thất bại.");
+                    }
+                }
+
+                // === Nếu cả 3 bước OK thì Commit ===
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Nếu có 1 bước lỗi, Rollback tất cả
+                Console.WriteLine($"Transaction Error: {ex.Message}");
+                try
+                {
+                    transaction?.Rollback();
+                }
+                catch (Exception rbEx)
+                {
+                    Console.WriteLine($"Rollback Error: {rbEx.Message}");
+                }
+                return false;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+        }
+
 
         public List<ExtensionHistoryDTO> GetExtensionHistory(string maNhanVien)
         {
