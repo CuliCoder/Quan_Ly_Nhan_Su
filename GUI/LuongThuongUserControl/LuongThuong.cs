@@ -20,6 +20,8 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
         private List<EmployeeDTO> listEmployee;
         private BonusBLL bonusBLL = new BonusBLL();
         private List<BonusDTO> listBonus;
+        private AllowanceDeductionBLL allowanceDeductionBLL = new AllowanceDeductionBLL();
+        private List<AllowanceDeductionDTO> listAllowanceDeduction;
 
         public LuongThuong()
         {
@@ -73,12 +75,31 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             dataThuong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
+        private void FillDataToPCKTTable(List<AllowanceDeductionDTO> listAllowanceDeduction)
+        {
+            dataPCKT.DataSource = null;
+            dataPCKT.DataSource = listAllowanceDeduction;
+            dataPCKT.Columns["MaPhuCapKhoanTru"].HeaderText = "Mã PCKT";
+            dataPCKT.Columns["MaNhanVien"].HeaderText = "Mã Nhân Viên";
+            dataPCKT.Columns["MoTa"].HeaderText = "Mô Tả";
+            dataPCKT.Columns["SoTien"].HeaderText = "Số Tiền";
+            dataPCKT.Columns["ThangApDung"].HeaderText = "ThanhApDung";
+            dataPCKT.Columns["NamApDung"].HeaderText = "NamApDung";
+
+            dataPCKT.Columns["SoTien"].DefaultCellStyle.Format = "N0";
+
+            dataPCKT.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataPCKT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
         private void ShowDataToTable()
         {
             listSalaryFull = salaryFullBLL.GetAllSalaryFull();
             FillDataToBangLuongTable(listSalaryFull);
             listBonus = bonusBLL.GetAllBonuses();
             FillDataToThuongTable(listBonus);
+            listAllowanceDeduction = allowanceDeductionBLL.GetAll(); 
+            FillDataToPCKTTable(listAllowanceDeduction);
         }
 
         private void LoadEmployeeComboBox()
@@ -88,8 +109,8 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
                 listEmployee = employeeBLL.GetAll();
                 var list = listEmployee;
                 cbThuong.DataSource = list;
-                cbThuong.DisplayMember = "maNhanVien";
-                cbThuong.ValueMember = "maNhanVien";
+                cbThuong.DisplayMember = "MaNhanVien";
+                cbThuong.ValueMember = "MaNhanVien";
                 cbThuong.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception ex)
