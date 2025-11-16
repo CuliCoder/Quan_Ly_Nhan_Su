@@ -49,6 +49,13 @@ namespace Quan_Ly_Nhan_Su.BLL
             return _dao.GetSalaryByEmployee(maNhanVien);
         }
 
+        // New: resolve MaNhanVien by MaLuong
+        public string GetMaNhanVienByMaLuong(string maLuong)
+        {
+            if (string.IsNullOrWhiteSpace(maLuong)) return null;
+            return _dao.GetMaNhanVienByMaLuong(maLuong);
+        }
+
         // Validate căn bản cho Insert/Update
         private static bool IsValidForSave(SalaryDTO s)
         {
