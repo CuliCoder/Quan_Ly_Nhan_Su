@@ -5,7 +5,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     /// <summary>
     /// Quản lý thông tin phiên đăng nhập của người dùng hiện tại.
-    /// Sử dụng Singleton pattern để đảm bảo chỉ có một instance duy nhất.
+    /// Phiên bản hợp nhất hỗ trợ cả API cũ và mới với PermissionManager.
     /// </summary>
     public sealed class SessionManager
     {
@@ -44,6 +44,8 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
         }
 
+        #region Properties - API Cũ (Backward Compatibility)
+
         /// <summary>
         /// Thông tin tài khoản hiện tại
         /// </summary>
@@ -80,10 +82,19 @@ namespace Quan_Ly_Nhan_Su.BLL
             private set => _permissionGroupName = value;
         }
 
+        #endregion
+
+        #region Properties - API Mới
+
         /// <summary>
         /// Kiểm tra xem có người dùng đang đăng nhập hay không
         /// </summary>
         public bool IsLoggedIn => _currentAccount != null;
+
+        /// <summary>
+        /// Lấy mã tài khoản của người dùng hiện tại
+        /// </summary>
+        public string AccountId => _currentAccount?.MaTaiKhoan ?? null;
 
         /// <summary>
         /// Lấy tên đăng nhập của người dùng hiện tại
@@ -106,7 +117,17 @@ namespace Quan_Ly_Nhan_Su.BLL
         public int? PermissionGroupId => _currentAccount?.MaNhomQuyen;
 
         /// <summary>
-        /// Đăng nhập và lưu thông tin người dùng
+        /// Kiểm tra xem có phải là admin không
+        /// </summary>
+        public bool IsAdmin => _permissionGroupName?.ToLower().Contains("admin") ??
+                               _currentAccount?.MaNhomQuyen == 1;
+
+        #endregion
+
+        #region Login Methods
+
+        /// <summary>
+        /// Đăng nhập - API cũ (backward compatibility)
         /// </summary>
         /// <param name="account">Thông tin tài khoản</param>
         /// <param name="employee">Thông tin nhân viên (có thể null)</param>
@@ -119,7 +140,87 @@ namespace Quan_Ly_Nhan_Su.BLL
             _currentEmployee = employee;
             _currentProfile = profile;
             _permissionGroupName = permissionGroupName ?? "Chưa xác định";
+
+            // Tự động load quyền nếu có PermissionManager
+            LoadPermissionsIfAvailable();
         }
+
+        /// <summary>
+        /// Đăng nhập - API mới với PermissionManager
+        /// </summary>
+        /// <param name="account">Thông tin tài khoản</param>
+        /// <param name="employeeCode">Mã nhân viên</param>
+        /// <param name="fullName">Họ tên</param>
+        /// <param name="permissionGroupName">Tên nhóm quyền</param>
+        public void Login(AccountDTO account, string employeeCode, string fullName,
+                         string permissionGroupName)
+        {
+            _currentAccount = account;
+            _permissionGroupName = permissionGroupName;
+
+            // Load thông tin nhân viên và profile
+            LoadEmployeeAndProfile(employeeCode, fullName);
+
+            // Load quyền vào PermissionManager
+            LoadPermissionsIfAvailable();
+        }
+
+        /// <summary>
+        /// Helper method: Load thông tin nhân viên và profile
+        /// </summary>
+        private void LoadEmployeeAndProfile(string employeeCode, string fullName)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(employeeCode) && employeeCode != "N/A")
+                {
+                    var employeeBLL = new EmployeeBLL();
+                    _currentEmployee = employeeBLL.GetByAccountId(employeeCode);
+
+                    if (_currentEmployee != null && !string.IsNullOrEmpty(_currentEmployee.SoCmnd))
+                    {
+                        var profileBLL = new PersonalProfileBLL();
+                        _currentProfile = profileBLL.GetById(_currentEmployee.SoCmnd);
+                    }
+                }
+
+                // Nếu không load được profile, tạo một profile tạm với tên
+                if (_currentProfile == null && !string.IsNullOrEmpty(fullName))
+                {
+                    _currentProfile = new PersonalProfileDTO { HoTen = fullName };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error nếu cần
+                Console.WriteLine($"Error loading employee/profile: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Helper method: Load quyền nếu PermissionManager tồn tại
+        /// </summary>
+        private void LoadPermissionsIfAvailable()
+        {
+            try
+            {
+                if (_currentAccount?.MaNhomQuyen.HasValue == true)
+                {
+                    // Kiểm tra xem PermissionManager có tồn tại không
+                    var permissionManager = PermissionManager.Instance;
+                    permissionManager?.LoadUserPermissions(_currentAccount.MaNhomQuyen.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Nếu PermissionManager chưa được implement, bỏ qua
+                Console.WriteLine($"PermissionManager not available: {ex.Message}");
+            }
+        }
+
+        #endregion
+
+        #region Logout & Update Methods
 
         /// <summary>
         /// Đăng xuất và xóa thông tin người dùng
@@ -130,6 +231,16 @@ namespace Quan_Ly_Nhan_Su.BLL
             _currentEmployee = null;
             _currentProfile = null;
             _permissionGroupName = null;
+
+            // Xóa cache quyền nếu có PermissionManager
+            try
+            {
+                PermissionManager.Instance?.ClearPermissions();
+            }
+            catch
+            {
+                // PermissionManager chưa có, bỏ qua
+            }
         }
 
         /// <summary>
@@ -148,8 +259,12 @@ namespace Quan_Ly_Nhan_Su.BLL
             _currentEmployee = employee;
         }
 
+        #endregion
+
+        #region Permission Methods
+
         /// <summary>
-        /// Kiểm tra quyền dựa trên mã nhóm quyền
+        /// Kiểm tra quyền dựa trên mã nhóm quyền - API cũ
         /// </summary>
         /// <param name="requiredGroupId">Mã nhóm quyền yêu cầu</param>
         /// <returns>True nếu có quyền</returns>
@@ -159,8 +274,90 @@ namespace Quan_Ly_Nhan_Su.BLL
         }
 
         /// <summary>
-        /// Kiểm tra xem có phải là admin không (giả sử mã nhóm quyền admin là 1)
+        /// Kiểm tra quyền đọc theo tên chức năng - API mới
         /// </summary>
-        public bool IsAdmin => _currentAccount?.MaNhomQuyen == 1;
+        public bool CanRead(string functionName)
+        {
+            if (IsAdmin) return true;
+
+            try
+            {
+                return PermissionManager.Instance?.CanRead(functionName) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền tạo theo tên chức năng - API mới
+        /// </summary>
+        public bool CanCreate(string functionName)
+        {
+            if (IsAdmin) return true;
+
+            try
+            {
+                return PermissionManager.Instance?.CanCreate(functionName) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền cập nhật theo tên chức năng - API mới
+        /// </summary>
+        public bool CanUpdate(string functionName)
+        {
+            if (IsAdmin) return true;
+
+            try
+            {
+                return PermissionManager.Instance?.CanUpdate(functionName) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền xóa theo tên chức năng - API mới
+        /// </summary>
+        public bool CanDelete(string functionName)
+        {
+            if (IsAdmin) return true;
+
+            try
+            {
+                return PermissionManager.Instance?.CanDelete(functionName) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra có ít nhất một quyền trên chức năng - API mới
+        /// </summary>
+        public bool HasAnyPermission(string functionName)
+        {
+            if (IsAdmin) return true;
+
+            try
+            {
+                return PermissionManager.Instance?.HasAnyPermission(functionName) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
