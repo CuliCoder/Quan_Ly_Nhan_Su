@@ -17,6 +17,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         public event EventHandler luuThongTinForm;
         private static readonly RecruitmentBatchBLL bus = new RecruitmentBatchBLL();
         private RecruitmentBatchDTO batchDTO;
+        private ErrorProvider errorProvider = new ErrorProvider();
         public SuaDotTuyenDungForm(RecruitmentBatchDTO dto)
         {
             InitializeComponent();
@@ -25,66 +26,53 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private bool ValidateInputs()
         {
-            // Chức vụ
-            if (string.IsNullOrWhiteSpace(chuVuTb.Text))
-            {
-                MessageBox.Show("Chức vụ không được để trống!");
-                chuVuTb.Focus();
+            // Mã tuyển dụng
+            if (!GUIValidator.NotEmpty(maTuyenDungTb, "Mã tuyển dụng không được để trống!", errorProvider))
                 return false;
-            }
+
+
+            // Chức vụ
+            if (!GUIValidator.NotEmpty(chuVuTb, "Chức vụ không được để trống!", errorProvider))
+                return false;
+
+            //Số lượng tuyển
+            if (!GUIValidator.NotEmpty(soLuongTuyentb, "Số lượng tuyển không được để trống", errorProvider))
+                return false;
 
             // Học vấn
-            if (string.IsNullOrWhiteSpace(hocVanToiThieu.Text))
-            {
-                MessageBox.Show("Học vấn tối thiểu không được để trống!");
-                hocVanToiThieu.Focus();
+            if (!GUIValidator.NotEmpty(hocVanToiThieu, "Học vấn không được để trống!", errorProvider))
                 return false;
-            }
 
             // Độ tuổi
-            if (string.IsNullOrWhiteSpace(doTuoiTb.Text))
-            {
-                MessageBox.Show("Độ tuổi không được để trống!");
-                doTuoiTb.Focus();
+            if (!GUIValidator.NotEmpty(doTuoiTb, "Độ tuổi không được để trống!", errorProvider))
                 return false;
-            }
 
             // Số lượng tuyển
-            if (!int.TryParse(soLuongTuyentb.Text, out _))
+            if (!GUIValidator.NotEmpty(soLuongTuyentb, "Số lượng tuyển không được để trống!", errorProvider))
+                return false;
+            else if (!GUIValidator.IsNumber(soLuongTuyentb, "Số lượng tuyển phải là số hợp lệ!", errorProvider))
+                return false;
+
+            // Hạn nộp hồ sơ
+            if (hanNopDate.Value < DateTime.Today)
             {
-                MessageBox.Show("Số lượng cần tuyển phải là số hợp lệ!");
-                soLuongTuyentb.Focus();
+                MessageBox.Show("Hạn nộp hồ sơ không được nhỏ hơn ngày hiện tại!");
+                hanNopDate.Focus();
                 return false;
             }
-
 
             // Mức lương tối thiểu
-            if (string.IsNullOrWhiteSpace(luongToiThieutb.Text))
-            {
-                MessageBox.Show("Mức lương tối thiểu không được để trống!");
-                luongToiThieutb.Focus();
+            if (!GUIValidator.NotEmpty(luongToiThieutb, "Mức lương tối thiểu không được để trống!", errorProvider))
                 return false;
-            }
-            else if (!decimal.TryParse(luongToiThieutb.Text, out _))
-            {
-                MessageBox.Show("Mức lương tối thiểu phải là số hợp lệ!");
-                luongToiThieutb.Focus();
+            else if (!GUIValidator.IsDecimal(luongToiThieutb, "Mức lương tối thiếu không hợp lệ", errorProvider))
                 return false;
-            }
+
 
             // Mức lương tối đa
-            if (string.IsNullOrWhiteSpace(luongToiDaTb.Text))
-            {
-                MessageBox.Show("Mức lương tối đa không được để trống!");
-                luongToiDaTb.Focus();
+            if (!GUIValidator.NotEmpty(luongToiDaTb, "Mức lương tối đã không được để trống", errorProvider))
                 return false;
-            }
-            else if (!decimal.TryParse(luongToiDaTb.Text, out _))
-            {
-                MessageBox.Show("Mức lương tối đa phải là số hợp lệ!");
-                luongToiDaTb.Focus();
+            else if (!GUIValidator.IsDecimal(luongToiDaTb, "Mức lương tối đa không hợp lệ", errorProvider))
                 return false;
-            }
             return true;
         }
 

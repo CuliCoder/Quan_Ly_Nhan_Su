@@ -250,6 +250,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\GUIValidator.cs" />
     <Compile Include="GUI\hosocanhan\User_LabtracGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
