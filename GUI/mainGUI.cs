@@ -6,6 +6,7 @@ using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
 using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
+using Quan_Ly_Nhan_Su.GUI.AuthControl;
 using Quan_Ly_Nhan_Su.Constants;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             InitializeComponent();
             CheckLoginStatus();
             designForm();
+            RegisterLogoutEvent();
             addUserControl(homePage);
             pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             addPanelToList();
@@ -338,6 +340,71 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
+        /// <summary>
+        /// Đăng ký sự kiện click cho panel đăng xuất
+        /// </summary>
+        private void RegisterLogoutEvent()
+        {
+            pnlbLogout.Click += PnlbLogout_Click;
+
+            // Đăng ký cho tất cả control con trong panel
+            foreach (Control control in pnlbLogout.Controls)
+            {
+                control.Click += PnlbLogout_Click;
+            }
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện click đăng xuất
+        /// </summary>
+        private void PnlbLogout_Click(object sender, EventArgs e)
+        {
+            PerformLogout();
+        }
+
+        /// <summary>
+        /// Thực hiện đăng xuất
+        /// </summary>
+        private void PerformLogout()
+        {
+            // Hiển thị hộp thoại xác nhận
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất?",
+                "Xác nhận đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    // Xóa session hiện tại
+                    SessionManager.Instance.Logout();
+
+                    // Đóng form hiện tại
+                    this.Hide();
+
+                    // Mở lại form đăng nhập
+                    Login loginForm = new Login();
+                    loginForm.ShowDialog();
+
+                    // Đóng hoàn toàn ứng dụng sau khi đóng form đăng nhập
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        $"Có lỗi xảy ra khi đăng xuất: {ex.Message}",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+
+
         private void mainGUI_Load(object sender, EventArgs e)
         {
 
@@ -385,7 +452,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void label12_Click(object sender, EventArgs e)
         {
-
+            PerformLogout();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
