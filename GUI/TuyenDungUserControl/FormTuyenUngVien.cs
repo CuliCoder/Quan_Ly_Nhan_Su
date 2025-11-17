@@ -142,9 +142,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             EmployeeDTO employeeDTO = new EmployeeDTO(
                     null,
-                    showCCCDUV.Text,
-                    null,
-                    null,
+                    showCCCDUV.Text,        
                     null,
                     null,
                     maPhongBanCbb.SelectedValue.ToString(),
