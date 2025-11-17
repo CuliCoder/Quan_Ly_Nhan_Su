@@ -1,11 +1,12 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.config;
-using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
 using Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl;
 using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
+using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
+using Quan_Ly_Nhan_Su.Constants;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -87,36 +88,6 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             // Hoặc hiển thị trên title bar
             this.Text = $"Quản Lý Nhân Sự - {SessionManager.Instance.FullName} ({SessionManager.Instance.PermissionGroupName})";
-        }
-
-        //===== CẤU HÌNH MENU THEO QUYỀN =====
-        private void ConfigureMenuByPermission()
-        {
-            // Ví dụ cấu hình quyền truy cập các panel
-
-            // Nếu không phải admin, ẩn một số chức năng
-            if (!SessionManager.Instance.IsAdmin)
-            {
-                // Ví dụ: Chỉ admin mới thấy quản lý tài khoản
-                // pnlbTaiKhoan.Visible = false;
-
-                // Hoặc vô hiệu hóa
-                // pnlbTaiKhoan.Enabled = false;
-            }
-
-            // Kiểm tra quyền theo mã nhóm quyền cụ thể
-            // if (SessionManager.Instance.HasPermission(2)) // Mã quyền 2: Nhân sự
-            // {
-            //     pnlbNhanVien.Visible = true;
-            //     pnlbTuyenDung.Visible = true;
-            // }
-            // else
-            // {
-            //     pnlbNhanVien.Visible = false;
-            //     pnlbTuyenDung.Visible = false;
-            // }
-
-            // Hiện tại để mở hết, bạn có thể tùy chỉnh sau
         }
 
         // === CÁC HÀM XỬ LÝ CHO CHỨC NĂNG CHẤM CÔNG ===
@@ -237,6 +208,133 @@ namespace Quan_Ly_Nhan_Su.GUI
                     break;
                 default:
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Cấu hình menu theo quyền - Phiên bản cải tiến
+        /// </summary>
+        private void ConfigureMenuByPermission()
+        {
+            var session = SessionManager.Instance;
+
+            // Nếu là Admin thì hiển thị tất cả
+            if (session.IsAdmin || session.Username.Equals("dev"))
+            {
+                ShowAllMenus();
+                return;
+            }
+
+            // Cấu hình từng menu theo quyền
+            ConfigureMenuItem(pnlbTrangChu, FunctionNames.THONG_KE);
+            ConfigureMenuItem(pnlbNhanVien, FunctionNames.NHAN_VIEN);
+            ConfigureMenuItem(pnlbTuyenDung, FunctionNames.TUYEN_DUNG);
+            ConfigureMenuItem(pnlbPhongBan, FunctionNames.PHONG_BAN);
+            ConfigureMenuItem(pnlbHopDong, FunctionNames.HOP_DONG);
+            ConfigureMenuItem(pnlbChamCong, FunctionNames.CHAM_CONG);
+            ConfigureMenuItem(pnlbLuongThuong, FunctionNames.LUONG);
+            ConfigureMenuItem(pnlbDanhGia, FunctionNames.DANH_GIA);
+            ConfigureMenuItem(pnlbTaiKhoan, FunctionNames.TAI_KHOAN);
+
+            // Menu cá nhân luôn hiển thị
+            pnlbHopdongcanhan.Visible = true;
+            pnlbQLTTCN.Visible = true;
+        }
+
+        /// <summary>
+        /// Cấu hình một menu item theo quyền
+        /// </summary>
+        private void ConfigureMenuItem(Panel panel, string functionName)
+        {
+            var session = SessionManager.Instance;
+
+            // Kiểm tra có quyền truy cập không
+            bool hasPermission = session.HasAnyPermission(functionName);
+
+            panel.Visible = hasPermission;
+            panel.Enabled = hasPermission;
+
+            // Đổi màu nếu không có quyền (tùy chọn)
+            if (!hasPermission)
+            {
+                panel.BackColor = Color.LightGray;
+            }
+        }
+
+        /// <summary>
+        /// Hiển thị tất cả menu (dành cho Admin)
+        /// </summary>
+        private void ShowAllMenus()
+        {
+            foreach (var panel in listpnlbSideBar)
+            {
+                panel.Visible = true;
+                panel.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền trước khi thực hiện hành động
+        /// </summary>
+        private bool CheckPermissionBeforeAction(string functionName, string action)
+        {
+            var session = SessionManager.Instance;
+            bool hasPermission = false;
+
+            switch (action.ToLower())
+            {
+                case "read":
+                case "view":
+                    hasPermission = session.CanRead(functionName);
+                    break;
+                case "create":
+                case "add":
+                    hasPermission = session.CanCreate(functionName);
+                    break;
+                case "update":
+                case "edit":
+                    hasPermission = session.CanUpdate(functionName);
+                    break;
+                case "delete":
+                case "remove":
+                    hasPermission = session.CanDelete(functionName);
+                    break;
+            }
+
+            if (!hasPermission)
+            {
+                MessageBox.Show(
+                    $"Bạn không có quyền {action} trên chức năng {functionName}!",
+                    "Không đủ quyền",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+
+            return hasPermission;
+        }
+
+        /// <summary>
+        /// Ví dụ sử dụng kiểm tra quyền
+        /// </summary>
+        private void ExampleUsage()
+        {
+            // Kiểm tra trước khi thêm nhân viên
+            if (CheckPermissionBeforeAction(FunctionNames.NHAN_VIEN, "create"))
+            {
+                // Code thêm nhân viên
+            }
+
+            // Kiểm tra trước khi xóa hợp đồng
+            if (CheckPermissionBeforeAction(FunctionNames.HOP_DONG, "delete"))
+            {
+                // Code xóa hợp đồng
+            }
+
+            // Kiểm tra có quyền xem thống kê không
+            if (SessionManager.Instance.CanRead(FunctionNames.THONG_KE))
+            {
+                // Hiển thị thống kê
             }
         }
 
