@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Quan_Ly_Nhan_Su.DAO;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Quan_Ly_Nhan_Su.DAO;
-using Quan_Ly_Nhan_Su.DTO;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
@@ -24,16 +25,14 @@ namespace Quan_Ly_Nhan_Su.BLL
             return _dao.GetById(maTuyenDung);
         }
 
-        public bool checkedId(string maTuyenDung)
-        {
-            if (!_dao.checkID(maTuyenDung))
-            {
-                return false;
-            }
-            return true;
-        }
+       
         public bool Create(RecruitmentBatchDTO batch)
         {
+            if(!checkedId(batch.MaTuyenDung))
+            {
+                MessageBox.Show("Mã tuyển dụng đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             bool success = _dao.Create(batch);
             if (success)
@@ -41,7 +40,10 @@ namespace Quan_Ly_Nhan_Su.BLL
 
             return success;
         }
-
+        public bool checkedId(string maTuyenDung)
+        {
+            return _dao.checkID(maTuyenDung);
+        }
         public bool Update(RecruitmentBatchDTO batch)
         {
             bool success = _dao.Update(batch);

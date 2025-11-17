@@ -52,9 +52,6 @@
             this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
             this.ngaySinhDate = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel14 = new System.Windows.Forms.FlowLayoutPanel();
-            this.gioiTinhTb = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.flowLayoutPanel10 = new System.Windows.Forms.FlowLayoutPanel();
             this.hoTenTb = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -92,6 +89,10 @@
             this.honNhanTb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPath = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.namBt = new System.Windows.Forms.RadioButton();
+            this.nuBt = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnChonAnh = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -107,7 +108,6 @@
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel22.SuspendLayout();
             this.flowLayoutPanel18.SuspendLayout();
-            this.flowLayoutPanel14.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
             this.flowLayoutPanel7.SuspendLayout();
             this.flowLayoutPanel25.SuspendLayout();
@@ -120,6 +120,7 @@
             this.flowLayoutPanel13.SuspendLayout();
             this.flowLayoutPanel17.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.showHinh)).BeginInit();
             this.SuspendLayout();
@@ -208,7 +209,6 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel3, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel22, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel18, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel14, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel10, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel7, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel25, 3, 0);
@@ -222,6 +222,7 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel17, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel5, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.txtPath, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 43);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -457,44 +458,6 @@
             this.label19.Size = new System.Drawing.Size(152, 15);
             this.label19.TabIndex = 0;
             this.label19.Text = "Ngày sinh";
-            // 
-            // flowLayoutPanel14
-            // 
-            this.flowLayoutPanel14.AutoSize = true;
-            this.flowLayoutPanel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel14.Controls.Add(this.gioiTinhTb);
-            this.flowLayoutPanel14.Controls.Add(this.label15);
-            this.flowLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel14.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel14.Location = new System.Drawing.Point(2, 254);
-            this.flowLayoutPanel14.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel14.Name = "flowLayoutPanel14";
-            this.flowLayoutPanel14.Size = new System.Drawing.Size(173, 59);
-            this.flowLayoutPanel14.TabIndex = 13;
-            // 
-            // gioiTinhTb
-            // 
-            this.gioiTinhTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gioiTinhTb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gioiTinhTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gioiTinhTb.Location = new System.Drawing.Point(2, 32);
-            this.gioiTinhTb.Margin = new System.Windows.Forms.Padding(2);
-            this.gioiTinhTb.MinimumSize = new System.Drawing.Size(150, 25);
-            this.gioiTinhTb.Multiline = true;
-            this.gioiTinhTb.Name = "gioiTinhTb";
-            this.gioiTinhTb.Size = new System.Drawing.Size(150, 25);
-            this.gioiTinhTb.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(2, 15);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(150, 15);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Giới tính";
             // 
             // flowLayoutPanel10
             // 
@@ -960,6 +923,64 @@
             this.txtPath.TabIndex = 41;
             this.txtPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.namBt, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.nuBt, 1, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 252);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.83784F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.16216F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(177, 63);
+            this.tableLayoutPanel4.TabIndex = 42;
+            // 
+            // label15
+            // 
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 23);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Giới Tính";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // namBt
+            // 
+            this.namBt.AutoSize = true;
+            this.namBt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.namBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.namBt.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.namBt.Location = new System.Drawing.Point(9, 26);
+            this.namBt.Margin = new System.Windows.Forms.Padding(9, 3, 3, 3);
+            this.namBt.Name = "namBt";
+            this.namBt.Size = new System.Drawing.Size(76, 34);
+            this.namBt.TabIndex = 1;
+            this.namBt.Text = "Nam";
+            this.namBt.UseVisualStyleBackColor = true;
+            // 
+            // nuBt
+            // 
+            this.nuBt.AutoSize = true;
+            this.nuBt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nuBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nuBt.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.nuBt.Location = new System.Drawing.Point(97, 26);
+            this.nuBt.Margin = new System.Windows.Forms.Padding(9, 3, 3, 3);
+            this.nuBt.Name = "nuBt";
+            this.nuBt.Size = new System.Drawing.Size(77, 34);
+            this.nuBt.TabIndex = 2;
+            this.nuBt.TabStop = true;
+            this.nuBt.Text = "Nữ";
+            this.nuBt.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 8;
@@ -1063,8 +1084,6 @@
             this.flowLayoutPanel22.ResumeLayout(false);
             this.flowLayoutPanel22.PerformLayout();
             this.flowLayoutPanel18.ResumeLayout(false);
-            this.flowLayoutPanel14.ResumeLayout(false);
-            this.flowLayoutPanel14.PerformLayout();
             this.flowLayoutPanel10.ResumeLayout(false);
             this.flowLayoutPanel10.PerformLayout();
             this.flowLayoutPanel7.ResumeLayout(false);
@@ -1089,6 +1108,8 @@
             this.flowLayoutPanel17.PerformLayout();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.showHinh)).EndInit();
             this.ResumeLayout(false);
@@ -1112,9 +1133,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel19;
         private System.Windows.Forms.TextBox duongTb;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel14;
-        private System.Windows.Forms.TextBox gioiTinhTb;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel11;
         private System.Windows.Forms.TextBox danTocTb;
         private System.Windows.Forms.Label label12;
@@ -1166,5 +1184,9 @@
         private System.Windows.Forms.PictureBox showHinh;
         private System.Windows.Forms.Label txtPath;
         private System.Windows.Forms.ComboBox maTuyenDungCbb;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.RadioButton namBt;
+        private System.Windows.Forms.RadioButton nuBt;
     }
 }

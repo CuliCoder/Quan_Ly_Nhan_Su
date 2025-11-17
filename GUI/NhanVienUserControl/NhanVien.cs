@@ -2,13 +2,9 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using System.IO;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
@@ -103,8 +99,46 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             searchEmployee();
         }
 
-        private void btnSearchDay_Click(object sender, EventArgs e)
+        private void ExportExcel(List<EmployeeFullDTO> list, string filePath)
         {
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                var ws = package.Workbook.Worksheets.Add("Danh_Sach_Nhan_Vien");
+                var props = typeof(EmployeeFullDTO).GetProperties();
+
+                for (int i = 0; i < props.Length; i++)
+                {
+                    ws.Cells[1, i + 1].Value = props[i].Name;
+                    ws.Cells[1, i + 1].Style.Font.Bold = true;
+                    ws.Cells[1, i + 1].Style.Font.Size = 13;
+
+                    ws.Column(i + 1).Style.Numberformat.Format = "@";
+                }
+
+                for (int row = 0; row < list.Count; row++)
+                {
+                    for (int col = 0; col < props.Length; col++)
+                    {
+                        ws.Cells[row + 2, col + 1].Value = props[col].GetValue(list[row]);
+                    }
+                }
+
+                ws.Cells.AutoFitColumns();
+                package.SaveAs(new FileInfo(filePath));
+            }
+        }
+
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            var save = new SaveFileDialog();
+            save.Filter = "Excel Files|*.xlsx";
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                ExportExcel(listEmployyeFull, save.FileName);
+                MessageBox.Show("Xuất Excel thành công!");
+            }
 
         }
     }
