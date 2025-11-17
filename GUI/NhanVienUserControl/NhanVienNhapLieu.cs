@@ -19,9 +19,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         private DepartmentBLL department = new DepartmentBLL();
         private EmployeeBLL employee = new EmployeeBLL();
         public event EventHandler suKienLuu;
+        private ErrorProvider errorProvider = new ErrorProvider();
         public NhanVienNhapLieu()
         {
             InitializeComponent();
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             fillDataToCombobox();
             ClearForm();
         }
@@ -43,7 +45,8 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         {
             hoTenTb.Text = "";
             cccdTb.Text = "";
-            gioiTinhTb.Text = "";
+            namBt.Checked = false;
+            nuBt.Checked = false;
             emailTb.Text = "";
             soDienThoaiTb.Text = "";
             danTocTb.Text = "";
@@ -69,6 +72,115 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
             string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
             showHinh.Image = Image.FromFile(defaultImagePath);
+        }
+
+        private bool ValidateInputs()
+        {
+            //Validate ma phong ban
+            if (maPhongBanCbb.SelectedIndex == -1)
+            {
+                errorProvider.SetError(maPhongBanCbb, "Vui lòng chọn phòng ban!");
+                return false;
+            }
+            //hoten
+
+            if(!GUIValidator.NotEmpty(hoTenTb, "Họ tên không được để trống!", errorProvider))
+                return false;
+            if(!GUIValidator.NotContainNumber(hoTenTb, "Họ tên không được chứa số!", errorProvider))
+                return false;
+
+            //gioitinh
+            if (!GUIValidator.IsChecked(namBt, nuBt, "Vui lòng chọn giới tính!", errorProvider))
+                return false;
+
+            //ngay sinh
+            if (ngaySinhDate.Value >= DateTime.Today)
+            {
+                errorProvider.SetError(ngaySinhDate, "Ngày sinh phải nhỏ hơn ngày hiện tại!");
+                return false;
+            }
+
+            //sodienthoai
+            if (!GUIValidator.NotEmpty(soDienThoaiTb, "Số điện thoại không được để trống!", errorProvider))
+                return false;
+            else if (!GUIValidator.IsOnlyNumberWithString(soDienThoaiTb, "Số điện thoại chỉ được chứa số", errorProvider))
+                return false;
+            else if (!GUIValidator.EqualNumber(soDienThoaiTb, 10, "Số điện thoại phải gồm 10 chữ số!", errorProvider))
+                return false;
+
+            //email
+            if (!GUIValidator.NotEmpty(emailTb, "Email không được để trống!", errorProvider))
+                return false;
+
+            if (!emailTb.Text.Contains("@"))
+            {
+                errorProvider.SetError(emailTb, "Email không hợp lệ!");
+                emailTb.Focus();
+                return false;
+            }
+            //dia chỉ
+            if (string.IsNullOrWhiteSpace(tTpTb.Text) ||
+                string.IsNullOrWhiteSpace(TpTb.Text) ||
+                string.IsNullOrWhiteSpace(phxaTb.Text) ||
+                string.IsNullOrWhiteSpace(duongTb.Text))
+            {
+                errorProvider.SetError(tTpTb, "Vui lòng nhập đầy đủ địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã, Đường)!");
+                return false;
+            }else
+            {
+                errorProvider.SetError(tTpTb, "");
+            }
+
+            //Ton giao
+            if (!GUIValidator.NotEmpty(tonGiaoTb, "Tôn giáo không được để trống!", errorProvider))
+                return false;
+
+            //danTocTb 
+            if(!GUIValidator.NotEmpty(danTocTb, "Dân tộc không được để trống!", errorProvider))
+                return false;
+
+            //cccd
+            if(!GUIValidator.NotEmpty(cccdTb, "Số CMND/CCCD không được để trống!", errorProvider))
+                return false;
+            else if(!GUIValidator.IsOnlyNumberWithString(cccdTb, "Số CMND/CCCD chỉ được chứa số!", errorProvider))
+                return false;
+            else if(!GUIValidator.EqualNumber(cccdTb, 12, "Số CMND/CCCD phải 12 chữ số!", errorProvider))
+                return false;
+
+
+            //noi cap
+            if(!GUIValidator.NotEmpty(noiCapTb, "Nơi cấp không được để trống!", errorProvider))
+                return false;
+
+            //ngay caop
+
+            if(ngayCapDate.Value > DateTime.Today)
+            {
+                errorProvider.SetError(ngayCapDate, "Ngày cấp không được lớn hơn ngày hiện tại!");
+                return false;
+            }
+
+
+            //chuyen nghanh 
+            if(!GUIValidator.NotEmpty(chuyenNganhTb, "Chuyên ngành không được để trống!", errorProvider))
+                return false;
+
+            //tinh trang hon nhan
+            if(!GUIValidator.NotEmpty(honNhanTb, "Tình trạng hôn nhân không được để trống!", errorProvider))
+                return false;
+
+            //học vấn
+            if(!GUIValidator.NotEmpty(hocVanTb, "Học vấn không được để trống!", errorProvider))
+                return false;
+
+            //muc luong
+            if(!GUIValidator.NotEmpty(mucLuongTb, "Mức lương không được để trống!", errorProvider))
+                return false;
+            else if(!GUIValidator.IsDecimal(mucLuongTb, "Mức lương phải là số!", errorProvider))
+                return false;
+            else if(!GUIValidator.IsGreaterThanZero(mucLuongTb, "Mức lương phải lớn hơn 0!", errorProvider))
+                return false;
+            return true;
         }
 
         private void btnChonAnh_Click(object sender, EventArgs e)
@@ -106,12 +218,22 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         public PersonalProfileDTO LayDuLieuHoSoCaNhan()
         {
             string diaChi = $"{duongTb.Text.Trim()}, {phxaTb.Text.Trim()}, {tTpTb.Text.Trim()}, {tTpTb.Text.Trim()}";
+            string gioiTinh = "";
+            if(namBt.Checked)
+            {
+                gioiTinh = "Nam";
+            }
+            else if(nuBt.Checked)
+            {
+                gioiTinh = "Nữ";
+            }
+
             return new PersonalProfileDTO
             {
                 SoCmnd = cccdTb.Text.Trim(),
                 HoTen = hoTenTb.Text.Trim(),
                 NgaySinh = ngaySinhDate.Value,
-                GioiTinh = gioiTinhTb.Text.Trim(),
+                GioiTinh = gioiTinh,
                 DiaChi = diaChi,
                 Email = emailTb.Text.Trim(),
                 SoDienThoai = soDienThoaiTb.Text.Trim(),
@@ -127,6 +249,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         private void btnLuu_Click_1(object sender, EventArgs e)
         {
+            //validate inputs
+            if (!ValidateInputs())
+                return;
+
+
             //Chức vụ
             PositionDTO positionDTO = new PositionDTO(
                null,

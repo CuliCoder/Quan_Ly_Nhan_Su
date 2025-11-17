@@ -55,25 +55,28 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Kiểm tra CCCD
             if (!GUIValidator.NotEmpty(cccdTb, "Số CCCD không được để trống!", errorProvider))
                 return false;
-
+            else
             if (!GUIValidator.IsOnlyNumberWithString(cccdTb, "Số CCCD chỉ được chứa số", errorProvider))
-               return false;
-
-            if (!GUIValidator.IsGreaterThanNumber(cccdTb,12,"Số CCCD phải gồm 12 chữ số!", errorProvider))
+                return false;
+            else
+            if (!GUIValidator.EqualNumber(cccdTb,12,"Số CCCD phải gồm 12 chữ số!", errorProvider))
                 return false;
 
             // Kiểm tra họ tên
             if(!GUIValidator.NotEmpty(hoTenTb, "Họ tên không được để trống!", errorProvider))
                 return false;
+            else
+            if (!GUIValidator.NotContainNumber(hoTenTb, "Họ tên không được chứa số!", errorProvider))
+                return false;
 
             // Kiểm tra giới tính
-            if(!GUIValidator.IsChecked(namBt, nuBt, "Vui lòng chọn giới tính!", errorProvider))
+            if (!GUIValidator.IsChecked(namBt, nuBt, "Vui lòng chọn giới tính!", errorProvider))
                 return false;
 
             // Kiểm tra ngày sinh 
             if (ngaySinhDate.Value > DateTime.Now)
             {
-                MessageBox.Show("Ngày sinh không được lớn hơn ngày hiện tại!");
+                errorProvider.SetError(ngaySinhDate, "Ngày sinh không được lớn hơn ngày hiện tại!");
                 ngaySinhDate.Focus();
                 return false;
             }
@@ -81,17 +84,19 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Kiểm tra số điện thoại
             if(!GUIValidator.NotEmpty(soDienThoaiTb, "Số điện thoại không được để trống!", errorProvider))
                 return false;
+            else if (!GUIValidator.IsOnlyNumberWithString(soDienThoaiTb, "Số điện thoại phải là số", errorProvider))
+                return false;
+            else if(!GUIValidator.EqualNumber(soDienThoaiTb,10,"Số điện thoại phải gồm 10 chữ số!", errorProvider))
+                return false;
 
-            if(!GUIValidator.IsOnlyNumberWithString(soDienThoaiTb, "Số điện thoại chỉ được chứa số", errorProvider))
-                return false;    
 
             // Kiểm tra email
-            if(!GUIValidator.NotEmpty(emailTb, "Email không được để trống!", errorProvider))            
+            if (!GUIValidator.NotEmpty(emailTb, "Email không được để trống!", errorProvider))
                 return false;     
             
             if (!emailTb.Text.Contains("@"))
             {
-                MessageBox.Show("Email không hợp lệ!");
+                errorProvider.SetError(emailTb, "Email không hợp lệ!");
                 emailTb.Focus();
                 return false;
             }
@@ -106,19 +111,23 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 string.IsNullOrWhiteSpace(phxaTb.Text) ||
                 string.IsNullOrWhiteSpace(duongTb.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã, Đường)!");
+                errorProvider.SetError(tTpTb, "Vui lòng nhập đầy đủ địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã, Đường)!");
                 return false;
+            }
+            else
+            {
+                errorProvider.SetError(tTpTb, "");
             }
 
 
             // Kiểm tra nơi cấp
-            if(!GUIValidator.NotEmpty(noiCapTb, "Nơi cấp CCCD không được để trống!", errorProvider))
+            if (!GUIValidator.NotEmpty(noiCapTb, "Nơi cấp CCCD không được để trống!", errorProvider))
                 return false;
 
             // Kiểm tra ngày cấp
             if (ngayCapDate.Value > DateTime.Now)
             {
-                MessageBox.Show("Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
+                errorProvider.SetError(ngayCapDate, "Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
                 ngayCapDate.Focus();
                 return false;
             }

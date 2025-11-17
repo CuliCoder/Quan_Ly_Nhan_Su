@@ -113,7 +113,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             if(maPhongBanCbb.SelectedIndex == -1)
             {
-                MessageBox.Show("Vui lòng chọn phòng ban!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(maPhongBanCbb, "Phải chọn phòng ban!");
                 return;
             }
 

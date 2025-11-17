@@ -35,12 +35,19 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             if (!GUIValidator.NotEmpty(chuVuTb, "Chức vụ không được để trống!", errorProvider))
                 return false;
 
+            if(!GUIValidator.NotContainNumber(chuVuTb, "Chức vụ không được chứa số!", errorProvider))
+                return false;
+
             //Số lượng tuyển
             if (!GUIValidator.NotEmpty(soLuongTuyentb, "Số lượng tuyển không được để trống", errorProvider))
+                return false;
+            else if (!GUIValidator.IsNumber(soLuongTuyentb, "Số lượng tuyển phải là số hợp lệ!", errorProvider))
                 return false;
 
             // Học vấn
             if (!GUIValidator.NotEmpty(hocVanToiThieu, "Học vấn không được để trống!", errorProvider))
+                return false;
+            else if(!GUIValidator.NotContainNumber(hocVanToiThieu, "Học vấn không được chứa số!", errorProvider))
                 return false;
 
             // Độ tuổi

@@ -22,7 +22,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if(cb.SelectedIndex == -1)
             {
-                MessageBox.Show(message);
+                MessageBox.Show(message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cb.Focus();
                 return false;
             }
@@ -34,7 +34,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if(!rb1.Checked && !rb2.Checked)
             {
-                MessageBox.Show(message);
+                MessageBox.Show(message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -44,6 +44,18 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             int number;
             if (!int.TryParse(tb.Text, out number))
+            {
+                error.SetError(tb, message);
+                tb.Focus();
+                return false;
+            }
+            error.SetError(tb, "");
+            return true;
+        }
+
+        public static bool NotContainNumber(TextBox tb, string message, ErrorProvider error)
+        {
+            if(tb.Text.Any(char.IsDigit))
             {
                 error.SetError(tb, message);
                 tb.Focus();
@@ -69,6 +81,17 @@ namespace Quan_Ly_Nhan_Su.GUI
         public static bool IsGreaterThanNumber(TextBox tb, int number, string message, ErrorProvider error)
         {
             if (tb.Text.Length < number)
+            {
+                error.SetError(tb, message);
+                return false;
+            }
+            error.SetError(tb, "");
+            return true;
+        }
+
+        public static bool EqualNumber(TextBox tb, int number, string message, ErrorProvider error)
+        {
+            if (tb.Text.Length != number)
             {
                 error.SetError(tb, message);
                 return false;
