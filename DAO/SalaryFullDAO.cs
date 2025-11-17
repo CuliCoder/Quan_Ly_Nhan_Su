@@ -19,7 +19,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     IFNULL(SUM(CASE WHEN p.Loai='KhoanTru' THEN p.SoTien ELSE 0 END),0) AS TongKhoanTru,
                     IFNULL(SUM(t.PhanTramThuong),0) AS TongThuong
                 FROM nhanvien nv
-                JOIN luong l ON nv.MaLuong = l.MaLuong
+                JOIN luong l ON nv.MaNhanVien = l.MaNhanVien
                 LEFT JOIN phucapkhoantru p 
                     ON p.MaNhanVien = nv.MaNhanVien 
                     AND p.ThangApDung = @Thang 
@@ -80,7 +80,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             IFNULL(SUM(CASE WHEN p.Loai='KhoanTru' THEN p.SoTien ELSE 0 END),0) AS TongKhoanTru,
                             IFNULL(SUM(t.PhanTramThuong),0) AS TongThuong
                         FROM nhanvien nv
-                        JOIN luong l ON nv.MaLuong = l.MaLuong
+                        JOIN luong l ON nv.MaNhanVien = l.MaNhanVien
                         LEFT JOIN phucapkhoantru p 
                             ON p.MaNhanVien = nv.MaNhanVien 
                             AND p.ThangApDung = @Thang 
@@ -89,6 +89,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             ON t.MaNhanVien = nv.MaNhanVien
                             AND t.ThangApDung = @Thang
                             AND t.NamApDung = @Nam
+                        WHERE nv.MaNhanVien = @MaNhanVien
                         GROUP BY nv.MaNhanVien, l.MaLuong, l.LuongCoBan, l.LuongTheoGio;
                     ";
 
