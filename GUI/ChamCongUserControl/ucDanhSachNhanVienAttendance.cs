@@ -15,9 +15,6 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         public ucDanhSachNhanVienAttendance()
         {
             InitializeComponent();
-
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
-                return;
         }
 
         private void ucChamCong_Load(object sender, EventArgs e)

@@ -19,19 +19,18 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 
         public ucKiemTraCongCa()
         {
-            //    InitializeComponent();
-            //    if (SessionManager.Instance.CurrentEmployee == null)
-            //    {
-            //        return;
-            //    }
-            //    btnBack.Visible = false;
-            //    loadCmb();
-            //    LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
-            //}
             InitializeComponent();
-
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+            if (SessionManager.Instance.CurrentEmployee == null)
+            {
                 return;
+            }
+            btnBack.Visible = false;
+            loadCmb();
+            LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+            //InitializeComponent();
+
+            //if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+            //    return;
         }
         public void checkCongCaByIDNV(string maNhanVien)
         {
