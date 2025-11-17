@@ -321,13 +321,13 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void ExampleUsage()
         {
             // Kiểm tra trước khi thêm nhân viên
-            if (CheckPermissionBeforeAction(FunctionNames.NHAN_VIEN, "create"))
+            if (SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN))
             {
                 // Code thêm nhân viên
             }
 
             // Kiểm tra trước khi xóa hợp đồng
-            if (CheckPermissionBeforeAction(FunctionNames.HOP_DONG, "delete"))
+            if (SessionManager.Instance.CanDelete(FunctionNames.HOP_DONG))
             {
                 // Code xóa hợp đồng
             }

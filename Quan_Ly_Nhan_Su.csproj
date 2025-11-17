@@ -109,10 +109,12 @@
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="BLL\EvaluationFullBLL.cs" />
     <Compile Include="BLL\PermissionManager.cs" />
     <Compile Include="BLL\SessionManager.cs" />
     <Compile Include="Constants\FunctionNames.cs" />
     <Compile Include="DAO\AttendanceDAO.cs" />
+    <Compile Include="DAO\EvaluationFullDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="DTO\AttendanceTotalOfMonthDTO.cs" />
     <Compile Include="DTO\calamviecDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
+    <Compile Include="DTO\EvaluationFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>
