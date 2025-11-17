@@ -189,5 +189,69 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return null;
         }
+        public AttendanceTotalOfMonthDTO calculateTotalOfMonth(string maNV, int month, int year)
+        {
+            float totalHours = 0;
+            int goLate = 0;
+            int leaveEarly = 0;
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT SUM(sogiolamviec) AS TotalHours, SUM(go_late) as Go_Late, SUM(leave_early) as Leave_Early FROM bangchamcong WHERE maNV = @maNV AND MONTH(ngayChamCong) = @month AND YEAR(ngayChamCong) = @year";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@maNV", maNV);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@year", year);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                totalHours = reader.IsDBNull(reader.GetOrdinal("TotalHours")) ? 0 : reader.GetFloat("TotalHours");
+                                goLate = reader.IsDBNull(reader.GetOrdinal("Go_Late")) ? 0 : reader.GetInt32("Go_Late");
+                                leaveEarly = reader.IsDBNull(reader.GetOrdinal("Leave_Early")) ? 0 : reader.GetInt32("Leave_Early");
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error calculating work hours: {ex.Message}");
+                }
+            }
+            return new AttendanceTotalOfMonthDTO(totalHours, goLate, leaveEarly);
+        }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            List<AttendanceDTO> attendance_ = new List<AttendanceDTO>();
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "select * from bangchamcong where MONTH(ngayChamCong) = @thang AND YEAR(ngayChamCong) = @nam AND maNV = @maNV ORDER BY maBangChamCong DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@thang", thang);
+                        cmd.Parameters.AddWithValue("@nam", nam);
+                        cmd.Parameters.AddWithValue("@maNV", manv);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                attendance_.Add(MapReaderToAttendance(reader));
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting all accounts: {ex.Message}");
+                }
+            }
+            return attendance_;
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace Quan_Ly_Nhan_Su.BLL
     {
         private AttendanceDAO attendanceDAO = new AttendanceDAO();
         private readonly calamviecDTO calamviecDTO = new calamviecDTO("Giờ hành chính", TimeSpan.FromHours(8), TimeSpan.FromHours(17));
-        private readonly int standardWorkMinutesPerDay = 8 * 60;
         public AttendanceBLL()
         {
 
@@ -40,7 +39,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
                 int go_late = calculateLateMinutes(attendanceToday.CheckInTime);
                 int leave_early = calculateEarlyLeaveMinutes(attendanceToday.CheckOutTime);
-                float sogiolamviec = calculateWorkHours(go_late, attendanceToday.CheckOutTime);
+                float sogiolamviec = calculateWorkHours(go_late, attendanceToday.CheckInTime, attendanceToday.CheckOutTime);
 
                 attendanceToday.Go_late = go_late;
                 attendanceToday.Leave_early = leave_early;
@@ -66,9 +65,17 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return attendanceDAO.get_attendance_by_ID_NhanVien(maNhanVien);
         }
-        private float calculateWorkHours(int lateMinutes, DateTime? checkOutTime)
+        private float calculateWorkHours(int lateMinutes, DateTime? CheckInTime, DateTime? checkOutTime)
         {
-            float totalWorkedHours = (float)Math.Round(((int)(checkOutTime.Value.TimeOfDay - calamviecDTO.StartTime).TotalMinutes - lateMinutes) / 60.0f, 2);
+            float totalWorkedHours = 0;
+            if (CheckInTime.Value.TimeOfDay < calamviecDTO.StartTime)
+            {
+                totalWorkedHours = (float)Math.Round(((int)(checkOutTime.Value.TimeOfDay - calamviecDTO.StartTime).TotalMinutes - lateMinutes) / 60.0f, 2);
+            }
+            else
+            {
+                totalWorkedHours = (float)Math.Round((int)(checkOutTime.Value.TimeOfDay - CheckInTime.Value.TimeOfDay).TotalMinutes / 60.0f, 2);
+            }
             if (totalWorkedHours >= 5)
             {
                 totalWorkedHours -= 1;
@@ -108,6 +115,40 @@ namespace Quan_Ly_Nhan_Su.BLL
                 return (int)Math.Round((calamviecDTO.EndTime - checkOut).TotalMinutes, 0);
             }
             return 8 * 60;
+        }
+        // Tính tổng số giờ làm việc, số lần đi muộn và số lần về sớm trong một tháng của nhân viên
+        public AttendanceTotalOfMonthDTO calculateTotalOfMonth(string maNV, int month, int year)
+        {
+            return attendanceDAO.calculateTotalOfMonth(maNV, month, year);
+        }
+        // Tính tổng số giờ làm việc trong một tháng, giả sử mỗi ngày làm việc là 8 giờ và không tính ngày cuối tuần
+        public static int TinhTongGioLam(int thang, int nam)
+        {
+
+            // Lấy số ngày trong tháng
+            int soNgay = DateTime.DaysInMonth(nam, thang);
+
+            // Khởi tạo tổng giờ làm
+            int tongGio = 0;
+
+            // Duyệt qua từng ngày trong tháng
+            for (int ngay = 1; ngay <= soNgay; ngay++)
+            {
+                DateTime ngayHienTai = new DateTime(nam, thang, ngay);
+                // Kiểm tra nếu là thứ Bảy (6) hoặc Chủ Nhật (0)
+                if (ngayHienTai.DayOfWeek == DayOfWeek.Saturday || ngayHienTai.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    continue;
+                }
+                // Cộng 8 giờ cho ngày làm việc
+                tongGio += 8;
+            }
+
+            return tongGio;
+        }
+        public List<AttendanceDTO> filterByTime(string manv, int thang, int nam)
+        {
+            return attendanceDAO.filterByTime(manv, thang, nam);
         }
     }
 }

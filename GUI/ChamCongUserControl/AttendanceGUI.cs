@@ -41,7 +41,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             if (attendanceBLL.addAttendance(SessionManager.Instance.CurrentEmployee.MaNhanVien))
             {
                 MessageBox.Show("Chấm công thành công!");
-                ucChiTietChamCong1.LoadEmployeeData(SessionManager.Instance.CurrentEmployee.MaNhanVien);
+                ucChiTietChamCong1.LoadEmployeeData(SessionManager.Instance.CurrentEmployee.MaNhanVien, ucChiTietChamCong1.getSelectedMonth(), ucChiTietChamCong1.getSelectedYear());
             }
             else
             {
