@@ -1,6 +1,6 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
+using Quan_Ly_Nhan_Su.GUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,10 +22,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private DepartmentBLL department = new DepartmentBLL();
         private RecruitmentBatchBLL batchBLL = new RecruitmentBatchBLL();
         public event EventHandler luuThongTinForm;
+        private ErrorProvider errorProvider = new ErrorProvider();
         public FormTuyenUngVien(CandidateFullDTO dtoFullDato)
         {
             InitializeComponent();
             dtoFull = dtoFullDato;
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             DisplayCandidateDetails(dtoFull);
             fillDataToCombobox();
         }
@@ -84,7 +86,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 SoTinhTPUV.Text = ExtractAddressPart(candidate.DiaChi, 3);
                 
 
-                // 🖼Hiển thị ảnh ứng viên
+                // Hiển thị ảnh ứng viên
                 string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
                 string imagePath = Path.Combine(projectPath, candidate.HinhAnh ?? "");
                 string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
@@ -108,7 +110,29 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-           
+
+            if(maPhongBanCbb.SelectedIndex == -1)
+            {
+                errorProvider.SetError(maPhongBanCbb, "Phải chọn phòng ban!");
+                return;
+            }
+
+            if (!GUIValidator.NotEmpty(tbLuong, "Lương không được để trống!", errorProvider))
+            {
+                return;
+            }
+
+            if (!GUIValidator.IsDecimal(tbLuong, "Lương không hợp lệ!", errorProvider))
+            {
+                return;
+            }
+
+            if(!GUIValidator.IsGreaterThanZero(tbLuong, "Lương phải lớn hơn 0!", errorProvider))
+            {
+                return;
+            }
+
+            
             PositionDTO positionDTO = new PositionDTO(
                null,
                "Nhân viên",
@@ -121,9 +145,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                     showCCCDUV.Text,
                     null,
                     null,
+                    null,
+                    null,
                     maPhongBanCbb.SelectedValue.ToString(),
                     Convert.ToDecimal(tbLuong.Text)
-             ); 
+                ); ;
 
            
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);

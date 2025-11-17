@@ -10,7 +10,7 @@
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -32,9 +32,9 @@
             this.tabctChamCong = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabctKiemTraCongCa = new System.Windows.Forms.TabPage();
-            this.ucChiTietChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCong.ucKiemTraCongCa();
+            this.ucChiTietChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCongUserControl.ucKiemTraCongCa();
             this.tabctDanhSachNhanVien = new System.Windows.Forms.TabPage();
-            this.ucChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCong.ucDanhSachNhanVienAttendance();
+            this.ucChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCongUserControl.ucDanhSachNhanVienAttendance();
             this.lbAttendance = new System.Windows.Forms.Label();
             this.pnlbAttendance = new System.Windows.Forms.Panel();
             this.ptbAttendance = new System.Windows.Forms.PictureBox();
@@ -184,10 +184,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabctDanhSachNhanVien;
         private System.Windows.Forms.TabPage tabctKiemTraCongCa;
-        private ChamCong.ucDanhSachNhanVienAttendance ucChamCong1;
+        private ChamCongUserControl.ucDanhSachNhanVienAttendance ucChamCong1;
         private System.Windows.Forms.TabPage tabctChamCong;
         private System.Windows.Forms.Panel panel1;
-        private ChamCong.ucKiemTraCongCa ucChiTietChamCong1;
+        private ChamCongUserControl.ucKiemTraCongCa ucChiTietChamCong1;
         private System.Windows.Forms.Label lbAttendance;
         private System.Windows.Forms.Panel pnlbAttendance;
         private System.Windows.Forms.PictureBox ptbAttendance;

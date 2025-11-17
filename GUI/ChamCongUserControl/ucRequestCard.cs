@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Quan_Ly_Nhan_Su.GUI.ChamCong
+namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     public partial class ucRequestCard : UserControl
     {

@@ -1,6 +1,5 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.config;
-using Quan_Ly_Nhan_Su.GUI.ChamCong;
 using Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl;
 using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;

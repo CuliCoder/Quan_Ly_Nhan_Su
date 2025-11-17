@@ -2,6 +2,7 @@ using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
@@ -66,17 +67,16 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool checkID(string cccd)
         {
-            if (!_dao.CheckCccd(cccd))
-            {
-                return false;
-            }
-            return true;
+            return _dao.CheckCccd(cccd);
         }
 
         public bool Create(PersonalProfileDTO dto)
         {
-            if (dto == null)
-                throw new ArgumentNullException(nameof(dto));
+            if(!checkID(dto.SoCmnd))
+            {
+                MessageBox.Show("Số căn cước công dân đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             bool success = _dao.Create(dto);
             if (success)
