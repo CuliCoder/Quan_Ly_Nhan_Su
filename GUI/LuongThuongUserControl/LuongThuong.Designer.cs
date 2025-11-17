@@ -731,7 +731,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // 
             this.tableLayoutPanel13.ColumnCount = 2;
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 336F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 378F));
             this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel14, 1, 0);
             this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel15, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -783,7 +783,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(3, 0);
-            this.label18.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
+            this.label18.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(189, 22);
             this.label18.TabIndex = 0;
@@ -871,7 +871,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel10.Location = new System.Drawing.Point(3, 379);
             this.flowLayoutPanel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
-            this.flowLayoutPanel10.Size = new System.Drawing.Size(324, 291);
+            this.flowLayoutPanel10.Size = new System.Drawing.Size(366, 366);
             this.flowLayoutPanel10.TabIndex = 1;
             // 
             // label22
@@ -881,7 +881,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(3, 0);
-            this.label22.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
+            this.label22.Margin = new System.Windows.Forms.Padding(3, 0, 3, 25);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(218, 22);
             this.label22.TabIndex = 0;
@@ -1356,7 +1356,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // 
             // LuongThuong
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
