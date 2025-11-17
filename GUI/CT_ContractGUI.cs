@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.DTO;
@@ -14,101 +9,100 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class CT_ContractGUI : UserControl
     {
-        private EmployeeFullBLL employeeBLL;
-        private DepartmentBLL departmentBLL;
-        private LaborContractBLL contractBLL;
+        // ====== LỚP THÀNH PHẦN ======
+        private readonly EmployeeFullBLL employeeBLL;
+        private readonly DepartmentBLL departmentBLL;
+        private readonly LaborContractBLL contractBLL;
 
+        // ====== KHỞI TẠO ======
         public CT_ContractGUI()
         {
             InitializeComponent();
-            
-            // ĐẢM BẢO Dock được set sau khi InitializeComponent
-            this.Dock = DockStyle.Fill;
-            this.AutoScaleMode = AutoScaleMode.None;  // Tắt AutoScale
-            this.AutoSize = false;  // Tắt AutoSize
-            
-            InitializeBLL();
-            InitializeForm();
-        }
 
-        private void InitializeBLL()
-        {
+            // Cấu hình hiển thị tránh lỗi DPI
+            this.DoubleBuffered = true;
+            this.Dock = DockStyle.Fill;
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            this.BackColor = Color.White;
+
             employeeBLL = new EmployeeFullBLL();
             departmentBLL = new DepartmentBLL();
             contractBLL = new LaborContractBLL();
+
+            InitializeForm();
         }
 
+        // ====== KHỞI TẠO FORM ======
         private void InitializeForm()
         {
-            // Tự động sinh mã hợp đồng
             GenerateContractId();
-
-            // Load danh sách nhân viên chưa ký hợp đồng và phòng ban
             LoadEmployees();
             LoadDepartments();
 
-            // Thiết lập combobox loại hợp đồng (tĩnh, không load từ DB)
-            comboBoxLoaiHopDong.Items.AddRange(new object[] { "Xác định thời hạn", "Không thời hạn" });
+            comboBoxLoaiHopDong.Items.AddRange(new object[]
+            {
+                "Xác định thời hạn",
+                "Không thời hạn",
+                "Thử việc"
+            });
             comboBoxLoaiHopDong.SelectedIndex = 0;
+            comboBoxLoaiHopDong.SelectedIndexChanged += (s, e) => ToggleDateToField();
 
-            // Không set ngày mặc định, user tự chọn
-            // Không load lương, để user nhập
+            // Cấu hình ngày hiển thị dd/MM/yyyy
+            dateTimePickerTuNgay.Format = DateTimePickerFormat.Custom;
+            dateTimePickerTuNgay.CustomFormat = "dd/MM/yyyy";
+            dateTimePickerDenNgay.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDenNgay.CustomFormat = "dd/MM/yyyy";
+            dateTimePickerDenNgay.ShowCheckBox = true;
 
             // Ẩn trường "Đến ngày" ban đầu
             ToggleDateToField();
-
-            // Wire event cho combo loại hợp đồng để toggle DenNgay
-            comboBoxLoaiHopDong.SelectedIndexChanged += ComboBoxLoaiHopDong_SelectedIndexChanged;
         }
 
-        private void ComboBoxLoaiHopDong_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ToggleDateToField();
-        }
-
+        // ====== ẨN/HIỆN TRƯỜNG "ĐẾN NGÀY" ======
         private void ToggleDateToField()
         {
-            bool isXacDinh = comboBoxLoaiHopDong.SelectedItem?.ToString() == "Xác định thời hạn";
-            labelDenNgay.Visible = dateTimePickerDenNgay.Visible = isXacDinh;
+            bool showDenNgay = comboBoxLoaiHopDong.SelectedItem?.ToString() == "Xác định thời hạn";
+            labelDenNgay.Visible = dateTimePickerDenNgay.Visible = showDenNgay;
         }
 
+        // ====== TẠO MÃ HỢP ĐỒNG ======
         private void GenerateContractId()
         {
-            // Sinh mã hợp đồng tự động: HD + YYYYMMDD + số thứ tự (001..999)
             string dateBase = DateTime.Now.ToString("yyyyMMdd");
             string prefix = $"HD{dateBase}";
             int suffix = 1;
             string candidate;
 
-            // Lặp tới khi mã chưa tồn tại trong DB
-            do
+            while (true)
             {
                 candidate = $"{prefix}{suffix:D3}";
-                // Nếu BLL trả null => chưa có hợp đồng đó
-                if (contractBLL.GetContractById(candidate) == null) break;
+                if (contractBLL.GetContractById(candidate) == null)
+                    break;
                 suffix++;
-                if (suffix > 999) break; // bảo vệ khỏi loop vô hạn
-            } while (true);
+                if (suffix > 999)
+                {
+                    candidate = $"{prefix}_ERR";
+                    break;
+                }
+            }
 
             textBoxMaHopDong.Text = candidate;
             textBoxMaHopDong.ReadOnly = true;
         }
 
-        // CT_ContractGUI.cs
-        // CT_ContractGUI.cs
-        // CT_ContractGUI.cs
+        // ====== LOAD DANH SÁCH NHÂN VIÊN ======
         private void LoadEmployees()
         {
             try
             {
-                // Lấy danh sách nhân viên CHƯA có hợp đồng
-                var emps = contractBLL.GetUnsignedEmployees();
+                var emps = contractBLL.GetUnsignedEmployees() ?? new System.Collections.Generic.List<EmployeeFullDTO>();
 
-                // Chỉ hiển thị MÃ NHÂN VIÊN
                 var data = emps.Select(e => new
                 {
                     MaNhanVien = e.MaNhanVien,
-                    Display = e.MaNhanVien  // <--- THAY ĐỔI CHÍNH XÁC TẠI ĐÂY
+                    Display = $"{e.MaNhanVien} - {e.HoTen}"
                 }).ToList();
 
                 comboBoxNhanVien.DataSource = data;
@@ -118,17 +112,17 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải danh sách nhân viên chưa ký hợp đồng: " + ex.Message,
+                MessageBox.Show($"Lỗi khi tải danh sách nhân viên: {ex.Message}",
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }   
+        }
 
-
+        // ====== LOAD PHÒNG BAN ======
         private void LoadDepartments()
         {
             try
             {
-                var departments = departmentBLL.GetAllDepartments();
+                var departments = departmentBLL.GetAllDepartments() ?? new System.Collections.Generic.List<DepartmentDTO>();
                 comboBoxPhongBan.DataSource = departments;
                 comboBoxPhongBan.DisplayMember = "TenPhong";
                 comboBoxPhongBan.ValueMember = "MaPhong";
@@ -141,101 +135,68 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
+        // ====== VALIDATE DỮ LIỆU ======
         private bool ValidateForm()
         {
             if (string.IsNullOrWhiteSpace(textBoxMaHopDong.Text))
             {
-                MessageBox.Show("Mã hợp đồng không được để trống.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Mã hợp đồng không được để trống."); return false;
             }
-
             if (comboBoxNhanVien.SelectedIndex == -1)
             {
-                MessageBox.Show("Vui lòng chọn nhân viên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Vui lòng chọn nhân viên."); return false;
             }
-
             if (comboBoxPhongBan.SelectedIndex == -1)
             {
-                MessageBox.Show("Vui lòng chọn phòng ban.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Vui lòng chọn phòng ban."); return false;
             }
-
             if (comboBoxLoaiHopDong.SelectedIndex == -1)
             {
-                MessageBox.Show("Vui lòng chọn loại hợp đồng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (dateTimePickerTuNgay.Value == default(DateTime))
-            {
-                MessageBox.Show("Vui lòng chọn từ ngày.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Vui lòng chọn loại hợp đồng."); return false;
             }
 
             bool isXacDinh = comboBoxLoaiHopDong.Text == "Xác định thời hạn";
-            if (isXacDinh && dateTimePickerDenNgay.Value == default(DateTime))
+            if (isXacDinh && !dateTimePickerDenNgay.Checked)
             {
-                MessageBox.Show("Vui lòng chọn đến ngày cho hợp đồng xác định thời hạn.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Vui lòng chọn đến ngày cho hợp đồng xác định thời hạn."); return false;
             }
 
             if (isXacDinh && dateTimePickerDenNgay.Value <= dateTimePickerTuNgay.Value)
             {
-                MessageBox.Show("Đến ngày phải lớn hơn từ ngày.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Đến ngày phải lớn hơn từ ngày."); return false;
             }
 
-            if (string.IsNullOrWhiteSpace(textBoxMucLuong.Text) || !decimal.TryParse(textBoxMucLuong.Text, out decimal luong))
+            if (!decimal.TryParse(textBoxMucLuong.Text, out decimal luong) || luong <= 0)
             {
-                MessageBox.Show("Mức lương phải là số hợp lệ.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (luong <= 0)
-            {
-                MessageBox.Show("Mức lương phải lớn hơn 0.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                ShowWarning("Mức lương phải là số hợp lệ và lớn hơn 0."); return false;
             }
 
             return true;
         }
 
-        // Event cho buttonTaoHopDong
+        private void ShowWarning(string msg) =>
+            MessageBox.Show(msg, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        // ====== NÚT TẠO HỢP ĐỒNG ======
         private void buttonTaoHopDong_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
-            {
-                CreateContract();
-            }
-        }
+            if (!ValidateForm()) return;
 
-        private void CreateContract()
-        {
             try
             {
-                // Lấy mã phòng ban an toàn: nếu item là string hoặc DTO đều xử lý được
+                // Lấy mã phòng ban an toàn
                 string maPhongBan = "";
                 var selected = comboBoxPhongBan.SelectedItem;
-                if (selected == null)
-                {
-                    maPhongBan = "";
-                }
-                else if (selected is string)
-                {
-                    maPhongBan = selected.ToString();
-                }
+                if (selected is DepartmentDTO dto)
+                    maPhongBan = dto.MaPhong;
                 else
-                {
-                    // nếu là DTO
-                    var dto = selected as DepartmentDTO;
-                    maPhongBan = dto?.MaPhong ?? selected.ToString();
-                }
+                    maPhongBan = selected?.ToString() ?? "";
 
+                // Chuẩn bị DTO
                 var contract = new LaborContractDTO
                 {
                     MaHopDong = textBoxMaHopDong.Text,
-                    MaNhanVien = comboBoxNhanVien.SelectedValue?.ToString() ?? comboBoxNhanVien.SelectedItem?.ToString() ?? "",
+                    MaNhanVien = comboBoxNhanVien.SelectedValue?.ToString() ?? "",
                     PhongBan = maPhongBan,
                     LoaiHopDong = comboBoxLoaiHopDong.Text,
                     TuNgay = dateTimePickerTuNgay.Value,
@@ -243,62 +204,55 @@ namespace Quan_Ly_Nhan_Su.GUI
                     LuongCoBan = decimal.Parse(textBoxMucLuong.Text)
                 };
 
-                // Kiểm tra mã hợp đồng trùng trước khi gọi DAO
+                // Check trùng mã
                 if (contractBLL.GetContractById(contract.MaHopDong) != null)
                 {
-                    MessageBox.Show("Mã hợp đồng đã tồn tại. Vui lòng thử lại để tạo mã hợp đồng mới.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Mã hợp đồng đã tồn tại, hệ thống sẽ tự tạo mã mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GenerateContractId();
                     return;
                 }
 
-                decimal luongTheoGio = 0;
-                decimal.TryParse(textBoxLuongTheoGio.Text, out luongTheoGio);
+                decimal.TryParse(textBoxLuongTheoGio.Text, out decimal luongTheoGio);
+                bool success = contractBLL.CreateContractWithSalary(contract, luongTheoGio);
 
-                if (contractBLL.CreateContractWithSalary(contract, luongTheoGio))
+                if (success)
                 {
-                    MessageBox.Show("Tạo hợp đồng và lương thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tạo hợp đồng và lương thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ResetForm();
                     LoadEmployees();
                 }
                 else
                 {
-                    MessageBox.Show("Tạo hợp đồng thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tạo hợp đồng thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tạo hợp đồng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tạo hợp đồng: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // ====== NÚT HỦY ======
+        private void buttonHuy_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
 
+        // ====== RESET FORM ======
         private void ResetForm()
         {
             GenerateContractId();
             comboBoxNhanVien.SelectedIndex = -1;
             comboBoxPhongBan.SelectedIndex = -1;
             comboBoxLoaiHopDong.SelectedIndex = 0;
-            // Không reset ngày, user tự set
             textBoxMucLuong.Clear();
-            // Không có ChiTiet
+            textBoxLuongTheoGio.Clear();
+            dateTimePickerTuNgay.Value = DateTime.Now;
+            dateTimePickerDenNgay.Value = DateTime.Now;
+            dateTimePickerDenNgay.Checked = false;
             ToggleDateToField();
         }
-
-        private void buttonHuy_Click(object sender, EventArgs e)
-        {
-            ResetForm();
-        }
-
-        private void panelMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelButtons_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        // Không cần labelChiTiet_Click nữa
     }
 }

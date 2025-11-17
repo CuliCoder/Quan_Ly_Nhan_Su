@@ -35,21 +35,13 @@ namespace Quan_Ly_Nhan_Su.DAO
                         hd.tuNgay,
                         hd.denNgay,
                         hd.loaiHopDong, 
-                        IFNULL(l.LuongCoBan, 0) AS luongCoBan,
+                        -- Get latest LuongCoBan for the employee by MaLuong numeric suffix
+                        (SELECT LuongCoBan FROM luong WHERE MaNhanVien = hd.maNhanVien ORDER BY CAST(SUBSTRING(MaLuong, 2) AS UNSIGNED) DESC LIMIT 1) AS luongCoBan,
                         hs.anh AS hinhAnh   
                     FROM hopdonglaodong hd
                     LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-                    LEFT JOIN (
-                        SELECT MaNhanVien, LuongCoBan
-                        FROM luong
-                        WHERE (MaNhanVien, Nam, Thang) IN (
-                            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
-                            FROM luong
-                            GROUP BY MaNhanVien
-                        )
-                    ) l ON hd.maNhanVien = l.MaNhanVien
                     ORDER BY hd.tuNgay DESC";
 
                 using (var command = new MySqlCommand(query, conn))
@@ -255,20 +247,19 @@ namespace Quan_Ly_Nhan_Su.DAO
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
-                // === Bước 1 & 2: Tạo Lương và lấy mã lương mới ===
+                // === Bước 1: Sinh mã lương mới (L001, L002, ...) ===
                 string newMaLuong = GenerateNewMaLuong(conn, transaction);
-                string queryLuong = @"
-                    INSERT INTO luong (MaLuong, MaNhanVien, LuongCoBan, LuongTheoGio, Thang, Nam) 
-                    VALUES (@MaLuong, @MaNhanVien, @LuongCoBan, @LuongTheoGio, @Thang, @Nam)";
 
+                // === Bước 2: Thêm bản ghi lương cho nhân viên ===
+                string queryLuong = @"
+            INSERT INTO luong (MaLuong, MaNhanVien, LuongCoBan, LuongTheoGio) 
+            VALUES (@MaLuong, @MaNhanVien, @LuongCoBan, @LuongTheoGio)";
                 using (var cmdLuong = new MySqlCommand(queryLuong, conn, transaction))
                 {
                     cmdLuong.Parameters.AddWithValue("@MaLuong", newMaLuong);
                     cmdLuong.Parameters.AddWithValue("@MaNhanVien", contract.MaNhanVien);
-                    cmdLuong.Parameters.AddWithValue("@LuongCoBan", contract.LuongCoBan); // Lấy từ DTO
+                    cmdLuong.Parameters.AddWithValue("@LuongCoBan", contract.LuongCoBan);
                     cmdLuong.Parameters.AddWithValue("@LuongTheoGio", luongTheoGio);
-                    cmdLuong.Parameters.AddWithValue("@Thang", DateTime.Now.Month);
-                    cmdLuong.Parameters.AddWithValue("@Nam", DateTime.Now.Year);
 
                     if (cmdLuong.ExecuteNonQuery() <= 0)
                     {
@@ -276,28 +267,16 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
                 }
 
-                // === Bước 3: Cập nhật Nhân Viên ===
-                string queryNhanVien = @"
-                    UPDATE nhanvien 
-                    SET maluong = @maLuong 
-                    WHERE maNhanVien = @maNhanVien";
+                // === Bước 3: (Bỏ cập nhật nhân viên) ===
+                Console.WriteLine($"[Debug] Đã tạo lương {newMaLuong} cho nhân viên {contract.MaNhanVien}. " +
+                                  "Không cập nhật bảng nhanvien vì DB không có cột MaLuong.");
 
-                using (var cmdNhanVien = new MySqlCommand(queryNhanVien, conn, transaction))
-                {
-                    cmdNhanVien.Parameters.AddWithValue("@maLuong", newMaLuong);
-                    cmdNhanVien.Parameters.AddWithValue("@maNhanVien", contract.MaNhanVien);
-
-                    if (cmdNhanVien.ExecuteNonQuery() <= 0)
-                    {
-                        throw new Exception("Cập nhật mã lương cho nhân viên thất bại.");
-                    }
-                }
-
-                // === Bước 4: Tạo Hợp đồng (KHÔNG CÓ LƯƠNG) ===
+                // === Bước 4: Tạo hợp đồng lao động mới ===
                 string queryHopDong = @"
-                    INSERT INTO hopdonglaodong (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, maBangChamCong) 
-                    VALUES (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @maBangChamCong)";
-
+            INSERT INTO hopdonglaodong 
+            (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, maBangChamCong) 
+            VALUES 
+            (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @maBangChamCong)";
                 using (var cmdHopDong = new MySqlCommand(queryHopDong, conn, transaction))
                 {
                     cmdHopDong.Parameters.AddWithValue("@maHopDong", contract.MaHopDong);
@@ -314,21 +293,22 @@ namespace Quan_Ly_Nhan_Su.DAO
                     }
                 }
 
-                // === Nếu cả 3 bước OK thì Commit ===
+                // === Bước 5: Commit transaction ===
                 transaction.Commit();
+                Console.WriteLine($"[Success] Đã tạo hợp đồng {contract.MaHopDong} và lương {newMaLuong} thành công.");
                 return true;
             }
             catch (Exception ex)
             {
-                // Nếu có 1 bước lỗi, Rollback tất cả
-                Console.WriteLine($"Transaction Error: {ex.Message}");
+                Console.WriteLine($"[Transaction Error] {ex.Message}");
                 try
                 {
                     transaction?.Rollback();
+                    Console.WriteLine("[Transaction] Đã rollback do lỗi.");
                 }
                 catch (Exception rbEx)
                 {
-                    Console.WriteLine($"Rollback Error: {rbEx.Message}");
+                    Console.WriteLine($"[Rollback Error] {rbEx.Message}");
                 }
                 return false;
             }
@@ -478,12 +458,11 @@ namespace Quan_Ly_Nhan_Su.DAO
                 hd.tuNgay,          
                 hd.denNgay,
                 hd.loaiHopDong,
-                IFNULL(l.luongCoBan, 0) AS luongCoBan
+                (SELECT LuongCoBan FROM luong WHERE MaNhanVien = hd.maNhanVien ORDER BY CAST(SUBSTRING(MaLuong,2) AS UNSIGNED) DESC LIMIT 1) AS luongCoBan
             FROM hopdonglaodong hd
             LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
             LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
             LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-            LEFT JOIN luong l ON hd.maNhanVien = l.maNhanVien
             WHERE hd.maHopDong LIKE @keyword 
             OR hs.hoTen LIKE @keyword 
             OR pb.tenPhong LIKE @keyword
@@ -727,8 +706,8 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                
-                // *** ĐÃ SỬA: Lấy lương mới nhất theo (Nam DESC, Thang DESC) ***
+
+                // *** ĐÃ SỬA: Lấy lương mới nhất bằng MaLuong (numeric suffix) ***
                 string query = @"
     SELECT 
         hd.maHopDong,
@@ -738,64 +717,55 @@ namespace Quan_Ly_Nhan_Su.DAO
         hd.tuNgay,
         hd.denNgay,
         hd.loaiHopDong,
-        IFNULL(l.LuongCoBan, 0) AS luongCoBan,
+        (SELECT LuongCoBan FROM luong WHERE MaNhanVien = hd.maNhanVien ORDER BY CAST(SUBSTRING(MaLuong,2) AS UNSIGNED) DESC LIMIT 1) AS luongCoBan,
         hs.anh AS hinhAnh
     FROM hopdonglaodong hd
     LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
     LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-    LEFT JOIN (
-        SELECT MaNhanVien, LuongCoBan, Nam, Thang
-        FROM luong
-        WHERE (MaNhanVien, Nam, Thang) IN (
-            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
-            FROM luong
-            GROUP BY MaNhanVien
-        )
-    ) l ON hd.maNhanVien = l.MaNhanVien
     WHERE hd.maHopDong = @maHopDong";
 
-        using (var command = new MySqlCommand(query, conn))
+                using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maHopDong", maHopDong);
                     reader = command.ExecuteReader();
-            
-            if (reader.Read())
-            {
-                Console.WriteLine($"DAO Debug: maHopDong={maHopDong}, luongCoBan={reader["luongCoBan"]}, hinhAnh={reader["hinhAnh"]?.ToString() ?? "null"}");
-                
-                contract = new LaborContractDTO
-                {
-                    MaHopDong = reader["maHopDong"].ToString(),
-                    MaNhanVien = reader["maNhanVien"].ToString(),
-                    TenNhanVien = reader["tenNhanVien"].ToString(),
-                    PhongBan = reader["phongBan"].ToString(),
-                    TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
-                    DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
-                    LoaiHopDong = reader["loaiHopDong"].ToString(),
-                    LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m,
-                    HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
-                };
-            }
-            else
-            {
-                Console.WriteLine($"DAO Debug: No data for maHopDong={maHopDong}");
-            }
-        }
-    }
-    catch (MySqlException ex)
-    {
-        Console.WriteLine($"Error retrieving labor contract: {ex.Message}");
-        MessageBox.Show($"Lỗi DB: {ex.Message}\n\nQuery có thể bị lỗi. Kiểm tra Console Output!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-    finally
-    {
-        if (reader != null) reader.Close();
-        connectDB.closeConnection(conn);
-    }
 
-    return contract;
-}
+                    if (reader.Read())
+                    {
+                        Console.WriteLine($"DAO Debug: maHopDong={maHopDong}, luongCoBan={reader["luongCoBan"]}, hinhAnh={reader["hinhAnh"]?.ToString() ?? "null"}");
+
+                        contract = new LaborContractDTO
+                        {
+                            MaHopDong = reader["maHopDong"].ToString(),
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            TenNhanVien = reader["tenNhanVien"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
+                            DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
+                            LoaiHopDong = reader["loaiHopDong"].ToString(),
+                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m,
+                            HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
+                        };
+                    }
+                    else
+                    {
+                        Console.WriteLine($"DAO Debug: No data for maHopDong={maHopDong}");
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error retrieving labor contract: {ex.Message}");
+                MessageBox.Show($"Lỗi DB: {ex.Message}\n\nQuery có thể bị lỗi. Kiểm tra Console Output!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return contract;
+        }
 
         public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
@@ -939,17 +909,16 @@ namespace Quan_Ly_Nhan_Su.DAO
                 hd.tuNgay,
                 hd.denNgay,
                 hd.loaiHopDong,
-                IFNULL(l.luongCoBan, 0) AS luongCoBan
+                (SELECT LuongCoBan FROM luong WHERE MaNhanVien = hd.maNhanVien ORDER BY CAST(SUBSTRING(MaLuong,2) AS UNSIGNED) DESC LIMIT 1) AS luongCoBan
             FROM hopdonglaodong hd
             LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
             LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
             LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-            LEFT JOIN luong l ON hd.maNhanVien = l.maNhanVien
             WHERE pb.tenPhong = @phongBan";
 
                 if (!string.IsNullOrEmpty(sortBySalary))
                 {
-                    query += $" ORDER BY l.luongCoBan {sortBySalary}";
+                    query += $" ORDER BY luongCoBan {sortBySalary}";
                 }
                 else
                 {
