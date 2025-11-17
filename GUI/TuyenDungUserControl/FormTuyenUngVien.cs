@@ -121,9 +121,11 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                     showCCCDUV.Text,
                     null,
                     null,
+                    null,
+                    null,
                     maPhongBanCbb.SelectedValue.ToString(),
                     Convert.ToDecimal(tbLuong.Text)
-             ); 
+                ); ;
 
            
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
