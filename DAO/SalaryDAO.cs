@@ -168,5 +168,31 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return list;
         }
+
+        // Helper: get MaNhanVien by MaLuong
+        public string GetMaNhanVienByMaLuong(string maLuong)
+        {
+            if (string.IsNullOrWhiteSpace(maLuong)) return null;
+            try
+            {
+                using (var conn = connectDB.getConnection())
+                {
+                    if (conn == null) return null;
+                    conn.Open();
+                    const string sql = "SELECT MaNhanVien FROM luong WHERE MaLuong = @MaLuong LIMIT 1";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaLuong", maLuong);
+                        var result = cmd.ExecuteScalar();
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SalaryDAO.GetMaNhanVienByMaLuong Error: " + ex.Message);
+                return null;
+            }
+        }
     }
 }
