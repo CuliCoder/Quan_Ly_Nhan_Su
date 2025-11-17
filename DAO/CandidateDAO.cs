@@ -149,59 +149,6 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
-        public bool CreateCandidateWithProfile(PersonalProfileDTO profile, CandidateDTO candidate)
-        {
-            using (var conn = connectDB.getConnection())
-            {
-                conn.Open();
-                using (var transaction = conn.BeginTransaction())
-                {
-                    try
-                    {   
-                        var insertProfileCmd = new MySqlCommand(@"
-                    INSERT INTO hosocanhan (soCmnd, hoTen, gioiTinh, ngaySinh, diaChi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc, hocVan, chuyenNganh, anh)
-                    VALUES (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diaChi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc, @hocVan, @chuyenNganh, @anh)", conn, transaction);
-
-                        insertProfileCmd.Parameters.AddWithValue("@soCmnd", profile.SoCmnd);
-                        insertProfileCmd.Parameters.AddWithValue("@hoTen", profile.HoTen);
-                        insertProfileCmd.Parameters.AddWithValue("@gioiTinh", profile.GioiTinh);
-                        insertProfileCmd.Parameters.AddWithValue("@ngaySinh", profile.NgaySinh);
-                        insertProfileCmd.Parameters.AddWithValue("@diaChi", (object)profile.DiaChi ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@email", (object)profile.Email ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@sdt", (object)profile.SoDienThoai ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@noiCap", (object)profile.NoiCap ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@ngayCap", profile.NgayCap);
-                        insertProfileCmd.Parameters.AddWithValue("@tinhTrangHonNhan", (object)profile.HonNhan ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@danToc", (object)profile.DanToc ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@hocVan", (object)profile.HocVan ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@chuyenNganh", (object)profile.ChuyenNganh ?? DBNull.Value);
-                        insertProfileCmd.Parameters.AddWithValue("@anh", (object)profile.HinhAnh ?? DBNull.Value);
-                        insertProfileCmd.ExecuteNonQuery();
-              
-                        var insertCandidateCmd = new MySqlCommand(@"
-                    INSERT INTO ungvien (maUngVien, soCmnd, maTuyenDung, mucLuongDeal, chucVu, trangThai)
-                    VALUES (@maUngVien, @soCmnd, @maTuyenDung, @mucLuongDeal, @chucVu, @trangThai)", conn, transaction);
-
-                        insertCandidateCmd.Parameters.AddWithValue("@maUngVien", candidate.MaUngVien);
-                        insertCandidateCmd.Parameters.AddWithValue("@soCmnd", candidate.SoCmnd);
-                        insertCandidateCmd.Parameters.AddWithValue("@maTuyenDung", candidate.MaTuyenDung);
-                        insertCandidateCmd.Parameters.AddWithValue("@mucLuongDeal", (object)candidate.MucLuongDeal ?? DBNull.Value);
-                        insertCandidateCmd.Parameters.AddWithValue("@chucVu", (object)candidate.ChucVu ?? DBNull.Value);
-                        insertCandidateCmd.Parameters.AddWithValue("@trangThai", (object)candidate.TrangThai ?? DBNull.Value);
-                        insertCandidateCmd.ExecuteNonQuery();
-                   
-                        transaction.Commit();
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        Console.WriteLine($"❌ Lỗi khi thêm hồ sơ & ứng viên: {ex.Message}");
-                        return false;
-                    }
-                }
-            }
-        }
 
         // ✅ Cập nhật ứng viên
         public bool update(CandidateDTO dto)
@@ -301,6 +248,35 @@ namespace Quan_Ly_Nhan_Su.DAO
                 Console.WriteLine($"❌ Lỗi khi tìm kiếm ứng viên: {ex.Message}");
                 return null;
             }
+        }
+
+        public bool UpdateStatus(string maUngVien, string trangThai)
+        {
+            try
+            {
+                string sql = @"
+                    UPDATE ungvien
+                    SET trangthai = @trangThai
+                    WHERE maUngVien = @maUngVien
+                ";
+                using (conn = connectDB.getConnection())                 
+                {
+                    conn.Open();
+                    using (var cmd = new MySqlCommand(sql,conn))
+                    {
+                        cmd.Parameters.AddWithValue("@trangThai", trangThai);
+                        cmd.Parameters.AddWithValue("@maUngVien", maUngVien);
+                        int rowsAffected = cmd.ExecuteNonQuery(); 
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"❌ Lỗi khi cập nhật trạng thái ứng viên: {ex.Message}");
+                return false;
+            }
+
         }
     }
 }

@@ -108,6 +108,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\AllowanceDeductionBLL.cs" />
+    <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="BLL\BonusBLL.cs" />
+    <Compile Include="BLL\SalaryFullBLL.cs" />
+    <Compile Include="BLL\SessionManager.cs" />
+    <Compile Include="CSharp GUI\CT_ContractGUI.cs" />
+    <Compile Include="DAO\AllowanceDeductionDAO.cs" />
+    <Compile Include="DAO\AttendanceDAO.cs" />
+    <Compile Include="DAO\BonusDAO.cs" />
+    <Compile Include="DAO\SalaryFullDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
@@ -134,7 +144,13 @@
     <Compile Include="DAO\CandidateDAO.cs" />
     <Compile Include="DAO\CandidateFullDAO.cs" />
     <Compile Include="DAO\EmployeeFullDAO.cs" />
+    <Compile Include="DTO\AllowanceDeductionDTO.cs" />
+    <Compile Include="DTO\AttendanceDTO.cs" />
+    <Compile Include="DTO\AttendanceTotalOfMonthDTO.cs" />
+    <Compile Include="DTO\BonusDTO.cs" />
+    <Compile Include="DTO\calamviecDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
+    <Compile Include="DTO\SalaryFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +164,13 @@
       <DependentUpon>addDepartment.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\PhongBanUserControl\btnQuanLy.cs">
+    <Compile Include="GUI\BillFormGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BillFormGUI.Designer.cs">
+      <DependentUpon>BillFormGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\btnQuanLy.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\PhongBanUserControl\btnQuanLy.Designer.cs">
@@ -159,17 +182,23 @@
     <Compile Include="GUI\PhongBanUserControl\btnThongKe.Designer.cs">
       <DependentUpon>btnThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChamCong.cs">
+    <Compile Include="GUI\ChamCongUserControl\AttendanceGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChamCong.Designer.cs">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
+    <Compile Include="GUI\ChamCongUserControl\AttendanceGUI.Designer.cs">
+      <DependentUpon>AttendanceGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.cs">
+    <Compile Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\ChamCongUserControl\ucChiTietChamCong.Designer.cs">
-      <DependentUpon>ucChiTietChamCong.cs</DependentUpon>
+    <Compile Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.Designer.cs">
+      <DependentUpon>ucDanhSachNhanVienAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucKiemTraCongCa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucKiemTraCongCa.Designer.cs">
+      <DependentUpon>ucKiemTraCongCa.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ChamCongUserControl\ucRequestCard.cs">
       <SubType>UserControl</SubType>
@@ -238,6 +267,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\CT_LaborContractGUI.Designer.cs" />
+    <Compile Include="GUI\hosocanhan\User_LabtracGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\hosocanhan\User_LabtracGUI.Designer.cs">
+      <DependentUpon>User_LabtracGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LaborContractGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -364,6 +399,12 @@
     <Compile Include="GUI\TuyenDungUserControl\FormThemUngVien.Designer.cs">
       <DependentUpon>FormThemUngVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.Designer.cs">
+      <DependentUpon>SuaDotTuyenDungForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,8 +438,20 @@
     <Compile Include="DAO\PermissionDetailDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\ChamCongUserControl\ucChamCong.resx">
-      <DependentUpon>ucChamCong.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\BillFormGUI.resx">
+      <DependentUpon>BillFormGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\AttendanceGUI.resx">
+      <DependentUpon>AttendanceGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucDanhSachNhanVienAttendance.resx">
+      <DependentUpon>ucDanhSachNhanVienAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucKiemTraCongCa.resx">
+      <DependentUpon>ucKiemTraCongCa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucRequestCard.resx">
+      <DependentUpon>ucRequestCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChangepasswordGUI.resx">
       <DependentUpon>ChangepasswordGUI.cs</DependentUpon>
@@ -417,6 +470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhGiaUserControl\DanhGiaNhanVien.resx">
       <DependentUpon>DanhGiaNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\hosocanhan\User_LabtracGUI.resx">
+      <DependentUpon>User_LabtracGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LaborContractGUI.resx">
       <DependentUpon>LaborContractGUI.cs</DependentUpon>
@@ -468,6 +524,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\FormTuyenUngVien.resx">
       <DependentUpon>FormTuyenUngVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TuyenDungUserControl\SuaDotTuyenDungForm.resx">
+      <DependentUpon>SuaDotTuyenDungForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TuyenDungUserControl\ThemTuyenDungForm.resx">
       <DependentUpon>ThemTuyenDungForm.cs</DependentUpon>
@@ -549,6 +608,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\arrows_14074366.png" />
+    <None Include="Resources\check in_bigSize.png" />
+    <None Include="Resources\check in2.png" />
+    <None Include="Resources\check in1.png" />
+    <None Include="Resources\check in.png" />
+    <None Include="Resources\user %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,12 +4,12 @@ using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class CandidateFullBUS
+    public class CandidateFullBLL
     {
         private readonly CandidateFullDAO _dao;
         private static List<CandidateFullDTO> list;
 
-        public CandidateFullBUS()
+        public CandidateFullBLL()
         {
             _dao = new CandidateFullDAO();
 
@@ -34,5 +34,36 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return null;
         }
+
+        public bool DeleteCadidateWithProfile(string soCccd, string maUngVien)
+        {
+            if (_dao.DeleteCandidateWithProfile(soCccd, maUngVien))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool CreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
+        {
+            if (_dao.CreateCandidateWithProfile(perDTO, cadiDto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public List<CandidateFullDTO> Search(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                list = _dao.GetAll();
+                return new List<CandidateFullDTO>(list);
+            }
+
+            var result = _dao.Search(keyword);
+            return result ?? new List<CandidateFullDTO>();
+        }
+
     }
 }

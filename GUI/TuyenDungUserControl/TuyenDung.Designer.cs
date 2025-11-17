@@ -29,31 +29,42 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TuyenDung));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Label();
+            this.btnSearchDay = new System.Windows.Forms.Button();
+            this.endDayPicker = new System.Windows.Forms.DateTimePicker();
+            this.startDaypicker = new System.Windows.Forms.DateTimePicker();
             this.tableTuyenDung = new System.Windows.Forms.DataGridView();
             this.maTuyenDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hocVan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.doTuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slHoSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongCanTuyen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongNop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongDaTuyen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hanNop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mucLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hanNopHoSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mucLuongToiDa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mucLuongToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableTuyenDung)).BeginInit();
@@ -77,9 +88,14 @@
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.flowLayoutPanel3.Controls.Add(this.label1);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel5);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutPanel3.Controls.Add(this.btnSearchDay);
+            this.flowLayoutPanel3.Controls.Add(this.endDayPicker);
+            this.flowLayoutPanel3.Controls.Add(this.startDaypicker);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -87,6 +103,24 @@
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1019, 59);
             this.flowLayoutPanel3.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(982, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 25);
+            this.label1.TabIndex = 11;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // flowLayoutPanel4
             // 
@@ -97,10 +131,10 @@
             this.flowLayoutPanel4.Controls.Add(this.button2);
             this.flowLayoutPanel4.Controls.Add(this.label2);
             this.flowLayoutPanel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(899, 15);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(877, 15);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(18, 15, 18, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(102, 27);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(87, 27);
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // button2
@@ -112,7 +146,7 @@
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 25);
+            this.button2.Size = new System.Drawing.Size(60, 25);
             this.button2.TabIndex = 5;
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = true;
@@ -124,13 +158,57 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(75, 0);
+            this.label2.Location = new System.Drawing.Point(60, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.MaximumSize = new System.Drawing.Size(25, 25);
             this.label2.MinimumSize = new System.Drawing.Size(25, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 25);
             this.label2.TabIndex = 4;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.AutoSize = true;
+            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel5.Controls.Add(this.button1);
+            this.flowLayoutPanel5.Controls.Add(this.label3);
+            this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(782, 15);
+            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(77, 27);
+            this.flowLayoutPanel5.TabIndex = 14;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Sửa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.Location = new System.Drawing.Point(50, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label3.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 25);
+            this.label3.TabIndex = 4;
             // 
             // flowLayoutPanel2
             // 
@@ -141,7 +219,7 @@
             this.flowLayoutPanel2.Controls.Add(this.button3);
             this.flowLayoutPanel2.Controls.Add(this.label7);
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(776, 15);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(659, 15);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(18, 15, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(102, 27);
@@ -181,9 +259,9 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.tbSearch);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.btnSearch);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(498, 15);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(381, 15);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 15, 6, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(254, 30);
@@ -193,27 +271,70 @@
             // 
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSearch.Location = new System.Drawing.Point(0, 0);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.tbSearch.MaximumSize = new System.Drawing.Size(229, 25);
-            this.tbSearch.MinimumSize = new System.Drawing.Size(229, 25);
+            this.tbSearch.MaximumSize = new System.Drawing.Size(229, 27);
+            this.tbSearch.MinimumSize = new System.Drawing.Size(229, 27);
             this.tbSearch.Multiline = true;
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(229, 25);
+            this.tbSearch.Size = new System.Drawing.Size(229, 27);
             this.tbSearch.TabIndex = 1;
+            this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_TextChanged);
             // 
-            // label3
+            // btnSearch
             // 
-            this.label3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(229, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 25);
-            this.label3.TabIndex = 0;
+            this.btnSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(229, 0);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(25, 27);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // btnSearchDay
+            // 
+            this.btnSearchDay.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchDay.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnSearchDay.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSearchDay.Location = new System.Drawing.Point(288, 15);
+            this.btnSearchDay.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.btnSearchDay.MaximumSize = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.MinimumSize = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.Name = "btnSearchDay";
+            this.btnSearchDay.Size = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.TabIndex = 15;
+            this.btnSearchDay.Text = "Lọc";
+            this.btnSearchDay.UseVisualStyleBackColor = false;
+            this.btnSearchDay.Click += new System.EventHandler(this.btnSearchDay_Click);
+            // 
+            // endDayPicker
+            // 
+            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.Location = new System.Drawing.Point(156, 15);
+            this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.endDayPicker.MaximumSize = new System.Drawing.Size(120, 27);
+            this.endDayPicker.MinimumSize = new System.Drawing.Size(120, 27);
+            this.endDayPicker.Name = "endDayPicker";
+            this.endDayPicker.Size = new System.Drawing.Size(120, 27);
+            this.endDayPicker.TabIndex = 12;
+            // 
+            // startDaypicker
+            // 
+            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.Location = new System.Drawing.Point(24, 15);
+            this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
+            this.startDaypicker.MaximumSize = new System.Drawing.Size(120, 27);
+            this.startDaypicker.MinimumSize = new System.Drawing.Size(120, 27);
+            this.startDaypicker.Name = "startDaypicker";
+            this.startDaypicker.Size = new System.Drawing.Size(120, 27);
+            this.startDaypicker.TabIndex = 13;
             // 
             // tableTuyenDung
             // 
@@ -224,6 +345,14 @@
             this.tableTuyenDung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableTuyenDung.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.tableTuyenDung.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableTuyenDung.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tableTuyenDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableTuyenDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.maTuyenDung,
@@ -231,17 +360,27 @@
             this.hocVan,
             this.gioiTinh,
             this.doTuoi,
-            this.slHoSo,
+            this.soLuongCanTuyen,
+            this.soLuongNop,
             this.soLuongDaTuyen,
-            this.hanNop,
-            this.mucLuong,
+            this.hanNopHoSo,
+            this.mucLuongToiDa,
             this.mucLuongToiThieu});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tableTuyenDung.DefaultCellStyle = dataGridViewCellStyle2;
             this.tableTuyenDung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableTuyenDung.Location = new System.Drawing.Point(0, 59);
             this.tableTuyenDung.Margin = new System.Windows.Forms.Padding(0);
             this.tableTuyenDung.Name = "tableTuyenDung";
             this.tableTuyenDung.ReadOnly = true;
             this.tableTuyenDung.RowHeadersVisible = false;
+            this.tableTuyenDung.RowHeadersWidth = 62;
             this.tableTuyenDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tableTuyenDung.Size = new System.Drawing.Size(1019, 557);
             this.tableTuyenDung.TabIndex = 2;
@@ -250,6 +389,7 @@
             // 
             this.maTuyenDung.DataPropertyName = "MaTuyenDung";
             this.maTuyenDung.HeaderText = "Mã Tuyển Dụng";
+            this.maTuyenDung.MinimumWidth = 8;
             this.maTuyenDung.Name = "maTuyenDung";
             this.maTuyenDung.ReadOnly = true;
             // 
@@ -257,6 +397,7 @@
             // 
             this.chucVu.DataPropertyName = "ChucVu";
             this.chucVu.HeaderText = "Chức vụ";
+            this.chucVu.MinimumWidth = 8;
             this.chucVu.Name = "chucVu";
             this.chucVu.ReadOnly = true;
             // 
@@ -264,6 +405,7 @@
             // 
             this.hocVan.DataPropertyName = "HocVan";
             this.hocVan.HeaderText = "Học Vấn";
+            this.hocVan.MinimumWidth = 8;
             this.hocVan.Name = "hocVan";
             this.hocVan.ReadOnly = true;
             // 
@@ -271,6 +413,7 @@
             // 
             this.gioiTinh.DataPropertyName = "GioiTinh";
             this.gioiTinh.HeaderText = "Giới Tính";
+            this.gioiTinh.MinimumWidth = 8;
             this.gioiTinh.Name = "gioiTinh";
             this.gioiTinh.ReadOnly = true;
             // 
@@ -278,41 +421,55 @@
             // 
             this.doTuoi.DataPropertyName = "DoTuoi";
             this.doTuoi.HeaderText = "Độ Tuổi";
+            this.doTuoi.MinimumWidth = 8;
             this.doTuoi.Name = "doTuoi";
             this.doTuoi.ReadOnly = true;
             // 
-            // slHoSo
+            // soLuongCanTuyen
             // 
-            this.slHoSo.DataPropertyName = "SoLuongNopHoSo";
-            this.slHoSo.HeaderText = "SL Hồ sơ";
-            this.slHoSo.Name = "slHoSo";
-            this.slHoSo.ReadOnly = true;
+            this.soLuongCanTuyen.DataPropertyName = "SoLuongCanTuyen";
+            this.soLuongCanTuyen.HeaderText = "SL Cần Tuyển";
+            this.soLuongCanTuyen.MinimumWidth = 8;
+            this.soLuongCanTuyen.Name = "soLuongCanTuyen";
+            this.soLuongCanTuyen.ReadOnly = true;
+            // 
+            // soLuongNop
+            // 
+            this.soLuongNop.DataPropertyName = "SoLuongNop";
+            this.soLuongNop.HeaderText = "SL Hồ sơ";
+            this.soLuongNop.MinimumWidth = 8;
+            this.soLuongNop.Name = "soLuongNop";
+            this.soLuongNop.ReadOnly = true;
             // 
             // soLuongDaTuyen
             // 
             this.soLuongDaTuyen.DataPropertyName = "SoLuongDaTuyen";
             this.soLuongDaTuyen.HeaderText = "SL đã tuyển";
+            this.soLuongDaTuyen.MinimumWidth = 8;
             this.soLuongDaTuyen.Name = "soLuongDaTuyen";
             this.soLuongDaTuyen.ReadOnly = true;
             // 
-            // hanNop
+            // hanNopHoSo
             // 
-            this.hanNop.DataPropertyName = "HanNopHoSo";
-            this.hanNop.HeaderText = "Hạn Nộp";
-            this.hanNop.Name = "hanNop";
-            this.hanNop.ReadOnly = true;
+            this.hanNopHoSo.DataPropertyName = "HanNopHoSo";
+            this.hanNopHoSo.HeaderText = "Hạn Nộp";
+            this.hanNopHoSo.MinimumWidth = 8;
+            this.hanNopHoSo.Name = "hanNopHoSo";
+            this.hanNopHoSo.ReadOnly = true;
             // 
-            // mucLuong
+            // mucLuongToiDa
             // 
-            this.mucLuong.DataPropertyName = "MucLuongToiDa";
-            this.mucLuong.HeaderText = "Mức Lương Tối Đa";
-            this.mucLuong.Name = "mucLuong";
-            this.mucLuong.ReadOnly = true;
+            this.mucLuongToiDa.DataPropertyName = "MucLuongToiDa";
+            this.mucLuongToiDa.HeaderText = "Mức Lương Tối Đa";
+            this.mucLuongToiDa.MinimumWidth = 8;
+            this.mucLuongToiDa.Name = "mucLuongToiDa";
+            this.mucLuongToiDa.ReadOnly = true;
             // 
             // mucLuongToiThieu
             // 
             this.mucLuongToiThieu.DataPropertyName = "MucLuongToiThieu";
             this.mucLuongToiThieu.HeaderText = "Mức Lương Tối Thiểu";
+            this.mucLuongToiThieu.MinimumWidth = 8;
             this.mucLuongToiThieu.Name = "mucLuongToiThieu";
             this.mucLuongToiThieu.ReadOnly = true;
             // 
@@ -329,6 +486,8 @@
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -350,17 +509,25 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label btnSearch;
         private System.Windows.Forms.DataGridView tableTuyenDung;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker endDayPicker;
+        private System.Windows.Forms.DateTimePicker startDaypicker;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn maTuyenDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn chucVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn hocVan;
         private System.Windows.Forms.DataGridViewTextBoxColumn gioiTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn doTuoi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slHoSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongCanTuyen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongNop;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDaTuyen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hanNop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hanNopHoSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mucLuongToiDa;
         private System.Windows.Forms.DataGridViewTextBoxColumn mucLuongToiThieu;
+        private System.Windows.Forms.Button btnSearchDay;
     }
 }

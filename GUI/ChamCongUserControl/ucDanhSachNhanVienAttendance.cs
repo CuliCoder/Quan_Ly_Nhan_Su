@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCong
 {
-    public partial class ucChamCong : UserControl
+    public partial class ucDanhSachNhanVienAttendance : UserControl
     {
         public event Action<string> EmployeeSelected;
         private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
-
-        public ucChamCong()
+        private AttendanceBLL attendanceBLL = new AttendanceBLL();
+        public ucDanhSachNhanVienAttendance()
         {
             InitializeComponent();
         }
@@ -32,7 +32,11 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
             try
             {
                 List<EmployeeFullDTO> employeeList = employeeBLL.GetAllEmployees();
-                dgvNhanVien.DataSource = employeeList;
+                foreach (var emp in employeeList)
+                {
+                    dgvNhanVien.Rows.Add(emp.MaNhanVien, emp.HoTen, emp.Email, emp.PhongBan, emp.ChucVu);
+                }
+
             }
             catch (Exception ex)
             {
@@ -42,15 +46,25 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
 
         private void dgvNhanVien_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgvNhanVien.Rows[e.RowIndex].DataBoundItem is EmployeeFullDTO selectedEmployee)
+            if (e.RowIndex < 0) return;
+            DataGridViewRow selectedEmployee = dgvNhanVien.Rows[e.RowIndex];
+            string id = selectedEmployee.Cells["colMaNV"].Value.ToString();
+            if (id == null || id == "")
             {
-                EmployeeSelected?.Invoke(selectedEmployee.MaNhanVien);
+                MessageBox.Show("Thiếu mã nhân viên");
+                return;
             }
+            EmployeeSelected?.Invoke(id);
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Chức năng tìm kiếm đang được phát triển.");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("" + attendanceBLL.addAttendance("NV003"));
         }
     }
 }

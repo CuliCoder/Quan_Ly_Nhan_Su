@@ -1,4 +1,4 @@
-using Quan_Ly_Nhan_Su.DAO;
+ï»¿using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System.Collections.Generic;
 
@@ -6,73 +6,31 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     public class SalaryBLL
     {
-        private readonly SalaryDAO _dao = new SalaryDAO();
+        private readonly SalaryDAO dao = new SalaryDAO();
 
-        // ALL
-        public List<SalaryDTO> GetAll()
+        public List<SalaryDTO> GetAllSalaries()
         {
-            return _dao.GetAll(); 
+            return dao.GetAll();
         }
 
-        // get by ID
-        public SalaryDTO GetById(string maLuong)
+        public bool AddSalary(SalaryDTO luong)
         {
-            if (string.IsNullOrWhiteSpace(maLuong))
-                return null;
-            return _dao.GetById(maLuong);
+            return dao.Insert(luong);
         }
 
-        // Thêm
-        public bool Insert(SalaryDTO salary)
+        public bool UpdateSalary(SalaryDTO luong)
         {
-            if (salary == null ||
-                string.IsNullOrWhiteSpace(salary.MaLuong) ||
-                salary.LuongCoBan < 0 ||
-                salary.LuongThuong < 0 ||
-                salary.PhuCapChucVu < 0 ||
-                salary.PhuCapKhac < 0 ||
-                salary.KhoanTruBaoHiem < 0 ||
-                salary.KhoanTruKhac < 0 ||
-                salary.Thue < 0)
-            {
-                return false;
-            }
-            if (_dao.GetById(salary.MaLuong) != null)
-                return false;
-
-            return _dao.Insert(salary);
+            return dao.Update(luong);
         }
 
-        // Update
-        public bool Update(SalaryDTO salary)
+        public bool DeleteSalary(string maLuong)
         {
-            if (salary == null ||
-                string.IsNullOrWhiteSpace(salary.MaLuong) ||
-                salary.LuongCoBan < 0 ||
-                salary.LuongThuong < 0 ||
-                salary.PhuCapChucVu < 0 ||
-                salary.PhuCapKhac < 0 ||
-                salary.KhoanTruBaoHiem < 0 ||
-                salary.KhoanTruKhac < 0 ||
-                salary.Thue < 0)
-            {
-                return false;
-            }
-            if (_dao.GetById(salary.MaLuong) == null)
-                return false;
-
-            return _dao.Update(salary);
+            return dao.Delete(maLuong);
         }
 
-        // Xóa (set TinhTrang = 0)
-        public bool Delete(string maLuong)
+        public List<SalaryDTO> SearchSalary(string tuKhoa)
         {
-            if (string.IsNullOrWhiteSpace(maLuong))
-                return false;
-            if (_dao.GetById(maLuong) == null)
-                return false;
-
-            return _dao.Delete(maLuong);
+            return dao.Search(tuKhoa);
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         private decimal? mucLuongToiDa;
         private int soLuongNop;
         private int soLuongDaTuyen;
+        private int soLuongCanTuyen;
 
         // Ứng viên
         private string maUngVien;
@@ -61,7 +62,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         public decimal? MucLuongToiDa { get => mucLuongToiDa; set => mucLuongToiDa = value; }
         public int SoLuongNop { get => soLuongNop; set => soLuongNop = value; }
         public int SoLuongDaTuyen { get => soLuongDaTuyen; set => soLuongDaTuyen = value; }
-
+        public int SoLuongCanTuyen { get => soLuongCanTuyen; set => soLuongCanTuyen = value; }
         public string MaUngVien { get => maUngVien; set => maUngVien = value; }
         public decimal? MucLuongDeal { get => mucLuongDeal; set => mucLuongDeal = value; }
         public string TrangThai { get => trangThai; set => trangThai = value; }
@@ -78,7 +79,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             string trinhDoHocVan, string honNhan, string chuyenNganh, string hinhAnh,
             string maTuyenDung, string chucVu, string gioiTinhTuyenDung, string doTuoi,
             DateTime hanNopHoSo, decimal? mucLuongToiThieu, decimal? mucLuongToiDa,
-            int soLuongNop, int soLuongDaTuyen,
+            int soLuongNop, int soLuongDaTuyen, int soLuongCanTuyen,
             string maUngVien, decimal? mucLuongDeal, string trangThai)
         {
             SoCmnd = soCmnd;
@@ -104,6 +105,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             MucLuongToiDa = mucLuongToiDa;
             SoLuongNop = soLuongNop;
             SoLuongDaTuyen = soLuongDaTuyen;
+            SoLuongCanTuyen = soLuongCanTuyen;
             MaUngVien = maUngVien;
             MucLuongDeal = mucLuongDeal;
             TrangThai = trangThai;
@@ -137,6 +139,7 @@ namespace Quan_Ly_Nhan_Su.DTO
                 MucLuongToiDa = other.MucLuongToiDa;
                 SoLuongNop = other.SoLuongNop;
                 SoLuongDaTuyen = other.SoLuongDaTuyen;
+                SoLuongCanTuyen = other.SoLuongCanTuyen;
                 MaUngVien = other.MaUngVien;
                 MucLuongDeal = other.MucLuongDeal;
                 TrangThai = other.TrangThai;
@@ -174,7 +177,9 @@ namespace Quan_Ly_Nhan_Su.DTO
                 $"Mức lương tối thiểu: {MucLuongToiThieu}\n" +
                 $"Mức lương tối đa: {MucLuongToiDa}\n" +
                 $"Số lượng nộp: {SoLuongNop}\n" +
+                $"Số lượng cần tuyền: {SoLuongCanTuyen}\n" +
                 $"Số lượng đã tuyển: {SoLuongDaTuyen}";
+            
         }
     }
 }
