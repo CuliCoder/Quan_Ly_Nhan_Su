@@ -10,7 +10,8 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class BillFormGUI : Form
     {
-        private readonly SalaryBLL _salaryBLL = new SalaryBLL();
+        private readonly SalaryFullBLL _salaryFullBLL = new SalaryFullBLL();
+        private readonly EmployeeFullBLL _employeeBLL = new EmployeeFullBLL();
         private readonly string _maNhanVien;
 
         // Dùng khi in
@@ -23,7 +24,10 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             _maNhanVien = maNhanVien; // không thao tác layout ở đây để Designer mở an toàn
-            this.Load += BillFormGUI_Load; // bảo đảm đã gắn sự kiện Load
+
+            // Gắn sự kiện load và in
+            this.Load += BillFormGUI_Load;
+            this.btnPrint.Click += btnPrint_Click;
         }
 
         /// <summary>
@@ -52,51 +56,54 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if (string.IsNullOrWhiteSpace(_maNhanVien))
             {
-                MessageBox.Show("Chưa có mã nhân viên. Vui lòng truyền mã nhân viên khi mở form.",
-                    "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Nếu không có mã, chỉ giữ giao diện mẫu
                 return;
             }
 
-            SalaryDTO data = _salaryBLL.GetSalaryByEmployee(_maNhanVien);
-            if (data == null)
+            int thang = DateTime.Now.Month;
+            int nam = DateTime.Now.Year;
+
+            SalaryFullDTO salary = _salaryFullBLL.GetSalaryFull(_maNhanVien, thang, nam);
+            var employee = _employeeBLL.GetEmployeeById(_maNhanVien);
+
+            if (salary == null && employee == null)
             {
-                MessageBox.Show("Không tìm thấy dữ liệu lương cho nhân viên này!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không tìm thấy dữ liệu cho nhân viên này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             // Thông tin nhân viên
-            lblMaNV.Text = $"Mã NV: {Safe(data.MaNhanVien)}";
-            lblHoTen.Text = $"Họ tên: {Safe(data.HoTen)}";
-            lblPhongBan.Text = $"Phòng ban: {Safe(data.TenPhong)}";
-            lblChucVu.Text = $"Chức vụ: {Safe(data.TenChucVu)}";
+            lblMaNV.Text = $"Mã NV: {Safe(employee?.MaNhanVien ?? _maNhanVien)}";
+            lblHoTen.Text = $"Họ tên: {Safe(employee?.HoTen)}";
+            lblPhongBan.Text = $"Phòng ban: {Safe(employee?.PhongBan)}";
+            lblChucVu.Text = $"Chức vụ: {Safe(employee?.ChucVu)}";
 
-            // Thu nhập
-            lblLuongCoBan.Text = $"Lương cơ bản: {FmtVND(data.LuongCoBan)}";
-            lblThuong.Text = $"Thưởng: {FmtVND(data.LuongThuong)}";
-            lblPhuCapCV.Text = $"Phụ cấp chức vụ: {FmtVND(data.PhuCapChucVu)}";
-            lblPhuCapKhac.Text = $"Phụ cấp khác: {FmtVND(data.PhuCapKhac)}";
+            if (salary != null)
+            {
+                // Thu nhập
+                lblLuongCoBan.Text = $"Lương cơ bản: {FmtVND(salary.LuongCoBan)}";
+                lblThuong.Text = $"Thưởng: {salary.TongThuong:N0} %";
+                // Hiện tổng phụ cấp vào phụ cấp khác (chi tiết nếu có thể tách thì cập nhật sau)
+                lblPhuCapCV.Text = $"Phụ cấp chức vụ: {FmtVND(0)}";
+                lblPhuCapKhac.Text = $"Phụ cấp khác: {FmtVND(salary.TongPhuCap)}";
 
-            // Khấu trừ
-            lblTruBH.Text = $"Khấu trừ BH: {FmtVND(data.KhoanTruBaoHiem)}";
-            lblTruKhac.Text = $"Khấu trừ khác: {FmtVND(data.KhoanTruKhac)}";
-            lblThue.Text = $"Thuế TNCN: {FmtVND(data.Thue)}";
+                // Khoản trừ
+                lblTruBH.Text = $"Khấu trừ BH: {FmtVND(0)}";
+                lblTruKhac.Text = $"Khấu trừ khác: {FmtVND(salary.TongKhoanTru)}";
+                lblThue.Text = $"Thuế TNCN: {FmtVND(0)}";
 
-            // Thực lãnh
-            var thucLanh = data.ThucLanh ?? (data.LuongCoBan + data.LuongThuong + data.PhuCapChucVu + data.PhuCapKhac
-                                             - data.KhoanTruBaoHiem - data.KhoanTruKhac - data.Thue);
-            lblThucLanh.Text = $"👉 Thực lãnh: {FmtVND(thucLanh)}";
+                // Thực lãnh
+                lblThucLanh.Text = $"👉 Thực lãnh: {FmtVND(salary.LuongThucLanh)}";
 
-            // Ngày lập
-            lblNgayLap.Text = $"Ngày: {(data.NgayLap ?? DateTime.Now):dd/MM/yyyy}";
+                // Ngày lập
+                lblNgayLap.Text = $"Ngày: {DateTime.Now:dd/MM/yyyy}";
+            }
         }
 
         private static string Safe(string s) => string.IsNullOrWhiteSpace(s) ? "-" : s.Trim();
 
         private static string FmtVND(decimal value)
         {
-            // Định dạng VN: phân tách hàng nghìn, không ký hiệu tiền để ghép "VNĐ" tùy ý
-            // Dùng vi-VN để có dấu chấm/phẩy quen thuộc
             var vi = new CultureInfo("vi-VN");
             return string.Format(vi, "{0:N0} VNĐ", value);
         }

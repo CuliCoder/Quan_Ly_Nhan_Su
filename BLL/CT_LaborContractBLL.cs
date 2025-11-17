@@ -11,27 +11,87 @@ namespace Quan_Ly_Nhan_Su.BLL
 {
     internal class CT_LaborContractBLL
     {
+
         // Giả lập danh sách hợp đồng (thay bằng truy vấn cơ sở dữ liệu thực tế)
         private List<LaborContractDTO> _contracts;
-
-        public CT_LaborContractBLL()
+        public List<LaborContractDTO> GetAllContracts()
         {
-            // Khởi tạo dữ liệu mẫu (có thể thay bằng kết nối DB)
-            _contracts = new List<LaborContractDTO>
+            var contracts = new List<LaborContractDTO>();
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
             {
-                new LaborContractDTO
+                conn = connectDB.getConnection();
+                conn.Open();
+                string query = @"
+                SELECT 
+                    hd.maHopDong,
+                    hd.maNhanVien,
+                    CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
+                    pb.tenPhong AS phongBan,
+                    hd.tuNgay,
+                    hd.denNgay,
+                    hd.loaiHopDong,
+                    hd.luongCoBan,
+                    hs.anh
+                FROM hopdonglaodong hd
+                    LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+                    LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+                    LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong";
+
+                using (var command = new MySqlCommand(query, conn))
                 {
-                    MaNhanVien = "001",
-                    TenNhanVien = "Nguyễn Văn A",
-                    PhongBan = "ABC",
-                    MaHopDong = "HD001",
-                    DenNgay = DateTime.Parse("20/09/2025"),
-                    LoaiHopDong = "1 năm",
-                    LuongCoBan = 999999999
+                    reader = command.ExecuteReader();
+                    int stt = 1;
+                    while (reader.Read())
+                    {
+                        contracts.Add(new LaborContractDTO
+                        {
+                            STT = stt++,
+                            MaHopDong = reader["maHopDong"].ToString(),
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            TenNhanVien = reader["tenNhanVien"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
+                            DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
+                            LoaiHopDong = reader["loaiHopDong"].ToString(),
+                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m,
+                            HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : ""
+                        });
+                    }
                 }
-                // Thêm các hợp đồng khác nếu cần
-            };
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error DAO: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+            return contracts;
         }
+
+        //public CT_LaborContractBLL()
+        //{
+        //    // Khởi tạo dữ liệu mẫu (có thể thay bằng kết nối DB)
+        //    _contracts = new List<LaborContractDTO>
+        //    {
+        //        new LaborContractDTO
+        //        {
+        //            MaNhanVien = "001",
+        //            TenNhanVien = "Nguyễn Văn A",
+        //            PhongBan = "ABC",
+        //            MaHopDong = "HD001",
+        //            DenNgay = DateTime.Parse("20/09/2025"),
+        //            LoaiHopDong = "1 năm",
+        //            LuongCoBan = 999999999
+        //        }
+        //        // Thêm các hợp đồng khác nếu cần
+        //    };
+        //}
 
         /// <summary>
         /// Lấy thông tin chi tiết hợp đồng theo mã hợp đồng
@@ -53,21 +113,21 @@ namespace Quan_Ly_Nhan_Su.BLL
                 conn = connectDB.getConnection();
                 conn.Open();
                 string query = @"
-            SELECT 
-                hd.maHopDong,
-                hd.maNhanVien,
-                CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
-                pb.tenPhong AS phongBan,
-                hd.tuNgay,
-                hd.denNgay,
-                hd.loaiHopDong,
-                hd.luongCoBan,
-                hs.anh  -- Lấy cột 'anh'
-            FROM hopdonglaodong hd
-            LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
-            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
-            LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-            WHERE hd.maHopDong = @maHopDong";
+                SELECT 
+                    hd.maHopDong,
+                    hd.maNhanVien,
+                    CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
+                    pb.tenPhong AS phongBan,
+                    hd.tuNgay,
+                    hd.denNgay,
+                    hd.loaiHopDong,
+                    hd.luongCoBan,
+                    hs.anh
+                FROM hopdonglaodong hd
+                    LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+                    LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+                    LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+                WHERE hd.maHopDong = @maHopDong";
 
                 using (var command = new MySqlCommand(query, conn))
                 {
