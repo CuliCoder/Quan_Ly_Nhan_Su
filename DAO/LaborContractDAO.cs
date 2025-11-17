@@ -41,15 +41,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-                    LEFT JOIN (
-                        SELECT MaNhanVien, LuongCoBan
-                        FROM luong
-                        WHERE (MaNhanVien, Nam, Thang) IN (
-                            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
-                            FROM luong
-                            GROUP BY MaNhanVien
-                        )
-                    ) l ON hd.maNhanVien = l.MaNhanVien
+                    LEFT JOIN luong l ON hd.maNhanVien = l.MaNhanVien
                     ORDER BY hd.tuNgay DESC";
 
                 using (var command = new MySqlCommand(query, conn))
@@ -371,10 +363,10 @@ namespace Quan_Ly_Nhan_Su.DAO
                             MaQuyetDinh = reader["maQuyetDinh"].ToString(),
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             NgayQuyetDinh = reader["ngayQuyetDinh"] != DBNull.Value
-                                ? Convert.ToDateTime(reader["ngayQuyetDinh"])
+                                ? Convert.ToDateTime(reader["ngayQuyetDinh"]) 
                                 : DateTime.MinValue,
                             ThoiGianGiaHan = reader["thoiGianGiaHan"] != DBNull.Value
-                                ? Convert.ToDecimal(reader["thoiGianGiaHan"])
+                                ? Convert.ToDecimal(reader["thoiGianGiaHan"]) 
                                 : 0m
                         });
                     }
@@ -728,7 +720,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 conn = connectDB.getConnection();
                 conn.Open();
                 
-                // *** ĐÃ SỬA: Lấy lương mới nhất theo (Nam DESC, Thang DESC) ***
+                // Use simple join to luong; schema does not include Nam/Thang in luong
                 string query = @"
     SELECT 
         hd.maHopDong,
@@ -744,15 +736,7 @@ namespace Quan_Ly_Nhan_Su.DAO
     LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
     LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-    LEFT JOIN (
-        SELECT MaNhanVien, LuongCoBan, Nam, Thang
-        FROM luong
-        WHERE (MaNhanVien, Nam, Thang) IN (
-            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
-            FROM luong
-            GROUP BY MaNhanVien
-        )
-    ) l ON hd.maNhanVien = l.MaNhanVien
+    LEFT JOIN luong l ON hd.maNhanVien = l.MaNhanVien
     WHERE hd.maHopDong = @maHopDong";
 
         using (var command = new MySqlCommand(query, conn))
