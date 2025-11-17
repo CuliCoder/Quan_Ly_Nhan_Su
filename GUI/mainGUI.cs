@@ -1,12 +1,11 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.config;
-using Quan_Ly_Nhan_Su.GUI.ChamCong;
+using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
 using Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl;
 using Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl;
 using Quan_Ly_Nhan_Su.GUI.NhanVienUserControl;
 using Quan_Ly_Nhan_Su.GUI.TaiKhoanUserControl;
 using Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl;
-using Quan_Ly_Nhan_Su.GUI.ChamCongUserControl;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

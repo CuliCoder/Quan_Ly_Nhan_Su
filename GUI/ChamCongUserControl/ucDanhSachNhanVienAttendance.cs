@@ -2,9 +2,10 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Quan_Ly_Nhan_Su.GUI.ChamCong
+namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     public partial class ucDanhSachNhanVienAttendance : UserControl
     {
@@ -14,6 +15,9 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
         public ucDanhSachNhanVienAttendance()
         {
             InitializeComponent();
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
         }
 
         private void ucChamCong_Load(object sender, EventArgs e)

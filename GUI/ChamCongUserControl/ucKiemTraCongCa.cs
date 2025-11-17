@@ -3,10 +3,11 @@ using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
-namespace Quan_Ly_Nhan_Su.GUI.ChamCong
+namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     public partial class ucKiemTraCongCa : UserControl
     {
@@ -18,14 +19,19 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCong
 
         public ucKiemTraCongCa()
         {
-            if (SessionManager.Instance.CurrentEmployee == null)
-            {
-                return;
-            }
+            //    InitializeComponent();
+            //    if (SessionManager.Instance.CurrentEmployee == null)
+            //    {
+            //        return;
+            //    }
+            //    btnBack.Visible = false;
+            //    loadCmb();
+            //    LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+            //}
             InitializeComponent();
-            btnBack.Visible = false;
-            loadCmb();
-            LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
         }
         public void checkCongCaByIDNV(string maNhanVien)
         {
