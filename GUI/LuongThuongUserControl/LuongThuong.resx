@@ -186,4 +186,17 @@
   <metadata name="mySqlDataAdapter1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>171, 17</value>
   </metadata>
+  <data name="btnLocPCKT.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAbtJREFUWEftlksrhVEUhh+3woRyJwxkQknyD0RJ4UfIb3CZKBPlMlBERKHwN1yS
+        ZEoURpSJMnG/9dY69bVy2ec454zOU3vyvWutvfbaa+/9QYYMYdQBQ8AucA08AzfAHjAM1HuHZJEPTAFP
+        wOcvQ/q02SeNcuDAJngHtoBeoArIAyqBHmAdeDO7Q6DCB0oErSQ2+RXQ7g0cLcB5JIl/V2IyMrlWGkIJ
+        cGZ+2o6EqQUerex/rdzTDLxaTyTcmOp2rWLbC4GsmP+oF0LZsQD9Xgik0/z3vRCKzrcCVHshkGLzv/VC
+        KLpkFKDAC3GgPlAPZXkhhFgFarwQSJH533shFF2vCtDnhUA6zF/3SEKMWIBNLwSybP7jXghF51fnWHvY
+        5sU/aAJerAcavBgPM7aKS6DMiz+g7j8xv3kvxotOwJEFuwBavYFDN+Cp2WtsADneKF706h1bQL12evW6
+        IxUpBbqAVSt5bPLYWEtGEoXArO2rnyA6lOAisJSKJIQaasy25c6CP1iFJoBGs9PFo0RSkkSUbP8hQtqS
+        +A0lMeeS0B9VrjdMJd9VQg2bVqKV+AAGvUE6UBILwIAXMmQQX3mChrt3llLYAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

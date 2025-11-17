@@ -168,6 +168,32 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             }
         }
 
+        private void SearchPCKTData()
+        {
+            if (tbLocPCKT.Text == null)
+            {
+                dataPCKT.DataSource = null;
+                dataPCKT.DataSource = listAllowanceDeduction;
+            }
+            else
+            {
+                string keyword = tbLocPCKT.Text.Trim().ToLower();
+                int thang = dateLocPCKT.Value.Month;
+                int nam = dateLocPCKT.Value.Year;
+
+                var filteredList = listAllowanceDeduction
+                    .Where(s =>
+                        (s.ThangApDung == thang && s.NamApDung == nam) &&
+                        (s.MaNhanVien.ToLower().Contains(keyword) ||
+                        s.MaPhuCapKhoanTru.ToString().Contains(keyword) ||
+                        s.MoTa.ToLower().Contains(keyword)))
+                    .ToList();
+
+                dataPCKT.DataSource = null;
+                dataPCKT.DataSource = filteredList;
+            }
+        }
+
         private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -296,6 +322,100 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
         private void label12_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLocPCKT_Click(object sender, EventArgs e)
+        {
+            SearchPCKTData();
+        }
+
+        private void btnSearchPCKT_Click(object sender, EventArgs e)
+        {
+            int thang = dateLocPCKT.Value.Month;
+            int nam = dateLocPCKT.Value.Year;
+
+            var filteredList = listAllowanceDeduction
+                .Where(s => s.ThangApDung == thang && s.NamApDung == nam)
+                .ToList();
+
+            dataPCKT.DataSource = null;
+            dataPCKT.DataSource = filteredList;
+        }
+
+        private void btnPC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNV = "1";
+                string moTa = tbNotePC.Text.Trim();
+                decimal soTien = decimal.Parse(tbSoTienPC.Text.Trim());
+
+                int thang = datePC.Value.Month;
+                int nam = datePC.Value.Year;
+                string loai = "PhuCap";
+
+                if (string.IsNullOrEmpty(maNV) || string.IsNullOrEmpty(moTa))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                }
+
+                AllowanceDeductionDTO pCKT = new AllowanceDeductionDTO(maNV, loai, moTa, soTien, thang, nam);
+                bool result = allowanceDeductionBLL.Insert(pCKT);
+
+                if (result)
+                {
+                    MessageBox.Show("Thêm phụ cấp thành công!");
+                    listAllowanceDeduction = allowanceDeductionBLL.GetAll();
+                    dataPCKT.DataSource = null;
+                    dataPCKT.DataSource = listAllowanceDeduction;
+                }
+
+                else
+                    MessageBox.Show("Không thể thêm phụ cấp!");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Số tiền phải là số hợp lệ!");
+            }
+        }
+
+        private void btnKT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNV = "1";
+                string moTa = tbNotePC.Text.Trim();
+                decimal soTien = decimal.Parse(tbSoTienPC.Text.Trim());
+
+                int thang = datePC.Value.Month;
+                int nam = datePC.Value.Year;
+                string loai = "KhoanTru";
+
+                if (string.IsNullOrEmpty(maNV) || string.IsNullOrEmpty(moTa))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                }
+
+                AllowanceDeductionDTO pCKT = new AllowanceDeductionDTO(maNV, loai, moTa, soTien, thang, nam);
+                bool result = allowanceDeductionBLL.Insert(pCKT);
+
+                if (result)
+                {
+                    MessageBox.Show("Thêm khoản trừ thành công!");
+                    listAllowanceDeduction = allowanceDeductionBLL.GetAll();
+                    dataPCKT.DataSource = null;
+                    dataPCKT.DataSource = listAllowanceDeduction;
+                }
+
+                else
+                    MessageBox.Show("Không thể thêm khoản trừ!");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Số tiền phải là số hợp lệ!");
+            }
         }
     }
 }

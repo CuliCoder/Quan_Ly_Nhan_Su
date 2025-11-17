@@ -17,10 +17,9 @@ namespace Quan_Ly_Nhan_Su.DTO
 
         public AllowanceDeductionDTO() { }
 
-        public AllowanceDeductionDTO(int maPhuCapKhoanTru, string maNhanVien, string loai, string moTa,
+        public AllowanceDeductionDTO(string maNhanVien, string loai, string moTa,
                                  decimal soTien, int thangApDung, int namApDung)
         {
-            MaPhuCapKhoanTru = maPhuCapKhoanTru;
             MaNhanVien = maNhanVien;
             Loai = loai;
             MoTa = moTa;
