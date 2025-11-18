@@ -587,8 +587,35 @@ namespace Quan_Ly_Nhan_Su.DAO
                 if (!string.IsNullOrEmpty(phongBan))
                     query += " AND pb.tenPhong = @phongBan";
 
+                // Interpret sortBySalary parameter as a sort key (can be LUONG_ASC, LUONG_DESC, NGAY_ASC, NGAY_DESC)
                 if (!string.IsNullOrEmpty(sortBySalary))
-                    query += $" ORDER BY nv.mucLuong {sortBySalary}";
+                {
+                    switch (sortBySalary)
+                    {
+                        case "LUONG_ASC":
+                            query += " ORDER BY nv.mucLuong ASC";
+                            break;
+                        case "LUONG_DESC":
+                            query += " ORDER BY nv.mucLuong DESC";
+                            break;
+                        case "NGAY_ASC":
+                            // Order by the alias ngayVaoLam (hs.ngaySinh)
+                            query += " ORDER BY hs.ngaySinh ASC";
+                            break;
+                        case "NGAY_DESC":
+                            query += " ORDER BY hs.ngaySinh DESC";
+                            break;
+                        default:
+                            // fallback: order by employee id
+                            query += " ORDER BY nv.maNhanVien ASC";
+                            break;
+                    }
+                }
+                else
+                {
+                    // Default ordering
+                    query += " ORDER BY nv.maNhanVien ASC";
+                }
 
                 using (var command = new MySqlCommand(query, conn))
                 {
@@ -1040,6 +1067,108 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return employees;
         }
+
+        /// <summary>
+        /// Lấy danh sách hợp đồng theo bộ lọc ngày và phòng ban, kèm sắp xếp
+        /// </summary>
+        public List<LaborContractDTO> GetContracts(DateTime? fromDate = null, DateTime? toDate = null, string phongBan = null, string sortKey = null)
+        {
+            var contracts = new List<LaborContractDTO>();
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                string query = @"
+            SELECT 
+                hd.maHopDong,
+                CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
+                pb.tenPhong AS phongBan,
+                hd.tuNgay,
+                hd.denNgay,
+                hd.loaiHopDong,
+                IFNULL(l.LuongCoBan, 0) AS luongCoBan
+            FROM hopdonglaodong hd
+            LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+            LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+            LEFT JOIN luong l ON hd.maNhanVien = l.MaNhanVien
+            WHERE 1=1";
+
+                if (!string.IsNullOrEmpty(phongBan))
+                {
+                    query += " AND pb.tenPhong = @phongBan";
+                }
+
+                if (fromDate.HasValue)
+                {
+                    query += " AND hd.tuNgay >= @fromDate";
+                }
+
+                if (toDate.HasValue)
+                {
+                    query += " AND (hd.denNgay IS NOT NULL AND hd.denNgay <= @toDate)";
+                }
+
+                // sortKey: TU_ASC, TU_DESC, DEN_ASC, DEN_DESC, LUONG_ASC, LUONG_DESC
+                if (!string.IsNullOrEmpty(sortKey))
+                {
+                    switch (sortKey)
+                    {
+                        case "TU_ASC": query += " ORDER BY hd.tuNgay ASC"; break;
+                        case "TU_DESC": query += " ORDER BY hd.tuNgay DESC"; break;
+                        case "DEN_ASC": query += " ORDER BY hd.denNgay ASC"; break;
+                        case "DEN_DESC": query += " ORDER BY hd.denNgay DESC"; break;
+                        case "LUONG_ASC": query += " ORDER BY l.LuongCoBan ASC"; break;
+                        case "LUONG_DESC": query += " ORDER BY l.LuongCoBan DESC"; break;
+                        default: query += " ORDER BY hd.tuNgay DESC"; break;
+                    }
+                }
+                else
+                {
+                    query += " ORDER BY hd.tuNgay DESC";
+                }
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    if (!string.IsNullOrEmpty(phongBan)) cmd.Parameters.AddWithValue("@phongBan", phongBan);
+                    if (fromDate.HasValue) cmd.Parameters.AddWithValue("@fromDate", fromDate.Value.Date);
+                    if (toDate.HasValue) cmd.Parameters.AddWithValue("@toDate", toDate.Value.Date);
+
+                    reader = cmd.ExecuteReader();
+                    int stt = 1;
+                    while (reader.Read())
+                    {
+                        contracts.Add(new LaborContractDTO
+                        {
+                            STT = stt++,
+                            MaHopDong = reader["maHopDong"].ToString(),
+                            TenNhanVien = reader["tenNhanVien"].ToString(),
+                            PhongBan = reader["phongBan"].ToString(),
+                            TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
+                            DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
+                            LoaiHopDong = reader["loaiHopDong"].ToString(),
+                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m
+                        });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error GetContracts: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return contracts;
+        }
+
     }
 
 }
