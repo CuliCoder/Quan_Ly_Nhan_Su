@@ -15,13 +15,23 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     public partial class ThemTuyenDungForm : Form
     {
         public event EventHandler luuThongTinForm;
-        private static readonly RecruitmentBatchBLL bus = new RecruitmentBatchBLL();
-        private ErrorProvider errorProvider = new ErrorProvider();
+        private readonly RecruitmentBatchBLL bus;
+        private readonly ErrorProvider errorProvider;
+
         public ThemTuyenDungForm()
         {
             InitializeComponent();
-            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            // Khởi tạo các đối tượng
+            bus = new RecruitmentBatchBLL();
+
+            errorProvider = new ErrorProvider
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
         }
+
+
         private void button4_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

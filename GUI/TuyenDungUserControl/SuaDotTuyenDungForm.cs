@@ -15,14 +15,26 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     public partial class SuaDotTuyenDungForm : Form 
     {
         public event EventHandler luuThongTinForm;
-        private static readonly RecruitmentBatchBLL bus = new RecruitmentBatchBLL();
-        private RecruitmentBatchDTO batchDTO;
-        private ErrorProvider errorProvider = new ErrorProvider();
+        private readonly RecruitmentBatchBLL bus;
+        private readonly RecruitmentBatchDTO batchDTO;
+        private readonly ErrorProvider errorProvider;
+
         public SuaDotTuyenDungForm(RecruitmentBatchDTO dto)
         {
             InitializeComponent();
+
+            // Gán DTO truyền vào form
             batchDTO = dto;
+
+            // Khởi tạo BLL và ErrorProvider
+            bus = new RecruitmentBatchBLL();
+
+            errorProvider = new ErrorProvider
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
         }
+
 
         private bool ValidateInputs()
         {

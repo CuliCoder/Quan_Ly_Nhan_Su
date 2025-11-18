@@ -12,19 +12,25 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     
     public partial class FormThemUngVien : Form
     {
-        private PersonalProfileBLL busPerson = new PersonalProfileBLL();
-        private CandidateBLL busCadi = new CandidateBLL();
-        private CandidateFullBLL busFullCadi = new CandidateFullBLL();
-        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public event EventHandler luuThongTinForm;
-        private ErrorProvider errorProvider = new ErrorProvider();
+        private readonly CandidateFullBLL busFullCadi;
+        private readonly RecruitmentBatchBLL busBatch;
+        private readonly ErrorProvider errorProvider;
 
         public FormThemUngVien()
         {
             InitializeComponent();
-            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            busFullCadi = new CandidateFullBLL();
+            busBatch = new RecruitmentBatchBLL();
+            errorProvider = new ErrorProvider
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
+
             fillDataToCombobox();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -8,13 +8,16 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class TuyenDung : UserControl
     {
-        private static readonly RecruitmentBatchBLL bus = new RecruitmentBatchBLL();
-        private static List<RecruitmentBatchDTO> list;
+        private readonly RecruitmentBatchBLL bus;
+        private List<RecruitmentBatchDTO> list;
 
         public TuyenDung()
         {
             InitializeComponent();
+
+            bus = new RecruitmentBatchBLL();
             list = bus.GetAll();
+
             fillDataToTable(list);
         }
 

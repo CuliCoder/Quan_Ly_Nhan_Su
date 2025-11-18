@@ -105,7 +105,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             foreach (var nv in listNV)
             {
                 // Tìm tên phòng ban từ listPB
-                var pb = listPB.FirstOrDefault(x => x.MaPhong.Trim().Equals(nv.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var pb = listPB.FirstOrDefault(x =>
+                    (x.MaPhong?.Trim() ?? "")
+                        .Equals(nv.MaPhong?.Trim() ?? "", StringComparison.OrdinalIgnoreCase)
+                );
+
                 if (pb != null)
                 {
                     if (phongBanCount.ContainsKey(pb.MaPhong))
@@ -175,7 +179,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             foreach (var nv in listNV)
             {
                 // Tìm tên phòng ban từ listPB
-                var pb = listPB.FirstOrDefault(x => x.MaPhong.Trim().Equals(nv.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var pb = listPB.FirstOrDefault(x =>
+                    (x.MaPhong?.Trim() ?? "")
+                        .Equals(nv.MaPhong?.Trim() ?? "", StringComparison.OrdinalIgnoreCase)
+                );
+
                 if (pb != null)
                 {
                     if (phongBanCount.ContainsKey(pb.MaPhong))

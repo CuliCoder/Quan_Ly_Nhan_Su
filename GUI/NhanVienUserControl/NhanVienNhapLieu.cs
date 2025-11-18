@@ -16,16 +16,20 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
     public partial class NhanVienNhapLieu : UserControl
     {
         public event EventHandler QuayLaiClicked;
-        private DepartmentBLL department = new DepartmentBLL();
-        private EmployeeBLL employee = new EmployeeBLL();
+        private readonly DepartmentBLL department;
+        private readonly EmployeeBLL employee;
         public event EventHandler suKienLuu;
-        private ErrorProvider errorProvider = new ErrorProvider();
+        private readonly ErrorProvider errorProvider;
         public NhanVienNhapLieu()
         {
             InitializeComponent();
-            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            fillDataToCombobox();
-            ClearForm();
+            department = new DepartmentBLL();
+            employee = new EmployeeBLL();
+            errorProvider = new ErrorProvider 
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
+           
         }
 
         private void label1_Click(object sender, EventArgs e) 
@@ -33,13 +37,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             QuayLaiClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void fillDataToCombobox()
-        {
-            maPhongBanCbb.DataSource = department.GetAllDepartments();
-            maPhongBanCbb.DisplayMember = "TenPhong";
-            maPhongBanCbb.ValueMember = "MaPhong";
-            maPhongBanCbb.SelectedIndex = -1;
-        }
 
         public void ClearForm()
         {
@@ -63,8 +60,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             tTpTb.Text = "";
 
 
-            maPhongBanCbb.SelectedIndex = -1; 
-            maPhongBanCbb.Text = "";
 
             ngaySinhDate.Value = DateTime.Today;
             ngayCapDate.Value = DateTime.Today;
@@ -76,12 +71,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         private bool ValidateInputs()
         {
-            //Validate ma phong ban
-            if (maPhongBanCbb.SelectedIndex == -1)
-            {
-                errorProvider.SetError(maPhongBanCbb, "Vui lòng chọn phòng ban!");
-                return false;
-            }
             //hoten
 
             if(!GUIValidator.NotEmpty(hoTenTb, "Họ tên không được để trống!", errorProvider))
@@ -253,26 +242,25 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             if (!ValidateInputs())
                 return;
 
-
+            
             //Chức vụ
             PositionDTO positionDTO = new PositionDTO(
-               null,
-               "Nhân viên",
+               null, //mã chức vụ sẽ đưuọc tạo tự động
+               chucVuTb.Text,
                0,
                DateTime.Today.Date
             );
 
             //Hồ sơ cá nhân
-
             PersonalProfileDTO personalProfileDTO = LayDuLieuHoSoCaNhan();
 
             //nhân viên
             EmployeeDTO employeeDTO = new EmployeeDTO(
                 null,
                 cccdTb.Text,
-                null,
-                null,
-                maPhongBanCbb.SelectedValue.ToString(),
+                null, // mã chức vụ sẽ được tạo tự động trong DAO
+                null, // mã tài khoản sẽ được gán sau 
+                null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
                 Convert.ToDecimal(mucLuongTb.Text)
             );
 

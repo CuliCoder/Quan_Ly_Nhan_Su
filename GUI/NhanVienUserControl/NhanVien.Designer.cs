@@ -42,6 +42,8 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.exportBtn = new System.Windows.Forms.Label();
+            this.importBtn = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,8 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableData = new System.Windows.Forms.DataGridView();
-            this.importBtn = new System.Windows.Forms.Label();
-            this.exportBtn = new System.Windows.Forms.Label();
             this.chuyenMan.SuspendLayout();
             this.danhSachNhanVienPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -206,6 +206,40 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(25, 25);
             this.label7.TabIndex = 4;
+            // 
+            // exportBtn
+            // 
+            this.exportBtn.AutoSize = true;
+            this.exportBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.exportBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.exportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exportBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportBtn.Image = ((System.Drawing.Image)(resources.GetObject("exportBtn.Image")));
+            this.exportBtn.Location = new System.Drawing.Point(1002, 5);
+            this.exportBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
+            this.exportBtn.MaximumSize = new System.Drawing.Size(25, 25);
+            this.exportBtn.MinimumSize = new System.Drawing.Size(25, 25);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(25, 25);
+            this.exportBtn.TabIndex = 20;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
+            // importBtn
+            // 
+            this.importBtn.AutoSize = true;
+            this.importBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.importBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.importBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.importBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importBtn.Image = ((System.Drawing.Image)(resources.GetObject("importBtn.Image")));
+            this.importBtn.Location = new System.Drawing.Point(962, 5);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
+            this.importBtn.MaximumSize = new System.Drawing.Size(25, 25);
+            this.importBtn.MinimumSize = new System.Drawing.Size(25, 25);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(25, 25);
+            this.importBtn.TabIndex = 19;
+            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
             // 
             // flowLayoutPanel2
             // 
@@ -365,39 +399,6 @@
             this.tableData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tableData.Size = new System.Drawing.Size(1173, 690);
             this.tableData.TabIndex = 3;
-            // 
-            // importBtn
-            // 
-            this.importBtn.AutoSize = true;
-            this.importBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.importBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.importBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.importBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importBtn.Image = ((System.Drawing.Image)(resources.GetObject("importBtn.Image")));
-            this.importBtn.Location = new System.Drawing.Point(962, 5);
-            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
-            this.importBtn.MaximumSize = new System.Drawing.Size(25, 25);
-            this.importBtn.MinimumSize = new System.Drawing.Size(25, 25);
-            this.importBtn.Name = "importBtn";
-            this.importBtn.Size = new System.Drawing.Size(25, 25);
-            this.importBtn.TabIndex = 19;
-            // 
-            // exportBtn
-            // 
-            this.exportBtn.AutoSize = true;
-            this.exportBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.exportBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.exportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.exportBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportBtn.Image = ((System.Drawing.Image)(resources.GetObject("exportBtn.Image")));
-            this.exportBtn.Location = new System.Drawing.Point(1002, 5);
-            this.exportBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
-            this.exportBtn.MaximumSize = new System.Drawing.Size(25, 25);
-            this.exportBtn.MinimumSize = new System.Drawing.Size(25, 25);
-            this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(25, 25);
-            this.exportBtn.TabIndex = 20;
-            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // NhanVien
             // 
