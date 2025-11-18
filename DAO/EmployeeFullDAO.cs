@@ -27,7 +27,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 string query = @"
                     SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
                            hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
-                           nv.mucLuong, hs.diaChi, hs.anh, hs.noicap, hs.ngaycap, hs.tinhtranghonnhan, hs.dantoc
+                           nv.mucLuong, hs.diaChi, hs.anh, hs.noicap, hs.ngaycap, hs.tinhtranghonnhan, hs.dantoc, hs.tinhtranghonnhan
                     FROM nhanvien nv
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong

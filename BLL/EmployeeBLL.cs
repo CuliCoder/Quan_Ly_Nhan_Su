@@ -3,16 +3,18 @@ using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
     public class EmployeeBLL
     {
         private readonly EmployeeDAO _dao;
-
+        private readonly PersonalProfileBLL personalProfileBLL;
         public EmployeeBLL()
         {
             _dao = new EmployeeDAO();
+            personalProfileBLL = new PersonalProfileBLL();
         }
 
         public List<EmployeeDTO> GetAll() => _dao.getAll();
@@ -25,6 +27,21 @@ namespace Quan_Ly_Nhan_Su.BLL
         public bool InsertNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO, PositionDTO positionDTO)
         {
             return _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
+        }
+
+        public bool ImportExcelEmployees(List<EmployeeFullDTO> employees)
+        {
+            List<string> listcccd = new List<string>();
+            foreach (EmployeeFullDTO employee in employees)
+            {
+                if(!personalProfileBLL.checkID(employee.SoCmnd))
+                {        
+                    MessageBox.Show("Căn cước công dân " + employee.SoCmnd + " đã tồn tại trong hồ sơ cá nhân. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            return _dao.ImportEmployees(employees);
         }
 
         public bool Update(EmployeeDTO employeeDTO)

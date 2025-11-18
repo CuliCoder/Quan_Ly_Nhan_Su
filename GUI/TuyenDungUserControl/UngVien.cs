@@ -260,8 +260,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             var cellMaUngVien = currentRow.Cells["MaUngVien"]?.Value;
             var cellTrangThai = currentRow.Cells["TrangThai"]?.Value;
-
-
+   
             if (cellMaUngVien == null || cellTrangThai == null)
             {
                 MessageBox.Show("Không thể lấy dữ liệu ứng viên. Vui lòng thử lại!",
@@ -273,6 +272,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             string maUngVien = cellMaUngVien.ToString();
             string trangThai = cellTrangThai.ToString();
+ 
 
             if (trangThai.Equals("Đã Tuyển", StringComparison.OrdinalIgnoreCase))
             {
@@ -282,6 +282,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                                 MessageBoxIcon.Information);
                 return null;
             }
+
             return busFullData.GetById(maUngVien);
         }
 
@@ -290,7 +291,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void button1_Click(object sender, EventArgs e)
         {
             CandidateFullDTO candidate = getDataGirdview();
-            if(candidate != null)
+           
+            if (candidate != null)
             {
                 if(candidate.SoLuongDaTuyen == candidate.SoLuongCanTuyen)
                 {

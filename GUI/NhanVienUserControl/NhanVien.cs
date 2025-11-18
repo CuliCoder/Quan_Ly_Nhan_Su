@@ -5,18 +5,28 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using System.IO;
+using System.Data;
+using Org.BouncyCastle.Asn1.X509;
+using System.Linq;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVien : UserControl
     {
-        //phần này chưa được validate
-        NhanVienNhapLieu nhanVienNhapLieu = new NhanVienNhapLieu();
-        private EmployeeFullBLL employeeFullBLL = new EmployeeFullBLL();
-        private List<EmployeeFullDTO> listEmployyeFull = new List<EmployeeFullDTO>();
+        private readonly NhanVienNhapLieu nhanVienNhapLieu;
+
+        private readonly EmployeeFullBLL employeeFullBLL;
+        private readonly EmployeeBLL employeeBLL;
+        private List<EmployeeFullDTO> listEmployyeFull;
         public NhanVien()
         {
             InitializeComponent();
+
+            nhanVienNhapLieu = new NhanVienNhapLieu();
+            employeeFullBLL = new EmployeeFullBLL();
+            listEmployyeFull = new List<EmployeeFullDTO>();
+            employeeBLL = new EmployeeBLL();
+
             showDataToTable();
             nhanVienNhapLieu.QuayLaiClicked += (s, e) =>
             {
@@ -101,45 +111,172 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         private void ExportExcel(List<EmployeeFullDTO> list, string filePath)
         {
-            using (ExcelPackage package = new ExcelPackage())
+            try
             {
-                var ws = package.Workbook.Worksheets.Add("Danh_Sach_Nhan_Vien");
-                var props = typeof(EmployeeFullDTO).GetProperties();
-
-                for (int i = 0; i < props.Length; i++)
+                using (ExcelPackage package = new ExcelPackage())
                 {
-                    ws.Cells[1, i + 1].Value = props[i].Name;
-                    ws.Cells[1, i + 1].Style.Font.Bold = true;
-                    ws.Cells[1, i + 1].Style.Font.Size = 13;
+                    ExcelWorksheet ws = package.Workbook.Worksheets.Add("Danh_Sach_Nhan_Vien");
+                    var props = typeof(EmployeeFullDTO).GetProperties();
 
-                    ws.Column(i + 1).Style.Numberformat.Format = "@";
-                }
-
-                for (int row = 0; row < list.Count; row++)
-                {
-                    for (int col = 0; col < props.Length; col++)
+                    for (int i = 0; i < props.Length; i++)
                     {
-                        ws.Cells[row + 2, col + 1].Value = props[col].GetValue(list[row]);
+                        ws.Cells[1, i + 1].Value = props[i].Name;
+                        ws.Cells[1, i + 1].Style.Font.Bold = true;
+                        ws.Cells[1, i + 1].Style.Font.Size = 13;
+
+                        ws.Column(i + 1).Style.Numberformat.Format = "@";
+                    }
+
+                    for (int row = 0; row < list.Count; row++)
+                    {
+                        for (int col = 0; col < props.Length; col++)
+                        {
+                            ws.Cells[row + 2, col + 1].Value = props[col].GetValue(list[row]);
+                        }
+                    }
+
+                    ws.Cells.AutoFitColumns();
+                    package.SaveAs(new FileInfo(filePath));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi xuất file: " + ex.Message);
+            }
+        }
+
+        public List<EmployeeFullDTO> ImportExcel(string filePath)
+        {
+            List<EmployeeFullDTO> listImport = new List<EmployeeFullDTO>();
+            List<string> errors = new List<string>();
+
+            try { 
+            
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+                {
+                    if (package.Workbook.Worksheets.Count == 0)
+                        throw new Exception("File Excel không có Sheet nào!");
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.First();
+
+                    if (worksheet.Dimension == null) return listImport;
+
+                    int rowCount = worksheet.Dimension.End.Row;
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        try
+                        {
+                            EmployeeFullDTO emp = new EmployeeFullDTO();
+
+                            emp.MaNhanVien = null;
+                            emp.HoTen = worksheet.Cells[row, 2].Text;
+                            emp.NgaySinh = GetSafeDate(worksheet.Cells[row, 3], DateTime.Now);
+                            emp.GioiTinh = worksheet.Cells[row, 4].Text;
+                            emp.Email = worksheet.Cells[row, 5].Text;
+                            emp.Sdt = worksheet.Cells[row, 6].Text;
+                            emp.SoCmnd = worksheet.Cells[row, 7].Text;
+                            emp.NoiCap = worksheet.Cells[row, 8].Text;
+                            emp.NgayCap = GetSafeDate(worksheet.Cells[row, 9], DateTime.Now);
+                            emp.DanToc = worksheet.Cells[row, 10].Text;
+                            emp.TinhTranHonNhan = worksheet.Cells[row, 11].Text;
+                            emp.HocVan = worksheet.Cells[row, 12].Text;
+                            emp.ChuyenNganh = worksheet.Cells[row, 13].Text;
+                            emp.PhongBan = worksheet.Cells[row, 14].Text;
+                            emp.ChucVu = worksheet.Cells[row, 15].Text;
+                            emp.MucLuong = GetSafeDecimal(worksheet.Cells[row, 16]);
+
+                            emp.DiaChi = worksheet.Cells[row, 17].Text;
+                            emp.HinhAnh = worksheet.Cells[row, 18].Text;
+
+                            listImport.Add(emp);
+                        }
+                        catch (Exception ex)
+                        {                       
+                            errors.Add($"Dòng {row}: {ex.Message}");
+                        }
                     }
                 }
-
-                ws.Cells.AutoFitColumns();
-                package.SaveAs(new FileInfo(filePath));
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi đọc file: " + ex.Message);
+            }
+
+            if (listImport.Count == 0 && errors.Count > 0)
+            {
+                string msg = string.Join("\n", errors.Take(3));
+                throw new Exception("Không import được dòng nào. Lỗi mẫu:\n" + msg);
+            }
+
+            return listImport;
+        }
+
+        private DateTime GetSafeDate(ExcelRange cell, DateTime defaultValue)
+        {
+            if (cell.Value == null) return defaultValue;
+            if (cell.Value is DateTime dt) return dt;
+            if (cell.Value is double || cell.Value is int || cell.Value is decimal)
+            {
+                try { return DateTime.FromOADate(Convert.ToDouble(cell.Value)); }
+                catch { return defaultValue; }
+            }
+            if (DateTime.TryParse(cell.Text, out DateTime parsedDate))
+            {
+                return parsedDate;
+            }
+
+            return defaultValue;
+        }
+
+        private decimal GetSafeDecimal(ExcelRange cell)
+        {
+            if (cell.Value == null) return 0;
+            if (cell.Value is double || cell.Value is int || cell.Value is decimal)
+            {
+                return Convert.ToDecimal(cell.Value);
+            }
+
+            string cleanText = cell.Text.Replace(",", "").Replace(".", "").Trim();
+            if (decimal.TryParse(cleanText, out decimal result))
+            {
+                return result;
+            }
+            return 0;
         }
 
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
-            var save = new SaveFileDialog();
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Lưu file Excel";
             save.Filter = "Excel Files|*.xlsx";
 
             if (save.ShowDialog() == DialogResult.OK)
-            {
+            {            
                 ExportExcel(listEmployyeFull, save.FileName);
                 MessageBox.Show("Xuất Excel thành công!");
             }
+        }
 
+        private void importBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Chọn file excel";
+                openFileDialog.Filter = "Excel Files|*.xlsx";
+                
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    List<EmployeeFullDTO> importedEmployees =  ImportExcel(openFileDialog.FileName);
+                    if (employeeBLL.ImportExcelEmployees(importedEmployees))
+                    {                    
+                        MessageBox.Show("Nhập Excel thành công!");
+                        showDataToTable();
+                    }
+                    else
+                        MessageBox.Show("Nhập Excel thất bại!");
+                }
+            }
         }
     }
 }

@@ -47,18 +47,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             // Load dữ liệu form
             DisplayCandidateDetails(dtoFull);
-            fillDataToCombobox();
         }
 
-
-        private void fillDataToCombobox()
-        {
-            maPhongBanCbb.DataSource = department.GetAllDepartments();
-
-            maPhongBanCbb.DisplayMember = "TenPhong";
-            maPhongBanCbb.ValueMember = "MaPhong";
-            maPhongBanCbb.SelectedIndex = -1;
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -129,13 +119,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-
-            if(maPhongBanCbb.SelectedIndex == -1)
-            {
-                errorProvider.SetError(maPhongBanCbb, "Phải chọn phòng ban!");
-                return;
-            }
-
             if (!GUIValidator.NotEmpty(tbLuong, "Lương không được để trống!", errorProvider))
             {
                 return;
@@ -153,20 +136,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             
             PositionDTO positionDTO = new PositionDTO(
-               null,
-               "Nhân viên",
+               null, //mã chức vụ sẽ tự động kiểm tra và tạo trong DAO
+               dtoFull.ChucVu,
                0,
                DateTime.Today.Date
             );
 
             EmployeeDTO employeeDTO = new EmployeeDTO(
-                    null,
-                    showCCCDUV.Text,        
-                    null,
-                    null,
-                    maPhongBanCbb.SelectedValue.ToString(),
-                    Convert.ToDecimal(tbLuong.Text)
-                ); ;
+                null, // mã nhân viên sẽ tự động kiểm tra và tạo trong DAO
+                dtoFull.SoCmnd,
+                null, // mã chức vụ sẽ được tạo tự động trong DAO
+                null, // mã tài khoản sẽ được gán sau được cấp tài khoản
+                null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
+                Convert.ToDecimal(tbLuong.Text)
+            ); 
 
            
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
