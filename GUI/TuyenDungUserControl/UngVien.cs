@@ -2,30 +2,37 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     public partial class UngVien : UserControl
     {
-        private CandidateFullBLL busFullData = new CandidateFullBLL();
+        private readonly CandidateFullBLL busFullData;
+        private readonly RecruitmentBatchBLL busBatch;
         private List<CandidateFullDTO> list;
-        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
+
         public UngVien()
-        {        
+        {
             InitializeComponent();
+
+            // Khởi tạo các BLL
+            busFullData = new CandidateFullBLL();
+            busBatch = new RecruitmentBatchBLL();
+
+            // Lấy dữ liệu
+            list = busFullData.GetAll();
+
+            // Gán event handler cho tableData
             tableData.CellClick += tableData_CellClick;
             tableData.DataBindingComplete += dataTable_DataBindingComplete;
-            list = busFullData.GetAll();
+
+            // Hiển thị dữ liệu
             fillDataToTable(list);
         }
+
         private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             tableData.ClearSelection();
@@ -36,7 +43,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void luuThanhcong(object sender, EventArgs e, string message)
         {
             MessageBox.Show(message);
-            busFullData.Refresh();
+            busFullData.GetAll();
             list = busFullData.GetAll();
             fillDataToTable(list);
         }
@@ -197,7 +204,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                     if(busBatch.UpdateProfileDelete(maTuyenDung))
                     {
                         MessageBox.Show("Xóa thành công!");
-                        busFullData.Refresh();
+                        busFullData.GetAll();
                         list = busFullData.GetAll();
                         fillDataToTable(list);
                     }else

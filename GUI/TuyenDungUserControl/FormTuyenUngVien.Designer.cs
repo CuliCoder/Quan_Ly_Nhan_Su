@@ -194,7 +194,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._9035021_person_add_icon32X32;
             this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.MaximumSize = new System.Drawing.Size(40, 40);
             this.label1.MinimumSize = new System.Drawing.Size(40, 40);
             this.label1.Name = "label1";
@@ -207,7 +207,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label2.Location = new System.Drawing.Point(49, 3);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.MaximumSize = new System.Drawing.Size(107, 50);
             this.label2.MinimumSize = new System.Drawing.Size(110, 30);
             this.label2.Name = "label2";
@@ -239,7 +239,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(10, 80);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(10, 80, 10, 80);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(10);
             this.pictureBox1.Size = new System.Drawing.Size(197, 218);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
@@ -309,7 +309,7 @@
             this.showLuongDealUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showLuongDealUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showLuongDealUV.Location = new System.Drawing.Point(764, 160);
-            this.showLuongDealUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showLuongDealUV.Margin = new System.Windows.Forms.Padding(3);
             this.showLuongDealUV.Name = "showLuongDealUV";
             this.showLuongDealUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showLuongDealUV.Size = new System.Drawing.Size(149, 45);
@@ -322,7 +322,7 @@
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label16.Location = new System.Drawing.Point(612, 160);
-            this.label16.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label16.Margin = new System.Windows.Forms.Padding(3);
             this.label16.Name = "label16";
             this.label16.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label16.Size = new System.Drawing.Size(145, 45);
@@ -336,7 +336,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label5.Location = new System.Drawing.Point(4, 316);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label5.Size = new System.Drawing.Size(145, 52);
@@ -350,7 +350,7 @@
             this.showChuyenNganhUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showChuyenNganhUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showChuyenNganhUV.Location = new System.Drawing.Point(156, 264);
-            this.showChuyenNganhUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showChuyenNganhUV.Margin = new System.Windows.Forms.Padding(3);
             this.showChuyenNganhUV.Name = "showChuyenNganhUV";
             this.showChuyenNganhUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showChuyenNganhUV.Size = new System.Drawing.Size(145, 45);
@@ -363,7 +363,7 @@
             this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label33.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label33.Location = new System.Drawing.Point(4, 264);
-            this.label33.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label33.Margin = new System.Windows.Forms.Padding(3);
             this.label33.Name = "label33";
             this.label33.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label33.Size = new System.Drawing.Size(145, 45);
@@ -377,7 +377,7 @@
             this.showDanTocUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showDanTocUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showDanTocUV.Location = new System.Drawing.Point(460, 212);
-            this.showDanTocUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showDanTocUV.Margin = new System.Windows.Forms.Padding(3);
             this.showDanTocUV.Name = "showDanTocUV";
             this.showDanTocUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showDanTocUV.Size = new System.Drawing.Size(145, 45);
@@ -390,7 +390,7 @@
             this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label29.Location = new System.Drawing.Point(308, 212);
-            this.label29.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label29.Margin = new System.Windows.Forms.Padding(3);
             this.label29.Name = "label29";
             this.label29.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label29.Size = new System.Drawing.Size(145, 45);
@@ -404,7 +404,7 @@
             this.showEm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showEm.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showEm.Location = new System.Drawing.Point(156, 212);
-            this.showEm.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showEm.Margin = new System.Windows.Forms.Padding(3);
             this.showEm.Name = "showEm";
             this.showEm.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showEm.Size = new System.Drawing.Size(145, 45);
@@ -417,7 +417,7 @@
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label27.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label27.Location = new System.Drawing.Point(4, 212);
-            this.label27.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label27.Margin = new System.Windows.Forms.Padding(3);
             this.label27.Name = "label27";
             this.label27.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label27.Size = new System.Drawing.Size(145, 45);
@@ -431,7 +431,7 @@
             this.SoTinhTPUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SoTinhTPUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SoTinhTPUV.Location = new System.Drawing.Point(460, 160);
-            this.SoTinhTPUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.SoTinhTPUV.Margin = new System.Windows.Forms.Padding(3);
             this.SoTinhTPUV.Name = "SoTinhTPUV";
             this.SoTinhTPUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.SoTinhTPUV.Size = new System.Drawing.Size(145, 45);
@@ -444,7 +444,7 @@
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label23.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label23.Location = new System.Drawing.Point(308, 160);
-            this.label23.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label23.Margin = new System.Windows.Forms.Padding(3);
             this.label23.Name = "label23";
             this.label23.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label23.Size = new System.Drawing.Size(145, 45);
@@ -458,7 +458,7 @@
             this.showSDTUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showSDTUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showSDTUV.Location = new System.Drawing.Point(156, 160);
-            this.showSDTUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showSDTUV.Margin = new System.Windows.Forms.Padding(3);
             this.showSDTUV.Name = "showSDTUV";
             this.showSDTUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showSDTUV.Size = new System.Drawing.Size(145, 45);
@@ -471,7 +471,7 @@
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label21.Location = new System.Drawing.Point(4, 160);
-            this.label21.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label21.Margin = new System.Windows.Forms.Padding(3);
             this.label21.Name = "label21";
             this.label21.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label21.Size = new System.Drawing.Size(145, 45);
@@ -485,7 +485,7 @@
             this.showNoiCapUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showNoiCapUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showNoiCapUV.Location = new System.Drawing.Point(764, 108);
-            this.showNoiCapUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showNoiCapUV.Margin = new System.Windows.Forms.Padding(3);
             this.showNoiCapUV.Name = "showNoiCapUV";
             this.showNoiCapUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showNoiCapUV.Size = new System.Drawing.Size(149, 45);
@@ -498,7 +498,7 @@
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label19.Location = new System.Drawing.Point(612, 108);
-            this.label19.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label19.Margin = new System.Windows.Forms.Padding(3);
             this.label19.Name = "label19";
             this.label19.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label19.Size = new System.Drawing.Size(145, 45);
@@ -512,7 +512,7 @@
             this.showQuanHuyenUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showQuanHuyenUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showQuanHuyenUV.Location = new System.Drawing.Point(460, 108);
-            this.showQuanHuyenUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showQuanHuyenUV.Margin = new System.Windows.Forms.Padding(3);
             this.showQuanHuyenUV.Name = "showQuanHuyenUV";
             this.showQuanHuyenUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showQuanHuyenUV.Size = new System.Drawing.Size(145, 45);
@@ -525,7 +525,7 @@
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label17.Location = new System.Drawing.Point(308, 108);
-            this.label17.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label17.Margin = new System.Windows.Forms.Padding(3);
             this.label17.Name = "label17";
             this.label17.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label17.Size = new System.Drawing.Size(145, 45);
@@ -539,7 +539,7 @@
             this.showNgaySinhUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showNgaySinhUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showNgaySinhUV.Location = new System.Drawing.Point(156, 108);
-            this.showNgaySinhUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showNgaySinhUV.Margin = new System.Windows.Forms.Padding(3);
             this.showNgaySinhUV.Name = "showNgaySinhUV";
             this.showNgaySinhUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showNgaySinhUV.Size = new System.Drawing.Size(145, 45);
@@ -552,7 +552,7 @@
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label15.Location = new System.Drawing.Point(4, 108);
-            this.label15.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label15.Margin = new System.Windows.Forms.Padding(3);
             this.label15.Name = "label15";
             this.label15.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label15.Size = new System.Drawing.Size(145, 45);
@@ -566,7 +566,7 @@
             this.showNgayCapUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showNgayCapUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showNgayCapUV.Location = new System.Drawing.Point(764, 56);
-            this.showNgayCapUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showNgayCapUV.Margin = new System.Windows.Forms.Padding(3);
             this.showNgayCapUV.Name = "showNgayCapUV";
             this.showNgayCapUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showNgayCapUV.Size = new System.Drawing.Size(149, 45);
@@ -579,7 +579,7 @@
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label13.Location = new System.Drawing.Point(612, 56);
-            this.label13.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label13.Margin = new System.Windows.Forms.Padding(3);
             this.label13.Name = "label13";
             this.label13.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label13.Size = new System.Drawing.Size(145, 45);
@@ -593,7 +593,7 @@
             this.showPhuongXaUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showPhuongXaUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showPhuongXaUV.Location = new System.Drawing.Point(460, 56);
-            this.showPhuongXaUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showPhuongXaUV.Margin = new System.Windows.Forms.Padding(3);
             this.showPhuongXaUV.Name = "showPhuongXaUV";
             this.showPhuongXaUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showPhuongXaUV.Size = new System.Drawing.Size(145, 45);
@@ -606,7 +606,7 @@
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label11.Location = new System.Drawing.Point(308, 56);
-            this.label11.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label11.Size = new System.Drawing.Size(145, 45);
@@ -620,7 +620,7 @@
             this.showGioTinhUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showGioTinhUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showGioTinhUV.Location = new System.Drawing.Point(156, 56);
-            this.showGioTinhUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showGioTinhUV.Margin = new System.Windows.Forms.Padding(3);
             this.showGioTinhUV.Name = "showGioTinhUV";
             this.showGioTinhUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showGioTinhUV.Size = new System.Drawing.Size(145, 45);
@@ -633,7 +633,7 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label8.Location = new System.Drawing.Point(4, 56);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label8.Size = new System.Drawing.Size(145, 45);
@@ -647,7 +647,7 @@
             this.showCCCDUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showCCCDUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showCCCDUV.Location = new System.Drawing.Point(764, 4);
-            this.showCCCDUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showCCCDUV.Margin = new System.Windows.Forms.Padding(3);
             this.showCCCDUV.Name = "showCCCDUV";
             this.showCCCDUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showCCCDUV.Size = new System.Drawing.Size(149, 45);
@@ -660,7 +660,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label6.Location = new System.Drawing.Point(612, 4);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label6.Margin = new System.Windows.Forms.Padding(3);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label6.Size = new System.Drawing.Size(145, 45);
@@ -674,7 +674,7 @@
             this.showDuongUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showDuongUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showDuongUV.Location = new System.Drawing.Point(460, 4);
-            this.showDuongUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showDuongUV.Margin = new System.Windows.Forms.Padding(3);
             this.showDuongUV.Name = "showDuongUV";
             this.showDuongUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showDuongUV.Size = new System.Drawing.Size(145, 45);
@@ -687,7 +687,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.Location = new System.Drawing.Point(308, 4);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label4.Size = new System.Drawing.Size(145, 45);
@@ -702,7 +702,7 @@
             this.showTenUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showTenUV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.showTenUV.Location = new System.Drawing.Point(156, 4);
-            this.showTenUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showTenUV.Margin = new System.Windows.Forms.Padding(3);
             this.showTenUV.Name = "showTenUV";
             this.showTenUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showTenUV.Size = new System.Drawing.Size(145, 45);
@@ -715,7 +715,7 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label9.Location = new System.Drawing.Point(4, 4);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label9.Margin = new System.Windows.Forms.Padding(3);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label9.Size = new System.Drawing.Size(145, 45);
@@ -729,7 +729,7 @@
             this.showHocVanUV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showHocVanUV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showHocVanUV.Location = new System.Drawing.Point(156, 316);
-            this.showHocVanUV.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showHocVanUV.Margin = new System.Windows.Forms.Padding(3);
             this.showHocVanUV.Name = "showHocVanUV";
             this.showHocVanUV.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showHocVanUV.Size = new System.Drawing.Size(145, 52);
@@ -742,7 +742,7 @@
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label12.Location = new System.Drawing.Point(308, 264);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
             this.label12.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.label12.Size = new System.Drawing.Size(145, 45);
@@ -756,7 +756,7 @@
             this.showHonNhan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.showHonNhan.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.showHonNhan.Location = new System.Drawing.Point(460, 264);
-            this.showHonNhan.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.showHonNhan.Margin = new System.Windows.Forms.Padding(3);
             this.showHonNhan.Name = "showHonNhan";
             this.showHonNhan.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.showHonNhan.Size = new System.Drawing.Size(145, 45);
@@ -807,7 +807,7 @@
             this.flowLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel11.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel11.Location = new System.Drawing.Point(2, 40);
-            this.flowLayoutPanel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel11.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel11.Name = "flowLayoutPanel11";
             this.flowLayoutPanel11.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.flowLayoutPanel11.Size = new System.Drawing.Size(224, 68);
@@ -843,7 +843,7 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(230, 40);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.flowLayoutPanel2.Size = new System.Drawing.Size(224, 68);
@@ -855,7 +855,7 @@
             this.tbLuong.Dock = System.Windows.Forms.DockStyle.Top;
             this.tbLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbLuong.Location = new System.Drawing.Point(37, 41);
-            this.tbLuong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLuong.Margin = new System.Windows.Forms.Padding(2);
             this.tbLuong.MinimumSize = new System.Drawing.Size(150, 25);
             this.tbLuong.Multiline = true;
             this.tbLuong.Name = "tbLuong";

@@ -10,16 +10,14 @@ namespace Quan_Ly_Nhan_Su.BLL
     internal class CandidateBLL
     {
         private readonly CandidateDAO _dao;
-        private static List<CandidateDTO> list;
         
         public CandidateBLL()
         {
             _dao = new CandidateDAO();
-            if (list == null)
-                list = _dao.getAll();
+
         }
 
-        public List<CandidateDTO> GetAll() => new List<CandidateDTO>(list);
+        public List<CandidateDTO> GetAll() => _dao.getAll();
 
 
         public CandidateDTO GetById(string maUngVien)
@@ -35,11 +33,6 @@ namespace Quan_Ly_Nhan_Su.BLL
                return false;
             }
 
-            if (_dao.Create(dto))
-            {
-                list.Add(dto);
-                return true;
-            }
             return false;
         }
 
@@ -53,60 +46,28 @@ namespace Quan_Ly_Nhan_Su.BLL
         {
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
-
-            bool success = _dao.update(dto);
-            if (success)
-            {
-                int index = list.FindIndex(x => x.MaUngVien == dto.MaUngVien);
-                if (index != -1)
-                    list[index] = dto;
-            }
-            return success;
+           
+            return _dao.update(dto);
         }
 
         public bool UpdateStatus(string maUngVien, string trangThai)
         {
             if (string.IsNullOrEmpty(maUngVien) || string.IsNullOrEmpty(trangThai))
-                return false;
-            bool success = _dao.UpdateStatus(maUngVien, trangThai);
-            if (success)
-            {
-                CandidateDTO dto = list.FirstOrDefault(x => x.MaUngVien == maUngVien);
-                if (dto != null)
-                {
-                    dto.TrangThai = trangThai;
-                }
-            }
-            return success;
+                return false;     
+            return _dao.UpdateStatus(maUngVien, trangThai);
         }
 
         public bool Delete(string maUngVien)
         {
             if (string.IsNullOrWhiteSpace(maUngVien))
                 throw new ArgumentException("Mã ứng viên không được để trống!");
-
-            bool success = _dao.delete(maUngVien);
-            if (success)
-                list.RemoveAll(x => x.MaUngVien == maUngVien);
-
-            return success;
+            return _dao.delete(maUngVien);
         }
 
-        public bool DeleteList(string maUngVien)
-        {
-            if (maUngVien.Length > 0)
-            {
-                list.RemoveAll(x => x.MaUngVien == maUngVien);
-                return true;
-            }
-            return false;
-        }
+ 
 
         public List<CandidateDTO> Search(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                return new List<CandidateDTO>(list);
-
             return _dao.search(keyword);
         }
     }

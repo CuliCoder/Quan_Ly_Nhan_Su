@@ -16,16 +16,21 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
     public partial class NhanVienNhapLieu : UserControl
     {
         public event EventHandler QuayLaiClicked;
-        private DepartmentBLL department = new DepartmentBLL();
-        private EmployeeBLL employee = new EmployeeBLL();
+        private readonly DepartmentBLL department;
+        private readonly EmployeeBLL employee;
         public event EventHandler suKienLuu;
-        private ErrorProvider errorProvider = new ErrorProvider();
+        private readonly ErrorProvider errorProvider;
         public NhanVienNhapLieu()
         {
             InitializeComponent();
-            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            department = new DepartmentBLL();
+            employee = new EmployeeBLL();
+            errorProvider = new ErrorProvider 
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
+           
             fillDataToCombobox();
-            ClearForm();
         }
 
         private void label1_Click(object sender, EventArgs e) 
@@ -35,10 +40,19 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         private void fillDataToCombobox()
         {
-            maPhongBanCbb.DataSource = department.GetAllDepartments();
-            maPhongBanCbb.DisplayMember = "TenPhong";
-            maPhongBanCbb.ValueMember = "MaPhong";
-            maPhongBanCbb.SelectedIndex = -1;
+            ClearForm();
+            try
+            {
+                maPhongBanCbb.DataSource = department.GetAllDepartments();
+                maPhongBanCbb.DisplayMember = "TenPhong";
+                maPhongBanCbb.ValueMember = "MaPhong";
+                maPhongBanCbb.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải dữ liệu ban đầu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         public void ClearForm()
