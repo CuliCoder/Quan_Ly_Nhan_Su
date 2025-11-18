@@ -49,9 +49,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 return new EmployeeDTO
                                 {
                                     MaNhanVien = reader["maNhanVien"].ToString(),
-                                    SoCmnd = reader["soCmnd"].ToString(),
-                                    MaLuong = reader["maluong"].ToString(),
-                                    MaHopDong = reader["mahopdong"].ToString(),
+                                    SoCmnd = reader["soCmnd"].ToString(),                                   
                                     MaChucVu = reader["maChucVu"] != DBNull.Value ? reader["maChucVu"].ToString() : null,
                                     MaTaiKhoan = reader["maTaiKhoan"] != DBNull.Value ? reader["maTaiKhoan"].ToString() : null,
                                     MaPhong = reader["maPhong"] != DBNull.Value ? reader["maPhong"].ToString() : null,
