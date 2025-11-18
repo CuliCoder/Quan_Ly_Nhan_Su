@@ -34,9 +34,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
             LoadDataToGrid();
 
-            // Gắn sự kiện thủ công cho comboBox1 (phòng ban) và comboBox6 (sắp xếp)
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            comboBox6.SelectedIndexChanged += comboBox6_SelectedIndexChanged;
+            // Gắn sự kiện cho nút tìm kiếm và textbox
+            this.buttonSearch.Click += buttonSearch_Click;
+            this.textBoxSearch.KeyDown += textBoxSearch_KeyDown;
         }
         private void LoadDataToGrid()
         {
@@ -54,7 +54,106 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
+        // Search helper
+        private void PerformSearch(string keyword)
+        {
+            DateTime? from = null, to = null;
+            if (dateTimePickerFrom != null && dateTimePickerFrom.Checked)
+                from = dateTimePickerFrom.Value.Date;
+            if (dateTimePickerTo != null && dateTimePickerTo.Checked)
+                to = dateTimePickerTo.Value.Date;
 
+            // If no keyword provided but date range specified, use GetContracts with date filter
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                // If date filters specified, call BLL with those filters, otherwise load all
+                var contracts = _bll.GetContracts(from, to, null, null);
+                dataGridView1.Rows.Clear();
+                foreach (var item in contracts)
+                {
+                    dataGridView1.Rows.Add(
+                        item.STT,
+                        item.TenNhanVien,
+                        item.PhongBan,
+                        item.TuNgay.HasValue ? item.TuNgay.Value.ToString("dd/MM/yyyy") : "",
+                        item.DenNgay.HasValue ? item.DenNgay.Value.ToString("dd/MM/yyyy") : ""
+                    );
+                }
+                return;
+            }
+
+            // Perform accent-insensitive client-side search over all contracts (more reliable regardless of DB collation)
+            var allContracts = _bll.GetAllContracts() ?? new List<LaborContractDTO>();
+            string q = RemoveDiacritics(keyword).ToLowerInvariant();
+            List<LaborContractDTO> results = allContracts.Where(c =>
+                (!string.IsNullOrEmpty(c.TenNhanVien) && RemoveDiacritics(c.TenNhanVien).ToLowerInvariant().Contains(q)) ||
+                (!string.IsNullOrEmpty(c.MaHopDong) && RemoveDiacritics(c.MaHopDong).ToLowerInvariant().Contains(q)) ||
+                (!string.IsNullOrEmpty(c.PhongBan) && RemoveDiacritics(c.PhongBan).ToLowerInvariant().Contains(q))
+            ).ToList();
+
+             // If date range provided, filter results further by overlap
+             if (from.HasValue || to.HasValue)
+             {
+                 results = results.Where(c =>
+                     // contract starts inside range
+                     (from.HasValue && c.TuNgay.HasValue && c.TuNgay.Value.Date >= from.Value.Date && (!to.HasValue || c.TuNgay.Value.Date <= (to.Value.Date))) ||
+                     // contract ends inside range
+                     (to.HasValue && c.DenNgay.HasValue && c.DenNgay.Value.Date <= to.Value.Date && (!from.HasValue || c.DenNgay.Value.Date >= from.Value.Date)) ||
+                     // contract overlaps range
+                     (from.HasValue && to.HasValue && c.TuNgay.HasValue && c.DenNgay.HasValue && !(c.DenNgay.Value.Date < from.Value.Date || c.TuNgay.Value.Date > to.Value.Date))
+                 ).ToList();
+             }
+
+             dataGridView1.Rows.Clear();
+             foreach (var item in results)
+             {
+                 dataGridView1.Rows.Add(
+                     item.STT,
+                     item.TenNhanVien,
+                     item.PhongBan,
+                     item.TuNgay.HasValue ? item.TuNgay.Value.ToString("dd/MM/yyyy") : "",
+                     item.DenNgay.HasValue ? item.DenNgay.Value.ToString("dd/MM/yyyy") : ""
+                 );
+             }
+         }
+
+        // Remove diacritics helper to support searching without accents
+        private static string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return string.Empty;
+            var normalized = text.Normalize(System.Text.NormalizationForm.FormD);
+            var sb = new System.Text.StringBuilder();
+            foreach (var ch in normalized)
+            {
+                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+            return sb.ToString().Normalize(System.Text.NormalizationForm.FormC);
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformSearch(textBoxSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                PerformSearch(textBoxSearch.Text);
+            }
+        }
 
         private void labelDanhSach_Click(object sender, EventArgs e)
         {
@@ -246,52 +345,61 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
 
         }
-        // Load danh sách phòng ban vào comboBox (ví dụ comboBox2)
+        // Load danh sách phòng ban - comboBox1 đã bị loại bỏ, giữ method trống để tránh tham chiếu ngoài ý muốn
         private void LoadDepartments()
         {
-            comboBox1.Items.Clear();
-            comboBox1.Text = "";
-            comboBox1.SelectedIndex = -1;
-
-            List<string> departments = _bll.GetAllDepartments();
-            MessageBox.Show("Số phòng ban: " + (departments?.Count ?? 0) + "\nDanh sách: " + string.Join(", ", departments ?? new List<string>()));
-
-            comboBox1.Items.Add("Tất cả");
-            if (departments != null)
-            {
-                comboBox1.Items.AddRange(departments.ToArray());
-            }
-            comboBox1.SelectedIndex = 0;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.ForeColor = System.Drawing.Color.Black;  // Đặt màu chữ đen
-            comboBox1.BackColor = System.Drawing.Color.White;  // Đặt màu nền trắng
-            comboBox1.DropDownHeight = 200;
-            comboBox1.Refresh();
-            MessageBox.Show("ComboBox1 Items count: " + comboBox1.Items.Count);
+            // comboBox1 removed per request. If department filtering is required later,
+            // implement UI and logic accordingly.
         }
 
         // Load sắp xếp vào comboBox6
         private void LoadSortOptions()
         {
-            comboBox6.Items.Add("Tăng dần theo lương");
-            comboBox6.Items.Add("Giảm dần theo lương");
-            comboBox6.SelectedIndex = 0;
+            // comboBox6 removed earlier — keep method to avoid breaking calls but do nothing
         }
 
-        // Load data vào dataGridView1 với filter/sort
+        // Load data vào dataGridView1 với filter/sort (dành cho hợp đồng hiện có)
+        private void LoadContractsGrid()
+        {
+            // Department filter removed (comboBox1). Use null to fetch all departments.
+            string phongBan = null;
+
+            string sortOption = null; // no sort UI present
+            string sortKey = null;
+            // default sortKey remains null (DAO uses default ORDER BY tuNgay DESC)
+
+            DateTime? from = null, to = null;
+            if (dateTimePickerFrom != null && dateTimePickerFrom.Checked)
+                from = dateTimePickerFrom.Value.Date;
+            if (dateTimePickerTo != null && dateTimePickerTo.Checked)
+                to = dateTimePickerTo.Value.Date;
+
+            var contracts = _bll.GetContracts(from, to, phongBan, sortKey);
+
+            dataGridView1.Rows.Clear();
+            foreach (var c in contracts)
+            {
+                dataGridView1.Rows.Add(
+                    c.STT,
+                    c.TenNhanVien,
+                    c.PhongBan,
+                    c.TuNgay.HasValue ? c.TuNgay.Value.ToString("dd/MM/yyyy") : "",
+                    c.DenNgay.HasValue ? c.DenNgay.Value.ToString("dd/MM/yyyy") : ""
+                );
+            }
+            dataGridView1.Refresh();
+        }
+
+        // Keep previous LoadUnsignedEmployees for unsigned employees list; call LoadContractsGrid when viewing contracts
         private void LoadUnsignedEmployees()
         {
-            string phongBan = comboBox1.SelectedItem?.ToString();
-            string sortOption = comboBox6.SelectedItem?.ToString();
-            string sortBySalary = null;
+            // Department filter removed (comboBox1)
+            string phongBan = null;
+            string sortOption = null; // no sort UI
+            string sortKey = null;
+            // keep default behavior
 
-            if (sortOption == "Tăng dần theo lương") sortBySalary = "ASC";
-            else if (sortOption == "Giảm dần theo lương") sortBySalary = "DESC";
-
-            if (phongBan == "Tất cả") phongBan = null;
-
-            List<EmployeeFullDTO> employees = _bll.GetUnsignedEmployees(phongBan, sortBySalary);
-            MessageBox.Show("Số nhân viên chưa ký: " + employees.Count + "\nDanh sách (mẫu): " + (employees.Count > 0 ? employees[0].PhongBan : "Empty"));  // Debug thêm
+            List<EmployeeFullDTO> employees = _bll.GetUnsignedEmployees(phongBan, sortKey);
 
             dataGridView1.Rows.Clear();
             int stt = 1;
@@ -305,73 +413,47 @@ namespace Quan_Ly_Nhan_Su.GUI
                 );
             }
 
-            if (employees.Count == 0)
-            {
-                MessageBox.Show("Không có nhân viên chưa ký hợp đồng phù hợp.");
-            }
             dataGridView1.Refresh();  // Update Grid nếu cần
         }
 
-        // Sự kiện khi thay đổi comboBox
-
-
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadUnsignedEmployees();
+            // If user wants contracts list, call LoadContractsGrid(), otherwise unsigned employees
+            // For simplicity, call LoadContractsGrid to show contracts when sort by TU or LUONG
+            LoadContractsGrid();
         }
 
-        // Gọi trong Initialize hoặc Load form
-        private void LaborContractGUI_Load(object sender, EventArgs e)
+        // Wire date pickers changed event to reload
+        private void dateTimePickerFrom_ValueChanged(object sender, EventArgs e)
         {
-            LoadDepartments();  // Đảm bảo hàm này chạy
-            LoadSortOptions();
-            LoadUnsignedEmployees();
-            MessageBox.Show("ComboBox1 Items count: " + comboBox1.Items.Count + "\nEnabled: " + comboBox1.Enabled + "\nVisible: " + comboBox1.Visible);  // Debug UI
+            LoadContractsGrid();
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
         {
-            LoadUnsignedEmployees(); // Lọc Grid theo phòng ban đã chọn
-        }
-
-        private void labelcn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelcc_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelpb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelKetThuc_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBoxThongTin_Enter(object sender, EventArgs e)
-        {
-
+            LoadContractsGrid();
         }
 
         private void labelgt_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void contractGUI_Load(object sender, EventArgs e)
-        {
-
+            // placeholder for designer event
         }
 
         private void labelEmail_Click(object sender, EventArgs e)
         {
+            // placeholder for designer event
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Some Designer buttons may be named button1 (magnifier). Forward to PerformSearch.
+                PerformSearch(textBoxSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
-    
