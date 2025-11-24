@@ -26,6 +26,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         public btnQuanLy()
         {
             InitializeComponent();
+            loadColorbtn();
             load_tbPB();
             load_tbNV();
         }
@@ -283,15 +284,15 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if (sender == boxdelete || sender == label2 || sender == delete)
             {
-                boxdelete.BackColor = Color.LightGray;
+                boxdelete.BackColor = ColorTranslator.FromHtml("#4A9B85");
             }
             if (sender == boxEdit || sender == pictureBox1 || sender == label3)
             {
-                boxEdit.BackColor = Color.LightGray;
+                boxEdit.BackColor = ColorTranslator.FromHtml("#4A9B85");
             }
             if (sender == boxAdd || sender == icAdd || sender == label4)
             {
-                boxAdd.BackColor = Color.LightGray;
+                boxAdd.BackColor = ColorTranslator.FromHtml("#4A9B85");
             }
         }
 
@@ -299,15 +300,15 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if (sender == boxdelete || sender == label2 || sender == delete)
             {
-                boxdelete.BackColor = Color.White;
+                loadColorbtn();
             }
             if (sender == boxEdit || sender == pictureBox1 || sender == label3)
             {
-                boxEdit.BackColor = Color.White;
+                loadColorbtn();
             }
             if (sender == boxAdd || sender == icAdd || sender == label4)
             {
-                boxAdd.BackColor = Color.White;
+                loadColorbtn();
             }
         }
         private void lb_Paint(object sender, PaintEventArgs e)
@@ -343,6 +344,15 @@ namespace Quan_Ly_Nhan_Su.GUI
                 load_tbPB();
             }
 
+        }
+
+        private void loadColorbtn()
+        {
+            Color customColor = ColorTranslator.FromHtml("#5DC2A7");
+            boxAdd.BackColor = customColor;
+            boxEdit.BackColor = customColor;
+            boxdelete.BackColor = customColor;
+            // Có thể set cho các panel khác nếu muốn
         }
     }
 }
