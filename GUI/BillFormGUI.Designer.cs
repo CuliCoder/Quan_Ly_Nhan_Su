@@ -596,7 +596,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.btnPrint.TabIndex = 2;
             this.btnPrint.Text = "In phiếu lương (PDF)";
             this.btnPrint.UseVisualStyleBackColor = false;
-            //this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // BillFormGUI
             // 

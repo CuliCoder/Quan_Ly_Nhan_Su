@@ -14,6 +14,10 @@ namespace Quan_Ly_Nhan_Su.DTO
         public string Email { get; set; }
         public string Sdt { get; set; }
         public string SoCmnd { get; set; }
+        public string NoiCap { get; set; }
+        public DateTime? NgayCap { get; set; }
+        public string DanToc { get; set; }
+        public string TinhTranHonNhan { get; set; }
         public string HocVan { get; set; }
         public string ChuyenNganh { get; set; }
         public string PhongBan { get; set; }
@@ -21,5 +25,11 @@ namespace Quan_Ly_Nhan_Su.DTO
         public decimal MucLuong { get; set; }
         public string DiaChi { get; set; } // Thêm thuộc tính DiaChi
         public string HinhAnh { get; set; } // Thêm thuộc tính HinhAnh (path ảnh avatar)
+       
+
+        public override string ToString()
+        {
+            return $"{MaNhanVien} - {HoTen} - {GioiTinh} - {NgaySinh?.ToString("dd/MM/yyyy")} - {Email} - {Sdt} - {SoCmnd} - {HocVan} - {ChuyenNganh} - {PhongBan} - {ChucVu} - {MucLuong} - {DiaChi} - {HinhAnh}";
+        }
     }
 }

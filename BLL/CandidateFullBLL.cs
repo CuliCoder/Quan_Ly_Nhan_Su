@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 
@@ -7,23 +8,16 @@ namespace Quan_Ly_Nhan_Su.BLL
     public class CandidateFullBLL
     {
         private readonly CandidateFullDAO _dao;
-        private static List<CandidateFullDTO> list;
+        private readonly CandidateDAO _candidateDao;
 
         public CandidateFullBLL()
         {
             _dao = new CandidateFullDAO();
-
-            if (list == null)
-                list = _dao.GetAll();
+            _candidateDao = new CandidateDAO();
         }
 
-        public List<CandidateFullDTO> GetAll() => new List<CandidateFullDTO>(list);
+        public List<CandidateFullDTO> GetAll() => _dao.GetAll();
         
-
-        public void Refresh()
-        {
-            list = _dao.GetAll();
-        }
 
         public CandidateFullDTO GetById(string maUngVien)
         {
@@ -46,6 +40,12 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public bool CreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
         {
+            if(!_candidateDao.CheckId(cadiDto.MaUngVien))
+            {
+                MessageBox.Show("Mã ứng viên đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (_dao.CreateCandidateWithProfile(perDTO, cadiDto))
             {
                 return true;
@@ -55,14 +55,7 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public List<CandidateFullDTO> Search(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-            {
-                list = _dao.GetAll();
-                return new List<CandidateFullDTO>(list);
-            }
-
-            var result = _dao.Search(keyword);
-            return result ?? new List<CandidateFullDTO>();
+            return _dao.Search(keyword);
         }
 
     }

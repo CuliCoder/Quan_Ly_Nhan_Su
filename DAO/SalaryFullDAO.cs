@@ -89,6 +89,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             ON t.MaNhanVien = nv.MaNhanVien
                             AND t.ThangApDung = @Thang
                             AND t.NamApDung = @Nam
+                        WHERE nv.MaNhanVien = @MaNhanVien
                         GROUP BY nv.MaNhanVien, l.MaLuong, l.LuongCoBan, l.LuongTheoGio;
                     ";
 

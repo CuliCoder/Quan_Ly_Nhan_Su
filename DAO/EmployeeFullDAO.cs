@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.DTO;
 using Quan_Ly_Nhan_Su.config;
+using Org.BouncyCastle.Ocsp;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -26,7 +27,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 string query = @"
                     SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
                            hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
-                           nv.mucLuong, hs.diaChi
+                           nv.mucLuong, hs.diaChi, hs.anh, hs.noicap, hs.ngaycap, hs.tinhtranghonnhan, hs.dantoc, hs.tinhtranghonnhan
                     FROM nhanvien nv
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
@@ -46,12 +47,17 @@ namespace Quan_Ly_Nhan_Su.DAO
                             Email = reader["email"].ToString(),
                             Sdt = reader["sdt"].ToString(),
                             SoCmnd = reader["soCmnd"].ToString(),
+                            NoiCap = reader["noicap"].ToString(),
+                            NgayCap = reader["ngaycap"] != DBNull.Value ? Convert.ToDateTime(reader["ngaycap"]) : (DateTime?)null,
+                            TinhTranHonNhan = reader["tinhtranghonnhan"].ToString(),
+                            DanToc = reader["dantoc"].ToString(),
                             HocVan = reader["hocVan"].ToString(),
                             ChuyenNganh = reader["chuyenNganh"].ToString(),
                             PhongBan = reader["phongBan"].ToString(),
                             ChucVu = reader["chucVu"].ToString(),
                             MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : 0m,
-                            DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : ""
+                            DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
+                            HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : "",
                         };
                         employees.Add(emp);
                     }
@@ -206,6 +212,11 @@ namespace Quan_Ly_Nhan_Su.DAO
             try
             {
                 conn = connectDB.getConnection();
+                if (conn == null)
+                {
+                    throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+                }
+
                 conn.Open();
                 string query = @"
                     SELECT 
@@ -216,12 +227,15 @@ namespace Quan_Ly_Nhan_Su.DAO
                         hd.tuNgay,
                         hd.denNgay,
                         hd.loaiHopDong,
-                        hd.luongCoBan
+                        l.LuongCoBan
                     FROM nhanvien nv
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
                     LEFT JOIN hopdonglaodong hd ON nv.maNhanVien = hd.maNhanVien
-                    WHERE nv.maNhanVien = @maNhanVien";
+                    LEFT JOIN luong l ON nv.maNhanVien = l.MaNhanVien
+                    WHERE nv.maNhanVien = @maNhanVien
+                    ORDER BY hd.tuNgay DESC
+                    LIMIT 1";
 
                 using (var command = new MySqlCommand(query, conn))
                 {
@@ -232,13 +246,13 @@ namespace Quan_Ly_Nhan_Su.DAO
                         contract = new LaborContractDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
-                            TenNhanVien = reader["hoTen"].ToString(),
-                            PhongBan = reader["phongBan"].ToString(),
+                            TenNhanVien = reader["hoTen"] != DBNull.Value ? reader["hoTen"].ToString() : "",
+                            PhongBan = reader["phongBan"] != DBNull.Value ? reader["phongBan"].ToString() : "",
                             MaHopDong = reader["maHopDong"] != DBNull.Value ? reader["maHopDong"].ToString() : "",
                             TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
                             DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
                             LoaiHopDong = reader["loaiHopDong"] != DBNull.Value ? reader["loaiHopDong"].ToString() : "",
-                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m
+                            LuongCoBan = reader["LuongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["LuongCoBan"]) : 0m
                         };
                     }
                 }

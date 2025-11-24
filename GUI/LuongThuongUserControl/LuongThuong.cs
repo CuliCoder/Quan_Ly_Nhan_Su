@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.GUI; // for BillFormGUI
 
 namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
 {
@@ -28,6 +29,66 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             InitializeComponent();
             LoadEmployeeComboBox();
             ShowDataToTable();
+
+            // Wire print/export button
+            this.btnTinhLuong.Click += BtnTinhLuong_Click;
+        }
+
+        private void BtnTinhLuong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ensure a row is selected
+                DataGridViewRow row = null;
+                if (dataBangLuong.SelectedRows != null && dataBangLuong.SelectedRows.Count > 0)
+                {
+                    row = dataBangLuong.SelectedRows[0];
+                }
+                else if (dataBangLuong.CurrentRow != null)
+                {
+                    row = dataBangLuong.CurrentRow;
+                }
+
+                if (row == null)
+                {
+                    MessageBox.Show("Vui lòng chọn một nhân viên để xuất phiếu lương.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string maNhanVien = null;
+                // Prefer column with Name or DataPropertyName 'MaNhanVien'
+                var colByName = dataBangLuong.Columns.Cast<DataGridViewColumn>()
+                    .FirstOrDefault(c => string.Equals(c.Name, "MaNhanVien", StringComparison.OrdinalIgnoreCase) ||
+                                         string.Equals(c.DataPropertyName, "MaNhanVien", StringComparison.OrdinalIgnoreCase) ||
+                                         string.Equals(c.HeaderText, "Mã Nhân Viên", StringComparison.OrdinalIgnoreCase));
+
+                if (colByName != null)
+                {
+                    maNhanVien = row.Cells[colByName.Index].Value?.ToString();
+                }
+                else if (row.Cells.Count > 1)
+                {
+                    // fallback to second cell which typically holds MaNhanVien in the grid screenshot
+                    maNhanVien = row.Cells[1]?.Value?.ToString();
+                }
+
+                if (string.IsNullOrWhiteSpace(maNhanVien))
+                {
+                    MessageBox.Show("Không lấy được mã nhân viên từ dòng đã chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Open BillFormGUI with the selected employee code
+                using (var form = new BillFormGUI(maNhanVien))
+                {
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xuất phiếu lương: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FillDataToBangLuongTable(List<SalaryFullDTO> listSalaryFull)

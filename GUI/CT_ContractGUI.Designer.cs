@@ -498,7 +498,10 @@
             // CT_ContractGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            // Disable automatic scaling at runtime to preserve designer layout
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            // Ensure consistent font to avoid scaling/fallback differences at runtime
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panelMain);
             this.Name = "CT_ContractGUI";
