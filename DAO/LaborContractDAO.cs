@@ -29,6 +29,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 conn.Open();
                 string query = @"
                     SELECT 
+                        hd.maNhanVien,
                         hd.maHopDong,
                         CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
                         pb.tenPhong AS phongBan,
@@ -53,6 +54,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                         LaborContractDTO contract = new LaborContractDTO
                         {
                             STT = stt++,
+                            MaNhanVien = reader["maNhanVien"].ToString(),
                             MaHopDong = reader["maHopDong"].ToString(),
                             TenNhanVien = reader["tenNhanVien"].ToString(),
                             PhongBan = reader["phongBan"].ToString(),
