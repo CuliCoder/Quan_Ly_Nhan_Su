@@ -18,10 +18,10 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.picStatus = new System.Windows.Forms.PictureBox();
             this.lblDateRange = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
-            this.picStatus = new System.Windows.Forms.PictureBox();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
             this.SuspendLayout();
@@ -38,8 +38,18 @@
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(5, 5);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(300, 100);
+            this.pnlMain.Size = new System.Drawing.Size(333, 100);
             this.pnlMain.TabIndex = 0;
+            // 
+            // picStatus
+            // 
+            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picStatus.Location = new System.Drawing.Point(293, 60);
+            this.picStatus.Name = "picStatus";
+            this.picStatus.Size = new System.Drawing.Size(28, 28);
+            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picStatus.TabIndex = 3;
+            this.picStatus.TabStop = false;
             // 
             // lblDateRange
             // 
@@ -48,7 +58,7 @@
             this.lblDateRange.ForeColor = System.Drawing.Color.Gray;
             this.lblDateRange.Location = new System.Drawing.Point(12, 68);
             this.lblDateRange.Name = "lblDateRange";
-            this.lblDateRange.Size = new System.Drawing.Size(139, 20);
+            this.lblDateRange.Size = new System.Drawing.Size(175, 20);
             this.lblDateRange.TabIndex = 2;
             this.lblDateRange.Text = "21/10/2025 - 28/10/2025";
             // 
@@ -59,7 +69,7 @@
             this.lblEmail.ForeColor = System.Drawing.Color.Gray;
             this.lblEmail.Location = new System.Drawing.Point(12, 40);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(126, 20);
+            this.lblEmail.Size = new System.Drawing.Size(127, 20);
             this.lblEmail.TabIndex = 1;
             this.lblEmail.Text = "<vannn@teky.vn>";
             // 
@@ -69,20 +79,9 @@
             this.lblFullName.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFullName.Location = new System.Drawing.Point(12, 12);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(147, 23);
+            this.lblFullName.Size = new System.Drawing.Size(151, 23);
             this.lblFullName.TabIndex = 0;
             this.lblFullName.Text = "Nguyễn Ngọc Vân";
-            // 
-            // picStatus
-            // 
-            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            // this.picStatus.Image = Properties.Resources.your_icon; // Set your image icon here
-            this.picStatus.Location = new System.Drawing.Point(260, 60);
-            this.picStatus.Name = "picStatus";
-            this.picStatus.Size = new System.Drawing.Size(28, 28);
-            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picStatus.TabIndex = 3;
-            this.picStatus.TabStop = false;
             // 
             // ucRequestCard
             // 
@@ -92,11 +91,12 @@
             this.Controls.Add(this.pnlMain);
             this.Name = "ucRequestCard";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Size = new System.Drawing.Size(310, 110);
+            this.Size = new System.Drawing.Size(343, 110);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion

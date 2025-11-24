@@ -344,5 +344,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
 
         }
+
+        private void btnQuanLy_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

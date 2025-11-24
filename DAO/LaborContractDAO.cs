@@ -34,12 +34,22 @@ namespace Quan_Ly_Nhan_Su.DAO
                         pb.tenPhong AS phongBan,
                         hd.tuNgay,
                         hd.denNgay,
-                        hd.loaiHopDong,
-                        hd.luongCoBan
+                        hd.loaiHopDong, 
+                        IFNULL(l.LuongCoBan, 0) AS luongCoBan,
+                        hs.anh AS hinhAnh   
                     FROM hopdonglaodong hd
                     LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+                    LEFT JOIN (
+                        SELECT MaNhanVien, LuongCoBan
+                        FROM luong
+                        WHERE (MaNhanVien, Nam, Thang) IN (
+                            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
+                            FROM luong
+                            GROUP BY MaNhanVien
+                        )
+                    ) l ON hd.maNhanVien = l.MaNhanVien
                     ORDER BY hd.tuNgay DESC";
 
                 using (var command = new MySqlCommand(query, conn))
@@ -179,7 +189,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                         return false;
                     }
                 }
-                string query = "INSERT INTO hopdonglaodong (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, luongCoBan, maBangChamCong) VALUES (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @luongCoBan, @maBangChamCong)";
+
+                // *** ĐÃ SỬA: Bỏ luongCoBan ***
+                string query = "INSERT INTO hopdonglaodong (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, maBangChamCong) VALUES (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @maBangChamCong)";
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maHopDong", contract.MaHopDong);
@@ -188,7 +200,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     command.Parameters.AddWithValue("@denNgay", (object)contract.DenNgay ?? DBNull.Value);
                     command.Parameters.AddWithValue("@loaiHopDong", contract.LoaiHopDong);
                     command.Parameters.AddWithValue("@phongBan", contract.PhongBan);
-                    command.Parameters.AddWithValue("@luongCoBan", contract.LuongCoBan);
+                    // *** ĐÃ SỬA: Bỏ luongCoBan ***
                     command.Parameters.AddWithValue("@maBangChamCong", (object)contract.MaBangChamCong ?? DBNull.Value);
                     return command.ExecuteNonQuery() > 0;
                 }
@@ -204,6 +216,215 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
+        // *** HÀM MỚI 1 (PRIVATE): Hỗ trợ tạo mã lương ***
+        private string GenerateNewMaLuong(MySqlConnection conn, MySqlTransaction transaction)
+        {
+            string newMaLuong = "L001"; // Giá trị mặc định nếu bảng trống
+            // Lấy mã lương lớn nhất hiện tại, ví dụ 'L006'
+            string query = @"
+                SELECT MaLuong FROM luong 
+                WHERE MaLuong LIKE 'L%' 
+                ORDER BY CAST(SUBSTRING(MaLuong, 2) AS UNSIGNED) DESC 
+                LIMIT 1";
+
+            using (var command = new MySqlCommand(query, conn, transaction))
+            {
+                var result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    string lastMaLuong = result.ToString();
+                    if (int.TryParse(lastMaLuong.Substring(1), out int lastNum))
+                    {
+                        // Tăng lên 1 (ví dụ: L006 -> L007)
+                        newMaLuong = "L" + (lastNum + 1).ToString("D3");
+                    }
+                }
+            }
+            return newMaLuong;
+        }
+
+        // *** HÀM MỚI 2 (PUBLIC): HÀM GỘP 3-TRONG-1 ***
+        public bool CreateContractAndSalary_Transaction(LaborContractDTO contract, decimal luongTheoGio)
+        {
+            MySqlConnection conn = null;
+            MySqlTransaction transaction = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+                transaction = conn.BeginTransaction();
+
+                // === Bước 1 & 2: Tạo Lương và lấy mã lương mới ===
+                string newMaLuong = GenerateNewMaLuong(conn, transaction);
+                string queryLuong = @"
+                    INSERT INTO luong (MaLuong, MaNhanVien, LuongCoBan, LuongTheoGio, Thang, Nam) 
+                    VALUES (@MaLuong, @MaNhanVien, @LuongCoBan, @LuongTheoGio, @Thang, @Nam)";
+
+                using (var cmdLuong = new MySqlCommand(queryLuong, conn, transaction))
+                {
+                    cmdLuong.Parameters.AddWithValue("@MaLuong", newMaLuong);
+                    cmdLuong.Parameters.AddWithValue("@MaNhanVien", contract.MaNhanVien);
+                    cmdLuong.Parameters.AddWithValue("@LuongCoBan", contract.LuongCoBan); // Lấy từ DTO
+                    cmdLuong.Parameters.AddWithValue("@LuongTheoGio", luongTheoGio);
+                    cmdLuong.Parameters.AddWithValue("@Thang", DateTime.Now.Month);
+                    cmdLuong.Parameters.AddWithValue("@Nam", DateTime.Now.Year);
+
+                    if (cmdLuong.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Tạo bản ghi lương thất bại.");
+                    }
+                }
+
+                // === Bước 3: Cập nhật Nhân Viên ===
+                string queryNhanVien = @"
+                    UPDATE nhanvien 
+                    SET maluong = @maLuong 
+                    WHERE maNhanVien = @maNhanVien";
+
+                using (var cmdNhanVien = new MySqlCommand(queryNhanVien, conn, transaction))
+                {
+                    cmdNhanVien.Parameters.AddWithValue("@maLuong", newMaLuong);
+                    cmdNhanVien.Parameters.AddWithValue("@maNhanVien", contract.MaNhanVien);
+
+                    if (cmdNhanVien.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Cập nhật mã lương cho nhân viên thất bại.");
+                    }
+                }
+
+                // === Bước 4: Tạo Hợp đồng (KHÔNG CÓ LƯƠNG) ===
+                string queryHopDong = @"
+                    INSERT INTO hopdonglaodong (maHopDong, maNhanVien, tuNgay, denNgay, loaiHopDong, phongBan, maBangChamCong) 
+                    VALUES (@maHopDong, @maNhanVien, @tuNgay, @denNgay, @loaiHopDong, @phongBan, @maBangChamCong)";
+
+                using (var cmdHopDong = new MySqlCommand(queryHopDong, conn, transaction))
+                {
+                    cmdHopDong.Parameters.AddWithValue("@maHopDong", contract.MaHopDong);
+                    cmdHopDong.Parameters.AddWithValue("@maNhanVien", contract.MaNhanVien);
+                    cmdHopDong.Parameters.AddWithValue("@tuNgay", contract.TuNgay);
+                    cmdHopDong.Parameters.AddWithValue("@denNgay", (object)contract.DenNgay ?? DBNull.Value);
+                    cmdHopDong.Parameters.AddWithValue("@loaiHopDong", contract.LoaiHopDong);
+                    cmdHopDong.Parameters.AddWithValue("@phongBan", contract.PhongBan);
+                    cmdHopDong.Parameters.AddWithValue("@maBangChamCong", (object)contract.MaBangChamCong ?? DBNull.Value);
+
+                    if (cmdHopDong.ExecuteNonQuery() <= 0)
+                    {
+                        throw new Exception("Tạo hợp đồng lao động thất bại.");
+                    }
+                }
+
+                // === Nếu cả 3 bước OK thì Commit ===
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Nếu có 1 bước lỗi, Rollback tất cả
+                Console.WriteLine($"Transaction Error: {ex.Message}");
+                try
+                {
+                    transaction?.Rollback();
+                }
+                catch (Exception rbEx)
+                {
+                    Console.WriteLine($"Rollback Error: {rbEx.Message}");
+                }
+                return false;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+        }
+
+
+        public List<ExtensionHistoryDTO> GetExtensionHistory(string maNhanVien)
+        {
+            var list = new List<ExtensionHistoryDTO>();
+            MySqlConnection conn = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                // Giả định bảng:
+                // - quyetdinh(maQuyetDinh, maNhanVien, ngayQuyetDinh, ...)
+                // - giahanhopdong(maQuyetDinh, thoiGianGiaHan)
+                string query = @"
+                    SELECT qd.maQuyetDinh, qd.maNhanVien, qd.ngayQuyetDinh, gh.thoiGianGiaHan
+                    FROM quyetdinh qd
+                    INNER JOIN giahanhopdong gh ON qd.maQuyetDinh = gh.maQuyetDinh
+                    WHERE qd.maNhanVien = @maNhanVien
+                    ORDER BY qd.ngayQuyetDinh DESC;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        list.Add(new ExtensionHistoryDTO
+                        {
+                            MaQuyetDinh = reader["maQuyetDinh"].ToString(),
+                            MaNhanVien = reader["maNhanVien"].ToString(),
+                            NgayQuyetDinh = reader["ngayQuyetDinh"] != DBNull.Value
+                                ? Convert.ToDateTime(reader["ngayQuyetDinh"])
+                                : DateTime.MinValue,
+                            ThoiGianGiaHan = reader["thoiGianGiaHan"] != DBNull.Value
+                                ? Convert.ToDecimal(reader["thoiGianGiaHan"])
+                                : 0m
+                        });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error GetExtensionHistory: {ex.Message}");
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                connectDB.closeConnection(conn);
+            }
+
+            return list;
+        }
+        public string GetMaHopDongByMaNhanVien(string maNhanVien)
+        {
+            MySqlConnection conn = null;
+            try
+            {
+                conn = connectDB.getConnection();
+                conn.Open();
+
+                // Lấy HĐ mới nhất theo tuNgay (hoặc denNgay nếu bạn muốn)
+                string query = @"
+                    SELECT maHopDong 
+                    FROM hopdonglaodong 
+                    WHERE maNhanVien = @maNhanVien
+                    ORDER BY IFNULL(denNgay, tuNgay) DESC
+                    LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maNhanVien", maNhanVien);
+                    var result = cmd.ExecuteScalar();
+                    return result?.ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error GetMaHopDongByMaNhanVien: {ex.Message}");
+                return null;
+            }
+            finally
+            {
+                connectDB.closeConnection(conn);
+            }
+        }
         /// <summary>
         /// Updates an existing labor contract in the hopdonglaodong table
         /// </summary>
@@ -214,7 +435,8 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
-                string query = "UPDATE hopdonglaodong SET maNhanVien = @maNhanVien, tuNgay = @tuNgay, denNgay = @denNgay, loaiHopDong = @loaiHopDong, phongBan = @phongBan, luongCoBan = @luongCoBan, maBangChamCong = @maBangChamCong WHERE maHopDong = @maHopDong";
+                // *** ĐÃ SỬA: Bỏ luongCoBan ***
+                string query = "UPDATE hopdonglaodong SET maNhanVien = @maNhanVien, tuNgay = @tuNgay, denNgay = @denNgay, loaiHopDong = @loaiHopDong, phongBan = @phongBan, maBangChamCong = @maBangChamCong WHERE maHopDong = @maHopDong";
                 using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maHopDong", contract.MaHopDong);
@@ -223,7 +445,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                     command.Parameters.AddWithValue("@denNgay", (object)contract.DenNgay ?? DBNull.Value);
                     command.Parameters.AddWithValue("@loaiHopDong", contract.LoaiHopDong);
                     command.Parameters.AddWithValue("@phongBan", contract.PhongBan);
-                    command.Parameters.AddWithValue("@luongCoBan", contract.LuongCoBan);
+                    // *** ĐÃ SỬA: Bỏ luongCoBan ***
                     command.Parameters.AddWithValue("@maBangChamCong", (object)contract.MaBangChamCong ?? DBNull.Value);
                     return command.ExecuteNonQuery() > 0;
                 }
@@ -253,14 +475,15 @@ namespace Quan_Ly_Nhan_Su.DAO
                 hd.maHopDong,
                 CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
                 pb.tenPhong AS phongBan,
-                hd.tuNgay,
+                hd.tuNgay,          
                 hd.denNgay,
                 hd.loaiHopDong,
-                hd.luongCoBan
+                IFNULL(l.luongCoBan, 0) AS luongCoBan
             FROM hopdonglaodong hd
             LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
             LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
             LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+            LEFT JOIN luong l ON hd.maNhanVien = l.maNhanVien
             WHERE hd.maHopDong LIKE @keyword 
             OR hs.hoTen LIKE @keyword 
             OR pb.tenPhong LIKE @keyword
@@ -345,9 +568,10 @@ namespace Quan_Ly_Nhan_Su.DAO
         /// <summary>
         /// Lấy danh sách nhân viên chưa ký hợp đồng, với filter phòng ban và sort theo lương
         /// </summary>
+        // LaborContractDAO.cs
         public List<EmployeeFullDTO> GetUnsignedEmployees(string phongBan = null, string sortBySalary = null)
         {
-            List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
+            var employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;
             MySqlDataReader reader = null;
 
@@ -360,58 +584,47 @@ namespace Quan_Ly_Nhan_Su.DAO
                 nv.maNhanVien,
                 hs.hoTen,
                 pb.tenPhong AS phongBan,
-                hs.ngaySinh AS ngayVaoLam,  // Giả sử thuviectu là ngày sinh hoặc thay bằng field ngày vào làm nếu có
+                hs.ngaySinh AS ngayVaoLam,
                 nv.mucLuong
             FROM nhanvien nv
-            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
-            LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
+            LEFT JOIN hosocanhan  hs ON nv.soCmnd   = hs.soCmnd
+            LEFT JOIN phongban    pb ON nv.maPhong  = pb.maPhong
             LEFT JOIN hopdonglaodong hd ON nv.maNhanVien = hd.maNhanVien
             WHERE hd.maHopDong IS NULL";
 
                 if (!string.IsNullOrEmpty(phongBan))
-                {
                     query += " AND pb.tenPhong = @phongBan";
-                }
 
                 if (!string.IsNullOrEmpty(sortBySalary))
-                {
                     query += $" ORDER BY nv.mucLuong {sortBySalary}";
-                }
 
                 using (var command = new MySqlCommand(query, conn))
                 {
                     if (!string.IsNullOrEmpty(phongBan))
-                    {
                         command.Parameters.AddWithValue("@phongBan", phongBan);
-                    }
+
                     reader = command.ExecuteReader();
-                    int stt = 1;
                     while (reader.Read())
                     {
-                        EmployeeFullDTO employee = new EmployeeFullDTO
+                        employees.Add(new EmployeeFullDTO
                         {
                             MaNhanVien = reader["maNhanVien"].ToString(),
                             HoTen = reader["hoTen"].ToString(),
                             PhongBan = reader["phongBan"].ToString(),
                             NgaySinh = reader["ngayVaoLam"] != DBNull.Value ? Convert.ToDateTime(reader["ngayVaoLam"]) : (DateTime?)null,
                             MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : 0m
-                        };
-                        employees.Add(employee);
+                        });
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine($"Error retrieving unsigned employees: {ex.Message}");
             }
             finally
             {
                 if (reader != null) reader.Close();
                 connectDB.closeConnection(conn);
             }
-
             return employees;
         }
+
         /// <summary>
         /// Deletes a labor contract from the hopdonglaodong table
         /// </summary>
@@ -514,56 +727,77 @@ namespace Quan_Ly_Nhan_Su.DAO
             {
                 conn = connectDB.getConnection();
                 conn.Open();
+                
+                // *** ĐÃ SỬA: Lấy lương mới nhất theo (Nam DESC, Thang DESC) ***
                 string query = @"
-            SELECT 
-                hd.maHopDong,
-                hd.maNhanVien,
-                CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
-                pb.tenPhong AS phongBan,
-                hd.tuNgay,
-                hd.denNgay,
-                hd.loaiHopDong,
-                hd.luongCoBan
-            FROM hopdonglaodong hd
-            LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
-            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
-            LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-            WHERE hd.maHopDong = @maHopDong";
+    SELECT 
+        hd.maHopDong,
+        hd.maNhanVien,
+        CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
+        pb.tenPhong AS phongBan,
+        hd.tuNgay,
+        hd.denNgay,
+        hd.loaiHopDong,
+        IFNULL(l.LuongCoBan, 0) AS luongCoBan,
+        hs.anh AS hinhAnh
+    FROM hopdonglaodong hd
+    LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+    LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+    LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+    LEFT JOIN (
+        SELECT MaNhanVien, LuongCoBan, Nam, Thang
+        FROM luong
+        WHERE (MaNhanVien, Nam, Thang) IN (
+            SELECT MaNhanVien, MAX(Nam), MAX(Thang)
+            FROM luong
+            GROUP BY MaNhanVien
+        )
+    ) l ON hd.maNhanVien = l.MaNhanVien
+    WHERE hd.maHopDong = @maHopDong";
 
-                using (var command = new MySqlCommand(query, conn))
+        using (var command = new MySqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@maHopDong", maHopDong);
                     reader = command.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        contract = new LaborContractDTO
-                        {
-                            MaHopDong = reader["maHopDong"].ToString(),
-                            MaNhanVien = reader["maNhanVien"].ToString(),
-                            TenNhanVien = reader["tenNhanVien"].ToString(),
-                            PhongBan = reader["phongBan"].ToString(),
-                            TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
-                            DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
-                            LoaiHopDong = reader["loaiHopDong"].ToString(),
-                            LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m
-                        };
-                    }
-                }
-            }
-            catch (MySqlException ex)
+            
+            if (reader.Read())
             {
-                Console.WriteLine($"Error retrieving labor contract: {ex.Message}");
+                Console.WriteLine($"DAO Debug: maHopDong={maHopDong}, luongCoBan={reader["luongCoBan"]}, hinhAnh={reader["hinhAnh"]?.ToString() ?? "null"}");
+                
+                contract = new LaborContractDTO
+                {
+                    MaHopDong = reader["maHopDong"].ToString(),
+                    MaNhanVien = reader["maNhanVien"].ToString(),
+                    TenNhanVien = reader["tenNhanVien"].ToString(),
+                    PhongBan = reader["phongBan"].ToString(),
+                    TuNgay = reader["tuNgay"] != DBNull.Value ? Convert.ToDateTime(reader["tuNgay"]) : (DateTime?)null,
+                    DenNgay = reader["denNgay"] != DBNull.Value ? Convert.ToDateTime(reader["denNgay"]) : (DateTime?)null,
+                    LoaiHopDong = reader["loaiHopDong"].ToString(),
+                    LuongCoBan = reader["luongCoBan"] != DBNull.Value ? Convert.ToDecimal(reader["luongCoBan"]) : 0m,
+                    HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
+                };
             }
-            finally
+            else
             {
-                if (reader != null) reader.Close();
-                connectDB.closeConnection(conn);
+                Console.WriteLine($"DAO Debug: No data for maHopDong={maHopDong}");
             }
-
-            return contract;
         }
-    
-    public EmployeeFullDTO GetEmployeeById(string maNhanVien)
+    }
+    catch (MySqlException ex)
+    {
+        Console.WriteLine($"Error retrieving labor contract: {ex.Message}");
+        MessageBox.Show($"Lỗi DB: {ex.Message}\n\nQuery có thể bị lỗi. Kiểm tra Console Output!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+    finally
+    {
+        if (reader != null) reader.Close();
+        connectDB.closeConnection(conn);
+    }
+
+    return contract;
+}
+
+        public EmployeeFullDTO GetEmployeeById(string maNhanVien)
         {
             EmployeeFullDTO employee = null;
             MySqlConnection conn = null;
@@ -638,7 +872,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 string query = @"
                     SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
                            hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
-                           nv.mucLuong, hs.diaChi, hs.hinhAnh
+                           nv.mucLuong, hs.diaChi, hs.anh AS hinhAnh
                     FROM nhanvien nv
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
                     LEFT JOIN phongban pb ON nv.maPhong = pb.maPhong
@@ -684,7 +918,7 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return employees;
         }
-    
+
 
         // Nếu cần lọc hợp đồng (không phải nhân viên), thêm phương thức tương tự
         public List<LaborContractDTO> GetContractsByDepartment(string phongBan, string sortBySalary = null)
@@ -698,23 +932,24 @@ namespace Quan_Ly_Nhan_Su.DAO
                 conn = connectDB.getConnection();
                 conn.Open();
                 string query = @"
-                    SELECT 
-                        hd.maHopDong,
-                        CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
-                        pb.tenPhong AS phongBan,
-                        hd.tuNgay,
-                        hd.denNgay,
-                        hd.loaiHopDong,
-                        hd.luongCoBan
-                    FROM hopdonglaodong hd
-                    LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
-                    LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
-                    LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
-                    WHERE pb.tenPhong = @phongBan";
+            SELECT 
+                hd.maHopDong,
+                CONCAT(hs.hoTen, ' (', hd.maNhanVien, ')') AS tenNhanVien,
+                pb.tenPhong AS phongBan,
+                hd.tuNgay,
+                hd.denNgay,
+                hd.loaiHopDong,
+                IFNULL(l.luongCoBan, 0) AS luongCoBan
+            FROM hopdonglaodong hd
+            LEFT JOIN nhanvien nv ON hd.maNhanVien = nv.maNhanVien
+            LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
+            LEFT JOIN phongban pb ON hd.phongBan = pb.maPhong
+            LEFT JOIN luong l ON hd.maNhanVien = l.maNhanVien
+            WHERE pb.tenPhong = @phongBan";
 
                 if (!string.IsNullOrEmpty(sortBySalary))
                 {
-                    query += $" ORDER BY hd.luongCoBan {sortBySalary}";
+                    query += $" ORDER BY l.luongCoBan {sortBySalary}";
                 }
                 else
                 {
@@ -755,12 +990,12 @@ namespace Quan_Ly_Nhan_Su.DAO
 
             return contracts;
         }
-    
 
-/// <summary>
-/// Searches employees by keyword (maNhanVien, hoTen, or phongBan)
-/// </summary>
-public List<EmployeeFullDTO> SearchEmployees(string keyword)
+
+        /// <summary>
+        /// Searches employees by keyword (maNhanVien, hoTen, or phongBan)
+        /// </summary>
+        public List<EmployeeFullDTO> SearchEmployees(string keyword)
         {
             List<EmployeeFullDTO> employees = new List<EmployeeFullDTO>();
             MySqlConnection conn = null;

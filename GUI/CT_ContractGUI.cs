@@ -21,6 +21,12 @@ namespace Quan_Ly_Nhan_Su.GUI
         public CT_ContractGUI()
         {
             InitializeComponent();
+            
+            // ĐẢM BẢO Dock được set sau khi InitializeComponent
+            this.Dock = DockStyle.Fill;
+            this.AutoScaleMode = AutoScaleMode.None;  // Tắt AutoScale
+            this.AutoSize = false;  // Tắt AutoSize
+            
             InitializeBLL();
             InitializeForm();
         }
@@ -68,30 +74,55 @@ namespace Quan_Ly_Nhan_Su.GUI
 
         private void GenerateContractId()
         {
-            // Sinh mã hợp đồng tự động theo format: HD + YYYYMMDD + số thứ tự
-            // Để đơn giản, dùng "001" - có thể cải thiện bằng query DB sau
-            string dateStr = DateTime.Now.ToString("yyyyMMdd");
-            textBoxMaHopDong.Text = $"HD{dateStr}001";
+            // Sinh mã hợp đồng tự động: HD + YYYYMMDD + số thứ tự (001..999)
+            string dateBase = DateTime.Now.ToString("yyyyMMdd");
+            string prefix = $"HD{dateBase}";
+            int suffix = 1;
+            string candidate;
+
+            // Lặp tới khi mã chưa tồn tại trong DB
+            do
+            {
+                candidate = $"{prefix}{suffix:D3}";
+                // Nếu BLL trả null => chưa có hợp đồng đó
+                if (contractBLL.GetContractById(candidate) == null) break;
+                suffix++;
+                if (suffix > 999) break; // bảo vệ khỏi loop vô hạn
+            } while (true);
+
+            textBoxMaHopDong.Text = candidate;
             textBoxMaHopDong.ReadOnly = true;
         }
 
+        // CT_ContractGUI.cs
+        // CT_ContractGUI.cs
+        // CT_ContractGUI.cs
         private void LoadEmployees()
         {
             try
             {
-                // Chỉ load nhân viên chưa ký hợp đồng
-                var employees = employeeBLL.GetEmployeesWithoutContract();
-                comboBoxNhanVien.DataSource = employees;
-                comboBoxNhanVien.DisplayMember = "HoTen";
+                // Lấy danh sách nhân viên CHƯA có hợp đồng
+                var emps = contractBLL.GetUnsignedEmployees();
+
+                // Chỉ hiển thị MÃ NHÂN VIÊN
+                var data = emps.Select(e => new
+                {
+                    MaNhanVien = e.MaNhanVien,
+                    Display = e.MaNhanVien  // <--- THAY ĐỔI CHÍNH XÁC TẠI ĐÂY
+                }).ToList();
+
+                comboBoxNhanVien.DataSource = data;
+                comboBoxNhanVien.DisplayMember = "Display";
                 comboBoxNhanVien.ValueMember = "MaNhanVien";
-                comboBoxNhanVien.SelectedIndex = -1;
+                comboBoxNhanVien.SelectedIndex = data.Count > 0 ? 0 : -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải danh sách nhân viên chưa ký hợp đồng: {ex.Message}",
+                MessageBox.Show("Lỗi khi tải danh sách nhân viên chưa ký hợp đồng: " + ex.Message,
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }   
+
 
         private void LoadDepartments()
         {
@@ -183,25 +214,50 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
-                // Lấy MaPhong từ SelectedItem (lưu maPhong thay vì tenPhong để JOIN đúng)
-                string maPhongBan = ((DepartmentDTO)comboBoxPhongBan.SelectedItem)?.MaPhong ?? "";
+                // Lấy mã phòng ban an toàn: nếu item là string hoặc DTO đều xử lý được
+                string maPhongBan = "";
+                var selected = comboBoxPhongBan.SelectedItem;
+                if (selected == null)
+                {
+                    maPhongBan = "";
+                }
+                else if (selected is string)
+                {
+                    maPhongBan = selected.ToString();
+                }
+                else
+                {
+                    // nếu là DTO
+                    var dto = selected as DepartmentDTO;
+                    maPhongBan = dto?.MaPhong ?? selected.ToString();
+                }
+
                 var contract = new LaborContractDTO
                 {
                     MaHopDong = textBoxMaHopDong.Text,
-                    MaNhanVien = comboBoxNhanVien.SelectedValue.ToString(),
-                    PhongBan = maPhongBan,  // Lưu maPhong
+                    MaNhanVien = comboBoxNhanVien.SelectedValue?.ToString() ?? comboBoxNhanVien.SelectedItem?.ToString() ?? "",
+                    PhongBan = maPhongBan,
                     LoaiHopDong = comboBoxLoaiHopDong.Text,
                     TuNgay = dateTimePickerTuNgay.Value,
                     DenNgay = comboBoxLoaiHopDong.Text == "Không thời hạn" ? (DateTime?)null : dateTimePickerDenNgay.Value,
                     LuongCoBan = decimal.Parse(textBoxMucLuong.Text)
-                    // Không có ChiTiet
                 };
 
-                if (contractBLL.CreateContract(contract))
+                // Kiểm tra mã hợp đồng trùng trước khi gọi DAO
+                if (contractBLL.GetContractById(contract.MaHopDong) != null)
                 {
-                    MessageBox.Show("Tạo hợp đồng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Mã hợp đồng đã tồn tại. Vui lòng thử lại để tạo mã hợp đồng mới.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    GenerateContractId();
+                    return;
+                }
+
+                decimal luongTheoGio = 0;
+                decimal.TryParse(textBoxLuongTheoGio.Text, out luongTheoGio);
+
+                if (contractBLL.CreateContractWithSalary(contract, luongTheoGio))
+                {
+                    MessageBox.Show("Tạo hợp đồng và lương thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ResetForm();
-                    // Reload employees để loại bỏ NV vừa ký
                     LoadEmployees();
                 }
                 else
@@ -214,6 +270,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 MessageBox.Show($"Lỗi khi tạo hợp đồng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ResetForm()
         {

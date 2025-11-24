@@ -9,7 +9,7 @@ namespace Quan_Ly_Nhan_Su.BLL
     public class EmployeeBLL
     {
         private readonly EmployeeDAO _dao;
-        private static List<EmployeeDTO> list;
+        private static List<EmployeeDTO> list = new List<EmployeeDTO>();
 
         public EmployeeBLL()
         {
@@ -20,12 +20,24 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public List<EmployeeDTO> GetAll() => new List<EmployeeDTO>(list);
 
-        public bool Insert(EmployeeDTO employeeDTO)
+        public bool Insert(EmployeeDTO employeeDTO, string maTuyenDung, PositionDTO positionDTO)
         {
             if (employeeDTO == null)
                 throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
 
-            bool success = _dao.createEmployee(employeeDTO);
+            bool success = _dao.createEmployee(employeeDTO, maTuyenDung, positionDTO);
+            if (success)
+                list.Add(employeeDTO);
+
+            return success;
+        }
+
+        public bool InsertNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO, PositionDTO positionDTO)
+        {
+            if (employeeDTO == null)
+                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
+
+            bool success = _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
             if (success)
                 list.Add(employeeDTO);
 

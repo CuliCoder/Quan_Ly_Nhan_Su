@@ -17,7 +17,7 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class homePage : UserControl
     {
-        CT_LaborContractBLL laborContract = new CT_LaborContractBLL();
+        LaborContractBLL laborContract = new LaborContractBLL();
         DepartmentBLL department = new DepartmentBLL();
         EmployeeFullBLL employeeFull= new EmployeeFullBLL();
         EmployeeBLL employee = new EmployeeBLL();
@@ -49,6 +49,8 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             int namHienTai = DateTime.Now.Year;
             var listLaborContract = laborContract.GetAllContracts();
+            Console.WriteLine("------");
+            Console.WriteLine(listLaborContract.Count());
             var nhanVienTheoNam = new Dictionary<int, Tuple<int, double>>();
             for (int year = namHienTai - 3; year <= namHienTai; year++)
             {

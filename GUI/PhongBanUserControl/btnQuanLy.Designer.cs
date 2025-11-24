@@ -146,9 +146,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxEdit.Name = "boxEdit";
             this.boxEdit.Size = new System.Drawing.Size(108, 50);
             this.boxEdit.TabIndex = 3;
+            this.boxEdit.Click += new System.EventHandler(this.boxEdit_Click);
             this.boxEdit.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.boxEdit.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.boxEdit.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // pictureBox1
             // 
@@ -160,9 +160,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pictureBox1.Size = new System.Drawing.Size(47, 44);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.boxEdit_Click);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.pictureBox1.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // label3
             // 
@@ -175,9 +175,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label3.Size = new System.Drawing.Size(49, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Sửa";
+            this.label3.Click += new System.EventHandler(this.boxEdit_Click);
             this.label3.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.label3.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.label3.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // boxdelete
             // 
@@ -491,6 +491,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "btnQuanLy";
             this.Size = new System.Drawing.Size(1468, 818);
+            this.Load += new System.EventHandler(this.btnQuanLy_Load);
             this.Title.ResumeLayout(false);
             this.Title.PerformLayout();
             this.boxAdd.ResumeLayout(false);

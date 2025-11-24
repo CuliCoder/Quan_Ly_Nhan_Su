@@ -2,6 +2,7 @@
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
@@ -9,7 +10,7 @@ namespace Quan_Ly_Nhan_Su.BLL
     {
         private readonly CandidateDAO _dao;
         private static List<CandidateDTO> list;
-
+        
         public CandidateBLL()
         {
             _dao = new CandidateDAO();
@@ -40,14 +41,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             return false;
         }
 
-        public bool CreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
-        {
-            if(_dao.CreateCandidateWithProfile(perDTO, cadiDto))
-            {
-                return true;
-            }
-            return false;
-        }
+
 
         public bool CheckId(string id)
         {
@@ -70,6 +64,22 @@ namespace Quan_Ly_Nhan_Su.BLL
             return success;
         }
 
+        public bool UpdateStatus(string maUngVien, string trangThai)
+        {
+            if (string.IsNullOrEmpty(maUngVien) || string.IsNullOrEmpty(trangThai))
+                return false;
+            bool success = _dao.UpdateStatus(maUngVien, trangThai);
+            if (success)
+            {
+                CandidateDTO dto = list.FirstOrDefault(x => x.MaUngVien == maUngVien);
+                if (dto != null)
+                {
+                    dto.TrangThai = trangThai;
+                }
+            }
+            return success;
+        }
+
         public bool Delete(string maUngVien)
         {
             if (string.IsNullOrWhiteSpace(maUngVien))
@@ -80,6 +90,16 @@ namespace Quan_Ly_Nhan_Su.BLL
                 list.RemoveAll(x => x.MaUngVien == maUngVien);
 
             return success;
+        }
+
+        public bool DeleteList(string maUngVien)
+        {
+            if (maUngVien.Length > 0)
+            {
+                list.RemoveAll(x => x.MaUngVien == maUngVien);
+                return true;
+            }
+            return false;
         }
 
         public List<CandidateDTO> Search(string keyword)

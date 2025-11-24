@@ -77,26 +77,36 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
-                // Tạo form mới để chứa CT_ContractGUI
+                // Tạo form với kích thước CHÍNH XÁC
                 Form createContractForm = new Form
                 {
                     Text = "Tạo Hợp Đồng Lao Động",
-                    Size = new Size(500, 500),  // Kích thước phù hợp với CT_ContractGUI
+                    ClientSize = new Size(920, 750),  // QUAN TRỌNG: Dùng ClientSize thay vì Size
                     StartPosition = FormStartPosition.CenterParent,
-                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    FormBorderStyle = FormBorderStyle.FixedSingle,  // Cố định size
                     MaximizeBox = false,
-                    MinimizeBox = false
+                    MinimizeBox = false,
+                    AutoScaleMode = AutoScaleMode.None,  // TẮT AutoScale để không bị méo
+                    BackColor = Color.FromArgb(236, 240, 241)
                 };
 
-                // Tạo instance của CT_ContractGUI (không prefill dữ liệu, không load gì)
-                CT_ContractGUI contractGui = new CT_ContractGUI();
+                // Tạo instance của CT_ContractGUI
+                CT_ContractGUI contractGui = new CT_ContractGUI
+                {
+                    Dock = DockStyle.Fill  // Fill toàn bộ form
+                };
 
-                // Thêm CT_ContractGUI vào form
-                contractGui.Dock = DockStyle.Fill;
+                // Thêm vào form
                 createContractForm.Controls.Add(contractGui);
 
-                // Hiển thị form như dialog (parent là form hiện tại)
-                createContractForm.ShowDialog(this);
+                // Hiển thị form
+                DialogResult result = createContractForm.ShowDialog(this);
+                
+                // Reload lại danh sách nếu tạo thành công
+                if (result == DialogResult.OK)
+                {
+                    LoadDataToGrid();
+                }
             }
             catch (Exception ex)
             {
