@@ -8,294 +8,189 @@ namespace Quan_Ly_Nhan_Su.DAO
 {
     public class SalaryDAO
     {
-        // ==========================
-        // LẤY TẤT CẢ
-        // ==========================
+        private MySqlConnection conn;
+
+        /// <summary>
+        /// Lấy toàn bộ danh sách lương
+        /// </summary>
         public List<SalaryDTO> GetAll()
         {
-            var list = new List<SalaryDTO>();
+            List<SalaryDTO> list = new List<SalaryDTO>();
             try
             {
-                using (var conn = connectDB.getConnection())
+                using (conn = connectDB.getConnection())
                 {
-                    if (conn == null) return null;
                     conn.Open();
-
-                    const string sql =
-                        @"SELECT MaLuong, LuongCoBan, LuongThuong, LuongThucTe,
-                                 PhuCapChucVu, PhuCapKhac, KhoanTruBaoHiem,
-                                 KhoanTruKhac, Thue, ThucLanh
-                          FROM luong
-                          WHERE TinhTrang = 1";
-
+                    string sql = "SELECT * FROM luong";
                     using (var cmd = new MySqlCommand(sql, conn))
-                    using (var rd = cmd.ExecuteReader())
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        while (rd.Read())
+                        while (reader.Read())
                         {
-                            list.Add(new SalaryDTO
+                            SalaryDTO dto = new SalaryDTO
                             {
-                                MaLuong = rd["MaLuong"].ToString(),
-                                LuongCoBan = Convert.ToDecimal(rd["LuongCoBan"]),
-                                LuongThuong = Convert.ToDecimal(rd["LuongThuong"]),
-                                LuongThucTe = rd["LuongThucTe"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["LuongThucTe"]),
-                                PhuCapChucVu = Convert.ToDecimal(rd["PhuCapChucVu"]),
-                                PhuCapKhac = Convert.ToDecimal(rd["PhuCapKhac"]),
-                                KhoanTruBaoHiem = Convert.ToDecimal(rd["KhoanTruBaoHiem"]),
-                                KhoanTruKhac = Convert.ToDecimal(rd["KhoanTruKhac"]),
-                                Thue = Convert.ToDecimal(rd["Thue"]),
-                                ThucLanh = rd["ThucLanh"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["ThucLanh"])
-                            });
+                                MaLuong = reader["MaLuong"].ToString(),
+                                MaNhanVien = reader["MaNhanVien"]?.ToString(),
+                                LuongCoBan = Convert.ToDecimal(reader["LuongCoBan"]),
+                                LuongTheoGio = Convert.ToDecimal(reader["LuongTheoGio"])
+                            };
+                            list.Add(dto);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SalaryDAO.GetAll SQL Error: " + ex.Message);
-                return null;
+                Console.WriteLine("Lỗi khi lấy danh sách lương: " + ex.Message);
             }
             return list;
         }
 
-        // ==========================
-        // LẤY THEO MÃ LƯƠNG
-        // ==========================
-        public SalaryDTO GetById(string maLuong)
+        /// <summary>
+        /// Thêm mới một bản ghi lương
+        /// </summary>
+        public bool Insert(SalaryDTO dto)
         {
             try
             {
-                using (var conn = connectDB.getConnection())
+                using (conn = connectDB.getConnection())
                 {
-                    if (conn == null) return null;
                     conn.Open();
-
-                    const string sql =
-                        @"SELECT MaLuong, LuongCoBan, LuongThuong, LuongThucTe,
-                                 PhuCapChucVu, PhuCapKhac, KhoanTruBaoHiem,
-                                 KhoanTruKhac, Thue, ThucLanh
-                          FROM luong
-                          WHERE MaLuong = @MaLuong AND TinhTrang = 1";
-
+                    string sql = @"INSERT INTO luong (MaLuong, MaNhanVien, LuongCoBan, LuongTheoGio)
+                                   VALUES (@MaLuong, @MaNhanVien, @LuongCoBan, @LuongTheoGio)";
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@MaLuong", maLuong);
-                        using (var rd = cmd.ExecuteReader())
-                        {
-                            if (!rd.Read()) return null;
+                        cmd.Parameters.AddWithValue("@MaLuong", dto.MaLuong);
+                        cmd.Parameters.AddWithValue("@MaNhanVien", dto.MaNhanVien);
+                        cmd.Parameters.AddWithValue("@LuongCoBan", dto.LuongCoBan);
+                        cmd.Parameters.AddWithValue("@LuongTheoGio", dto.LuongTheoGio);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi thêm lương: " + ex.Message);
+                return false;
+            }
+        }
 
-                            return new SalaryDTO
+        /// <summary>
+        /// Cập nhật thông tin lương
+        /// </summary>
+        public bool Update(SalaryDTO dto)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"UPDATE luong 
+                                   SET MaNhanVien=@MaNhanVien, LuongCoBan=@LuongCoBan, LuongTheoGio=@LuongTheoGio
+                                   WHERE MaLuong=@MaLuong";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaLuong", dto.MaLuong);
+                        cmd.Parameters.AddWithValue("@MaNhanVien", dto.MaNhanVien);
+                        cmd.Parameters.AddWithValue("@LuongCoBan", dto.LuongCoBan);
+                        cmd.Parameters.AddWithValue("@LuongTheoGio", dto.LuongTheoGio);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật lương: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Xóa lương theo mã
+        /// </summary>
+        public bool Delete(string salaryId)
+        {
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM luong WHERE MaLuong=@MaLuong";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaLuong", salaryId);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ Lỗi khi xóa lương: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Tìm kiếm lương theo từ khóa (mã hoặc nhân viên)
+        /// </summary>
+        public List<SalaryDTO> Search(string keyword)
+        {
+            List<SalaryDTO> list = new List<SalaryDTO>();
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"SELECT * FROM luong 
+                                   WHERE MaLuong LIKE @kw OR MaNhanVien LIKE @kw";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
                             {
-                                MaLuong = rd["MaLuong"].ToString(),
-                                LuongCoBan = Convert.ToDecimal(rd["LuongCoBan"]),
-                                LuongThuong = Convert.ToDecimal(rd["LuongThuong"]),
-                                LuongThucTe = rd["LuongThucTe"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["LuongThucTe"]),
-                                PhuCapChucVu = Convert.ToDecimal(rd["PhuCapChucVu"]),
-                                PhuCapKhac = Convert.ToDecimal(rd["PhuCapKhac"]),
-                                KhoanTruBaoHiem = Convert.ToDecimal(rd["KhoanTruBaoHiem"]),
-                                KhoanTruKhac = Convert.ToDecimal(rd["KhoanTruKhac"]),
-                                Thue = Convert.ToDecimal(rd["Thue"]),
-                                ThucLanh = rd["ThucLanh"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["ThucLanh"])
-                            };
+                                list.Add(new SalaryDTO
+                                {
+                                    MaLuong = reader["MaLuong"].ToString(),
+                                    MaNhanVien = reader["MaNhanVien"]?.ToString(),
+                                    LuongCoBan = Convert.ToDecimal(reader["LuongCoBan"]),
+                                    LuongTheoGio = Convert.ToDecimal(reader["LuongTheoGio"])
+                                });
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SalaryDAO.GetById SQL Error: " + ex.Message);
-                return null;
+                Console.WriteLine("Lỗi tìm kiếm lương: " + ex.Message);
             }
+            return list;
         }
 
-        // ==========================
-        // THÊM
-        // ==========================
-        public bool Insert(SalaryDTO s)
+        // Helper: get MaNhanVien by MaLuong
+        public string GetMaNhanVienByMaLuong(string maLuong)
         {
-            try
-            {
-                using (var conn = connectDB.getConnection())
-                {
-                    if (conn == null) return false;
-                    conn.Open();
-
-                    const string sql =
-                        @"INSERT INTO luong
-                          (MaLuong, LuongCoBan, LuongThuong, LuongThucTe,
-                           PhuCapChucVu, PhuCapKhac, KhoanTruBaoHiem,
-                           KhoanTruKhac, Thue, ThucLanh, TinhTrang)
-                          VALUES
-                          (@MaLuong, @LuongCoBan, @LuongThuong, @LuongThucTe,
-                           @PhuCapChucVu, @PhuCapKhac, @KhoanTruBaoHiem,
-                           @KhoanTruKhac, @Thue, @ThucLanh, 1)";
-
-                    using (var cmd = new MySqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaLuong", s.MaLuong);
-                        cmd.Parameters.AddWithValue("@LuongCoBan", s.LuongCoBan);
-                        cmd.Parameters.AddWithValue("@LuongThuong", s.LuongThuong);
-                        cmd.Parameters.AddWithValue("@LuongThucTe", (object)s.LuongThucTe ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@PhuCapChucVu", s.PhuCapChucVu);
-                        cmd.Parameters.AddWithValue("@PhuCapKhac", s.PhuCapKhac);
-                        cmd.Parameters.AddWithValue("@KhoanTruBaoHiem", s.KhoanTruBaoHiem);
-                        cmd.Parameters.AddWithValue("@KhoanTruKhac", s.KhoanTruKhac);
-                        cmd.Parameters.AddWithValue("@Thue", s.Thue);
-                        cmd.Parameters.AddWithValue("@ThucLanh", (object)s.ThucLanh ?? DBNull.Value);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("SalaryDAO.Insert SQL Error: " + ex.Message);
-                return false;
-            }
-        }
-
-        // ==========================
-        // CẬP NHẬT
-        // ==========================
-        public bool Update(SalaryDTO s)
-        {
-            try
-            {
-                using (var conn = connectDB.getConnection())
-                {
-                    if (conn == null) return false;
-                    conn.Open();
-
-                    const string sql =
-                        @"UPDATE luong
-                          SET LuongCoBan = @LuongCoBan,
-                              LuongThuong = @LuongThuong,
-                              LuongThucTe = @LuongThucTe,
-                              PhuCapChucVu = @PhuCapChucVu,
-                              PhuCapKhac = @PhuCapKhac,
-                              KhoanTruBaoHiem = @KhoanTruBaoHiem,
-                              KhoanTruKhac = @KhoanTruKhac,
-                              Thue = @Thue,
-                              ThucLanh = @ThucLanh
-                          WHERE MaLuong = @MaLuong AND TinhTrang = 1";
-
-                    using (var cmd = new MySqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaLuong", s.MaLuong);
-                        cmd.Parameters.AddWithValue("@LuongCoBan", s.LuongCoBan);
-                        cmd.Parameters.AddWithValue("@LuongThuong", s.LuongThuong);
-                        cmd.Parameters.AddWithValue("@LuongThucTe", (object)s.LuongThucTe ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@PhuCapChucVu", s.PhuCapChucVu);
-                        cmd.Parameters.AddWithValue("@PhuCapKhac", s.PhuCapKhac);
-                        cmd.Parameters.AddWithValue("@KhoanTruBaoHiem", s.KhoanTruBaoHiem);
-                        cmd.Parameters.AddWithValue("@KhoanTruKhac", s.KhoanTruKhac);
-                        cmd.Parameters.AddWithValue("@Thue", s.Thue);
-                        cmd.Parameters.AddWithValue("@ThucLanh", (object)s.ThucLanh ?? DBNull.Value);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("SalaryDAO.Update SQL Error: " + ex.Message);
-                return false;
-            }
-        }
-
-        // ==========================
-        // XÓA MỀM (TinhTrang = 0)
-        // ==========================
-        public bool Delete(string maLuong)
-        {
-            try
-            {
-                using (var conn = connectDB.getConnection())
-                {
-                    if (conn == null) return false;
-                    conn.Open();
-                    const string sql = @"UPDATE luong SET TinhTrang = 0 WHERE MaLuong = @MaLuong";
-                    using (var cmd = new MySqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaLuong", maLuong);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("SalaryDAO.Delete SQL Error: " + ex.Message);
-                return false;
-            }
-        }
-
-        // ==========================
-        // LẤY PHIẾU LƯƠNG THEO MÃ NHÂN VIÊN (JOIN nhiều bảng)
-        // ==> HÀM NÀY CHỈ KHAI BÁO 1 LẦN TRONG FILE
-        // ==========================
-        public SalaryDTO GetSalaryByEmployee(string maNhanVien)
-        {
+            if (string.IsNullOrWhiteSpace(maLuong)) return null;
             try
             {
                 using (var conn = connectDB.getConnection())
                 {
                     if (conn == null) return null;
                     conn.Open();
-
-                    const string sql =
-                        @"SELECT  nv.maNhanVien,
-                                  hs.hoTen,
-                                  cv.tenChucVu,
-                                  pb.tenPhong,
-                                  l.maLuong,
-                                  l.luongCoBan,
-                                  l.luongThuong,
-                                  l.luongThucTe,
-                                  l.phuCapChucVu,
-                                  l.phuCapKhac,
-                                  l.khoanTruBaoHiem,
-                                  l.khoanTruKhac,
-                                  l.thue,
-                                  l.thucLanh
-                          FROM nhanvien nv
-                          JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
-                          JOIN chucvu      cv ON nv.maChucVu = cv.maChucVu
-                          JOIN phongban    pb ON nv.maPhong  = pb.maPhong
-                          JOIN luong        l ON nv.maluong   = l.maluong
-                          WHERE nv.maNhanVien = @MaNhanVien
-                          LIMIT 1;";
-
+                    const string sql = "SELECT MaNhanVien FROM luong WHERE MaLuong = @MaLuong LIMIT 1";
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@MaNhanVien", maNhanVien);
-                        using (var rd = cmd.ExecuteReader())
-                        {
-                            if (!rd.Read()) return null;
-
-                            return new SalaryDTO
-                            {
-                                MaNhanVien = rd["maNhanVien"].ToString(),
-                                HoTen = rd["hoTen"].ToString(),
-                                TenChucVu = rd["tenChucVu"].ToString(),
-                                TenPhong = rd["tenPhong"].ToString(),
-
-                                MaLuong = rd["maLuong"].ToString(),
-                                LuongCoBan = Convert.ToDecimal(rd["luongCoBan"]),
-                                LuongThuong = Convert.ToDecimal(rd["luongThuong"]),
-                                LuongThucTe = rd["luongThucTe"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["luongThucTe"]),
-                                PhuCapChucVu = Convert.ToDecimal(rd["phuCapChucVu"]),
-                                PhuCapKhac = Convert.ToDecimal(rd["phuCapKhac"]),
-                                KhoanTruBaoHiem = Convert.ToDecimal(rd["khoanTruBaoHiem"]),
-                                KhoanTruKhac = Convert.ToDecimal(rd["khoanTruKhac"]),
-                                Thue = Convert.ToDecimal(rd["thue"]),
-                                ThucLanh = rd["thucLanh"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(rd["thucLanh"]),
-                                NgayLap = DateTime.Now
-                            };
-                        }
+                        cmd.Parameters.AddWithValue("@MaLuong", maLuong);
+                        var result = cmd.ExecuteScalar();
+                        return result?.ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SalaryDAO.GetSalaryByEmployee SQL Error: " + ex.Message);
+                Console.WriteLine("SalaryDAO.GetMaNhanVienByMaLuong Error: " + ex.Message);
                 return null;
             }
         }

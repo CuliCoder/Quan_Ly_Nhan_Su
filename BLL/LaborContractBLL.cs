@@ -249,5 +249,21 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             return _dao.Delete(maHopDong); //
         }
+
+        /// <summary>
+        /// Lấy danh sách hợp đồng với filter ngày, phòng ban và sort key
+        /// </summary>
+        public List<LaborContractDTO> GetContracts(DateTime? fromDate = null, DateTime? toDate = null, string phongBan = null, string sortKey = null)
+        {
+            try
+            {
+                return _dao.GetContracts(fromDate, toDate, phongBan, sortKey);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving contracts with filter: {ex.Message}");
+                return new List<LaborContractDTO>();
+            }
+        }
     }
 }   

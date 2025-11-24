@@ -3,93 +3,65 @@ using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
     public class EmployeeBLL
     {
         private readonly EmployeeDAO _dao;
-        private static List<EmployeeDTO> list = new List<EmployeeDTO>();
-
+        private readonly PersonalProfileBLL personalProfileBLL;
         public EmployeeBLL()
         {
             _dao = new EmployeeDAO();
-            if (list == null)
-                list = _dao.getAll();
+            personalProfileBLL = new PersonalProfileBLL();
         }
 
-        public List<EmployeeDTO> GetAll() => new List<EmployeeDTO>(list);
+        public List<EmployeeDTO> GetAll() => _dao.getAll();
 
         public bool Insert(EmployeeDTO employeeDTO, string maTuyenDung, PositionDTO positionDTO)
         {
-            if (employeeDTO == null)
-                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
-
-            bool success = _dao.createEmployee(employeeDTO, maTuyenDung, positionDTO);
-            if (success)
-                list.Add(employeeDTO);
-
-            return success;
+            return _dao.createEmployee(employeeDTO, maTuyenDung, positionDTO); ;
         }
 
         public bool InsertNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO, PositionDTO positionDTO)
         {
-            if (employeeDTO == null)
-                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
+            return _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
+        }
 
-            bool success = _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
-            if (success)
-                list.Add(employeeDTO);
+        public bool ImportExcelEmployees(List<EmployeeFullDTO> employees)
+        {
+            List<string> listcccd = new List<string>();
+            foreach (EmployeeFullDTO employee in employees)
+            {
+                if(!personalProfileBLL.checkID(employee.SoCmnd))
+                {        
+                    MessageBox.Show("Căn cước công dân " + employee.SoCmnd + " đã tồn tại trong hồ sơ cá nhân. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
 
-            return success;
+            return _dao.ImportEmployees(employees);
         }
 
         public bool Update(EmployeeDTO employeeDTO)
         {
-            if (employeeDTO == null)
-                throw new ArgumentNullException(nameof(employeeDTO), "Dữ liệu nhân viên không hợp lệ!");
-
-            bool success = _dao.updateEmployee(employeeDTO);
-            if (success)
-            {
-                int index = list.FindIndex(x => x.MaNhanVien == employeeDTO.MaNhanVien);
-                if (index != -1)
-                    list[index] = employeeDTO;
-            }
-
-            return success;
+            return _dao.updateEmployee(employeeDTO);
         }
+
         public bool UpdateChucVu(string maNV, string maChucvu)
         {
-            if (maNV == null || maChucvu == null)
-                throw new ArgumentException("Mã nhân viên và mã chức vụ không được để trống!");
-
-            bool success = _dao.updateChucVu(maNV, maChucvu);
-            if (success)
-            {
-                int index = list.FindIndex(x => x.MaNhanVien == maNV);
-                if (index != -1)
-                    list[index].MaChucVu = maChucvu;
-            }
-            return success;
+            return _dao.updateChucVu(maNV, maChucvu);
         }
 
         public bool Delete(string maNhanVien)
         {
-            if (string.IsNullOrWhiteSpace(maNhanVien))
-                throw new ArgumentException("Mã nhân viên không được để trống!");
 
-            bool success = _dao.deleteEmployee(maNhanVien);
-            if (success)
-                list.RemoveAll(x => x.MaNhanVien == maNhanVien);
-
-            return success;
+            return _dao.deleteEmployee(maNhanVien);
         }
 
         public List<EmployeeDTO> SearchEmployee(string keyword)
         {
-            if (string.IsNullOrWhiteSpace(keyword))
-                return new List<EmployeeDTO>(list);
 
             return _dao.searchEmployee(keyword);
         }

@@ -1,4 +1,4 @@
-﻿namespace Quan_Ly_Nhan_Su.GUI.ChamCong
+﻿namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     partial class ucKiemTraCongCa
     {

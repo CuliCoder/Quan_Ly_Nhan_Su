@@ -11,20 +11,41 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class StatisticsGUI : UserControl
     {
-        private readonly LaborContractBLL _laborContractBLL;
-        private readonly EmployeeFullBLL _employeeBLL;
+        // Make fields non-readonly and lazily initialize to avoid designer-time instantiation
+        private LaborContractBLL _laborContractBLL = null;
+        private EmployeeFullBLL _employeeBLL = null;
 
         public StatisticsGUI()
         {
             InitializeComponent();
-            _laborContractBLL = new LaborContractBLL();
-            _employeeBLL = new EmployeeFullBLL();
+            // Do not instantiate BLL/DAO here to avoid designer crashes
+        }
+
+        private bool IsInDesignMode()
+        {
+            return System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime || this.DesignMode;
+        }
+
+        private LaborContractBLL GetLaborContractBLL()
+        {
+            if (IsInDesignMode()) return null;
+            return _laborContractBLL ?? (_laborContractBLL = new LaborContractBLL());
+        }
+
+        private EmployeeFullBLL GetEmployeeBLL()
+        {
+            if (IsInDesignMode()) return null;
+            return _employeeBLL ?? (_employeeBLL = new EmployeeFullBLL());
         }
 
         private void StatisticsGUI_Load(object sender, EventArgs e)
         {
             try
             {
+                // If in design mode, skip runtime initialization
+                if (IsInDesignMode())
+                    return;
+
                 InitializeComboBoxes();
                 SetupChartStyle();
                 LoadData();
@@ -160,11 +181,21 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
+                // If in design mode, skip
+                if (IsInDesignMode()) return;
+
                 // Hiển thị loading indicator nếu cần
                 this.Cursor = Cursors.WaitCursor;
 
                 // Lấy tất cả hợp đồng từ BLL
-                List<LaborContractDTO> contracts = _laborContractBLL.GetAllContracts();
+                var bll = GetLaborContractBLL();
+                if (bll == null)
+                {
+                    ClearAllData();
+                    return;
+                }
+
+                List<LaborContractDTO> contracts = bll.GetAllContracts();
 
                 if (contracts == null || contracts.Count == 0)
                 {
@@ -220,13 +251,17 @@ namespace Quan_Ly_Nhan_Su.GUI
         /// </summary>
         private void ClearAllData()
         {
-            dataGridViewStats.Rows.Clear();
-            labelTotalContractsValue.Text = "0";
-            labelTotalValue.Text = "0 VNĐ";
-            labelAvgSalaryValue.Text = "0 VNĐ";
-            chartBar.Series["Nhân viên"].Points.Clear();
-            chartBar.Series["Lương (Triệu)"].Points.Clear();
-            chartPie.Series["Phân bổ phòng ban"].Points.Clear();
+            try
+            {
+                dataGridViewStats.Rows.Clear();
+                labelTotalContractsValue.Text = "0";
+                labelTotalValue.Text = "0 VNĐ";
+                labelAvgSalaryValue.Text = "0 VNĐ";
+                if (chartBar.Series.IndexOf("Nhân viên") >= 0) chartBar.Series["Nhân viên"].Points.Clear();
+                if (chartBar.Series.IndexOf("Lương (Triệu)") >= 0) chartBar.Series["Lương (Triệu)"].Points.Clear();
+                if (chartPie.Series.IndexOf("Phân bổ phòng ban") >= 0) chartPie.Series["Phân bổ phòng ban"].Points.Clear();
+            }
+            catch { }
         }
 
         /// <summary>
@@ -287,9 +322,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             try
             {
                 // Xóa dữ liệu cũ
-                chartBar.Series["Nhân viên"].Points.Clear();
-                chartBar.Series["Lương (Triệu)"].Points.Clear();
-                chartPie.Series["Phân bổ phòng ban"].Points.Clear();
+                if (chartBar.Series.IndexOf("Nhân viên") >= 0) chartBar.Series["Nhân viên"].Points.Clear();
+                if (chartBar.Series.IndexOf("Lương (Triệu)") >= 0) chartBar.Series["Lương (Triệu)"].Points.Clear();
+                if (chartPie.Series.IndexOf("Phân bổ phòng ban") >= 0) chartPie.Series["Phân bổ phòng ban"].Points.Clear();
 
                 if (contracts == null || contracts.Count == 0)
                 {

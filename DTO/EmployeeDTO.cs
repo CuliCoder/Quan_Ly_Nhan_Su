@@ -53,7 +53,7 @@ namespace Quan_Ly_Nhan_Su.DTO
 
         public override string ToString()
         {
-            return $"Mã NV: {maNhanVien}, CMND: {soCmnd}, " +
+            return $"Mã NV: {maNhanVien}, CMND: {soCmnd} " +
                    $"Mã Chức Vụ: {maChucVu}, Mã Tài Khoản: {maTaiKhoan}, " +
                    $"Mã Phòng: {maPhong}, Mức Lương: {mucLuong?.ToString("N2") ?? "Chưa có"}";
         }

@@ -1,6 +1,6 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
+using Quan_Ly_Nhan_Su.GUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,27 +17,38 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
     public partial class FormTuyenUngVien : Form
     {
         private CandidateFullDTO dtoFull;
-        private EmployeeBLL bus = new EmployeeBLL();
-        private CandidateBLL busCandi = new CandidateBLL();
-        private DepartmentBLL department = new DepartmentBLL();
-        private RecruitmentBatchBLL batchBLL = new RecruitmentBatchBLL();
+
+        private readonly EmployeeBLL bus;
+        private readonly CandidateBLL busCandi;
+        private readonly DepartmentBLL department;
+        private readonly RecruitmentBatchBLL batchBLL;
+
         public event EventHandler luuThongTinForm;
+
+        private ErrorProvider errorProvider;
+
         public FormTuyenUngVien(CandidateFullDTO dtoFullDato)
         {
             InitializeComponent();
+
             dtoFull = dtoFullDato;
+
+            // Khởi tạo các class
+            bus = new EmployeeBLL();
+            busCandi = new CandidateBLL();
+            department = new DepartmentBLL();
+            batchBLL = new RecruitmentBatchBLL();
+
+            // Khởi tạo ErrorProvider
+            errorProvider = new ErrorProvider
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
+
+            // Load dữ liệu form
             DisplayCandidateDetails(dtoFull);
-            fillDataToCombobox();
         }
 
-        private void fillDataToCombobox()
-        {
-            maPhongBanCbb.DataSource = department.GetAllDepartments();
-
-            maPhongBanCbb.DisplayMember = "TenPhong";
-            maPhongBanCbb.ValueMember = "MaPhong";
-            maPhongBanCbb.SelectedIndex = -1;
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -84,7 +95,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 SoTinhTPUV.Text = ExtractAddressPart(candidate.DiaChi, 3);
                 
 
-                // 🖼Hiển thị ảnh ứng viên
+                // Hiển thị ảnh ứng viên
                 string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
                 string imagePath = Path.Combine(projectPath, candidate.HinhAnh ?? "");
                 string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
@@ -108,22 +119,37 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-           
+            if (!GUIValidator.NotEmpty(tbLuong, "Lương không được để trống!", errorProvider))
+            {
+                return;
+            }
+
+            if (!GUIValidator.IsDecimal(tbLuong, "Lương không hợp lệ!", errorProvider))
+            {
+                return;
+            }
+
+            if(!GUIValidator.IsGreaterThanZero(tbLuong, "Lương phải lớn hơn 0!", errorProvider))
+            {
+                return;
+            }
+
+            
             PositionDTO positionDTO = new PositionDTO(
-               null,
-               "Nhân viên",
+               null, //mã chức vụ sẽ tự động kiểm tra và tạo trong DAO
+               dtoFull.ChucVu,
                0,
                DateTime.Today.Date
             );
 
             EmployeeDTO employeeDTO = new EmployeeDTO(
-                    null,
-                    showCCCDUV.Text,
-                    null,
-                    null,
-                    maPhongBanCbb.SelectedValue.ToString(),
-                    Convert.ToDecimal(tbLuong.Text)
-             ); 
+                null, // mã nhân viên sẽ tự động kiểm tra và tạo trong DAO
+                dtoFull.SoCmnd,
+                null, // mã chức vụ sẽ được tạo tự động trong DAO
+                null, // mã tài khoản sẽ được gán sau được cấp tài khoản
+                null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
+                Convert.ToDecimal(tbLuong.Text)
+            ); 
 
            
             bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);

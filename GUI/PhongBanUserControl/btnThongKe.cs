@@ -15,9 +15,11 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class btnThongKe : UserControl
     {
-        CT_LaborContractBLL laborContract = new CT_LaborContractBLL();
+        private LaborContractBLL laborContract = new LaborContractBLL();
         private DepartmentBLL department = new DepartmentBLL();
         private EmployeeFullBLL employee = new EmployeeFullBLL();
+        private SalaryFullBLL salaryFull = new SalaryFullBLL();
+
         public btnThongKe()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             {
                 cbbListNVinPhongBan.Items.Add(pb.TenPhong);
             }
-            cbbListNVinPhongBan.SelectedIndex = 0;
+            cbbListNVinPhongBan.SelectedIndex = 1;
         }
         private List<LaborContractDTO> GetLaborContractsByPhongBan(string phongBan)
         {
@@ -55,6 +57,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             seriesNhanVien.ChartType = SeriesChartType.Column; // Kiểu cột
 
             int namHienTai = DateTime.Now.Year;
+            Console.WriteLine("test cbb dang chon: ");
+            Console.WriteLine(cbbListNVinPhongBan.SelectedItem?.ToString());
             var listLaborContract = GetLaborContractsByPhongBan(cbbListNVinPhongBan.SelectedItem?.ToString());
             var nhanVienTheoNam = new Dictionary<int, Tuple<int, double>>();
             for (int year = namHienTai - 3; year <= namHienTai; year++)
@@ -74,10 +78,14 @@ namespace Quan_Ly_Nhan_Su.GUI
                     mnv.ToString().Trim().Equals(e.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
                     .ToList();
                 var countNV = listEmployee.Count();
-                //double avgLuong = listEmployee.Any()
-                //    ? listEmployee.Average(e => (double)e.MucLuong)
-                //    : 0;
-                nhanVienTheoNam[year] = new Tuple<int, double>(countNV, 10);
+                var SLL = salaryFull.GetAllSalaryFull()
+                    .Where(s => maNhanVienList.Any(mnv =>
+                    !string.IsNullOrEmpty(mnv) &&
+                    !string.IsNullOrEmpty(s.MaNhanVien) &&
+                    mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) / 1000000 : 0;
+                nhanVienTheoNam[year] = new Tuple<int, double>(countNV, avgLuong);
             }
             foreach (var kvp in nhanVienTheoNam)
             {
