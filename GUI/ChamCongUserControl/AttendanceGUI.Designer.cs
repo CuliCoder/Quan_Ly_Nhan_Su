@@ -1,4 +1,7 @@
-﻿namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
+using System;
+namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     partial class AttendanceGUI
     {
@@ -10,7 +13,7 @@
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -51,7 +54,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabctChamCong);
             this.tabControl1.Controls.Add(this.tabctKiemTraCongCa);
-            this.tabControl1.Controls.Add(this.tabctDanhSachNhanVien);
+            if (SessionManager.Instance.CanRead(FunctionNames.CHAM_CONG))
+            {
+                this.tabControl1.Controls.Add(this.tabctDanhSachNhanVien);
+            }    
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
