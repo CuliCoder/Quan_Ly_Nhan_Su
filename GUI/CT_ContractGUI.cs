@@ -17,9 +17,13 @@ namespace Quan_Ly_Nhan_Su.GUI
         private EmployeeFullBLL employeeBLL;
         private DepartmentBLL departmentBLL;
         private LaborContractBLL contractBLL;
+        private PositionBLL positionBLL; // NEW
 
         // Navigation order for Up/Down arrow key handling
         private List<Control> navigationOrder;
+
+        // Dynamic combo for chức vụ -> lương theo giờ
+        private ComboBox comboBoxChucVu; // NEW
 
         public CT_ContractGUI()
         {
@@ -39,6 +43,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             employeeBLL = new EmployeeFullBLL();
             departmentBLL = new DepartmentBLL();
             contractBLL = new LaborContractBLL();
+            positionBLL = new PositionBLL(); // NEW
         }
 
         private void InitializeForm()
@@ -49,6 +54,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             // Load danh sách nhân viên chưa ký hợp đồng và phòng ban
             LoadEmployees();
             LoadDepartments();
+
+            // Load positions for luong theo gio
+            LoadPositions(); // NEW
 
             // Thiết lập combobox loại hợp đồng (tĩnh, không load từ DB)
             comboBoxLoaiHopDong.Items.AddRange(new object[] { "Xác định thời hạn", "Không thời hạn" });
@@ -77,10 +85,88 @@ namespace Quan_Ly_Nhan_Su.GUI
                 buttonHuy
             };
 
+            // If we created dynamic combo, replace textbox entry
+            if (comboBoxChucVu != null)
+            {
+                int idx = navigationOrder.IndexOf(textBoxLuongTheoGio);
+                if (idx >= 0)
+                {
+                    navigationOrder[idx] = comboBoxChucVu;
+                }
+            }
+
             AttachNavigationHandlers();
 
             // Clear highlights when user edits fields
             AttachClearHighlightHandlers();
+        }
+
+        // NEW: Load chuc vu into combobox and wire selection changed to set luong theo gio
+        private void LoadPositions()
+        {
+            try
+            {
+                var positions = positionBLL.GetAllPositions();
+                if (positions == null || positions.Count == 0)
+                {
+                    // hide combo and show textbox as fallback
+                    comboBoxChucVu = null;
+                    textBoxLuongTheoGio.Visible = true;
+                    return;
+                }
+
+                // create combobox dynamically and insert into panelLuongTheoGio below label
+                comboBoxChucVu = new ComboBox();
+                comboBoxChucVu.Name = "comboBoxChucVu";
+                comboBoxChucVu.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxChucVu.Font = textBoxLuongTheoGio.Font;
+                comboBoxChucVu.Dock = DockStyle.Top;
+                comboBoxChucVu.DisplayMember = "Display";
+                comboBoxChucVu.ValueMember = "MaChucVu";
+
+                var data = positions.Select(p => new
+                {
+                    MaChucVu = p.MaChucVu,
+                    Display = string.IsNullOrEmpty(p.TenChucVu) ? p.MaChucVu : $"{p.TenChucVu} ({p.MaChucVu})"
+                }).ToList();
+
+                comboBoxChucVu.DataSource = data;
+                comboBoxChucVu.SelectedIndex = -1;
+                comboBoxChucVu.SelectedIndexChanged += ComboBoxChucVu_SelectedIndexChanged;
+
+                // hide the plain textbox and add combo
+                textBoxLuongTheoGio.Visible = false;
+                // ensure combo is above/have same padding
+                panelLuongTheoGio.Controls.Add(comboBoxChucVu);
+                panelLuongTheoGio.Controls.SetChildIndex(comboBoxChucVu, 1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("LoadPositions error: " + ex.Message);
+                // fallback keep textbox visible
+                textBoxLuongTheoGio.Visible = true;
+            }
+        }
+
+        private void ComboBoxChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comboBoxChucVu == null) return;
+                var ma = comboBoxChucVu.SelectedValue?.ToString();
+                if (string.IsNullOrEmpty(ma))
+                {
+                    textBoxLuongTheoGio.Text = "0";
+                    return;
+                }
+                decimal luong = positionBLL.GetLuongTheoGio(ma);
+                // display formatted value in textbox (hidden) so existing logic works
+                textBoxLuongTheoGio.Text = luong.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error selecting chuc vu: " + ex.Message);
+            }
         }
 
         private void ComboBoxLoaiHopDong_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,9 +209,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             textBoxMaHopDong.ReadOnly = true;
         }
 
-        // CT_ContractGUI.cs
-        // CT_ContractGUI.cs
-        // CT_ContractGUI.cs
         private void LoadEmployees()
         {
             try
@@ -151,7 +234,6 @@ namespace Quan_Ly_Nhan_Su.GUI
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void LoadDepartments()
         {
@@ -233,26 +315,35 @@ namespace Quan_Ly_Nhan_Su.GUI
                 HighlightLabel(labelMucLuong);
             }
 
-            // If there are invalid controls, visually mark them and focus the first one
-            if (invalids.Count > 0)
+            // If position combo exists, require a selection (so we can determine LuongTheoGio)
+            if (comboBoxChucVu != null)
             {
-                foreach (var ctl in invalids.Distinct())
+                if (comboBoxChucVu.SelectedIndex == -1)
                 {
-                    HighlightControl(ctl);
+                    invalids.Add(comboBoxChucVu);
+                    HighlightLabel(labelLuongTheoGio);
                 }
-
-                // Focus first invalid control
-                var first = invalids.First();
-                try { first.Focus(); } catch { }
-
-                MessageBox.Show("Vui lòng hoàn thành các trường được đánh dấu.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
             }
 
-            return true;
-        }
+             // If there are invalid controls, visually mark them and focus the first one
+             if (invalids.Count > 0)
+             {
+                 foreach (var ctl in invalids.Distinct())
+                 {
+                     HighlightControl(ctl);
+                 }
 
-        // Event cho buttonTaoHopDong
+                 // Focus first invalid control
+                 var first = invalids.First();
+                 try { first.Focus(); } catch { }
+
+                 MessageBox.Show("Vui lòng hoàn thành các trường được đánh dấu.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 return false;
+             }
+
+             return true;
+         }
+
         private void buttonTaoHopDong_Click(object sender, EventArgs e)
         {
             if (ValidateForm())
@@ -303,7 +394,16 @@ namespace Quan_Ly_Nhan_Su.GUI
                 }
 
                 decimal luongTheoGio = 0;
-                decimal.TryParse(textBoxLuongTheoGio.Text, out luongTheoGio);
+                // If position combobox exists and is selected, use its luongTheoGio from DB
+                if (comboBoxChucVu != null && comboBoxChucVu.SelectedIndex != -1)
+                {
+                    var maChucVu = comboBoxChucVu.SelectedValue?.ToString();
+                    if (!string.IsNullOrEmpty(maChucVu)) luongTheoGio = positionBLL.GetLuongTheoGio(maChucVu);
+                }
+                else
+                {
+                    decimal.TryParse(textBoxLuongTheoGio.Text, out luongTheoGio);
+                }
 
                 if (contractBLL.CreateContractWithSalary(contract, luongTheoGio))
                 {
@@ -322,7 +422,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
-
         private void ResetForm()
         {
             GenerateContractId();
@@ -333,6 +432,13 @@ namespace Quan_Ly_Nhan_Su.GUI
             textBoxMucLuong.Clear();
             // Không có ChiTiet
             ToggleDateToField();
+
+            // reset position combo
+            if (comboBoxChucVu != null)
+            {
+                comboBoxChucVu.SelectedIndex = -1;
+                textBoxLuongTheoGio.Clear();
+            }
 
             ClearAllHighlights();
         }
@@ -351,8 +457,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
 
         }
-
-        // Không cần labelChiTiet_Click nữa
 
         #region Validation highlight helpers
 
@@ -430,6 +534,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             if (ctl == dateTimePickerDenNgay) return labelDenNgay;
             if (ctl == textBoxMucLuong) return labelMucLuong;
             if (ctl == textBoxLuongTheoGio) return labelLuongTheoGio;
+            if (ctl == comboBoxChucVu) return labelLuongTheoGio; // map combo to same label
             return null;
         }
 
@@ -460,6 +565,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             comboBoxNhanVien.SelectedIndexChanged -= AnyField_Changed; comboBoxNhanVien.SelectedIndexChanged += AnyField_Changed;
             comboBoxPhongBan.SelectedIndexChanged -= AnyField_Changed; comboBoxPhongBan.SelectedIndexChanged += AnyField_Changed;
             comboBoxLoaiHopDong.SelectedIndexChanged -= AnyField_Changed; comboBoxLoaiHopDong.SelectedIndexChanged += AnyField_Changed;
+            if (comboBoxChucVu != null) { comboBoxChucVu.SelectedIndexChanged -= AnyField_Changed; comboBoxChucVu.SelectedIndexChanged += AnyField_Changed; }
             // DateTimePickers
             dateTimePickerTuNgay.ValueChanged -= AnyField_Changed; dateTimePickerTuNgay.ValueChanged += AnyField_Changed;
             dateTimePickerDenNgay.ValueChanged -= AnyField_Changed; dateTimePickerDenNgay.ValueChanged += AnyField_Changed;

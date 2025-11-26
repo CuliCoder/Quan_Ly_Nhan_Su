@@ -36,4 +36,17 @@ namespace Quan_Ly_Nhan_Su.BLL
             return _dao.searchPositionDTO(keyword);
         }
     }
+
+    public class PositionBLL
+    {
+        private readonly PositionDAO _dao;
+        public PositionBLL()
+        {
+            _dao = new PositionDAO();
+        }
+
+        public List<PositionDTO> GetAllPositions() => _dao.GetAllPositions();
+
+        public decimal GetLuongTheoGio(string maChucVu) => _dao.GetLuongTheoGioByMaChucVu(maChucVu);
+    }
 }
