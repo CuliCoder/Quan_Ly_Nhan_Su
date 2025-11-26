@@ -48,6 +48,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnResetThuong = new System.Windows.Forms.Button();
             this.btnSearch2 = new System.Windows.Forms.Button();
             this.tbSearch2 = new System.Windows.Forms.TextBox();
             this.btnLocThuong = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnResetPCKT = new System.Windows.Forms.Button();
             this.btnLocPCKT = new System.Windows.Forms.Button();
             this.tbLocPCKT = new System.Windows.Forms.TextBox();
             this.btnSearchPCKT = new System.Windows.Forms.Button();
@@ -87,7 +89,9 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbSoTienPC = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tbNotePC = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPC = new System.Windows.Forms.Button();
+            this.btnCapNhatPC = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.dateKT = new System.Windows.Forms.DateTimePicker();
@@ -97,7 +101,9 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbSoTienKT = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.tbNoteKT = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel8 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnKT = new System.Windows.Forms.Button();
+            this.btnCapNhatKT = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
@@ -150,6 +156,8 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataPCKT)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel7.SuspendLayout();
+            this.flowLayoutPanel8.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
