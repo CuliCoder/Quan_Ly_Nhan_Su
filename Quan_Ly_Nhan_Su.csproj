@@ -183,6 +183,12 @@
     <Compile Include="GUI\DanhGiaUserControl\frmEvaluationCU.Designer.cs">
       <DependentUpon>frmEvaluationCU.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
+      <DependentUpon>LuongThuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\PhongBanUserControl\addDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,12 +309,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\LaborContractGUI.Designer.cs" />
-    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
-      <DependentUpon>LuongThuong.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\PhongBanUserControl\editDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
