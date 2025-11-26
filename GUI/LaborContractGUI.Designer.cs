@@ -92,15 +92,18 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tabControl.Controls.Add(this.tabPageHopDong);
             this.tabControl.Controls.Add(this.tabPageKiHopDong);
             this.tabControl.Controls.Add(this.tabPageThongKe);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Top;
+            // Use Fill so the TabControl occupies the available UserControl area and avoids designer-generated huge heights
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.tabControl.ItemSize = new System.Drawing.Size(120, 25);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 1;
-            this.tabControl.Size = new System.Drawing.Size(1450, 52428);
+            // default to first tab (HỢP ĐỒNG)
+            this.tabControl.SelectedIndex = 0;
+            // set a reasonable default size; DockStyle.Fill will override at runtime
+            this.tabControl.Size = new System.Drawing.Size(1450, 937);
             this.tabControl.TabIndex = 0;
             // 
             // tabPageHopDong
@@ -109,7 +112,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tabPageHopDong.Location = new System.Drawing.Point(4, 29);
             this.tabPageHopDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageHopDong.Name = "tabPageHopDong";
-            this.tabPageHopDong.Size = new System.Drawing.Size(1442, 52395);
+            // reasonable page size; actual layout controlled by TabControl docking
+            this.tabPageHopDong.Size = new System.Drawing.Size(1442, 900);
             this.tabPageHopDong.TabIndex = 0;
             this.tabPageHopDong.Text = "HỢP ĐỒNG";
             this.tabPageHopDong.UseVisualStyleBackColor = true;
@@ -121,7 +125,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.contractGUI.Location = new System.Drawing.Point(-6, 0);
             this.contractGUI.Margin = new System.Windows.Forms.Padding(8);
             this.contractGUI.Name = "contractGUI";
-            this.contractGUI.Size = new System.Drawing.Size(2007, 1167);
+            // allow the inner control to size naturally; parent docking will handle layout
+            this.contractGUI.Size = new System.Drawing.Size(1442, 900);
             this.contractGUI.TabIndex = 0;
             // 
             // tabPageKiHopDong
@@ -131,7 +136,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tabPageKiHopDong.Location = new System.Drawing.Point(4, 29);
             this.tabPageKiHopDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageKiHopDong.Name = "tabPageKiHopDong";
-            this.tabPageKiHopDong.Size = new System.Drawing.Size(1442, 52395);
+            this.tabPageKiHopDong.Size = new System.Drawing.Size(1442, 900);
             this.tabPageKiHopDong.TabIndex = 1;
             this.tabPageKiHopDong.Text = "KÍ HỢP ĐỒNG";
             // 
@@ -151,7 +156,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1442, 52395);
+            this.panelMain.Size = new System.Drawing.Size(1442, 900);
             this.panelMain.TabIndex = 1;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
