@@ -19,6 +19,7 @@ namespace Quan_Ly_Nhan_Su.GUI.PhongBanUserControl
         public addDepartment()
         {
             InitializeComponent();
+            this.Text = "Thêm Phòng Ban";
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

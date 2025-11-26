@@ -17,10 +17,11 @@ namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class homePage : UserControl
     {
-        CT_LaborContractBLL laborContract = new CT_LaborContractBLL();
+        LaborContractBLL laborContract = new LaborContractBLL();
         DepartmentBLL department = new DepartmentBLL();
         EmployeeFullBLL employeeFull= new EmployeeFullBLL();
         EmployeeBLL employee = new EmployeeBLL();
+        SalaryFullBLL salaryFull = new SalaryFullBLL();
 
         public homePage()
         {
@@ -48,11 +49,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             seriesNhanVien.ChartType = SeriesChartType.Column; // Kiểu cột
 
             int namHienTai = DateTime.Now.Year;
-            var listLaborContract = laborContract.GetAllContracts();
             var nhanVienTheoNam = new Dictionary<int, Tuple<int, double>>();
             for (int year = namHienTai - 3; year <= namHienTai; year++)
             {
-                var listNV = listLaborContract
+                var listNV = laborContract.GetAllContracts()
                 .Where(c => c.TuNgay.HasValue && c.DenNgay.HasValue &&
                 c.TuNgay.Value.Year <= year && c.DenNgay.Value.Year >= year);
                 var maNhanVienList = listNV?
@@ -67,10 +67,14 @@ namespace Quan_Ly_Nhan_Su.GUI
                     mnv.ToString().Trim().Equals(e.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
                     .ToList();
                 var countNV = listEmployee.Count();
-                //double avgLuong = listEmployee.Any()
-                //    ? listEmployee.Average(e => (double)e.MucLuong)
-                //    : 0;
-                nhanVienTheoNam[year] = new Tuple<int, double>(countNV, 10);
+                var SLL = salaryFull.GetAllSalaryFull()
+                    .Where(s => maNhanVienList.Any(mnv =>
+                    !string.IsNullOrEmpty(mnv) &&
+                    !string.IsNullOrEmpty(s.MaNhanVien) &&
+                    mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh)/1000000 : 0;
+                nhanVienTheoNam[year] = new Tuple<int, double>(countNV, avgLuong);
             }
             foreach (var kvp in nhanVienTheoNam)
             {
@@ -105,7 +109,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             foreach (var nv in listNV)
             {
                 // Tìm tên phòng ban từ listPB
-                var pb = listPB.FirstOrDefault(x => x.MaPhong.Trim().Equals(nv.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var pb = listPB.FirstOrDefault(x =>
+                    (x.MaPhong?.Trim() ?? "")
+                        .Equals(nv.MaPhong?.Trim() ?? "", StringComparison.OrdinalIgnoreCase)
+                );
+
                 if (pb != null)
                 {
                     if (phongBanCount.ContainsKey(pb.MaPhong))
@@ -175,7 +183,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             foreach (var nv in listNV)
             {
                 // Tìm tên phòng ban từ listPB
-                var pb = listPB.FirstOrDefault(x => x.MaPhong.Trim().Equals(nv.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var pb = listPB.FirstOrDefault(x =>
+                    (x.MaPhong?.Trim() ?? "")
+                        .Equals(nv.MaPhong?.Trim() ?? "", StringComparison.OrdinalIgnoreCase)
+                );
+
                 if (pb != null)
                 {
                     if (phongBanCount.ContainsKey(pb.MaPhong))

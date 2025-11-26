@@ -23,6 +23,7 @@ namespace Quan_Ly_Nhan_Su.GUI.PhongBanUserControl
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.Text = "Sửa Thông Tin Phòng Ban";
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.ControlBox = true;

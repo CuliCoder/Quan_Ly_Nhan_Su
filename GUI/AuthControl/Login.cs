@@ -60,6 +60,7 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
             {
                 // Lấy thông tin nhân viên từ mã tài khoản
                 employee = employeeBLL.GetByAccountId(loggedInAccount.MaTaiKhoan);
+                Console.WriteLine($"Đã lấy nhân viên: {employee?.MaNhanVien}");
                 // Nếu có nhân viên, lấy thông tin profile
                 if (employee != null && !string.IsNullOrEmpty(employee.SoCmnd))
                 {

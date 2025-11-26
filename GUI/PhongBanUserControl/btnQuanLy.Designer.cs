@@ -111,7 +111,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label4.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(48, 11);
+            this.label4.Location = new System.Drawing.Point(52, 10);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 26);
@@ -125,10 +125,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             // 
             this.icAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.icAdd.Image = ((System.Drawing.Image)(resources.GetObject("icAdd.Image")));
-            this.icAdd.Location = new System.Drawing.Point(4, 5);
+            this.icAdd.Location = new System.Drawing.Point(12, 7);
             this.icAdd.Margin = new System.Windows.Forms.Padding(4);
             this.icAdd.Name = "icAdd";
-            this.icAdd.Size = new System.Drawing.Size(40, 37);
+            this.icAdd.Size = new System.Drawing.Size(42, 37);
             this.icAdd.TabIndex = 1;
             this.icAdd.TabStop = false;
             this.icAdd.Click += new System.EventHandler(this.boxAdd_Click);
@@ -144,40 +144,40 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxEdit.Location = new System.Drawing.Point(1120, 4);
             this.boxEdit.Margin = new System.Windows.Forms.Padding(4);
             this.boxEdit.Name = "boxEdit";
-            this.boxEdit.Size = new System.Drawing.Size(108, 50);
+            this.boxEdit.Size = new System.Drawing.Size(128, 50);
             this.boxEdit.TabIndex = 3;
+            this.boxEdit.Click += new System.EventHandler(this.boxEdit_Click);
             this.boxEdit.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.boxEdit.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.boxEdit.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 6);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(47, 44);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.boxEdit_Click);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.pictureBox1.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(49, 12);
+            this.label3.Location = new System.Drawing.Point(57, 11);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Sửa";
+            this.label3.Click += new System.EventHandler(this.boxEdit_Click);
             this.label3.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
             this.label3.MouseLeave += new System.EventHandler(this.Label_MouseLeave);
-            this.label3.Click += new System.EventHandler(this.boxEdit_Click);
             // 
             // boxdelete
             // 
@@ -188,7 +188,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxdelete.Location = new System.Drawing.Point(984, 4);
             this.boxdelete.Margin = new System.Windows.Forms.Padding(4);
             this.boxdelete.Name = "boxdelete";
-            this.boxdelete.Size = new System.Drawing.Size(108, 50);
+            this.boxdelete.Size = new System.Drawing.Size(128, 50);
             this.boxdelete.TabIndex = 2;
             this.boxdelete.Click += new System.EventHandler(this.boxdelete_Click);
             this.boxdelete.MouseEnter += new System.EventHandler(this.Label_MouseEnter);
@@ -199,7 +199,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(49, 12);
+            this.label2.Location = new System.Drawing.Point(57, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 26);
@@ -213,7 +213,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             // 
             this.delete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
-            this.delete.Location = new System.Drawing.Point(4, 7);
+            this.delete.Location = new System.Drawing.Point(11, 8);
             this.delete.Margin = new System.Windows.Forms.Padding(4);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(37, 37);
