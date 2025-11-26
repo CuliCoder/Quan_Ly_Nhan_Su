@@ -14,12 +14,14 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public List<SalaryFullDTO> GetAllSalaryFull()
         {
-            var list = dao.GetAllSalaryFull(DateTime.Now.Month, DateTime.Now.Year);
+            int thang = DateTime.Now.Month;
+            int nam = DateTime.Now.Year;
+            var list = dao.GetAllSalaryFull(thang, nam);
 
             foreach (var salary in list)
             {
-                salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, DateTime.Now.Month, DateTime.Now.Year).TotalHours;
-                salary.LuongThucLanh = TinhLuongThucLanh(salary);
+                salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, thang, nam).TotalHours;
+                salary.LuongThucLanh = TinhLuongThucLanh(salary, thang, nam);
             }
 
             return list;
@@ -30,19 +32,25 @@ namespace Quan_Ly_Nhan_Su.BLL
             var list = dao.GetAllSalaryFull(thang, nam);
             foreach (var salary in list)
             {
-                salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, DateTime.Now.Month, DateTime.Now.Year).TotalHours;
-                salary.LuongThucLanh = TinhLuongThucLanh(salary);
+                salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, thang, nam).TotalHours;
+                salary.LuongThucLanh = TinhLuongThucLanh(salary, thang, nam);
             }
 
             return list;
         }
 
-        private decimal TinhLuongThucLanh(SalaryFullDTO salary)
+        private decimal TinhLuongThucLanh(SalaryFullDTO salary, int thang, int nam)
         {
-            float TongGioBatBuoc = AttendanceBLL.TinhTongGioLam(DateTime.Now.Month, DateTime.Now.Year);
-            salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, DateTime.Now.Month, DateTime.Now.Year).TotalHours;
+            int TongGioBatBuoc = AttendanceBLL.TinhTongGioLam(thang, nam);
+            salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, thang, nam).TotalHours;
             decimal tongGioLam = (decimal)salary.TongGioLam;
             decimal tongGioBatBuoc = (decimal)TongGioBatBuoc;
+
+            if (tongGioBatBuoc <= 0)
+            {
+                // avoid divide by zero
+                tongGioBatBuoc = 1;
+            }
 
             if (salary.TongGioLam >= TongGioBatBuoc)
             {
@@ -71,13 +79,18 @@ namespace Quan_Ly_Nhan_Su.BLL
             decimal tongGioLam = (decimal)salary.TongGioLam;
             decimal tongGioBatBuoc = (decimal)TongGioBatBuoc;
 
+            if (tongGioBatBuoc <= 0)
+            {
+                tongGioBatBuoc = 1;
+            }
+
             if (salary.TongGioLam >= TongGioBatBuoc)
             {
                 salary.LuongThucLanh = salary.LuongCoBan
                     + (tongGioLam - tongGioBatBuoc) * salary.LuongTheoGio
                     + salary.TongPhuCap
                     - salary.TongKhoanTru
-                    +salary.LuongCoBan * salary.TongThuong / 100m;
+                    + salary.LuongCoBan * salary.TongThuong / 100m;
             }
             else
             {
