@@ -42,16 +42,18 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.exportBtn = new System.Windows.Forms.Label();
+            this.importBtn = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnSearchDay = new System.Windows.Forms.Button();
+            this.endDayPicker = new System.Windows.Forms.DateTimePicker();
+            this.startDaypicker = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableData = new System.Windows.Forms.DataGridView();
-            this.btnSearchDay = new System.Windows.Forms.Button();
-            this.endDayPicker = new System.Windows.Forms.DateTimePicker();
-            this.startDaypicker = new System.Windows.Forms.DateTimePicker();
             this.chuyenMan.SuspendLayout();
             this.danhSachNhanVienPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -129,6 +131,8 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.label4);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
+            this.flowLayoutPanel1.Controls.Add(this.exportBtn);
+            this.flowLayoutPanel1.Controls.Add(this.importBtn);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.Controls.Add(this.btnSearchDay);
             this.flowLayoutPanel1.Controls.Add(this.endDayPicker);
@@ -203,6 +207,40 @@
             this.label7.Size = new System.Drawing.Size(25, 25);
             this.label7.TabIndex = 4;
             // 
+            // exportBtn
+            // 
+            this.exportBtn.AutoSize = true;
+            this.exportBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.exportBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.exportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exportBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportBtn.Image = ((System.Drawing.Image)(resources.GetObject("exportBtn.Image")));
+            this.exportBtn.Location = new System.Drawing.Point(1002, 5);
+            this.exportBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
+            this.exportBtn.MaximumSize = new System.Drawing.Size(25, 25);
+            this.exportBtn.MinimumSize = new System.Drawing.Size(25, 25);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(25, 25);
+            this.exportBtn.TabIndex = 20;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
+            // importBtn
+            // 
+            this.importBtn.AutoSize = true;
+            this.importBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.importBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.importBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.importBtn.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importBtn.Image = ((System.Drawing.Image)(resources.GetObject("importBtn.Image")));
+            this.importBtn.Location = new System.Drawing.Point(962, 5);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 5, 10, 0);
+            this.importBtn.MaximumSize = new System.Drawing.Size(25, 25);
+            this.importBtn.MinimumSize = new System.Drawing.Size(25, 25);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(25, 25);
+            this.importBtn.TabIndex = 19;
+            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoSize = true;
@@ -210,7 +248,7 @@
             this.flowLayoutPanel2.Controls.Add(this.tbSearch);
             this.flowLayoutPanel2.Controls.Add(this.label2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(777, 5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(697, 5);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(254, 28);
@@ -243,6 +281,45 @@
             this.label2.Size = new System.Drawing.Size(25, 25);
             this.label2.TabIndex = 0;
             this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // btnSearchDay
+            // 
+            this.btnSearchDay.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearchDay.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSearchDay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnSearchDay.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSearchDay.Location = new System.Drawing.Point(604, 5);
+            this.btnSearchDay.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
+            this.btnSearchDay.MaximumSize = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.MinimumSize = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.Name = "btnSearchDay";
+            this.btnSearchDay.Size = new System.Drawing.Size(75, 27);
+            this.btnSearchDay.TabIndex = 18;
+            this.btnSearchDay.Text = "Lọc";
+            this.btnSearchDay.UseVisualStyleBackColor = false;
+            // 
+            // endDayPicker
+            // 
+            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.Location = new System.Drawing.Point(422, 5);
+            this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
+            this.endDayPicker.MaximumSize = new System.Drawing.Size(170, 27);
+            this.endDayPicker.MinimumSize = new System.Drawing.Size(170, 27);
+            this.endDayPicker.Name = "endDayPicker";
+            this.endDayPicker.Size = new System.Drawing.Size(170, 27);
+            this.endDayPicker.TabIndex = 16;
+            // 
+            // startDaypicker
+            // 
+            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.Location = new System.Drawing.Point(240, 5);
+            this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
+            this.startDaypicker.MaximumSize = new System.Drawing.Size(170, 27);
+            this.startDaypicker.MinimumSize = new System.Drawing.Size(170, 27);
+            this.startDaypicker.Name = "startDaypicker";
+            this.startDaypicker.Size = new System.Drawing.Size(170, 27);
+            this.startDaypicker.TabIndex = 17;
             // 
             // panel5
             // 
@@ -323,45 +400,6 @@
             this.tableData.Size = new System.Drawing.Size(1173, 690);
             this.tableData.TabIndex = 3;
             // 
-            // btnSearchDay
-            // 
-            this.btnSearchDay.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSearchDay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearchDay.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSearchDay.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSearchDay.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnSearchDay.Location = new System.Drawing.Point(684, 5);
-            this.btnSearchDay.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
-            this.btnSearchDay.MaximumSize = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.MinimumSize = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.Name = "btnSearchDay";
-            this.btnSearchDay.Size = new System.Drawing.Size(75, 27);
-            this.btnSearchDay.TabIndex = 18;
-            this.btnSearchDay.Text = "Lọc";
-            this.btnSearchDay.UseVisualStyleBackColor = false;
-            // 
-            // endDayPicker
-            // 
-            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDayPicker.Location = new System.Drawing.Point(502, 5);
-            this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
-            this.endDayPicker.MaximumSize = new System.Drawing.Size(170, 27);
-            this.endDayPicker.MinimumSize = new System.Drawing.Size(170, 27);
-            this.endDayPicker.Name = "endDayPicker";
-            this.endDayPicker.Size = new System.Drawing.Size(170, 27);
-            this.endDayPicker.TabIndex = 16;
-            // 
-            // startDaypicker
-            // 
-            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDaypicker.Location = new System.Drawing.Point(320, 5);
-            this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
-            this.startDaypicker.MaximumSize = new System.Drawing.Size(170, 27);
-            this.startDaypicker.MinimumSize = new System.Drawing.Size(170, 27);
-            this.startDaypicker.Name = "startDaypicker";
-            this.startDaypicker.Size = new System.Drawing.Size(170, 27);
-            this.startDaypicker.TabIndex = 17;
-            // 
             // NhanVien
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -410,5 +448,7 @@
         private System.Windows.Forms.Button btnSearchDay;
         private System.Windows.Forms.DateTimePicker endDayPicker;
         private System.Windows.Forms.DateTimePicker startDaypicker;
+        private System.Windows.Forms.Label exportBtn;
+        private System.Windows.Forms.Label importBtn;
     }
 }

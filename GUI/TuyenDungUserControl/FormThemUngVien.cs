@@ -1,32 +1,36 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using Quan_Ly_Nhan_Su.GUI;
 
 namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
     
     public partial class FormThemUngVien : Form
     {
-        private PersonalProfileBLL busPerson = new PersonalProfileBLL();
-        private CandidateBLL busCadi = new CandidateBLL();
-        private CandidateFullBLL busFullCadi = new CandidateFullBLL();
-        private RecruitmentBatchBLL busBatch = new RecruitmentBatchBLL();
         public event EventHandler luuThongTinForm;
+        private readonly CandidateFullBLL busFullCadi;
+        private readonly RecruitmentBatchBLL busBatch;
+        private readonly ErrorProvider errorProvider;
+
         public FormThemUngVien()
         {
             InitializeComponent();
+
+            busFullCadi = new CandidateFullBLL();
+            busBatch = new RecruitmentBatchBLL();
+            errorProvider = new ErrorProvider
+            {
+                BlinkStyle = ErrorBlinkStyle.NeverBlink
+            };
+
             fillDataToCombobox();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -46,100 +50,66 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private bool kiemTraThognTin()
         {
 
-            if(maTuyenDungCbb.SelectedIndex == -1 )
-            {
-                MessageBox.Show("Vui lòng chọn mã tuyển dụng");
-                maTuyenDungCbb.Focus();
+            if(!GUIValidator.IsSelected(maTuyenDungCbb, "Vui lòng chọn mã tuyển dụng"))
                 return false;
-            }
+
             // Kiểm tra mã ứng viên
-            if (string.IsNullOrWhiteSpace(maUngVienTb.Text))
-            {
-                MessageBox.Show("Mã ứng viên không được để trống!");
-                maUngVienTb.Focus();
+            if (!GUIValidator.NotEmpty(maUngVienTb, "Mã ứng viên không được để trống!", errorProvider))
                 return false;
-            }
+
 
             // Kiểm tra CCCD
-            if (string.IsNullOrWhiteSpace(cccdTb.Text))
-            {
-                MessageBox.Show("Số CCCD không được để trống!");
-                cccdTb.Focus();
+            if (!GUIValidator.NotEmpty(cccdTb, "Số CCCD không được để trống!", errorProvider))
                 return false;
-            }
-            else if (cccdTb.Text.Length != 12 || !cccdTb.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Số CCCD phải gồm 12 chữ số!");
-                cccdTb.Focus();
+            else
+            if (!GUIValidator.IsOnlyNumberWithString(cccdTb, "Số CCCD chỉ được chứa số", errorProvider))
                 return false;
-            }
-            else if (!busPerson.checkID(cccdTb.Text))
-            {
-                MessageBox.Show("Lỗi nhập liệu cccd");
-                cccdTb.Focus();
+            else
+            if (!GUIValidator.EqualNumber(cccdTb,12,"Số CCCD phải gồm 12 chữ số!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra họ tên
-            if (string.IsNullOrWhiteSpace(hoTenTb.Text))
-            {
-                MessageBox.Show("Họ tên không được để trống!");
-                hoTenTb.Focus();
+            if(!GUIValidator.NotEmpty(hoTenTb, "Họ tên không được để trống!", errorProvider))
                 return false;
-            }
+            else
+            if (!GUIValidator.NotContainNumber(hoTenTb, "Họ tên không được chứa số!", errorProvider))
+                return false;
+
             // Kiểm tra giới tính
-            if (string.IsNullOrWhiteSpace(gioiTinhTb.Text))
-            {
-                MessageBox.Show("Giới tính không được để trống!");
-                gioiTinhTb.Focus();
+            if (!GUIValidator.IsChecked(namBt, nuBt, "Vui lòng chọn giới tính!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra ngày sinh 
             if (ngaySinhDate.Value > DateTime.Now)
             {
-                MessageBox.Show("Ngày sinh không được lớn hơn ngày hiện tại!");
+                errorProvider.SetError(ngaySinhDate, "Ngày sinh không được lớn hơn ngày hiện tại!");
                 ngaySinhDate.Focus();
                 return false;
             }
 
-
             // Kiểm tra số điện thoại
-            if (string.IsNullOrWhiteSpace(soDienThoaiTb.Text))
-            {
-                MessageBox.Show("Số điện thoại không được để trống!");
-                soDienThoaiTb.Focus();
+            if(!GUIValidator.NotEmpty(soDienThoaiTb, "Số điện thoại không được để trống!", errorProvider))
                 return false;
-            }
-            else if (!soDienThoaiTb.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Số điện thoại chỉ được chứa số!");
-                soDienThoaiTb.Focus();
+            else if (!GUIValidator.IsOnlyNumberWithString(soDienThoaiTb, "Số điện thoại phải là số", errorProvider))
                 return false;
-            }
+            else if(!GUIValidator.EqualNumber(soDienThoaiTb,10,"Số điện thoại phải gồm 10 chữ số!", errorProvider))
+                return false;
+
 
             // Kiểm tra email
-            if (string.IsNullOrWhiteSpace(emailTb.Text))
+            if (!GUIValidator.NotEmpty(emailTb, "Email không được để trống!", errorProvider))
+                return false;     
+            
+            if (!emailTb.Text.Contains("@"))
             {
-                MessageBox.Show("Email không được để trống!");
+                errorProvider.SetError(emailTb, "Email không hợp lệ!");
                 emailTb.Focus();
                 return false;
             }
-            else if (!emailTb.Text.Contains("@"))
-            {
-                MessageBox.Show("Email không hợp lệ!");
-                emailTb.Focus();
-                return false;
-            }
-
 
             // Kiểm tra dân tộc
-            if (string.IsNullOrWhiteSpace(danTocTb.Text))
-            {
-                MessageBox.Show("Dân tộc không được để trống!");
-                danTocTb.Focus();
+            if (!GUIValidator.NotEmpty(danTocTb, "Dân tộc không được để trống!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra địa chỉ
             if (string.IsNullOrWhiteSpace(tTpTb.Text) ||
@@ -147,59 +117,43 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 string.IsNullOrWhiteSpace(phxaTb.Text) ||
                 string.IsNullOrWhiteSpace(duongTb.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã, Đường)!");
+                errorProvider.SetError(tTpTb, "Vui lòng nhập đầy đủ địa chỉ (Tỉnh/TP, Quận/Huyện, Phường/Xã, Đường)!");
                 return false;
+            }
+            else
+            {
+                errorProvider.SetError(tTpTb, "");
             }
 
 
             // Kiểm tra nơi cấp
-            if (string.IsNullOrWhiteSpace(noiCapTb.Text))
-            {
-                MessageBox.Show("Nơi cấp CCCD không được để trống!");
-                noiCapTb.Focus();
+            if (!GUIValidator.NotEmpty(noiCapTb, "Nơi cấp CCCD không được để trống!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra ngày cấp
             if (ngayCapDate.Value > DateTime.Now)
             {
-                MessageBox.Show("Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
+                errorProvider.SetError(ngayCapDate, "Ngày cấp CCCD không được lớn hơn ngày hiện tại!");
                 ngayCapDate.Focus();
                 return false;
             }
 
             // Kiểm tra chuyên ngành
-            if (string.IsNullOrWhiteSpace(chuyenNganhTb.Text))
-            {
-                MessageBox.Show("Chuyên ngành không được để trống!");
-                chuyenNganhTb.Focus();
+            if(!GUIValidator.NotEmpty(chuyenNganhTb, "Chuyên ngành không được để trống!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra mức lương
-            if (!decimal.TryParse(mucLuongTb.Text, out _))
-            {
-                MessageBox.Show("Mức lương phải là số hợp lệ!");
-                mucLuongTb.Focus();
+            if(!GUIValidator.IsDecimal(mucLuongTb, "Mức lương phải là số hợp lệ", errorProvider))
                 return false;
-            }
 
 
             // Kiểm tra hôn nhân
-            if (string.IsNullOrWhiteSpace(honNhanTb.Text))
-            {
-                MessageBox.Show("Tình trạng hôn nhân không được để trống!");
-                honNhanTb.Focus();
+            if(!GUIValidator.NotEmpty(honNhanTb, "Tình trạng hôn nhân không được để trống!", errorProvider))
                 return false;
-            }
 
             // Kiểm tra học vấn
-            if (string.IsNullOrWhiteSpace(hocVanTb.Text))
-            {
-                MessageBox.Show("Học vấn không được để trống!");
-                hocVanTb.Focus();
+            if(!GUIValidator.NotEmpty(hocVanTb, "Học vấn không được để trống!", errorProvider))
                 return false;
-            }          
             return true;
         }
 
@@ -229,12 +183,17 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         public PersonalProfileDTO LayDuLieuHoSoCaNhan()
         {
             string diaChi = $"{duongTb.Text.Trim()}, {phxaTb.Text.Trim()}, {qhTb.Text.Trim()}, {tTpTb.Text.Trim()}";
+            string gioiTinh = "";
+            if(namBt.Checked)
+                gioiTinh = "Nam";
+            else if(nuBt.Checked)
+                gioiTinh = "Nữ";
             return new PersonalProfileDTO
             {
                 SoCmnd = cccdTb.Text.Trim(),
                 HoTen = hoTenTb.Text.Trim(),
                 NgaySinh = ngaySinhDate.Value,
-                GioiTinh = gioiTinhTb.Text.Trim(),
+                GioiTinh = gioiTinh,
                 DiaChi = diaChi, 
                 Email = emailTb.Text.Trim(),
                 SoDienThoai = soDienThoaiTb.Text.Trim(),

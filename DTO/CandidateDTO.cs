@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using System;
 
 namespace Quan_Ly_Nhan_Su.DTO
 {
@@ -18,6 +19,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         {
             get => maUngVien;
             set => maUngVien = value;
+           
         }
 
         public string SoCmnd

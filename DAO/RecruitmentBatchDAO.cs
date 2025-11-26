@@ -124,23 +124,22 @@ namespace Quan_Ly_Nhan_Su.DAO
 
         public bool checkID(string maTuyenDung)
         {
-            
             try
             {
                 using (conn = connectDB.getConnection())
                 {
                     conn.Open();
                     string sql = "SELECT COUNT(*) FROM dottuyendung WHERE maTuyenDung = @maTuyenDung";
-                    using(var cmd = new  MySqlCommand(sql, conn))
+                    using (var cmd = new MySqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
-                        
-                        int count = (int)cmd.ExecuteNonQuery();
-                        return count == 0;
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count == 0; 
                     }
-                     
                 }
-            } catch (MySqlException ex)
+            }
+            catch (MySqlException ex)
             {
                 Console.WriteLine("SQL Error: " + ex.Message);
                 return false;
@@ -151,6 +150,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return false;
             }
         }
+
 
         public bool Create(RecruitmentBatchDTO batch)
         {
