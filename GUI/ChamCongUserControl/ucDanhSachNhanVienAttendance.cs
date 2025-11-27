@@ -10,15 +10,19 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
     public partial class ucDanhSachNhanVienAttendance : UserControl
     {
         public event Action<string> EmployeeSelected;
-        private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
-        private AttendanceBLL attendanceBLL = new AttendanceBLL();
+        private readonly EmployeeFullBLL employeeBLL;
         public ucDanhSachNhanVienAttendance()
         {
             InitializeComponent();
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
+            employeeBLL = new EmployeeFullBLL();
         }
 
         private void ucChamCong_Load(object sender, EventArgs e)
         {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
             LoadEmployees();
             ConfigureDataGridView();
         }
@@ -61,11 +65,6 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Chức năng tìm kiếm đang được phát triển.");
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("" + attendanceBLL.addAttendance("NV003"));
         }
     }
 }

@@ -1,15 +1,30 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
     public partial class AttendanceGUI : UserControl
     {
-        private AttendanceBLL attendanceBLL = new AttendanceBLL();
+        private AttendanceBLL attendanceBLL;
         public AttendanceGUI()
         {
             InitializeComponent();
+            attendanceBLL = new AttendanceBLL();
+            // Runtime: ẩn/hiện tab theo quyền
+            bool canRead = SessionManager.Instance != null && SessionManager.Instance.CanRead(FunctionNames.CHAM_CONG);
+            if (canRead)
+            {
+                if (!this.tabControl1.Controls.Contains(this.tabctDanhSachNhanVien))
+                    this.tabControl1.Controls.Add(this.tabctDanhSachNhanVien);
+            }
+            else
+            {
+                if (this.tabControl1.Controls.Contains(this.tabctDanhSachNhanVien))
+                    this.tabControl1.Controls.Remove(this.tabctDanhSachNhanVien);
+            }
             addEventPanel();
         }
         public ucDanhSachNhanVienAttendance getDanhSachNhanVienGUI()

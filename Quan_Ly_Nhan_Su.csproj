@@ -177,6 +177,12 @@
     <Compile Include="GUI\AuthControl\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucSearchByTimes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ChamCongUserControl\ucSearchByTimes.Designer.cs">
+      <DependentUpon>ucSearchByTimes.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhGiaUserControl\frmEvaluationCU.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -478,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChamCongUserControl\ucRequestCard.resx">
       <DependentUpon>ucRequestCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChamCongUserControl\ucSearchByTimes.resx">
+      <DependentUpon>ucSearchByTimes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChangepasswordGUI.resx">
       <DependentUpon>ChangepasswordGUI.cs</DependentUpon>
