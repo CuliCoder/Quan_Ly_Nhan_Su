@@ -41,7 +41,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             this.ucChiTietChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCongUserControl.ucKiemTraCongCa();
             this.tabctDanhSachNhanVien = new System.Windows.Forms.TabPage();
             this.ucChamCong1 = new Quan_Ly_Nhan_Su.GUI.ChamCongUserControl.ucDanhSachNhanVienAttendance();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabSearchByTimes = new System.Windows.Forms.TabPage();
             this.ucSearchByTimes1 = new Quan_Ly_Nhan_Su.GUI.ChamCongUserControl.ucSearchByTimes();
             this.tabControl1.SuspendLayout();
             this.tabctChamCong.SuspendLayout();
@@ -50,7 +50,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             ((System.ComponentModel.ISupportInitialize)(this.ptbAttendance)).BeginInit();
             this.tabctKiemTraCongCa.SuspendLayout();
             this.tabctDanhSachNhanVien.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabSearchByTimes.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -58,7 +58,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             this.tabControl1.Controls.Add(this.tabctChamCong);
             this.tabControl1.Controls.Add(this.tabctKiemTraCongCa);
             this.tabControl1.Controls.Add(this.tabctDanhSachNhanVien);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabSearchByTimes);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -165,26 +165,25 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             this.ucChamCong1.Size = new System.Drawing.Size(1107, 733);
             this.ucChamCong1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabSearchByTimes
             // 
-            this.tabPage1.Controls.Add(this.ucSearchByTimes1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 31);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1099, 698);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabSearchByTimes.Controls.Add(this.ucSearchByTimes1);
+            this.tabSearchByTimes.Location = new System.Drawing.Point(4, 31);
+            this.tabSearchByTimes.Name = "tabSearchByTimes";
+            this.tabSearchByTimes.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSearchByTimes.Size = new System.Drawing.Size(1099, 698);
+            this.tabSearchByTimes.TabIndex = 3;
+            this.tabSearchByTimes.Text = "Tìm kiếm theo khoảng thời gian";
+            this.tabSearchByTimes.UseVisualStyleBackColor = true;
             // 
             // ucSearchByTimes1
             // 
             this.ucSearchByTimes1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucSearchByTimes1.Location = new System.Drawing.Point(3, 3);
-            this.ucSearchByTimes1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucSearchByTimes1.Margin = new System.Windows.Forms.Padding(5);
             this.ucSearchByTimes1.Name = "ucSearchByTimes1";
             this.ucSearchByTimes1.Size = new System.Drawing.Size(1093, 692);
             this.ucSearchByTimes1.TabIndex = 0;
-            this.ucSearchByTimes1.UseMockData = true;
             // 
             // AttendanceGUI
             // 
@@ -203,7 +202,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             ((System.ComponentModel.ISupportInitialize)(this.ptbAttendance)).EndInit();
             this.tabctKiemTraCongCa.ResumeLayout(false);
             this.tabctDanhSachNhanVien.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabSearchByTimes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -220,7 +219,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         private System.Windows.Forms.Label lbAttendance;
         private System.Windows.Forms.Panel pnlbAttendance;
         private System.Windows.Forms.PictureBox ptbAttendance;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabSearchByTimes;
         private ucSearchByTimes ucSearchByTimes1;
     }
 }

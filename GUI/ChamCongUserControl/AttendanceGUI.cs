@@ -18,12 +18,18 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             if (canRead)
             {
                 if (!this.tabControl1.Controls.Contains(this.tabctDanhSachNhanVien))
+                {
                     this.tabControl1.Controls.Add(this.tabctDanhSachNhanVien);
+                    this.tabControl1.Controls.Add(this.tabSearchByTimes);
+                }
             }
             else
             {
                 if (this.tabControl1.Controls.Contains(this.tabctDanhSachNhanVien))
+                {
                     this.tabControl1.Controls.Remove(this.tabctDanhSachNhanVien);
+                    this.tabControl1.Controls.Remove(this.tabSearchByTimes);
+                }
             }
             addEventPanel();
         }
@@ -31,9 +37,16 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             return ucChamCong1;
         }
-        public void backDanhSachNhanVien()
+        public ucSearchByTimes GetSearchByTimesGUI()
         {
-            tabControl1.SelectedTab = tabctDanhSachNhanVien;
+            return ucSearchByTimes1;
+        }
+        public void back(int back_Direct)
+        {
+            if (back_Direct == 0)
+                tabControl1.SelectedTab = tabctDanhSachNhanVien;
+            else
+                tabControl1.SelectedTab = tabSearchByTimes;
         }
         private void addEventPanel()
         {

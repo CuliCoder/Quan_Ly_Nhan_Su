@@ -253,5 +253,39 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return attendance_;
         }
+        public List<AttendanceDTO> filterByTimesheet(DateTime startDate, DateTime endDate)
+        {
+            List<AttendanceDTO> attendance_ = new List<AttendanceDTO>();
+            using (MySqlConnection conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                                    SELECT *
+                                    FROM bangchamcong
+                                    WHERE ngayChamCong >= @startDate
+                                      AND ngayChamCong < @endDatePlusOne
+                                    ORDER BY maBangChamCong DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDatePlusOne", endDate);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                attendance_.Add(MapReaderToAttendance(reader));
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting all accounts: {ex.Message}");
+                }
+            }
+            return attendance_;
+        }
     }
 }

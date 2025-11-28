@@ -36,12 +36,14 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             try
             {
+                dgvNhanVien.SuspendLayout();
+                dgvNhanVien.Rows.Clear();
                 List<EmployeeFullDTO> employeeList = employeeBLL.GetAllEmployees();
                 foreach (var emp in employeeList)
                 {
                     dgvNhanVien.Rows.Add(emp.MaNhanVien, emp.HoTen, emp.Email, emp.PhongBan, emp.ChucVu);
                 }
-
+                dgvNhanVien.ResumeLayout();
             }
             catch (Exception ex)
             {

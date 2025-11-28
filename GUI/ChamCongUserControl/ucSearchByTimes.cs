@@ -1,12 +1,13 @@
-﻿using System;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
+using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
@@ -14,36 +15,14 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
     {
         private AttendanceBLL attendanceBLL;
         private EmployeeFullBLL employeeBLL;
-        private bool _runtimeInitialized;
-        private List<EmployeeFullDTO> _employees;
-        private bool _useMockData;
-
-        public bool UseMockData
-        {
-            get => _useMockData;
-            set
-            {
-                _useMockData = value;
-                if (_runtimeInitialized) BuildMonthTimeline();
-            }
-        }
+        private List<AttendanceDTO> attendanceDTOs;
+        public event Action<(int m, int y, string maNV)> EmployeeSelected;
 
         public ucSearchByTimes()
         {
             InitializeComponent();
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            if (_runtimeInitialized) return;
-
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
             {
-                _useMockData = true;
-                InitDefaultRange();
-                BuildMonthTimeline();
-                _runtimeInitialized = true;
                 return;
             }
 
@@ -52,8 +31,6 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 
             InitDefaultRange();
             BuildMonthTimeline();
-
-            _runtimeInitialized = true;
         }
 
         private void InitDefaultRange()
@@ -68,6 +45,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         private void btnReload_Click(object sender, EventArgs e)
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode) return;
+            InitDefaultRange();
             BuildMonthTimeline();
         }
 
@@ -85,8 +63,6 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         // Dựng các panel tháng theo khoảng thời gian chọn
         private void BuildMonthTimeline()
         {
-            _employees = _useMockData ? MockEmployees() : (employeeBLL?.GetAllEmployees() ?? new List<EmployeeFullDTO>());
-
             DateTime start = dtpRangeFrom.Value.Date;
             DateTime end = dtpRangeTo.Value.Date;
             if (end < start) return;
@@ -94,7 +70,12 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             var monthPoints = new List<(int m, int y)>();
             var cursor = new DateTime(start.Year, start.Month, 1);
             var lastMonthStart = new DateTime(end.Year, end.Month, 1);
-
+            attendanceDTOs = attendanceBLL.filterByTimesheet(start, end.AddDays(1));
+            flMonths.Controls.Clear();
+            if (attendanceDTOs.Count == 0)
+            {
+                return;
+            }
             while (cursor <= lastMonthStart)
             {
                 monthPoints.Add((cursor.Month, cursor.Year));
@@ -102,18 +83,21 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             }
 
             flMonths.SuspendLayout();
-            flMonths.Controls.Clear();
 
             foreach (var p in monthPoints)
             {
-                var panel = CreateMonthPanel(p.m, p.y, start, end);
+                var filtered = attendanceDTOs
+                   .Where(r => r.NgayChamCong.Month == p.m && r.NgayChamCong.Year == p.y)
+                   .ToList();
+                if (filtered.Count == 0) continue;
+                var panel = CreateMonthPanel(p.m, p.y, filtered);
                 flMonths.Controls.Add(panel);
             }
 
             flMonths.ResumeLayout();
         }
 
-        private Panel CreateMonthPanel(int month, int year, DateTime globalStart, DateTime globalEnd)
+        private Panel CreateMonthPanel(int month, int year, List<AttendanceDTO> attendanceDTOs)
         {
             var outer = new Panel
             {
@@ -166,9 +150,8 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             };
             lstEmployees.Columns.Add("Mã NV", 120);
             lstEmployees.Columns.Add("Họ tên", 200);
-            lstEmployees.Columns.Add("Phòng ban", 160);
+            lstEmployees.Columns.Add("Email", 200);
             lstEmployees.Columns.Add("Chức vụ", 140);
-            lstEmployees.Columns.Add("Số ngày trong khoảng", 160);
 
             content.Controls.Add(lstEmployees);
             header.Controls.Add(btnToggle);
@@ -180,7 +163,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             {
                 if (!content.Visible)
                 {
-                    LoadEmployeesForMonth(lstEmployees, month, year, globalStart, globalEnd);
+                    LoadEmployeesForMonth(lstEmployees, month, year, attendanceDTOs);
                     content.Visible = true;
                     outer.Height = 260;
                     btnToggle.Text = "Thu gọn";
@@ -192,41 +175,37 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
                     btnToggle.Text = "Xem danh sách";
                 }
             };
-
+            lstEmployees.MouseDoubleClick += (s, e) =>
+            {
+                var hit = lstEmployees.HitTest(e.Location);
+                var item = hit.Item;
+                if (item == null) return;
+                string maNV = item.Text;
+                EmployeeSelected?.Invoke((month, year, maNV));
+            };
             return outer;
         }
 
-        private void LoadEmployeesForMonth(ListView listView, int month, int year, DateTime globalStart, DateTime globalEnd)
+        private void LoadEmployeesForMonth(ListView listView, int month, int year, List<AttendanceDTO> attendanceDTOs)
         {
-            listView.BeginUpdate();
             listView.Items.Clear();
+            if (attendanceDTOs.Count == 0) return;
 
-            foreach (var emp in _employees)
+            foreach (var emp in attendanceDTOs)
             {
-                var records = _useMockData
-                    ? MockAttendanceFor(emp.MaNhanVien, month, year)
-                    : attendanceBLL?.filterByTime(emp.MaNhanVien, month, year);
-
-                if (records == null || records.Count == 0) continue;
-
-                var filtered = records
-                    .Where(r => r.NgayChamCong.Date >= globalStart && r.NgayChamCong.Date <= globalEnd)
-                    .ToList();
-
-                if (filtered.Count == 0) continue;
-
-                int distinctDays = filtered.Select(r => r.NgayChamCong.Date).Distinct().Count();
-
-                var item = new ListViewItem(emp.MaNhanVien);
-                item.SubItems.Add(emp.HoTen);
-                item.SubItems.Add(emp.PhongBan);
-                item.SubItems.Add(emp.ChucVu);
-                item.SubItems.Add(distinctDays.ToString());
+                if (string.IsNullOrEmpty(emp.MaNhanVien)) continue;
+                if (listView.Items.Cast<ListViewItem>().Any(i => i.Text == emp.MaNhanVien))
+                {
+                    continue;
+                }
+                EmployeeFullDTO employee = employeeBLL.GetEmployeeById(emp.MaNhanVien);
+                var item = new ListViewItem(employee.MaNhanVien);
+                item.SubItems.Add(employee.HoTen);
+                item.SubItems.Add(employee.Email);
+                item.SubItems.Add(employee.ChucVu);
 
                 listView.Items.Add(item);
             }
-
-            listView.EndUpdate();
         }
 
         // Mock data

@@ -150,5 +150,9 @@ namespace Quan_Ly_Nhan_Su.BLL
         {
             return attendanceDAO.filterByTime(manv, thang, nam);
         }
+        public List<AttendanceDTO> filterByTimesheet(DateTime startTime, DateTime endTime)
+        {
+            return attendanceDAO.filterByTimesheet(startTime,endTime);
+        }
     }
 }
