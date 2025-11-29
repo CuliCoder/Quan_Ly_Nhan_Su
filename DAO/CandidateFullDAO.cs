@@ -1,11 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.config;
 using Quan_Ly_Nhan_Su.DTO;
+using Quan_Ly_Nhan_Su.DAO.Data;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Windows.Forms;
+using Quan_Ly_Nhan_Su.DAO.Models;
+
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -160,7 +160,61 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
+        public bool ORMCreateCandidateWithProfile(PersonalProfileDTO profile, CandidateDTO candidate)
+        {
+            using (var db = new AppDbContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        PersonalProfileEntity profileEntity = new PersonalProfileEntity
+                        {
+                            SoCmnd = profile.SoCmnd,
+                            HoTen = profile.HoTen,
+                            NgaySinh = profile.NgaySinh,
+                            GioiTinh = profile.GioiTinh,
+                            DiaChi = profile.DiaChi,
+                            Email = profile.Email,
+                            SoDienThoai = profile.SoDienThoai,
+                            NoiCap = profile.NoiCap,
+                            NgayCap = profile.NgayCap,
+                            TinhTrangHonNhan = profile.HonNhan,
+                            DanToc = profile.DanToc,
+                            HocVan = profile.HocVan,
+                            ChuyenNganh = profile.ChuyenNganh,
+                            HinhAnh = profile.HinhAnh
+                        };
 
+                        CandidateEntity candidateEntity = new CandidateEntity
+                        {
+                            MaUngVien = candidate.MaUngVien,
+                            SoCmnd = candidate.SoCmnd,
+                            MaTuyenDung = candidate.MaTuyenDung,
+                            MucLuongDeal = candidate.MucLuongDeal,
+                            ChucVu = candidate.ChucVu,
+                            TrangThai = candidate.TrangThai
+                        };
+
+                        db.PersonalProfileEntities.Add(profileEntity);
+                        db.CandidateEntities.Add(candidateEntity);
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();                  
+                        System.Diagnostics.Debug.WriteLine("Lỗi Insert: " + ex.Message);
+                        if (ex.InnerException != null)
+                        {
+                            System.Diagnostics.Debug.WriteLine("Chi tiết: " + ex.InnerException.Message);
+                        }
+                        return false;
+                    }
+                }
+            }
+        }
         public bool CreateCandidateWithProfile(PersonalProfileDTO profile, CandidateDTO candidate)
         {
             using (var conn = connectDB.getConnection())
