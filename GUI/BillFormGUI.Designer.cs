@@ -124,10 +124,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlRoot.Controls.Add(this.pnlHeader);
             this.pnlRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRoot.Location = new System.Drawing.Point(0, 0);
-            this.pnlRoot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlRoot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlRoot.Name = "pnlRoot";
-            this.pnlRoot.Padding = new System.Windows.Forms.Padding(16, 14, 16, 14);
-            this.pnlRoot.Size = new System.Drawing.Size(578, 578);
+            this.pnlRoot.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pnlRoot.Size = new System.Drawing.Size(434, 470);
             this.pnlRoot.TabIndex = 0;
             // 
             // stack
@@ -139,10 +139,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.stack.Controls.Add(this.cardIncome);
             this.stack.Controls.Add(this.tblInfo);
             this.stack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stack.Location = new System.Drawing.Point(16, 72);
-            this.stack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stack.Location = new System.Drawing.Point(12, 58);
+            this.stack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.stack.Name = "stack";
-            this.stack.Size = new System.Drawing.Size(546, 492);
+            this.stack.Size = new System.Drawing.Size(410, 401);
             this.stack.TabIndex = 0;
             // 
             // cardSign
@@ -151,11 +151,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardSign.Controls.Add(this.tblSign);
             this.cardSign.Controls.Add(this.cardSignHeader);
             this.cardSign.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cardSign.Location = new System.Drawing.Point(0, 440);
-            this.cardSign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardSign.Location = new System.Drawing.Point(0, 358);
+            this.cardSign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cardSign.Name = "cardSign";
-            this.cardSign.Padding = new System.Windows.Forms.Padding(14, 13, 14, 13);
-            this.cardSign.Size = new System.Drawing.Size(546, 52);
+            this.cardSign.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.cardSign.Size = new System.Drawing.Size(410, 43);
             this.cardSign.TabIndex = 0;
             // 
             // tblSign
@@ -168,14 +168,14 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tblSign.Controls.Add(this.lblNguoiDuyet, 0, 1);
             this.tblSign.Controls.Add(this.lblNhanVienXN, 1, 1);
             this.tblSign.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblSign.Location = new System.Drawing.Point(14, 42);
-            this.tblSign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tblSign.Location = new System.Drawing.Point(10, 35);
+            this.tblSign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tblSign.Name = "tblSign";
-            this.tblSign.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tblSign.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblSign.RowCount = 2;
             this.tblSign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblSign.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblSign.Size = new System.Drawing.Size(518, 0);
+            this.tblSign.Size = new System.Drawing.Size(390, 0);
             this.tblSign.TabIndex = 0;
             // 
             // lblNguoiLap
@@ -183,10 +183,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblNguoiLap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNguoiLap.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblNguoiLap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblNguoiLap.Location = new System.Drawing.Point(7, 3);
+            this.lblNguoiLap.Location = new System.Drawing.Point(5, 2);
+            this.lblNguoiLap.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNguoiLap.Name = "lblNguoiLap";
-            this.lblNguoiLap.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblNguoiLap.Size = new System.Drawing.Size(249, 1);
+            this.lblNguoiLap.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblNguoiLap.Size = new System.Drawing.Size(188, 1);
             this.lblNguoiLap.TabIndex = 0;
             this.lblNguoiLap.Text = "Người lập phiếu: _____________";
             this.lblNguoiLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,10 +197,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblNgayLap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNgayLap.Font = this.lblNguoiLap.Font;
             this.lblNgayLap.ForeColor = this.lblNguoiLap.ForeColor;
-            this.lblNgayLap.Location = new System.Drawing.Point(262, 3);
+            this.lblNgayLap.Location = new System.Drawing.Point(197, 2);
+            this.lblNgayLap.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNgayLap.Name = "lblNgayLap";
             this.lblNgayLap.Padding = this.lblNguoiLap.Padding;
-            this.lblNgayLap.Size = new System.Drawing.Size(249, 1);
+            this.lblNgayLap.Size = new System.Drawing.Size(188, 1);
             this.lblNgayLap.TabIndex = 1;
             this.lblNgayLap.Text = "Ngày: __/__/____";
             this.lblNgayLap.TextAlign = this.lblNguoiLap.TextAlign;
@@ -209,10 +211,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblNguoiDuyet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNguoiDuyet.Font = this.lblNguoiLap.Font;
             this.lblNguoiDuyet.ForeColor = this.lblNguoiLap.ForeColor;
-            this.lblNguoiDuyet.Location = new System.Drawing.Point(7, 3);
+            this.lblNguoiDuyet.Location = new System.Drawing.Point(5, 2);
+            this.lblNguoiDuyet.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNguoiDuyet.Name = "lblNguoiDuyet";
             this.lblNguoiDuyet.Padding = this.lblNguoiLap.Padding;
-            this.lblNguoiDuyet.Size = new System.Drawing.Size(249, 1);
+            this.lblNguoiDuyet.Size = new System.Drawing.Size(188, 1);
             this.lblNguoiDuyet.TabIndex = 2;
             this.lblNguoiDuyet.Text = "Người duyệt: _____________";
             this.lblNguoiDuyet.TextAlign = this.lblNguoiLap.TextAlign;
@@ -222,10 +225,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblNhanVienXN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNhanVienXN.Font = this.lblNguoiLap.Font;
             this.lblNhanVienXN.ForeColor = this.lblNguoiLap.ForeColor;
-            this.lblNhanVienXN.Location = new System.Drawing.Point(262, 3);
+            this.lblNhanVienXN.Location = new System.Drawing.Point(197, 2);
+            this.lblNhanVienXN.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNhanVienXN.Name = "lblNhanVienXN";
             this.lblNhanVienXN.Padding = this.lblNguoiLap.Padding;
-            this.lblNhanVienXN.Size = new System.Drawing.Size(249, 1);
+            this.lblNhanVienXN.Size = new System.Drawing.Size(188, 1);
             this.lblNhanVienXN.TabIndex = 3;
             this.lblNhanVienXN.Text = "Nhân viên xác nhận: _____________";
             this.lblNhanVienXN.TextAlign = this.lblNguoiLap.TextAlign;
@@ -235,10 +239,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardSignHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(63)))), ((int)(((byte)(211)))));
             this.cardSignHeader.Controls.Add(this.lblSignTitle);
             this.cardSignHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cardSignHeader.Location = new System.Drawing.Point(14, 13);
-            this.cardSignHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardSignHeader.Location = new System.Drawing.Point(10, 11);
+            this.cardSignHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cardSignHeader.Name = "cardSignHeader";
-            this.cardSignHeader.Size = new System.Drawing.Size(518, 29);
+            this.cardSignHeader.Size = new System.Drawing.Size(390, 24);
             this.cardSignHeader.TabIndex = 1;
             // 
             // lblSignTitle
@@ -247,9 +251,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblSignTitle.Font = new System.Drawing.Font("Segoe UI", 11.5F, System.Drawing.FontStyle.Bold);
             this.lblSignTitle.ForeColor = System.Drawing.Color.White;
             this.lblSignTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblSignTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSignTitle.Name = "lblSignTitle";
-            this.lblSignTitle.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.lblSignTitle.Size = new System.Drawing.Size(518, 29);
+            this.lblSignTitle.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.lblSignTitle.Size = new System.Drawing.Size(390, 24);
             this.lblSignTitle.TabIndex = 0;
             this.lblSignTitle.Text = "KÝ & XÁC NHẬN";
             this.lblSignTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -259,11 +264,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(196)))));
             this.pnlTotal.Controls.Add(this.lblThucLanh);
             this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 384);
-            this.pnlTotal.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.pnlTotal.Location = new System.Drawing.Point(0, 312);
+            this.pnlTotal.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Padding = new System.Windows.Forms.Padding(16, 14, 16, 14);
-            this.pnlTotal.Size = new System.Drawing.Size(546, 56);
+            this.pnlTotal.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pnlTotal.Size = new System.Drawing.Size(410, 46);
             this.pnlTotal.TabIndex = 1;
             // 
             // lblThucLanh
@@ -271,9 +276,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblThucLanh.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblThucLanh.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
             this.lblThucLanh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
-            this.lblThucLanh.Location = new System.Drawing.Point(16, 14);
+            this.lblThucLanh.Location = new System.Drawing.Point(12, 11);
+            this.lblThucLanh.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThucLanh.Name = "lblThucLanh";
-            this.lblThucLanh.Size = new System.Drawing.Size(514, 28);
+            this.lblThucLanh.Size = new System.Drawing.Size(386, 24);
             this.lblThucLanh.TabIndex = 0;
             this.lblThucLanh.Text = "👉 Thực lãnh:";
             this.lblThucLanh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -284,30 +290,30 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardDeduct.Controls.Add(this.tblDeduct);
             this.cardDeduct.Controls.Add(this.cardDeductHeader);
             this.cardDeduct.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cardDeduct.Location = new System.Drawing.Point(0, 256);
-            this.cardDeduct.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.cardDeduct.Location = new System.Drawing.Point(0, 208);
+            this.cardDeduct.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.cardDeduct.Name = "cardDeduct";
-            this.cardDeduct.Padding = new System.Windows.Forms.Padding(14, 13, 14, 13);
-            this.cardDeduct.Size = new System.Drawing.Size(546, 128);
+            this.cardDeduct.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.cardDeduct.Size = new System.Drawing.Size(410, 104);
             this.cardDeduct.TabIndex = 2;
             // 
             // tblDeduct
             // 
             this.tblDeduct.ColumnCount = 1;
-            this.tblDeduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 626F));
+            this.tblDeduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 470F));
             this.tblDeduct.Controls.Add(this.lblTruBH, 0, 0);
             this.tblDeduct.Controls.Add(this.lblTruKhac, 0, 1);
             this.tblDeduct.Controls.Add(this.lblThue, 0, 2);
             this.tblDeduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblDeduct.Location = new System.Drawing.Point(14, 42);
-            this.tblDeduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tblDeduct.Location = new System.Drawing.Point(10, 35);
+            this.tblDeduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tblDeduct.Name = "tblDeduct";
-            this.tblDeduct.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tblDeduct.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblDeduct.RowCount = 3;
             this.tblDeduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tblDeduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tblDeduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.tblDeduct.Size = new System.Drawing.Size(518, 73);
+            this.tblDeduct.Size = new System.Drawing.Size(390, 58);
             this.tblDeduct.TabIndex = 0;
             // 
             // lblTruBH
@@ -315,10 +321,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblTruBH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTruBH.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblTruBH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblTruBH.Location = new System.Drawing.Point(7, 3);
+            this.lblTruBH.Location = new System.Drawing.Point(5, 2);
+            this.lblTruBH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTruBH.Name = "lblTruBH";
-            this.lblTruBH.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblTruBH.Size = new System.Drawing.Size(620, 22);
+            this.lblTruBH.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblTruBH.Size = new System.Drawing.Size(466, 18);
             this.lblTruBH.TabIndex = 0;
             this.lblTruBH.Text = "Khấu trừ BH:";
             this.lblTruBH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -328,10 +335,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblTruKhac.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTruKhac.Font = this.lblTruBH.Font;
             this.lblTruKhac.ForeColor = this.lblTruBH.ForeColor;
-            this.lblTruKhac.Location = new System.Drawing.Point(7, 25);
+            this.lblTruKhac.Location = new System.Drawing.Point(5, 20);
+            this.lblTruKhac.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTruKhac.Name = "lblTruKhac";
             this.lblTruKhac.Padding = this.lblTruBH.Padding;
-            this.lblTruKhac.Size = new System.Drawing.Size(620, 22);
+            this.lblTruKhac.Size = new System.Drawing.Size(466, 18);
             this.lblTruKhac.TabIndex = 1;
             this.lblTruKhac.Text = "Khấu trừ khác:";
             this.lblTruKhac.TextAlign = this.lblTruBH.TextAlign;
@@ -341,10 +349,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblThue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblThue.Font = this.lblTruBH.Font;
             this.lblThue.ForeColor = this.lblTruBH.ForeColor;
-            this.lblThue.Location = new System.Drawing.Point(7, 47);
+            this.lblThue.Location = new System.Drawing.Point(5, 38);
+            this.lblThue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThue.Name = "lblThue";
             this.lblThue.Padding = this.lblTruBH.Padding;
-            this.lblThue.Size = new System.Drawing.Size(620, 23);
+            this.lblThue.Size = new System.Drawing.Size(466, 18);
             this.lblThue.TabIndex = 2;
             this.lblThue.Text = "Thuế TNCN:";
             this.lblThue.TextAlign = this.lblTruBH.TextAlign;
@@ -354,10 +363,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardDeductHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.cardDeductHeader.Controls.Add(this.lblDeductTitle);
             this.cardDeductHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cardDeductHeader.Location = new System.Drawing.Point(14, 13);
-            this.cardDeductHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardDeductHeader.Location = new System.Drawing.Point(10, 11);
+            this.cardDeductHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cardDeductHeader.Name = "cardDeductHeader";
-            this.cardDeductHeader.Size = new System.Drawing.Size(518, 29);
+            this.cardDeductHeader.Size = new System.Drawing.Size(390, 24);
             this.cardDeductHeader.TabIndex = 1;
             // 
             // lblDeductTitle
@@ -366,9 +375,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblDeductTitle.Font = new System.Drawing.Font("Segoe UI", 11.5F, System.Drawing.FontStyle.Bold);
             this.lblDeductTitle.ForeColor = System.Drawing.Color.White;
             this.lblDeductTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblDeductTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDeductTitle.Name = "lblDeductTitle";
-            this.lblDeductTitle.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.lblDeductTitle.Size = new System.Drawing.Size(518, 29);
+            this.lblDeductTitle.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.lblDeductTitle.Size = new System.Drawing.Size(390, 24);
             this.lblDeductTitle.TabIndex = 0;
             this.lblDeductTitle.Text = "CÁC KHOẢN KHẤU TRỪ";
             this.lblDeductTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -379,32 +389,32 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardIncome.Controls.Add(this.tblIncome);
             this.cardIncome.Controls.Add(this.cardIncomeHeader);
             this.cardIncome.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cardIncome.Location = new System.Drawing.Point(0, 96);
-            this.cardIncome.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.cardIncome.Location = new System.Drawing.Point(0, 78);
+            this.cardIncome.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.cardIncome.Name = "cardIncome";
-            this.cardIncome.Padding = new System.Windows.Forms.Padding(14, 13, 14, 13);
-            this.cardIncome.Size = new System.Drawing.Size(546, 160);
+            this.cardIncome.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.cardIncome.Size = new System.Drawing.Size(410, 130);
             this.cardIncome.TabIndex = 3;
             // 
             // tblIncome
             // 
             this.tblIncome.ColumnCount = 1;
-            this.tblIncome.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 626F));
+            this.tblIncome.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 470F));
             this.tblIncome.Controls.Add(this.lblLuongCoBan, 0, 0);
             this.tblIncome.Controls.Add(this.lblThuong, 0, 1);
             this.tblIncome.Controls.Add(this.lblPhuCapCV, 0, 2);
             this.tblIncome.Controls.Add(this.lblPhuCapKhac, 0, 3);
             this.tblIncome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblIncome.Location = new System.Drawing.Point(14, 42);
-            this.tblIncome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tblIncome.Location = new System.Drawing.Point(10, 35);
+            this.tblIncome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tblIncome.Name = "tblIncome";
-            this.tblIncome.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tblIncome.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblIncome.RowCount = 4;
             this.tblIncome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblIncome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblIncome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tblIncome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tblIncome.Size = new System.Drawing.Size(518, 105);
+            this.tblIncome.Size = new System.Drawing.Size(390, 84);
             this.tblIncome.TabIndex = 0;
             // 
             // lblLuongCoBan
@@ -412,10 +422,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblLuongCoBan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLuongCoBan.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblLuongCoBan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblLuongCoBan.Location = new System.Drawing.Point(7, 3);
+            this.lblLuongCoBan.Location = new System.Drawing.Point(5, 2);
+            this.lblLuongCoBan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLuongCoBan.Name = "lblLuongCoBan";
-            this.lblLuongCoBan.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblLuongCoBan.Size = new System.Drawing.Size(620, 24);
+            this.lblLuongCoBan.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblLuongCoBan.Size = new System.Drawing.Size(466, 20);
             this.lblLuongCoBan.TabIndex = 0;
             this.lblLuongCoBan.Text = "Lương cơ bản:";
             this.lblLuongCoBan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -425,10 +436,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblThuong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblThuong.Font = this.lblLuongCoBan.Font;
             this.lblThuong.ForeColor = this.lblLuongCoBan.ForeColor;
-            this.lblThuong.Location = new System.Drawing.Point(7, 27);
+            this.lblThuong.Location = new System.Drawing.Point(5, 22);
+            this.lblThuong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThuong.Name = "lblThuong";
             this.lblThuong.Padding = this.lblLuongCoBan.Padding;
-            this.lblThuong.Size = new System.Drawing.Size(620, 24);
+            this.lblThuong.Size = new System.Drawing.Size(466, 20);
             this.lblThuong.TabIndex = 1;
             this.lblThuong.Text = "Thưởng:";
             this.lblThuong.TextAlign = this.lblLuongCoBan.TextAlign;
@@ -438,10 +450,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblPhuCapCV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPhuCapCV.Font = this.lblLuongCoBan.Font;
             this.lblPhuCapCV.ForeColor = this.lblLuongCoBan.ForeColor;
-            this.lblPhuCapCV.Location = new System.Drawing.Point(7, 51);
+            this.lblPhuCapCV.Location = new System.Drawing.Point(5, 42);
+            this.lblPhuCapCV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhuCapCV.Name = "lblPhuCapCV";
             this.lblPhuCapCV.Padding = this.lblLuongCoBan.Padding;
-            this.lblPhuCapCV.Size = new System.Drawing.Size(620, 24);
+            this.lblPhuCapCV.Size = new System.Drawing.Size(466, 20);
             this.lblPhuCapCV.TabIndex = 2;
             this.lblPhuCapCV.Text = "Phụ cấp chức vụ:";
             this.lblPhuCapCV.TextAlign = this.lblLuongCoBan.TextAlign;
@@ -451,10 +464,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblPhuCapKhac.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPhuCapKhac.Font = this.lblLuongCoBan.Font;
             this.lblPhuCapKhac.ForeColor = this.lblLuongCoBan.ForeColor;
-            this.lblPhuCapKhac.Location = new System.Drawing.Point(7, 75);
+            this.lblPhuCapKhac.Location = new System.Drawing.Point(5, 62);
+            this.lblPhuCapKhac.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhuCapKhac.Name = "lblPhuCapKhac";
             this.lblPhuCapKhac.Padding = this.lblLuongCoBan.Padding;
-            this.lblPhuCapKhac.Size = new System.Drawing.Size(620, 27);
+            this.lblPhuCapKhac.Size = new System.Drawing.Size(466, 20);
             this.lblPhuCapKhac.TabIndex = 3;
             this.lblPhuCapKhac.Text = "Phụ cấp khác:";
             this.lblPhuCapKhac.TextAlign = this.lblLuongCoBan.TextAlign;
@@ -464,10 +478,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardIncomeHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.cardIncomeHeader.Controls.Add(this.lblIncomeTitle);
             this.cardIncomeHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cardIncomeHeader.Location = new System.Drawing.Point(14, 13);
-            this.cardIncomeHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardIncomeHeader.Location = new System.Drawing.Point(10, 11);
+            this.cardIncomeHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cardIncomeHeader.Name = "cardIncomeHeader";
-            this.cardIncomeHeader.Size = new System.Drawing.Size(518, 29);
+            this.cardIncomeHeader.Size = new System.Drawing.Size(390, 24);
             this.cardIncomeHeader.TabIndex = 1;
             // 
             // lblIncomeTitle
@@ -476,9 +490,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblIncomeTitle.Font = new System.Drawing.Font("Segoe UI", 11.5F, System.Drawing.FontStyle.Bold);
             this.lblIncomeTitle.ForeColor = System.Drawing.Color.White;
             this.lblIncomeTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblIncomeTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIncomeTitle.Name = "lblIncomeTitle";
-            this.lblIncomeTitle.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.lblIncomeTitle.Size = new System.Drawing.Size(518, 29);
+            this.lblIncomeTitle.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.lblIncomeTitle.Size = new System.Drawing.Size(390, 24);
             this.lblIncomeTitle.TabIndex = 0;
             this.lblIncomeTitle.Text = "CỘNG THU NHẬP";
             this.lblIncomeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -495,13 +510,13 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tblInfo.Controls.Add(this.lblChucVu, 1, 1);
             this.tblInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.tblInfo.Location = new System.Drawing.Point(0, 0);
-            this.tblInfo.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.tblInfo.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.tblInfo.Name = "tblInfo";
-            this.tblInfo.Padding = new System.Windows.Forms.Padding(14, 13, 14, 13);
+            this.tblInfo.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.tblInfo.RowCount = 2;
             this.tblInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblInfo.Size = new System.Drawing.Size(546, 96);
+            this.tblInfo.Size = new System.Drawing.Size(410, 78);
             this.tblInfo.TabIndex = 4;
             // 
             // lblMaNV
@@ -509,10 +524,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblMaNV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMaNV.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblMaNV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblMaNV.Location = new System.Drawing.Point(17, 13);
+            this.lblMaNV.Location = new System.Drawing.Point(12, 11);
+            this.lblMaNV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaNV.Name = "lblMaNV";
-            this.lblMaNV.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblMaNV.Size = new System.Drawing.Size(253, 35);
+            this.lblMaNV.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblMaNV.Size = new System.Drawing.Size(191, 28);
             this.lblMaNV.TabIndex = 0;
             this.lblMaNV.Text = "Mã NV:";
             this.lblMaNV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,10 +538,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblHoTen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHoTen.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblHoTen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblHoTen.Location = new System.Drawing.Point(276, 13);
+            this.lblHoTen.Location = new System.Drawing.Point(207, 11);
+            this.lblHoTen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHoTen.Name = "lblHoTen";
-            this.lblHoTen.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblHoTen.Size = new System.Drawing.Size(253, 35);
+            this.lblHoTen.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblHoTen.Size = new System.Drawing.Size(191, 28);
             this.lblHoTen.TabIndex = 1;
             this.lblHoTen.Text = "Họ tên:";
             this.lblHoTen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -535,10 +552,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblPhongBan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPhongBan.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblPhongBan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblPhongBan.Location = new System.Drawing.Point(17, 48);
+            this.lblPhongBan.Location = new System.Drawing.Point(12, 39);
+            this.lblPhongBan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhongBan.Name = "lblPhongBan";
-            this.lblPhongBan.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblPhongBan.Size = new System.Drawing.Size(253, 35);
+            this.lblPhongBan.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblPhongBan.Size = new System.Drawing.Size(191, 28);
             this.lblPhongBan.TabIndex = 2;
             this.lblPhongBan.Text = "Phòng ban:";
             this.lblPhongBan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -548,10 +566,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblChucVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblChucVu.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.lblChucVu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblChucVu.Location = new System.Drawing.Point(276, 48);
+            this.lblChucVu.Location = new System.Drawing.Point(207, 39);
+            this.lblChucVu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChucVu.Name = "lblChucVu";
-            this.lblChucVu.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblChucVu.Size = new System.Drawing.Size(253, 35);
+            this.lblChucVu.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblChucVu.Size = new System.Drawing.Size(191, 28);
             this.lblChucVu.TabIndex = 3;
             this.lblChucVu.Text = "Chức vụ:";
             this.lblChucVu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -561,10 +580,10 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(120)))), ((int)(((byte)(246)))));
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(16, 14);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlHeader.Location = new System.Drawing.Point(12, 11);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(546, 58);
+            this.pnlHeader.Size = new System.Drawing.Size(410, 47);
             this.pnlHeader.TabIndex = 1;
             // 
             // lblTitle
@@ -573,8 +592,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(546, 58);
+            this.lblTitle.Size = new System.Drawing.Size(410, 47);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "PHIẾU LƯƠNG NHÂN VIÊN";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -589,23 +609,23 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(0, 578);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrint.Location = new System.Drawing.Point(0, 470);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(578, 54);
+            this.btnPrint.Size = new System.Drawing.Size(434, 44);
             this.btnPrint.TabIndex = 2;
             this.btnPrint.Text = "In phiếu lương (PDF)";
             this.btnPrint.UseVisualStyleBackColor = false;
             // 
             // BillFormGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(578, 632);
+            this.ClientSize = new System.Drawing.Size(434, 514);
             this.Controls.Add(this.pnlRoot);
             this.Controls.Add(this.btnPrint);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BillFormGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phiếu Lương Nhân Viên";

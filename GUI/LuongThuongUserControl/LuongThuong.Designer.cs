@@ -179,8 +179,6 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.flowLayoutPanel7.SuspendLayout();
-            this.flowLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -201,7 +199,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -281,7 +279,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.btnSearch1.Location = new System.Drawing.Point(1077, 2);
             this.btnSearch1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch1.Name = "btnSearch1";
-            this.btnSearch1.Size = new System.Drawing.Size(67, 38);
+            this.btnSearch1.Size = new System.Drawing.Size(73, 47);
             this.btnSearch1.TabIndex = 6;
             this.btnSearch1.Text = "";
             this.btnSearch1.UseVisualStyleBackColor = true;
@@ -293,7 +291,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbSearch.Location = new System.Drawing.Point(769, 2);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(302, 26);
+            this.tbSearch.Size = new System.Drawing.Size(303, 30);
             this.tbSearch.TabIndex = 5;
             this.tbSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -304,7 +302,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.btnLoc1.Location = new System.Drawing.Point(696, 2);
             this.btnLoc1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoc1.Name = "btnLoc1";
-            this.btnLoc1.Size = new System.Drawing.Size(67, 38);
+            this.btnLoc1.Size = new System.Drawing.Size(69, 47);
             this.btnLoc1.TabIndex = 12;
             this.btnLoc1.Text = "Lọc";
             this.btnLoc1.UseVisualStyleBackColor = true;
@@ -316,18 +314,19 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dateFilterThuong.CustomFormat = "yyyy";
             this.dateFilterThuong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateFilterThuong.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateFilterThuong.Location = new System.Drawing.Point(352, 2);
+            this.dateFilterThuong.Location = new System.Drawing.Point(521, 2);
             this.dateFilterThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateFilterThuong.Name = "dateFilterThuong";
             this.dateFilterThuong.ShowUpDown = true;
-            this.dateFilterThuong.Size = new System.Drawing.Size(160, 26);
+            this.dateFilterThuong.Size = new System.Drawing.Size(160, 30);
             this.dateFilterThuong.TabIndex = 11;
             // 
             // btnTinhLuong
             // 
-            this.btnTinhLuong.Location = new System.Drawing.Point(156, 3);
+            this.btnTinhLuong.Location = new System.Drawing.Point(326, 2);
+            this.btnTinhLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTinhLuong.Name = "btnTinhLuong";
-            this.btnTinhLuong.Size = new System.Drawing.Size(190, 34);
+            this.btnTinhLuong.Size = new System.Drawing.Size(189, 34);
             this.btnTinhLuong.TabIndex = 13;
             this.btnTinhLuong.Text = "Xuất Phiếu Lương";
             this.btnTinhLuong.UseVisualStyleBackColor = true;
@@ -338,7 +337,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dataBangLuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataBangLuong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataBangLuong.GridColor = System.Drawing.SystemColors.Control;
-            this.dataBangLuong.Location = new System.Drawing.Point(3, 116);
+            this.dataBangLuong.Location = new System.Drawing.Point(3, 151);
             this.dataBangLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataBangLuong.Name = "dataBangLuong";
             this.dataBangLuong.RowHeadersWidth = 51;
@@ -364,11 +363,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 32);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1165, 711);
+            this.tabPage2.Size = new System.Drawing.Size(1165, 707);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Lương thưởng";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -386,7 +385,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1159, 707);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1159, 703);
             this.tableLayoutPanel3.TabIndex = 0;
             this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
@@ -403,7 +402,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.8284F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.1716F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(785, 703);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(785, 699);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // tableLayoutPanel5
@@ -419,7 +418,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(779, 107);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(779, 106);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -434,18 +433,31 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 55);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(773, 50);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(773, 49);
             this.flowLayoutPanel2.TabIndex = 2;
+            // 
+            // btnResetThuong
+            // 
+            this.btnResetThuong.AutoSize = true;
+            this.btnResetThuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnResetThuong.Location = new System.Drawing.Point(678, 2);
+            this.btnResetThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnResetThuong.Name = "btnResetThuong";
+            this.btnResetThuong.Size = new System.Drawing.Size(92, 47);
+            this.btnResetThuong.TabIndex = 13;
+            this.btnResetThuong.Text = "Reset";
+            this.btnResetThuong.UseVisualStyleBackColor = true;
+            this.btnResetThuong.Click += new System.EventHandler(this.btnResetThuong_Click);
             // 
             // btnSearch2
             // 
             this.btnSearch2.AutoSize = true;
             this.btnSearch2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSearch2.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch2.Image")));
-            this.btnSearch2.Location = new System.Drawing.Point(622, 2);
+            this.btnSearch2.Location = new System.Drawing.Point(599, 2);
             this.btnSearch2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch2.Name = "btnSearch2";
-            this.btnSearch2.Size = new System.Drawing.Size(67, 38);
+            this.btnSearch2.Size = new System.Drawing.Size(73, 47);
             this.btnSearch2.TabIndex = 6;
             this.btnSearch2.Text = "      quay lại ";
             this.btnSearch2.UseVisualStyleBackColor = true;
@@ -454,20 +466,20 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tbSearch2
             // 
             this.tbSearch2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSearch2.Location = new System.Drawing.Point(314, 2);
+            this.tbSearch2.Location = new System.Drawing.Point(290, 2);
             this.tbSearch2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSearch2.Name = "tbSearch2";
-            this.tbSearch2.Size = new System.Drawing.Size(302, 26);
+            this.tbSearch2.Size = new System.Drawing.Size(303, 30);
             this.tbSearch2.TabIndex = 5;
             // 
             // btnLocThuong
             // 
             this.btnLocThuong.AutoSize = true;
             this.btnLocThuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLocThuong.Location = new System.Drawing.Point(241, 2);
+            this.btnLocThuong.Location = new System.Drawing.Point(215, 2);
             this.btnLocThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLocThuong.Name = "btnLocThuong";
-            this.btnLocThuong.Size = new System.Drawing.Size(67, 38);
+            this.btnLocThuong.Size = new System.Drawing.Size(69, 47);
             this.btnLocThuong.TabIndex = 12;
             this.btnLocThuong.Text = "Lọc";
             this.btnLocThuong.UseVisualStyleBackColor = true;
@@ -479,11 +491,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dateTimePicker2.CustomFormat = "yyyy";
             this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(75, 2);
+            this.dateTimePicker2.Location = new System.Drawing.Point(49, 2);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(160, 26);
+            this.dateTimePicker2.Size = new System.Drawing.Size(160, 30);
             this.dateTimePicker2.TabIndex = 11;
             // 
             // label2
@@ -494,7 +506,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label2.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(233, 53);
+            this.label2.Size = new System.Drawing.Size(296, 53);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tiền thưởng theo tháng";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -510,14 +522,14 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dataThuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataThuong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataThuong.EnableHeadersVisualStyles = false;
-            this.dataThuong.Location = new System.Drawing.Point(3, 113);
+            this.dataThuong.Location = new System.Drawing.Point(3, 112);
             this.dataThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataThuong.Name = "dataThuong";
             this.dataThuong.ReadOnly = true;
             this.dataThuong.RowHeadersVisible = false;
             this.dataThuong.RowHeadersWidth = 51;
             this.dataThuong.RowTemplate.Height = 24;
-            this.dataThuong.Size = new System.Drawing.Size(779, 588);
+            this.dataThuong.Size = new System.Drawing.Size(779, 585);
             this.dataThuong.TabIndex = 1;
             this.dataThuong.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataThuong_CellContentClick);
             // 
@@ -561,7 +573,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 29);
+            this.label3.Size = new System.Drawing.Size(223, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tạo mức tiền thưởng";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -572,7 +584,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label4.Dock = System.Windows.Forms.DockStyle.Left;
             this.label4.Location = new System.Drawing.Point(3, 29);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 37);
+            this.label4.Size = new System.Drawing.Size(89, 37);
             this.label4.TabIndex = 1;
             this.label4.Text = "Thời gian";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -597,7 +609,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dateThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateThuong.Name = "dateThuong";
             this.dateThuong.ShowUpDown = true;
-            this.dateThuong.Size = new System.Drawing.Size(159, 26);
+            this.dateThuong.Size = new System.Drawing.Size(159, 30);
             this.dateThuong.TabIndex = 10;
             // 
             // label5
@@ -606,7 +618,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Location = new System.Drawing.Point(3, 103);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 31);
+            this.label5.Size = new System.Drawing.Size(155, 31);
             this.label5.TabIndex = 3;
             this.label5.Text = "Dơn vị thụ hưởng";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -620,7 +632,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.cbThuong.Location = new System.Drawing.Point(3, 136);
             this.cbThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbThuong.Name = "cbThuong";
-            this.cbThuong.Size = new System.Drawing.Size(356, 27);
+            this.cbThuong.Size = new System.Drawing.Size(356, 31);
             this.cbThuong.TabIndex = 4;
             this.cbThuong.SelectedIndexChanged += new System.EventHandler(this.comboBox13_SelectedIndexChanged);
             // 
@@ -630,7 +642,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label6.Dock = System.Windows.Forms.DockStyle.Left;
             this.label6.Location = new System.Drawing.Point(3, 173);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 34);
+            this.label6.Size = new System.Drawing.Size(60, 34);
             this.label6.TabIndex = 5;
             this.label6.Text = "Mô tả";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -642,7 +654,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbThuong.Location = new System.Drawing.Point(3, 209);
             this.tbThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbThuong.Name = "tbThuong";
-            this.tbThuong.Size = new System.Drawing.Size(356, 26);
+            this.tbThuong.Size = new System.Drawing.Size(356, 30);
             this.tbThuong.TabIndex = 6;
             // 
             // label7
@@ -651,7 +663,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Location = new System.Drawing.Point(3, 238);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 37);
+            this.label7.Size = new System.Drawing.Size(151, 37);
             this.label7.TabIndex = 7;
             this.label7.Text = "Mức thưởng (%)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -662,7 +674,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbMucThuong.Location = new System.Drawing.Point(3, 277);
             this.tbMucThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbMucThuong.Name = "tbMucThuong";
-            this.tbMucThuong.Size = new System.Drawing.Size(356, 26);
+            this.tbMucThuong.Size = new System.Drawing.Size(356, 30);
             this.tbMucThuong.TabIndex = 8;
             // 
             // flowLayoutPanel6
@@ -672,16 +684,18 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel6.Controls.Add(this.btnCapNhatThuong);
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel6.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 312);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 311);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(356, 31);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(356, 33);
             this.flowLayoutPanel6.TabIndex = 10;
             // 
             // btnThemThuong
             // 
             this.btnThemThuong.AutoSize = true;
             this.btnThemThuong.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnThemThuong.Location = new System.Drawing.Point(270, 3);
+            this.btnThemThuong.Location = new System.Drawing.Point(224, 2);
+            this.btnThemThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThemThuong.Name = "btnThemThuong";
             this.btnThemThuong.Size = new System.Drawing.Size(83, 28);
             this.btnThemThuong.TabIndex = 9;
@@ -693,7 +707,8 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // 
             this.btnCapNhatThuong.AutoSize = true;
             this.btnCapNhatThuong.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnCapNhatThuong.Location = new System.Drawing.Point(185, 3);
+            this.btnCapNhatThuong.Location = new System.Drawing.Point(90, 2);
+            this.btnCapNhatThuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCapNhatThuong.Name = "btnCapNhatThuong";
             this.btnCapNhatThuong.Size = new System.Drawing.Size(79, 28);
             this.btnCapNhatThuong.TabIndex = 10;
@@ -704,11 +719,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tableLayoutPanel7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 32);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Size = new System.Drawing.Size(1165, 711);
+            this.tabPage3.Size = new System.Drawing.Size(1165, 707);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Phụ cấp, khoản trừ";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -726,7 +741,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1159, 707);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1159, 703);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -742,7 +757,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel9.RowCount = 2;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.22287F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.77712F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(762, 703);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(762, 699);
             this.tableLayoutPanel9.TabIndex = 1;
             // 
             // tableLayoutPanel10
@@ -769,7 +784,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label8.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(219, 47);
+            this.label8.Size = new System.Drawing.Size(270, 47);
             this.label8.TabIndex = 0;
             this.label8.Text = "Phụ cấp và các khoản trừ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -789,15 +804,28 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel4.Size = new System.Drawing.Size(750, 44);
             this.flowLayoutPanel4.TabIndex = 1;
             // 
+            // btnResetPCKT
+            // 
+            this.btnResetPCKT.AutoSize = true;
+            this.btnResetPCKT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnResetPCKT.Location = new System.Drawing.Point(655, 2);
+            this.btnResetPCKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnResetPCKT.Name = "btnResetPCKT";
+            this.btnResetPCKT.Size = new System.Drawing.Size(92, 47);
+            this.btnResetPCKT.TabIndex = 19;
+            this.btnResetPCKT.Text = "Reset";
+            this.btnResetPCKT.UseVisualStyleBackColor = true;
+            this.btnResetPCKT.Click += new System.EventHandler(this.btnResetPCKT_Click);
+            // 
             // btnLocPCKT
             // 
             this.btnLocPCKT.AutoSize = true;
             this.btnLocPCKT.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLocPCKT.Image = ((System.Drawing.Image)(resources.GetObject("btnLocPCKT.Image")));
-            this.btnLocPCKT.Location = new System.Drawing.Point(599, 2);
+            this.btnLocPCKT.Location = new System.Drawing.Point(576, 2);
             this.btnLocPCKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLocPCKT.Name = "btnLocPCKT";
-            this.btnLocPCKT.Size = new System.Drawing.Size(67, 38);
+            this.btnLocPCKT.Size = new System.Drawing.Size(73, 47);
             this.btnLocPCKT.TabIndex = 15;
             this.btnLocPCKT.Text = "       ";
             this.btnLocPCKT.UseVisualStyleBackColor = true;
@@ -806,20 +834,20 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tbLocPCKT
             // 
             this.tbLocPCKT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbLocPCKT.Location = new System.Drawing.Point(291, 2);
+            this.tbLocPCKT.Location = new System.Drawing.Point(267, 2);
             this.tbLocPCKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbLocPCKT.Name = "tbLocPCKT";
-            this.tbLocPCKT.Size = new System.Drawing.Size(302, 26);
+            this.tbLocPCKT.Size = new System.Drawing.Size(303, 30);
             this.tbLocPCKT.TabIndex = 16;
             // 
             // btnSearchPCKT
             // 
             this.btnSearchPCKT.AutoSize = true;
             this.btnSearchPCKT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearchPCKT.Location = new System.Drawing.Point(218, 2);
+            this.btnSearchPCKT.Location = new System.Drawing.Point(192, 2);
             this.btnSearchPCKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchPCKT.Name = "btnSearchPCKT";
-            this.btnSearchPCKT.Size = new System.Drawing.Size(67, 38);
+            this.btnSearchPCKT.Size = new System.Drawing.Size(69, 47);
             this.btnSearchPCKT.TabIndex = 17;
             this.btnSearchPCKT.Text = "Lọc";
             this.btnSearchPCKT.UseVisualStyleBackColor = true;
@@ -831,11 +859,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dateLocPCKT.CustomFormat = "yyyy";
             this.dateLocPCKT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateLocPCKT.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateLocPCKT.Location = new System.Drawing.Point(52, 2);
+            this.dateLocPCKT.Location = new System.Drawing.Point(26, 2);
             this.dateLocPCKT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateLocPCKT.Name = "dateLocPCKT";
             this.dateLocPCKT.ShowUpDown = true;
-            this.dateLocPCKT.Size = new System.Drawing.Size(160, 26);
+            this.dateLocPCKT.Size = new System.Drawing.Size(160, 30);
             this.dateLocPCKT.TabIndex = 18;
             // 
             // dataPCKT
@@ -856,7 +884,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dataPCKT.RowHeadersVisible = false;
             this.dataPCKT.RowHeadersWidth = 51;
             this.dataPCKT.RowTemplate.Height = 24;
-            this.dataPCKT.Size = new System.Drawing.Size(756, 600);
+            this.dataPCKT.Size = new System.Drawing.Size(756, 596);
             this.dataPCKT.TabIndex = 1;
             this.dataPCKT.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataPCKT_CellContentClick);
             // 
@@ -888,7 +916,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel5.Location = new System.Drawing.Point(771, 2);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(385, 703);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(385, 699);
             this.flowLayoutPanel5.TabIndex = 2;
             // 
             // label9
@@ -899,7 +927,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label9.Location = new System.Drawing.Point(3, 6);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(158, 24);
+            this.label9.Size = new System.Drawing.Size(209, 31);
             this.label9.TabIndex = 0;
             this.label9.Text = "Phụ cấp nhân sự";
             // 
@@ -908,10 +936,10 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Left;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 40);
+            this.label10.Location = new System.Drawing.Point(3, 47);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 22);
+            this.label10.Size = new System.Drawing.Size(110, 26);
             this.label10.TabIndex = 1;
             this.label10.Text = "Thời gian";
             // 
@@ -921,11 +949,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.datePC.CustomFormat = "yyyy";
             this.datePC.Dock = System.Windows.Forms.DockStyle.Left;
             this.datePC.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePC.Location = new System.Drawing.Point(3, 66);
+            this.datePC.Location = new System.Drawing.Point(3, 77);
             this.datePC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.datePC.Name = "datePC";
             this.datePC.ShowUpDown = true;
-            this.datePC.Size = new System.Drawing.Size(141, 26);
+            this.datePC.Size = new System.Drawing.Size(141, 30);
             this.datePC.TabIndex = 11;
             // 
             // label11
@@ -933,10 +961,10 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Left;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 96);
+            this.label11.Location = new System.Drawing.Point(3, 111);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(121, 22);
+            this.label11.Size = new System.Drawing.Size(152, 26);
             this.label11.TabIndex = 12;
             this.label11.Text = "Mã nhân viên";
             // 
@@ -944,10 +972,10 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // 
             this.cbPC.Dock = System.Windows.Forms.DockStyle.Left;
             this.cbPC.FormattingEnabled = true;
-            this.cbPC.Location = new System.Drawing.Point(3, 122);
+            this.cbPC.Location = new System.Drawing.Point(3, 141);
             this.cbPC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.cbPC.Name = "cbPC";
-            this.cbPC.Size = new System.Drawing.Size(324, 27);
+            this.cbPC.Size = new System.Drawing.Size(324, 31);
             this.cbPC.TabIndex = 13;
             // 
             // label26
@@ -955,40 +983,40 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label26.AutoSize = true;
             this.label26.Dock = System.Windows.Forms.DockStyle.Left;
             this.label26.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(3, 153);
+            this.label26.Location = new System.Drawing.Point(3, 176);
             this.label26.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(66, 22);
+            this.label26.Size = new System.Drawing.Size(82, 26);
             this.label26.TabIndex = 25;
             this.label26.Text = "Số tiền";
             // 
             // tbSoTienPC
             // 
             this.tbSoTienPC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSoTienPC.Location = new System.Drawing.Point(3, 179);
+            this.tbSoTienPC.Location = new System.Drawing.Point(3, 206);
             this.tbSoTienPC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.tbSoTienPC.Name = "tbSoTienPC";
-            this.tbSoTienPC.Size = new System.Drawing.Size(324, 26);
+            this.tbSoTienPC.Size = new System.Drawing.Size(324, 30);
             this.tbSoTienPC.TabIndex = 26;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 209);
+            this.label12.Location = new System.Drawing.Point(3, 240);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 22);
+            this.label12.Size = new System.Drawing.Size(93, 26);
             this.label12.TabIndex = 14;
             this.label12.Text = "Ghi chú";
             // 
             // tbNotePC
             // 
             this.tbNotePC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNotePC.Location = new System.Drawing.Point(3, 235);
+            this.tbNotePC.Location = new System.Drawing.Point(3, 270);
             this.tbNotePC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.tbNotePC.Name = "tbNotePC";
-            this.tbNotePC.Size = new System.Drawing.Size(324, 26);
+            this.tbNotePC.Size = new System.Drawing.Size(324, 30);
             this.tbNotePC.TabIndex = 15;
             // 
             // flowLayoutPanel7
@@ -1061,7 +1089,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.dateKT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.dateKT.Name = "dateKT";
             this.dateKT.ShowUpDown = true;
-            this.dateKT.Size = new System.Drawing.Size(141, 26);
+            this.dateKT.Size = new System.Drawing.Size(141, 30);
             this.dateKT.TabIndex = 19;
             // 
             // label15
@@ -1094,7 +1122,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.label27.Location = new System.Drawing.Point(3, 448);
             this.label27.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(66, 22);
+            this.label27.Size = new System.Drawing.Size(82, 26);
             this.label27.TabIndex = 27;
             this.label27.Text = "Số tiền";
             // 
@@ -1104,7 +1132,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tbSoTienKT.Location = new System.Drawing.Point(3, 474);
             this.tbSoTienKT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.tbSoTienKT.Name = "tbSoTienKT";
-            this.tbSoTienKT.Size = new System.Drawing.Size(324, 26);
+            this.tbSoTienKT.Size = new System.Drawing.Size(324, 30);
             this.tbSoTienKT.TabIndex = 28;
             // 
             // label16
@@ -1139,6 +1167,18 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.flowLayoutPanel8.Size = new System.Drawing.Size(324, 31);
             this.flowLayoutPanel8.TabIndex = 29;
             // 
+            // flowLayoutPanel8
+            // 
+            this.flowLayoutPanel8.Controls.Add(this.btnKT);
+            this.flowLayoutPanel8.Controls.Add(this.btnCapNhatKT);
+            this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel8.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(6, 649);
+            this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel8.Name = "flowLayoutPanel8";
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(321, 43);
+            this.flowLayoutPanel8.TabIndex = 30;
+            // 
             // btnKT
             // 
             this.btnKT.AutoSize = true;
@@ -1166,11 +1206,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.tableLayoutPanel13);
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Location = new System.Drawing.Point(4, 32);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Size = new System.Drawing.Size(1165, 711);
+            this.tabPage4.Size = new System.Drawing.Size(1165, 707);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Quản lý mức thưởng";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1469,6 +1509,10 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             ((System.ComponentModel.ISupportInitialize)(this.dataPCKT)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
+            this.flowLayoutPanel7.ResumeLayout(false);
+            this.flowLayoutPanel7.PerformLayout();
+            this.flowLayoutPanel8.ResumeLayout(false);
+            this.flowLayoutPanel8.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -1479,10 +1523,6 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.flowLayoutPanel7.ResumeLayout(false);
-            this.flowLayoutPanel7.PerformLayout();
-            this.flowLayoutPanel8.ResumeLayout(false);
-            this.flowLayoutPanel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
