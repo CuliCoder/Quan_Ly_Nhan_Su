@@ -24,8 +24,8 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
                 return;
-            LoadEmployees();
             LoadCboSearch();
+            LoadEmployees();
             ConfigureDataGridView();
         }
 
@@ -47,7 +47,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             cboSearch.DataSource = dtcboSearch;
             cboSearch.DisplayMember = "value";
             cboSearch.ValueMember = "key";
-            cboSearch.SelectedValue = "Tất cả";
+            cboSearch.SelectedValue = 0;
             cboSearch.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private bool filter(int option, EmployeeFullDTO employeeFullDTO)
