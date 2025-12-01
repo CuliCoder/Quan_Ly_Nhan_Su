@@ -24,7 +24,6 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
             _employeeBLL = new EmployeeFullBLL();
             _profileBLL = new PersonalProfileBLL();
 
-            Console.WriteLine(_evaluationBLL.GetTotalEvaluationScore("NV003", 2025));
             // Cấu hình form
             this.Text = "Chi tiết đánh giá";
             this.Size = new Size(900, 700);
