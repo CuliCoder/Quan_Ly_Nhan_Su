@@ -214,7 +214,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
                 CandidateDTO candidate = LayDuLieuUngVien();
 
-                if (busFullCadi.CreateCadidateWPersonalProfile(personalProfile, candidate))
+                if (busFullCadi.ORMCreateCadidateWPersonalProfile(personalProfile, candidate))
                 {
                     busBatch.UpdateProfileCreate(candidate.MaTuyenDung);
                     luuThongTinForm?.Invoke(this, EventArgs.Empty);

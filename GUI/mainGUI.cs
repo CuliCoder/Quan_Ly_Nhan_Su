@@ -333,7 +333,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             // Kiểm tra trước khi thêm nhân viên
             if (SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN))
             {
-                // Code thêm nhân viên
+                
             }
 
             // Kiểm tra trước khi xóa hợp đồng
