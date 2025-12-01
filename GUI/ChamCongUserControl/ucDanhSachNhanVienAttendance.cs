@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
@@ -24,6 +25,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
                 return;
             LoadEmployees();
+            LoadCboSearch();
             ConfigureDataGridView();
         }
 
@@ -31,7 +33,23 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             dgvNhanVien.AutoGenerateColumns = false;
         }
-
+        private void LoadCboSearch()
+        {
+            DataTable dtcboSearch = new DataTable();
+            dtcboSearch.Columns.Add("key", typeof(int));
+            dtcboSearch.Columns.Add("value", typeof(string));
+            dtcboSearch.Rows.Add(0, "Tất cả");
+            dtcboSearch.Rows.Add(1, "Mã nhân viên");
+            dtcboSearch.Rows.Add(2, "Họ tên");
+            dtcboSearch.Rows.Add(3, "Email");
+            dtcboSearch.Rows.Add(4, "Phòng ban");
+            dtcboSearch.Rows.Add(5, "Chức vụ");
+            cboSearch.DataSource = dtcboSearch;
+            cboSearch.DisplayMember = "value";
+            cboSearch.ValueMember = "key";
+            cboSearch.SelectedValue = "Tất cả";
+            cboSearch.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
         private void LoadEmployees()
         {
             try
