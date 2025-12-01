@@ -583,43 +583,43 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             }
         }
 
-        private void dataThuong_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            DataGridViewRow row = dataThuong.Rows[e.RowIndex];
+        //private void dataThuong_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex < 0) return;
+        //    DataGridViewRow row = dataThuong.Rows[e.RowIndex];
 
-            cbThuong.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
-            tbThuong.Text = row.Cells["TenThuong"].Value?.ToString();
-            tbMucThuong.Text = row.Cells["PhanTramThuong"].Value?.ToString();
-            int month = Convert.ToInt32(dataThuong.Rows[e.RowIndex].Cells["ThangApDung"].Value);
-            int year = Convert.ToInt32(dataThuong.Rows[e.RowIndex].Cells["NamApDung"].Value);
-            dateThuong.Value = new DateTime(year, month, 1);
-        }
+        //    cbThuong.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
+        //    tbThuong.Text = row.Cells["TenThuong"].Value?.ToString();
+        //    tbMucThuong.Text = row.Cells["PhanTramThuong"].Value?.ToString();
+        //    int month = Convert.ToInt32(dataThuong.Rows[e.RowIndex].Cells["ThangApDung"].Value);
+        //    int year = Convert.ToInt32(dataThuong.Rows[e.RowIndex].Cells["NamApDung"].Value);
+        //    dateThuong.Value = new DateTime(year, month, 1);
+        //}
 
-        private void dataPCKT_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            DataGridViewRow row = dataPCKT.Rows[e.RowIndex];
+        //private void dataPCKT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex < 0) return;
+        //    DataGridViewRow row = dataPCKT.Rows[e.RowIndex];
 
-            if (row.Cells["Loai"].Value?.ToString() == "PhuCap")
-            {
-                cbPC.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
-                tbNotePC.Text = row.Cells["MoTa"].Value?.ToString();
-                tbSoTienPC.Text = row.Cells["SoTien"].Value?.ToString();
-                int month = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["ThangApDung"].Value);
-                int year = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["NamApDung"].Value);
-                datePC.Value = new DateTime(year, month, 1);
-            }
-            else if (row.Cells["Loai"].Value?.ToString() == "KhoanTru")
-            {
-                cbKT.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
-                tbNoteKT.Text = row.Cells["MoTa"].Value?.ToString();
-                tbSoTienKT.Text = row.Cells["SoTien"].Value?.ToString();
-                int month = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["ThangApDung"].Value);
-                int year = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["NamApDung"].Value);
-                dateKT.Value = new DateTime(year, month, 1);
-            }
-        }
+        //    if (row.Cells["Loai"].Value?.ToString() == "PhuCap")
+        //    {
+        //        cbPC.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
+        //        tbNotePC.Text = row.Cells["MoTa"].Value?.ToString();
+        //        tbSoTienPC.Text = row.Cells["SoTien"].Value?.ToString();
+        //        int month = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["ThangApDung"].Value);
+        //        int year = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["NamApDung"].Value);
+        //        datePC.Value = new DateTime(year, month, 1);
+        //    }
+        //    else if (row.Cells["Loai"].Value?.ToString() == "KhoanTru")
+        //    {
+        //        cbKT.SelectedValue = row.Cells["MaNhanVien"].Value?.ToString();
+        //        tbNoteKT.Text = row.Cells["MoTa"].Value?.ToString();
+        //        tbSoTienKT.Text = row.Cells["SoTien"].Value?.ToString();
+        //        int month = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["ThangApDung"].Value);
+        //        int year = Convert.ToInt32(dataPCKT.Rows[e.RowIndex].Cells["NamApDung"].Value);
+        //        dateKT.Value = new DateTime(year, month, 1);
+        //    }
+        //}
 
         private void btnCapNhatPCKT_Click(object sender, EventArgs e)
         {
@@ -1038,11 +1038,11 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e) { }
         private void comboBox13_SelectedIndexChanged(object sender, EventArgs e) { }
         private void label6_Click(object sender, EventArgs e) { }
-        private void btnCapNhatThuong_Click(object sender, EventArgs e) { /* may be implemented later */ }
+        //private void btnCapNhatThuong_Click(object sender, EventArgs e) { /* may be implemented later */ }
         private void label18_Click(object sender, EventArgs e) { }
-        private void btnCapNhatPC_Click(object sender, EventArgs e) { /* may be implemented later */ }
-        private void btnCapNhatKT_Click(object sender, EventArgs e) { /* may be implemented later */ }
-        private void btnResetThuong_Click(object sender, EventArgs e) { /* reset handled elsewhere */ }
-        private void btnResetPCKT_Click(object sender, EventArgs e) { /* reset handled elsewhere */ }
+        //private void btnCapNhatPC_Click(object sender, EventArgs e) { /* may be implemented later */ }
+        //private void btnCapNhatKT_Click(object sender, EventArgs e) { /* may be implemented later */ }
+        //private void btnResetThuong_Click(object sender, EventArgs e) { /* reset handled elsewhere */ }
+        //private void btnResetPCKT_Click(object sender, EventArgs e) { /* reset handled elsewhere */ }
     }
 }
