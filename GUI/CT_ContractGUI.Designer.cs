@@ -22,7 +22,6 @@
             this.panelFormFields = new System.Windows.Forms.Panel();
             this.panelRow4 = new System.Windows.Forms.Panel();
             this.panelLuongTheoGio = new System.Windows.Forms.Panel();
-            this.textBoxLuongTheoGio = new System.Windows.Forms.TextBox();
             this.labelLuongTheoGio = new System.Windows.Forms.Label();
             this.panelMucLuong = new System.Windows.Forms.Panel();
             this.textBoxMucLuong = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.panelFooter = new System.Windows.Forms.Panel();
             this.buttonHuy = new System.Windows.Forms.Button();
             this.buttonTaoHopDong = new System.Windows.Forms.Button();
+            this.textBoxLuongTheoGio = new System.Windows.Forms.TextBox();
             this.panelMain.SuspendLayout();
             this.panelContent.SuspendLayout();
             this.panelFormFields.SuspendLayout();
@@ -79,8 +79,10 @@
             this.panelMain.Controls.Add(this.panelHeader);
             this.panelMain.Controls.Add(this.panelFooter);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(20);
+            this.panelMain.Size = new System.Drawing.Size(920, 750);
             this.panelMain.TabIndex = 0;
             // 
             // panelContent
@@ -128,17 +130,6 @@
             this.panelLuongTheoGio.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.panelLuongTheoGio.Size = new System.Drawing.Size(390, 100);
             this.panelLuongTheoGio.TabIndex = 1;
-            // 
-            // textBoxLuongTheoGio
-            // 
-            this.textBoxLuongTheoGio.BackColor = System.Drawing.Color.White;
-            this.textBoxLuongTheoGio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxLuongTheoGio.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxLuongTheoGio.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.textBoxLuongTheoGio.Location = new System.Drawing.Point(10, 33);
-            this.textBoxLuongTheoGio.Name = "textBoxLuongTheoGio";
-            this.textBoxLuongTheoGio.Size = new System.Drawing.Size(380, 32);
-            this.textBoxLuongTheoGio.TabIndex = 8;
             // 
             // labelLuongTheoGio
             // 
@@ -495,15 +486,23 @@
             this.buttonTaoHopDong.UseVisualStyleBackColor = false;
             this.buttonTaoHopDong.Click += new System.EventHandler(this.buttonTaoHopDong_Click);
             // 
+            // textBoxLuongTheoGio
+            // 
+            this.textBoxLuongTheoGio.BackColor = System.Drawing.Color.White;
+            this.textBoxLuongTheoGio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLuongTheoGio.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxLuongTheoGio.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.textBoxLuongTheoGio.Location = new System.Drawing.Point(10, 33);
+            this.textBoxLuongTheoGio.Name = "textBoxLuongTheoGio";
+            this.textBoxLuongTheoGio.Size = new System.Drawing.Size(380, 32);
+            this.textBoxLuongTheoGio.TabIndex = 8;
+            // 
             // CT_ContractGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            // Disable automatic scaling at runtime to preserve designer layout
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            // Ensure consistent font to avoid scaling/fallback differences at runtime
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panelMain);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Name = "CT_ContractGUI";
             this.Size = new System.Drawing.Size(920, 750);
             this.panelMain.ResumeLayout(false);
@@ -564,9 +563,9 @@
         private System.Windows.Forms.TextBox textBoxMucLuong;
         private System.Windows.Forms.Panel panelLuongTheoGio;
         private System.Windows.Forms.Label labelLuongTheoGio;
-        private System.Windows.Forms.TextBox textBoxLuongTheoGio;
         private System.Windows.Forms.Panel panelFooter;
         private System.Windows.Forms.Button buttonTaoHopDong;
         private System.Windows.Forms.Button buttonHuy;
+        private System.Windows.Forms.TextBox textBoxLuongTheoGio;
     }
 }

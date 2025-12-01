@@ -49,7 +49,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 return new EmployeeDTO
                                 {
                                     MaNhanVien = reader["maNhanVien"].ToString(),
-                                    SoCmnd = reader["soCmnd"].ToString(),                                   
+                                    SoCmnd = reader["soCmnd"].ToString(),
                                     MaChucVu = reader["maChucVu"] != DBNull.Value ? reader["maChucVu"].ToString() : null,
                                     MaTaiKhoan = reader["maTaiKhoan"] != DBNull.Value ? reader["maTaiKhoan"].ToString() : null,
                                     MaPhong = reader["maPhong"] != DBNull.Value ? reader["maPhong"].ToString() : null,
@@ -294,7 +294,8 @@ namespace Quan_Ly_Nhan_Su.DAO
                                 MaTaiKhoan = reader.GetString("maTaiKhoan"),
                                 TenDangNhap = reader.GetString("tenDangNhap"),
                                 MatKhau = reader.GetString("matKhau"),
-                                TinhTrang = reader.GetBoolean("TinhTrang")
+                                TinhTrang = reader.GetBoolean("TinhTrang"),
+                                MaNhomQuyen = reader.IsDBNull(reader.GetOrdinal("maNhomQuyen")) ? (int?)null : reader.GetInt32("maNhomQuyen")
                             });
                         }
                     }

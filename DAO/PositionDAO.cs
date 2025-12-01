@@ -226,34 +226,34 @@ namespace Quan_Ly_Nhan_Su.DAO
         {
             using (var conn = connectDB.getConnection())
             {
-                try
+              try
                 {
-                    conn.Open();
-                    string query = "SELECT * FROM chucvu WHERE id = @maChucVu";
-                    using (var command = new MySqlCommand(query, conn))
+                  conn.Open();
+                  string query = "SELECT * FROM chucvu WHERE id = @maChucVu";
+                  using (var command = new MySqlCommand(query, conn))
                     {
-                        command.Parameters.AddWithValue("@maChucVu", Id);
-                        using (var reader = command.ExecuteReader())
+                      command.Parameters.AddWithValue("@maChucVu", Id);
+                      using (var reader = command.ExecuteReader())
+                      {
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                return new PositionDTO
-                                {
-                                    MaChucVu = reader["maChucVu"].ToString(),
-                                    TenChucVu = reader["tenChucVu"].ToString(),
-                                    PhuCapChucVu = reader["phuCapChucVu"] != DBNull.Value ? Convert.ToDecimal(reader["phuCapChucVu"])  : 0m,
-                                    NgayNhanChuc = reader["ngayNhanChuc"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["ngayNhanChuc"]) : null
-                                };
-                            }
-                        }
+                          return new PositionDTO
+                        {
+                            MaChucVu = reader["maChucVu"].ToString(),
+                            TenChucVu = reader["tenChucVu"].ToString(),
+                            PhuCapChucVu = reader["phuCapChucVu"] != DBNull.Value ? Convert.ToDecimal(reader["phuCapChucVu"])  : 0m,
+                            NgayNhanChuc = reader["ngayNhanChuc"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["ngayNhanChuc"]) : null
+                        };
                     }
                 }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
-                }
             }
-            return null;
         }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
+        }
+    }
+    return null;
+}
     }
 }

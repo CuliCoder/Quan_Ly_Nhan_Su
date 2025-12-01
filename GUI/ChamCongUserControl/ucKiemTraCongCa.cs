@@ -12,35 +12,42 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
     public partial class ucKiemTraCongCa : UserControl
     {
         public event EventHandler BackButtonClicked;
-        private AttendanceBLL AttendanceBLL = new AttendanceBLL();
-        private readonly EmployeeFullBLL employeeBLL = new EmployeeFullBLL();
-        private List<AttendanceDTO> attendanceRecords = new List<AttendanceDTO>();
+        private AttendanceBLL AttendanceBLL;
+        private readonly EmployeeFullBLL employeeBLL;
+        private List<AttendanceDTO> attendanceRecords;
         private EmployeeFullDTO currentEmployee;
-
+        public int back_direct = 0;
         public ucKiemTraCongCa()
         {
             InitializeComponent();
-            if (SessionManager.Instance.CurrentEmployee == null)
-            {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
                 return;
-            }
+            AttendanceBLL = new AttendanceBLL();
+            employeeBLL = new EmployeeFullBLL();
+            attendanceRecords = new List<AttendanceDTO>();
             btnBack.Visible = false;
             loadCmb();
             LoadEmployeeData(SessionManager.Instance.CurrentEmployee?.MaNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
-            //InitializeComponent();
-
-            //if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
-            //    return;
         }
-        public void checkCongCaByIDNV(string maNhanVien)
+        public void checkCongCaByIDNV(string maNhanVien,int back_Direct)
         {
+            back_direct = back_Direct;
             btnBack.Visible = true;
             LoadEmployeeData(maNhanVien, (int)cboThang.SelectedValue, (int)cboNam.SelectedValue);
+        }
+        public void checkCongCaByIDNV(string maNhanVien, int thang, int nam,int back_Direct)
+        {
+            back_direct = back_Direct;
+            btnBack.Visible = true;
+            cboNam.SelectedValue = nam;
+            cboThang.SelectedValue = thang;
+            LoadEmployeeData(maNhanVien, thang, nam);
         }
         public void LoadEmployeeData(string maNhanVien, int thang, int nam)
         {
             try
             {
+                dgvCheckCongCa.Rows.Clear();
                 currentEmployee = employeeBLL.GetEmployeeById(maNhanVien);
                 if (currentEmployee == null)
                 {

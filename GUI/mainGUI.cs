@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
@@ -32,9 +31,12 @@ namespace Quan_Ly_Nhan_Su.GUI
         ProfileStaffGUI profileStaffGUI = new ProfileStaffGUI();
         AttendanceGUI attendanceGUI = new AttendanceGUI();
         List<Panel> listpnlbSideBar = new List<Panel>();
+
         public mainGUI()
         {
             InitializeComponent();
+            this.panel6.SuspendLayout();
+            this.panel6.Controls.Clear();
             CheckLoginStatus();
             designForm();
             RegisterLogoutEvent();
@@ -43,9 +45,11 @@ namespace Quan_Ly_Nhan_Su.GUI
             addPanelToList();
             addEventToPanel();
             attendanceGUI.getDanhSachNhanVienGUI().EmployeeSelected += ChamCongGUI_EmployeeSelected;
+            attendanceGUI.GetSearchByTimesGUI().EmployeeSelected += ChamCongGUI_EmployeeSelectedByDate;
             chiTietChamCongGUI.BackButtonClicked += ChiTietChamCongGUI_BackButtonClicked;
             DisplayUserInfo();
             ConfigureMenuByPermission();
+            this.panel6.ResumeLayout();
         }
 
 
@@ -98,15 +102,19 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void ChamCongGUI_EmployeeSelected(string maNhanVien)
         {
             Console.WriteLine($"Đã chọn nhân viên với mã: {maNhanVien}");
-            chiTietChamCongGUI.checkCongCaByIDNV(maNhanVien);
+            chiTietChamCongGUI.checkCongCaByIDNV(maNhanVien, 0);
             addUserControl(chiTietChamCongGUI);
         }
-
+        private void ChamCongGUI_EmployeeSelectedByDate((int m, int y, string maNV) tuple)
+        {
+            chiTietChamCongGUI.checkCongCaByIDNV(tuple.maNV, tuple.m, tuple.y, 1);
+            addUserControl(chiTietChamCongGUI);
+        }
         // 2. Khi nhấn nút "Back" từ màn hình chi tiết
         private void ChiTietChamCongGUI_BackButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("Quay lại danh sách nhân viên chấm công");
-            attendanceGUI.backDanhSachNhanVien();
+            attendanceGUI.back(chiTietChamCongGUI.back_direct);
             addUserControl(attendanceGUI); // Quay lại màn hình danh sách
         }
 
@@ -127,6 +135,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         }
         private void addPanelToList()
         {
+            listpnlbSideBar.Clear();
             listpnlbSideBar.Add(pnlbTrangChu);
             listpnlbSideBar.Add(pnlbTuyenDung);
             listpnlbSideBar.Add(pnlbNhanVien);
@@ -184,7 +193,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 case "pnlbHopDong":
                     addUserControl(laborContract);
                     break;
-                case "pnlbTaiKhoan": 
+                case "pnlbTaiKhoan":
                     addUserControl(taiKhoanMain);
                     break;
                 case "pnlbTuyenDung":
@@ -199,7 +208,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 case "pnlbDanhGia":
                     addUserControl(danhGia);
                     break;
-                case "pnlbChamCong": 
+                case "pnlbChamCong":
                     addUserControl(attendanceGUI);
                     break;
                 case "pnlbHopdongcanhan":
