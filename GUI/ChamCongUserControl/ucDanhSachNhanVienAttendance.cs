@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 {
@@ -23,6 +24,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
                 return;
+            LoadCboSearch();
             LoadEmployees();
             ConfigureDataGridView();
         }
@@ -31,7 +33,56 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
         {
             dgvNhanVien.AutoGenerateColumns = false;
         }
-
+        private void LoadCboSearch()
+        {
+            DataTable dtcboSearch = new DataTable();
+            dtcboSearch.Columns.Add("key", typeof(int));
+            dtcboSearch.Columns.Add("value", typeof(string));
+            dtcboSearch.Rows.Add(0, "Tất cả");
+            dtcboSearch.Rows.Add(1, "Mã nhân viên");
+            dtcboSearch.Rows.Add(2, "Họ tên");
+            dtcboSearch.Rows.Add(3, "Email");
+            dtcboSearch.Rows.Add(4, "Phòng ban");
+            dtcboSearch.Rows.Add(5, "Chức vụ");
+            cboSearch.DataSource = dtcboSearch;
+            cboSearch.DisplayMember = "value";
+            cboSearch.ValueMember = "key";
+            cboSearch.SelectedValue = 0;
+            cboSearch.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        private bool filter(int option, EmployeeFullDTO employeeFullDTO)
+        {
+            if (option == 0)
+            {
+                return true;
+            }
+            string txtSearch = txtTimKiem.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(txtSearch))
+            {
+                return true;
+            }
+            if (option == 1)
+            {
+                return employeeFullDTO.MaNhanVien.ToLower().Contains(txtSearch);
+            }
+            else if (option == 2)
+            {
+                return employeeFullDTO.HoTen.ToLower().Contains(txtSearch);
+            }
+            else if (option == 3)
+            {
+                return employeeFullDTO.Email.ToLower().Contains(txtSearch);
+            }
+            else if (option == 4)
+            {
+                return employeeFullDTO.PhongBan.ToLower().Contains(txtSearch);
+            }
+            else if (option == 5)
+            {
+                return employeeFullDTO.ChucVu.ToLower().Contains(txtSearch);
+            }
+            return false;
+        }
         private void LoadEmployees()
         {
             try
@@ -41,6 +92,10 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
                 List<EmployeeFullDTO> employeeList = employeeBLL.GetAllEmployees();
                 foreach (var emp in employeeList)
                 {
+                    if (!filter((int)cboSearch.SelectedValue, emp))
+                    {
+                        continue;
+                    }
                     dgvNhanVien.Rows.Add(emp.MaNhanVien, emp.HoTen, emp.Email, emp.PhongBan, emp.ChucVu);
                 }
                 dgvNhanVien.ResumeLayout();
@@ -66,7 +121,7 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chức năng tìm kiếm đang được phát triển.");
+            LoadEmployees();
         }
     }
 }

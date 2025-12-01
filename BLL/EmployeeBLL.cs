@@ -80,5 +80,10 @@ namespace Quan_Ly_Nhan_Su.BLL
             // tương tự như SearchEmployee()
             return _dao.GetByAccountId(maTaiKhoan);
         }
+
+        public EmployeeDTO GetEmp(string MaNhanVien)
+        {
+            return _dao.GetEmp(MaNhanVien);
+        }
     }
 }

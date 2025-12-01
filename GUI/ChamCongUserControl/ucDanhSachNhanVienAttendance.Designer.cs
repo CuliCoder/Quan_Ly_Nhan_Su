@@ -22,7 +22,7 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.cboPhongBan = new System.Windows.Forms.ComboBox();
+            this.cboSearch = new System.Windows.Forms.ComboBox();
             this.dgvNhanVien = new System.Windows.Forms.DataGridView();
             this.colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,21 +40,21 @@
             this.pnlHeader.BackColor = System.Drawing.Color.White;
             this.pnlHeader.Controls.Add(this.btnTimKiem);
             this.pnlHeader.Controls.Add(this.txtTimKiem);
-            this.pnlHeader.Controls.Add(this.cboPhongBan);
+            this.pnlHeader.Controls.Add(this.cboSearch);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(15, 16);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlHeader.Location = new System.Drawing.Point(20, 20);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(799, 57);
+            this.pnlHeader.Size = new System.Drawing.Size(1065, 70);
             this.pnlHeader.TabIndex = 1;
             // 
             // btnTimKiem
             // 
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnTimKiem.Location = new System.Drawing.Point(274, 15);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnTimKiem.Location = new System.Drawing.Point(365, 18);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(90, 28);
+            this.btnTimKiem.Size = new System.Drawing.Size(120, 34);
             this.btnTimKiem.TabIndex = 2;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
@@ -63,21 +63,21 @@
             // txtTimKiem
             // 
             this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtTimKiem.Location = new System.Drawing.Point(11, 18);
-            this.txtTimKiem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtTimKiem.Location = new System.Drawing.Point(15, 22);
+            this.txtTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(144, 25);
+            this.txtTimKiem.Size = new System.Drawing.Size(191, 29);
             this.txtTimKiem.TabIndex = 0;
             // 
-            // cboPhongBan
+            // cboSearch
             // 
-            this.cboPhongBan.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.cboPhongBan.FormattingEnabled = true;
-            this.cboPhongBan.Location = new System.Drawing.Point(158, 18);
-            this.cboPhongBan.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cboPhongBan.Name = "cboPhongBan";
-            this.cboPhongBan.Size = new System.Drawing.Size(112, 25);
-            this.cboPhongBan.TabIndex = 1;
+            this.cboSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cboSearch.FormattingEnabled = true;
+            this.cboSearch.Location = new System.Drawing.Point(211, 22);
+            this.cboSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboSearch.Name = "cboSearch";
+            this.cboSearch.Size = new System.Drawing.Size(148, 29);
+            this.cboSearch.TabIndex = 1;
             // 
             // dgvNhanVien
             // 
@@ -109,15 +109,15 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvNhanVien.Location = new System.Drawing.Point(15, 73);
-            this.dgvNhanVien.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dgvNhanVien.Location = new System.Drawing.Point(20, 90);
+            this.dgvNhanVien.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvNhanVien.Name = "dgvNhanVien";
             this.dgvNhanVien.ReadOnly = true;
             this.dgvNhanVien.RowHeadersVisible = false;
             this.dgvNhanVien.RowHeadersWidth = 51;
             this.dgvNhanVien.RowTemplate.Height = 35;
             this.dgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNhanVien.Size = new System.Drawing.Size(799, 507);
+            this.dgvNhanVien.Size = new System.Drawing.Size(1065, 624);
             this.dgvNhanVien.TabIndex = 2;
             this.dgvNhanVien.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNhanVien_CellDoubleClick);
             // 
@@ -186,15 +186,15 @@
             // 
             // ucDanhSachNhanVienAttendance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.dgvNhanVien);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucDanhSachNhanVienAttendance";
-            this.Padding = new System.Windows.Forms.Padding(15, 16, 15, 16);
-            this.Size = new System.Drawing.Size(829, 596);
+            this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.Size = new System.Drawing.Size(1105, 734);
             this.Load += new System.EventHandler(this.ucChamCong_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
@@ -209,7 +209,7 @@
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;
-        private System.Windows.Forms.ComboBox cboPhongBan;
+        private System.Windows.Forms.ComboBox cboSearch;
         private System.Windows.Forms.DataGridView dgvNhanVien;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter2;

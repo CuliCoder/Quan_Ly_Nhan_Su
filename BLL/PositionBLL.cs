@@ -6,11 +6,11 @@ using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.BLL
 {
-    public class PositionBUS
+    public class PositionBLL
     {
         private readonly PositionDAO _dao;
 
-        public PositionBUS()
+        public PositionBLL()
         {
             _dao = new PositionDAO();
         }
@@ -35,14 +35,10 @@ namespace Quan_Ly_Nhan_Su.BLL
         {
             return _dao.searchPositionDTO(keyword);
         }
-    }
 
-    public class PositionBLL
-    {
-        private readonly PositionDAO _dao;
-        public PositionBLL()
+        public PositionDTO GetPosition(string maChucVu)
         {
-            _dao = new PositionDAO();
+            return _dao.GetPosition(maChucVu);
         }
 
         public List<PositionDTO> GetAllPositions() => _dao.GetAllPositions();
