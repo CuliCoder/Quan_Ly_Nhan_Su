@@ -11,6 +11,7 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
     {
         private readonly EvaluationFullBLL _evaluationBLL;
         private readonly EvaluationBLL _evaluationCRUDBLL;
+        private readonly EvaluationDetailBLL _detailBLL;
         private List<EvaluationFullDTO> _currentData;
 
         public DanhGia()
@@ -18,6 +19,7 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
             InitializeComponent();
             _evaluationBLL = new EvaluationFullBLL();
             _evaluationCRUDBLL = new EvaluationBLL();
+            _detailBLL = new EvaluationDetailBLL();
             _currentData = new List<EvaluationFullDTO>();
         }
 
@@ -56,7 +58,7 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
         }
 
         /// <summary>
-        /// Bind dữ liệu vào DataGridView
+        /// Bind dữ liệu vào DataGridView với hỗ trợ hiển thị chi tiết
         /// </summary>
         private void BindDataToGrid(List<EvaluationFullDTO> data)
         {
@@ -86,6 +88,14 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
                 // Tô màu theo xếp loại
                 ApplyRankingColor(row, item.XepLoai);
 
+                // Kiểm tra xem có đánh giá chi tiết không
+                var details = _detailBLL.GetByEvaluationId(item.MaDanhGia);
+                if (details != null && details.Count > 0)
+                {
+                    // Đánh dấu có đánh giá chi tiết bằng màu nền nhẹ
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 252, 255);
+                }
+
                 // Lưu tag để dễ truy xuất
                 row.Tag = item;
             }
@@ -104,26 +114,31 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
                 case "A":
                     row.Cells["colXepLoai"].Style.BackColor = System.Drawing.Color.FromArgb(40, 167, 69);
                     row.Cells["colXepLoai"].Style.ForeColor = System.Drawing.Color.White;
+                    row.Cells["colXepLoai"].Style.Font = new System.Drawing.Font("Times New Roman", 11, System.Drawing.FontStyle.Bold);
                     break;
                 case "TỐT":
                 case "B":
                     row.Cells["colXepLoai"].Style.BackColor = System.Drawing.Color.FromArgb(0, 123, 255);
                     row.Cells["colXepLoai"].Style.ForeColor = System.Drawing.Color.White;
+                    row.Cells["colXepLoai"].Style.Font = new System.Drawing.Font("Times New Roman", 11, System.Drawing.FontStyle.Bold);
                     break;
                 case "KHÁ":
                 case "C":
                     row.Cells["colXepLoai"].Style.BackColor = System.Drawing.Color.FromArgb(255, 193, 7);
                     row.Cells["colXepLoai"].Style.ForeColor = System.Drawing.Color.Black;
+                    row.Cells["colXepLoai"].Style.Font = new System.Drawing.Font("Times New Roman", 11, System.Drawing.FontStyle.Bold);
                     break;
                 case "TRUNG BÌNH":
                 case "D":
                     row.Cells["colXepLoai"].Style.BackColor = System.Drawing.Color.FromArgb(255, 152, 0);
                     row.Cells["colXepLoai"].Style.ForeColor = System.Drawing.Color.White;
+                    row.Cells["colXepLoai"].Style.Font = new System.Drawing.Font("Times New Roman", 11, System.Drawing.FontStyle.Bold);
                     break;
                 case "YẾU":
                 case "F":
                     row.Cells["colXepLoai"].Style.BackColor = System.Drawing.Color.FromArgb(220, 53, 69);
                     row.Cells["colXepLoai"].Style.ForeColor = System.Drawing.Color.White;
+                    row.Cells["colXepLoai"].Style.Font = new System.Drawing.Font("Times New Roman", 11, System.Drawing.FontStyle.Bold);
                     break;
             }
         }
@@ -217,17 +232,18 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
         }
 
         /// <summary>
-        /// Thêm đánh giá mới
+        /// Thêm đánh giá mới - SỬ DỤNG FORM MỚI
         /// </summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                // TODO: Mở form thêm đánh giá
                 frmEvaluationCU form = new frmEvaluationCU();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadEvaluations();
+                    MessageBox.Show("Thông tin đã được làm mới!",
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -238,7 +254,7 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
         }
 
         /// <summary>
-        /// Xem chi tiết đánh giá
+        /// Xem chi tiết đánh giá - SỬ DỤNG FORM DETAIL MỚI
         /// </summary>
         private void btnDetail_Click(object sender, EventArgs e)
         {
@@ -254,19 +270,12 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
                 var selectedEvaluation = dgvEvaluations.SelectedRows[0].Tag as EvaluationFullDTO;
                 if (selectedEvaluation == null) return;
 
-                // TODO: Mở form chi tiết
-                // frmEvaluationDetail form = new frmEvaluationDetail(selectedEvaluation.MaDanhGia);
-                // form.ShowDialog();
+                // Mở form chi tiết mới
+                frmEvaluationDetail form = new frmEvaluationDetail(selectedEvaluation.MaDanhGia);
+                form.ShowDialog();
 
-                MessageBox.Show($"Chi tiết đánh giá:\n\n" +
-                    $"Mã: {selectedEvaluation.MaDanhGia}\n" +
-                    $"Nhân viên: {selectedEvaluation.TenNhanVien}\n" +
-                    $"Ngày: {selectedEvaluation.NgayDanhGia:dd/MM/yyyy}\n" +
-                    $"Người đánh giá: {selectedEvaluation.TenNguoiDanhGia}\n" +
-                    $"Điểm: {selectedEvaluation.DiemDanhGia}\n" +
-                    $"Xếp loại: {selectedEvaluation.XepLoai}\n" +
-                    $"Chi tiết: {selectedEvaluation.ChiTietDanhGia}",
-                    "Chi tiết đánh giá", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Refresh lại dữ liệu sau khi đóng form (có thể đã chỉnh sửa)
+                LoadEvaluations();
             }
             catch (Exception ex)
             {
@@ -292,14 +301,29 @@ namespace Quan_Ly_Nhan_Su.GUI.DanhGiaUserControl
                 var selectedEvaluation = dgvEvaluations.SelectedRows[0].Tag as EvaluationFullDTO;
                 if (selectedEvaluation == null) return;
 
-                DialogResult result = MessageBox.Show(
-                    $"Bạn có chắc chắn muốn xóa đánh giá của nhân viên '{selectedEvaluation.TenNhanVien}'?",
+                // Kiểm tra xem có đánh giá chi tiết không
+                var details = _detailBLL.GetByEvaluationId(selectedEvaluation.MaDanhGia);
+                string message = $"Bạn có chắc chắn muốn xóa đánh giá của nhân viên '{selectedEvaluation.TenNhanVien}'?";
+
+                if (details != null && details.Count > 0)
+                {
+                    message += "\n\n⚠️ Đánh giá này có chi tiết theo tiêu chí. Tất cả sẽ bị xóa!";
+                }
+
+                DialogResult result = MessageBox.Show(message,
                     "Xác nhận xóa",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
+                    // Xóa chi tiết trước (nếu có)
+                    if (details != null && details.Count > 0)
+                    {
+                        // Chi tiết sẽ tự động xóa do CASCADE trong database
+                    }
+
+                    // Xóa đánh giá chính
                     bool success = _evaluationCRUDBLL.Delete(selectedEvaluation.MaDanhGia);
 
                     if (success)

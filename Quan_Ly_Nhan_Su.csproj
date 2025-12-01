@@ -126,6 +126,7 @@
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\AllowanceDeductionBLL.cs" />
     <Compile Include="BLL\AttendanceBLL.cs" />
+    <Compile Include="BLL\EvaluationDetailBLL.cs" />
     <Compile Include="BLL\EvaluationFullBLL.cs" />
     <Compile Include="BLL\PermissionManager.cs" />
     <Compile Include="BLL\SessionManager.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="BLL\SalaryFullBLL.cs" />
     <Compile Include="DAO\AllowanceDeductionDAO.cs" />
     <Compile Include="DAO\AttendanceDAO.cs" />
+    <Compile Include="DAO\EvaluationDetailDAO.cs" />
     <Compile Include="DAO\EvaluationFullDAO.cs" />
     <Compile Include="DAO\BonusDAO.cs" />
     <Compile Include="DAO\SalaryFullDAO.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="DTO\BonusDTO.cs" />
     <Compile Include="DTO\calamviecDTO.cs" />
     <Compile Include="DTO\CandidateFullDTO.cs" />
+    <Compile Include="DTO\EvaluationDetailDTO.cs" />
     <Compile Include="DTO\EvaluationFullDTO.cs" />
     <Compile Include="DTO\SalaryFullDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
@@ -188,6 +191,18 @@
     </Compile>
     <Compile Include="GUI\DanhGiaUserControl\frmEvaluationCU.Designer.cs">
       <DependentUpon>frmEvaluationCU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\frmEvaluationDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\frmEvaluationDetail.Designer.cs">
+      <DependentUpon>frmEvaluationDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\QuarterlyEvaluationStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhGiaUserControl\QuarterlyEvaluationStats.Designer.cs">
+      <DependentUpon>QuarterlyEvaluationStats.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.cs">
       <SubType>UserControl</SubType>
