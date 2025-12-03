@@ -23,7 +23,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         departmentTab departmentTab = new departmentTab();
         LaborContractGUI laborContract = new LaborContractGUI();
         TuyenDungMain tuyenDungGUI = new TuyenDungMain();
-        NhanVien nhanVienGUI = new NhanVien();
+        NhanVienMain nhanVienGUI = new NhanVienMain();
         DanhGia danhGia = new DanhGia();
         TaiKhoanMain taiKhoanMain = new TaiKhoanMain();
         LuongThuong luongThuong = new LuongThuong();

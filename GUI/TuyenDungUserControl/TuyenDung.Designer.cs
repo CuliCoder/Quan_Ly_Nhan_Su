@@ -34,13 +34,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutThem = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutSua = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutXoa = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -63,9 +63,9 @@
             this.mucLuongToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            this.layoutThem.SuspendLayout();
+            this.layoutSua.SuspendLayout();
+            this.layoutXoa.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableTuyenDung)).BeginInit();
             this.SuspendLayout();
@@ -89,9 +89,9 @@
             // 
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.flowLayoutPanel3.Controls.Add(this.label1);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel4);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel5);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel3.Controls.Add(this.layoutThem);
+            this.flowLayoutPanel3.Controls.Add(this.layoutSua);
+            this.flowLayoutPanel3.Controls.Add(this.layoutXoa);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel3.Controls.Add(this.btnSearchDay);
             this.flowLayoutPanel3.Controls.Add(this.endDayPicker);
@@ -122,20 +122,20 @@
             this.label1.TabIndex = 11;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // flowLayoutPanel4
+            // layoutThem
             // 
-            this.flowLayoutPanel4.AutoSize = true;
-            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel4.Controls.Add(this.button2);
-            this.flowLayoutPanel4.Controls.Add(this.label2);
-            this.flowLayoutPanel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(877, 15);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(18, 15, 18, 3);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(87, 27);
-            this.flowLayoutPanel4.TabIndex = 10;
+            this.layoutThem.AutoSize = true;
+            this.layoutThem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutThem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutThem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutThem.Controls.Add(this.button2);
+            this.layoutThem.Controls.Add(this.label2);
+            this.layoutThem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutThem.Location = new System.Drawing.Point(877, 15);
+            this.layoutThem.Margin = new System.Windows.Forms.Padding(18, 15, 18, 3);
+            this.layoutThem.Name = "layoutThem";
+            this.layoutThem.Size = new System.Drawing.Size(87, 27);
+            this.layoutThem.TabIndex = 10;
             // 
             // button2
             // 
@@ -166,20 +166,20 @@
             this.label2.Size = new System.Drawing.Size(25, 25);
             this.label2.TabIndex = 4;
             // 
-            // flowLayoutPanel5
+            // layoutSua
             // 
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel5.Controls.Add(this.button1);
-            this.flowLayoutPanel5.Controls.Add(this.label3);
-            this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(782, 15);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(77, 27);
-            this.flowLayoutPanel5.TabIndex = 14;
+            this.layoutSua.AutoSize = true;
+            this.layoutSua.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutSua.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutSua.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutSua.Controls.Add(this.button1);
+            this.layoutSua.Controls.Add(this.label3);
+            this.layoutSua.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutSua.Location = new System.Drawing.Point(782, 15);
+            this.layoutSua.Margin = new System.Windows.Forms.Padding(18, 15, 0, 3);
+            this.layoutSua.Name = "layoutSua";
+            this.layoutSua.Size = new System.Drawing.Size(77, 27);
+            this.layoutSua.TabIndex = 14;
             // 
             // button1
             // 
@@ -210,20 +210,20 @@
             this.label3.Size = new System.Drawing.Size(25, 25);
             this.label3.TabIndex = 4;
             // 
-            // flowLayoutPanel2
+            // layoutXoa
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Controls.Add(this.button3);
-            this.flowLayoutPanel2.Controls.Add(this.label7);
-            this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(659, 15);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(18, 15, 3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(102, 27);
-            this.flowLayoutPanel2.TabIndex = 9;
+            this.layoutXoa.AutoSize = true;
+            this.layoutXoa.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutXoa.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutXoa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutXoa.Controls.Add(this.button3);
+            this.layoutXoa.Controls.Add(this.label7);
+            this.layoutXoa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutXoa.Location = new System.Drawing.Point(659, 15);
+            this.layoutXoa.Margin = new System.Windows.Forms.Padding(18, 15, 3, 3);
+            this.layoutXoa.Name = "layoutXoa";
+            this.layoutXoa.Size = new System.Drawing.Size(102, 27);
+            this.layoutXoa.TabIndex = 9;
             // 
             // button3
             // 
@@ -486,12 +486,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            this.layoutThem.ResumeLayout(false);
+            this.layoutThem.PerformLayout();
+            this.layoutSua.ResumeLayout(false);
+            this.layoutSua.PerformLayout();
+            this.layoutXoa.ResumeLayout(false);
+            this.layoutXoa.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableTuyenDung)).EndInit();
@@ -503,10 +503,10 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel layoutThem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel layoutXoa;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -516,7 +516,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker endDayPicker;
         private System.Windows.Forms.DateTimePicker startDaypicker;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.FlowLayoutPanel layoutSua;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn maTuyenDung;

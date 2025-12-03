@@ -84,6 +84,33 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
+        public bool CheckId(string id)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) FROM chucvu WHERE maChucVu = @id";
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count == 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
         /// <summary>
         /// Updates an existing position in the chucvu table
         /// </summary>

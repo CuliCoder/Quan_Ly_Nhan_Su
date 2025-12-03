@@ -56,7 +56,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Kiểm tra mã ứng viên
             if (!GUIValidator.NotEmpty(maUngVienTb, "Mã ứng viên không được để trống!", errorProvider))
                 return false;
-
+            if (!GUIValidator.InPutKey(maUngVienTb, "Mã chức vụ phải là UV0 và 5 chữ số", "UV0", errorProvider))
+                return false;
 
             // Kiểm tra CCCD
             if (!GUIValidator.NotEmpty(cccdTb, "Số CCCD không được để trống!", errorProvider))

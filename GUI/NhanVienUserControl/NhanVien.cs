@@ -38,19 +38,19 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 showDataToTable();
             };
             tableData.CellClick += tableData_CellContentClick;
-            //ApplyPermissions();
+            ApplyPermissions();
         }
 
-        //private void ApplyPermissions()
-        //{
-        //    bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN);
+        private void ApplyPermissions()
+        {
+            bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN);
 
-        //    layoutThem.Visible = canCreate;
-        //    importBtn.Visible = canCreate;
+            layoutThem.Visible = canCreate;
+            importBtn.Visible = canCreate;
 
-        //    bool canRead = SessionManager.Instance.CanRead(FunctionNames.NHAN_VIEN);
-        //    importBtn.Visible = canRead;
-        //}
+            bool canRead = SessionManager.Instance.CanRead(FunctionNames.NHAN_VIEN);
+            importBtn.Visible = canRead;
+        }
 
         private void fillDataToTable(List<EmployeeFullDTO> listEmployyeFull)
         {
