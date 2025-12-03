@@ -223,6 +223,24 @@
     <Compile Include="GUI\LuongThuongUserControl\LuongThuong.Designer.cs">
       <DependentUpon>LuongThuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\NhanVienUserControl\ChucVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\ChucVu.Designer.cs">
+      <DependentUpon>ChucVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\ChucVuNhapLieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\ChucVuNhapLieu.Designer.cs">
+      <DependentUpon>ChucVuNhapLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVienMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\NhanVienUserControl\NhanVienMain.Designer.cs">
+      <DependentUpon>NhanVienMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\PhongBanUserControl\addDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -545,6 +563,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LuongThuongUserControl\LuongThuong.resx">
       <DependentUpon>LuongThuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhanVienUserControl\ChucVu.resx">
+      <DependentUpon>ChucVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhanVienUserControl\ChucVuNhapLieu.resx">
+      <DependentUpon>ChucVuNhapLieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\NhanVienUserControl\NhanVienMain.resx">
+      <DependentUpon>NhanVienMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PhongBanUserControl\addDepartment.resx">
       <DependentUpon>addDepartment.cs</DependentUpon>
