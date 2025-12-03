@@ -185,7 +185,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                         {
                             EmployeeFullDTO emp = new EmployeeFullDTO();
 
-                            emp.MaNhanVien = null;
+                            emp.MaNhanVien = null;              
                             emp.HoTen = worksheet.Cells[row, 2].Text;
                             emp.NgaySinh = GetSafeDate(worksheet.Cells[row, 3], DateTime.Now);
                             emp.GioiTinh = worksheet.Cells[row, 4].Text;
@@ -199,12 +199,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                             emp.HocVan = worksheet.Cells[row, 12].Text;
                             emp.ChuyenNganh = worksheet.Cells[row, 13].Text;
                             emp.PhongBan = worksheet.Cells[row, 14].Text;
-                            emp.ChucVu = worksheet.Cells[row, 15].Text;
-                            emp.MucLuong = GetSafeDecimal(worksheet.Cells[row, 16]);
-
-                            emp.DiaChi = worksheet.Cells[row, 17].Text;
-                            emp.HinhAnh = worksheet.Cells[row, 18].Text;
-
+                            emp.MaChucVu = worksheet.Cells[row, 15].Text; ;
+                            emp.ChucVu = worksheet.Cells[row, 16].Text;
+                            emp.MucLuong = GetSafeDecimal(worksheet.Cells[row, 17]);
+                            emp.DiaChi = worksheet.Cells[row, 18].Text;
+                            emp.HinhAnh = worksheet.Cells[row, 19].Text;
                             listImport.Add(emp);
                         }
                         catch (Exception ex)

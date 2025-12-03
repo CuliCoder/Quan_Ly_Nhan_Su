@@ -197,7 +197,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                     string fileName = Path.GetFileName(fullPath);
    
                     string projectFolder = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
-                    string imageFolder = Path.Combine(projectFolder, "Images", "Avatar");
+                    string imageFolder = Path.Combine(projectFolder, "Images", "Avatars");
 
                     if (!Directory.Exists(imageFolder))
                         Directory.CreateDirectory(imageFolder);
@@ -206,7 +206,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                     if (!File.Exists(destPath))
                         File.Copy(fullPath, destPath, true);
 
-                    string relativePath = Path.Combine("Images", "Avatar", fileName);
+                    string relativePath = Path.Combine("Images", "Avatars", fileName);
                     // Hiển thị ảnh
                     showHinh.Image = Image.FromFile(destPath);
                     showHinh.SizeMode = PictureBoxSizeMode.StretchImage;

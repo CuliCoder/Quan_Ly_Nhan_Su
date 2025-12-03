@@ -38,10 +38,6 @@ namespace Quan_Ly_Nhan_Su.DAO
             return newCode;
         }
 
-        private string createPositionCode(MySqlConnection conn, MySqlTransaction transaction)
-        {
-            return createNewCode(conn, transaction, "chucvu", "maChucVu", "CV");
-        }
 
         private string createEmployeeCode(MySqlConnection conn, MySqlTransaction transaction)
         {
@@ -103,9 +99,6 @@ namespace Quan_Ly_Nhan_Su.DAO
              
                         employeeDTO.MaNhanVien = newEmployeeCode;
      
-
-                        Console.WriteLine("✅ Insert/Update chucvu OK");
-
                         string sql = @"
                             INSERT INTO nhanvien 
                             (maNhanVien, soCmnd, maChucVu, maTaiKhoan, maPhong, mucLuong) 
@@ -232,30 +225,8 @@ namespace Quan_Ly_Nhan_Su.DAO
                     try
                     {
                         foreach (var employeeFull in employeeFulls)
-                        {
-                            string newPositionCode = createPositionCode(conn, transaction);
-                            string newEmployeeCode = createEmployeeCode(conn, transaction);
-
-                            // Insert chức vụ
-                            string sqlPo = @"
-                                INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc)
-                                VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)
-                                ON DUPLICATE KEY UPDATE
-                                    tenChucVu = VALUES(tenChucVu),
-                                    phuCapChucVu = VALUES(phuCapChucVu),
-                                    ngayNhanChuc = VALUES(ngayNhanChuc);
-                            ";
-
-                            using (var cmdPo = new MySqlCommand(sqlPo, conn, transaction))
-                            {
-                                cmdPo.Parameters.AddWithValue("@maChucVu", newPositionCode);
-                                cmdPo.Parameters.AddWithValue("@tenChucVu", employeeFull.ChucVu);
-                                cmdPo.Parameters.AddWithValue("@phuCapChucVu", 0);
-                                cmdPo.Parameters.AddWithValue("@ngayNhanChuc", DateTime.Today.Date);
-                                cmdPo.ExecuteNonQuery();
-                            }
-                            Console.WriteLine("Insert chucvu OK");
-
+                        {       
+                            string newEmployeeCode = createEmployeeCode(conn, transaction);           
                             // Insert hồ sơ cá nhân
                             string sqlPer = @"
                                 INSERT INTO hosocanhan 
@@ -296,7 +267,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             {
                                 cmd.Parameters.AddWithValue("@maNhanVien", newEmployeeCode);
                                 cmd.Parameters.AddWithValue("@soCmnd", employeeFull.SoCmnd ?? "");
-                                cmd.Parameters.AddWithValue("@maChucVu", newPositionCode);
+                                cmd.Parameters.AddWithValue("@maChucVu", employeeFull.MaChucVu);
                                 cmd.Parameters.AddWithValue("@maTaiKhoan", null);
                                 cmd.Parameters.AddWithValue("@maPhong", null);
                                 cmd.Parameters.AddWithValue("@mucLuong", employeeFull.MucLuong);

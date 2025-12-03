@@ -21,6 +21,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         public string HocVan { get; set; }
         public string ChuyenNganh { get; set; }
         public string PhongBan { get; set; }
+        public string MaChucVu { get; set; }
         public string ChucVu { get; set; }
         public decimal MucLuong { get; set; }
         public string DiaChi { get; set; } // Thêm thuộc tính DiaChi

@@ -26,7 +26,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                 conn.Open();
                 string query = @"
                     SELECT nv.maNhanVien, hs.hoTen, hs.ngaySinh, hs.gioiTinh, hs.email, hs.sdt, hs.soCmnd,
-                           hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, 
+                           hs.hocVan, hs.chuyenNganh, pb.tenPhong AS phongBan, cv.tenChucVu AS chucVu, cv.maChucVu,
                            nv.mucLuong, hs.diaChi, hs.anh, hs.noicap, hs.ngaycap, hs.tinhtranghonnhan, hs.dantoc, hs.tinhtranghonnhan
                     FROM nhanvien nv
                     LEFT JOIN hosocanhan hs ON nv.soCmnd = hs.soCmnd
@@ -55,6 +55,7 @@ namespace Quan_Ly_Nhan_Su.DAO
                             ChuyenNganh = reader["chuyenNganh"].ToString(),
                             PhongBan = reader["phongBan"].ToString(),
                             ChucVu = reader["chucVu"].ToString(),
+                            MaChucVu = reader["maChucVu"].ToString(),
                             MucLuong = reader["mucLuong"] != DBNull.Value ? Convert.ToDecimal(reader["mucLuong"]) : 0m,
                             DiaChi = reader["diaChi"] != DBNull.Value ? reader["diaChi"].ToString() : "",
                             HinhAnh = reader["anh"] != DBNull.Value ? reader["anh"].ToString() : "",
