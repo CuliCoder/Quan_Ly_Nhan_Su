@@ -6,6 +6,7 @@ using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -36,6 +37,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 danhSachNhanVienPanel.Dock = DockStyle.Fill;
                 showDataToTable();
             };
+            tableData.CellClick += tableData_CellContentClick;
             //ApplyPermissions();
         }
 
@@ -227,6 +229,63 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             return listImport;
         }
 
+        private void displayEmployeeDetails(EmployeeFullDTO employee)
+        {
+            if (employee == null) return;
+
+            txtTenLb.Text = employee.HoTen;
+            txtGioiTinhLb.Text = employee.GioiTinh;
+            txtNgaySinhLB.Text = employee.NgaySinh?.ToString("dd/MM/yyyy") ?? "";
+            txtEmailLb.Text = employee.Email;
+            txtSDTLb.Text = employee.Sdt;
+            if (!string.IsNullOrEmpty(employee.DiaChi))
+            {
+                string[] parts = employee.DiaChi.Split(',');
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    parts[i] = parts[i].Trim();
+                }
+                if (parts.Length > 0) txtDuongLB.Text = parts[0];
+                if (parts.Length > 1) txtPhuongXaLb.Text = parts[1];
+                if (parts.Length > 2) txtQuanHuyenLb.Text = parts[2];
+                if (parts.Length > 3) txtTinhTpLb.Text = parts[3];
+            }
+            else
+            {
+                txtDuongLB.Text = txtPhuongXaLb.Text = txtQuanHuyenLb.Text = txtTinhTpLb.Text = "";
+            }
+            txtCcd.Text = employee.SoCmnd;
+            txtChuyenNganhLb .Text = employee.ChuyenNganh;
+            txtDanTocLb.Text = employee.DanToc;
+            txtHonNhanLB.Text = employee.TinhTranHonNhan;
+            txtTrinhDoLB.Text = employee.HocVan;
+
+            try
+            {
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, employee.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(employee.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    pictureBox1.Image = Image.FromFile(finalPath);
+                else
+                    pictureBox1.Image = null;
+            }
+            catch (Exception ex)
+            {
+                pictureBox1.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
+            }
+        }
+
         private DateTime GetSafeDate(ExcelRange cell, DateTime defaultValue)
         {
             if (cell.Value == null) return defaultValue;
@@ -292,6 +351,17 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                     else
                         MessageBox.Show("Nhập Excel thất bại!");
                 }
+            }
+        }
+
+        private void tableData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = tableData.Rows[e.RowIndex];
+                string maNhanVien = selectedRow.Cells["MaNhanVien"].Value.ToString();
+                EmployeeFullDTO employee = employeeFullBLL.GetEmployeeById(maNhanVien);
+                displayEmployeeDetails(employee);
             }
         }
     }
