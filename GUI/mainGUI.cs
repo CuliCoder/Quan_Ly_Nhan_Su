@@ -74,13 +74,13 @@ namespace Quan_Ly_Nhan_Su.GUI
         private Image CropToCircle(Image srcImage)
         {
             if (srcImage == null) return null;
-            Bitmap dstImage = new Bitmap(srcImage.Width, srcImage.Height, Imaging.PixelFormat.Format32bppArgb);
+            Bitmap dstImage = new Bitmap(srcImage.Width, srcImage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             using (Graphics g = Graphics.FromImage(dstImage))
             {
-                g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                using (Brush br = new TextureBrush(srcImage))
+                using (System.Drawing.Brush br = new System.Drawing.TextureBrush(srcImage))
                 {
                     g.FillEllipse(br, 0, 0, srcImage.Width, srcImage.Height);
                 }
