@@ -317,6 +317,7 @@
             // endDayPicker
             // 
             this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endDayPicker.Location = new System.Drawing.Point(156, 15);
             this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
             this.endDayPicker.MaximumSize = new System.Drawing.Size(120, 27);
@@ -328,6 +329,7 @@
             // startDaypicker
             // 
             this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startDaypicker.Location = new System.Drawing.Point(24, 15);
             this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 15, 12, 0);
             this.startDaypicker.MaximumSize = new System.Drawing.Size(120, 27);

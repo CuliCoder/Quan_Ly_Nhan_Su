@@ -18,6 +18,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         public event EventHandler QuayLaiClicked;
         private readonly DepartmentBLL department;
         private readonly EmployeeBLL employee;
+        private readonly PositionBLL positionBLL;
         public event EventHandler suKienLuu;
         private readonly ErrorProvider errorProvider;
         public NhanVienNhapLieu()
@@ -25,11 +26,22 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             InitializeComponent();
             department = new DepartmentBLL();
             employee = new EmployeeBLL();
+            positionBLL = new PositionBLL();
             errorProvider = new ErrorProvider 
             {
                 BlinkStyle = ErrorBlinkStyle.NeverBlink
             };
-           
+            loadDataToCombobox();
+        }
+
+        private void loadDataToCombobox()
+        {
+            //Load data chuc vu
+            chucvuCbb.DataSource = positionBLL.GetAll();
+            
+            chucvuCbb.DisplayMember = "Display";
+            chucvuCbb.ValueMember = "MaChucVu";
+            chucvuCbb.SelectedIndex = -1;
         }
 
         private void label1_Click(object sender, EventArgs e) 
@@ -242,15 +254,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             if (!ValidateInputs())
                 return;
 
-            
-            //Chức vụ
-            PositionDTO positionDTO = new PositionDTO(
-               null, //mã chức vụ sẽ đưuọc tạo tự động
-               chucVuTb.Text,
-               0,
-               DateTime.Today.Date
-            );
-
             //Hồ sơ cá nhân
             PersonalProfileDTO personalProfileDTO = LayDuLieuHoSoCaNhan();
 
@@ -258,13 +261,13 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             EmployeeDTO employeeDTO = new EmployeeDTO(
                 null,
                 cccdTb.Text,
-                null, // mã chức vụ sẽ được tạo tự động trong DAO
+                chucvuCbb.SelectedValue.ToString(),
                 null, // mã tài khoản sẽ được gán sau 
                 null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
                 Convert.ToDecimal(mucLuongTb.Text)
             );
 
-            bool insertSuccess = employee.InsertNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
+            bool insertSuccess = employee.InsertNoCandiDate(employeeDTO, personalProfileDTO);
             if (insertSuccess)
             {
                 MessageBox.Show("Lưu thành công");

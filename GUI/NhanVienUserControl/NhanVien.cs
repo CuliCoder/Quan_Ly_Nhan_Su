@@ -1,13 +1,14 @@
-﻿using Quan_Ly_Nhan_Su.BLL;
+﻿using OfficeOpenXml;
+using Org.BouncyCastle.Asn1.X509;
+using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using OfficeOpenXml;
-using System.IO;
 using System.Data;
-using Org.BouncyCastle.Asn1.X509;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
@@ -35,7 +36,19 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 danhSachNhanVienPanel.Dock = DockStyle.Fill;
                 showDataToTable();
             };
+            //ApplyPermissions();
         }
+
+        //private void ApplyPermissions()
+        //{
+        //    bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN);
+
+        //    layoutThem.Visible = canCreate;
+        //    importBtn.Visible = canCreate;
+
+        //    bool canRead = SessionManager.Instance.CanRead(FunctionNames.NHAN_VIEN);
+        //    importBtn.Visible = canRead;
+        //}
 
         private void fillDataToTable(List<EmployeeFullDTO> listEmployyeFull)
         {
@@ -50,6 +63,10 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             tableData.Columns["ChucVu"].HeaderText = "Chức Vụ";
             tableData.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
+            tableData.Columns["NoiCap"].Visible = false;
+            tableData.Columns["NgayCap"].Visible = false;
+            tableData.Columns["DanToc"].Visible = false;
+            tableData.Columns["TinhTranHonNhan"].Visible = false;
             tableData.Columns["HocVan"].Visible = false;
             tableData.Columns["ChuyenNganh"].Visible = false;
             tableData.Columns["MucLuong"].Visible = false;

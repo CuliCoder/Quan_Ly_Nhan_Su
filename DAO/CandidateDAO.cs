@@ -48,7 +48,7 @@ namespace Quan_Ly_Nhan_Su.DAO
             catch (MySqlException ex)
             {
                 Console.WriteLine($"❌ Lỗi khi lấy danh sách ứng viên: {ex.Message}");
-                return null;
+                return list;
             }
         }
 
@@ -246,7 +246,7 @@ namespace Quan_Ly_Nhan_Su.DAO
             catch (MySqlException ex)
             {
                 Console.WriteLine($"❌ Lỗi khi tìm kiếm ứng viên: {ex.Message}");
-                return null;
+                return list;
             }
         }
 

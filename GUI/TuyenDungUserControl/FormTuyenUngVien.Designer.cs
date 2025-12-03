@@ -78,6 +78,9 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbLuong = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.chucvuCbb = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -87,6 +90,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -769,6 +773,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel5.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel3, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 418);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
@@ -814,7 +819,7 @@
             this.tbLuong.Dock = System.Windows.Forms.DockStyle.Top;
             this.tbLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbLuong.Location = new System.Drawing.Point(37, 41);
-            this.tbLuong.Margin = new System.Windows.Forms.Padding(2);
+            this.tbLuong.Margin = new System.Windows.Forms.Padding(2, 6, 2, 2);
             this.tbLuong.MinimumSize = new System.Drawing.Size(150, 25);
             this.tbLuong.Multiline = true;
             this.tbLuong.Name = "tbLuong";
@@ -825,12 +830,48 @@
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(35, 24);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.Location = new System.Drawing.Point(35, 18);
+            this.label7.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(154, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "Mức lương thật sự";
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel3.Controls.Add(this.chucvuCbb);
+            this.flowLayoutPanel3.Controls.Add(this.label10);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(230, 40);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(224, 68);
+            this.flowLayoutPanel3.TabIndex = 14;
+            // 
+            // chucvuCbb
+            // 
+            this.chucvuCbb.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chucvuCbb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chucvuCbb.FormattingEnabled = true;
+            this.chucvuCbb.Location = new System.Drawing.Point(3, 39);
+            this.chucvuCbb.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.chucvuCbb.Name = "chucvuCbb";
+            this.chucvuCbb.Size = new System.Drawing.Size(150, 26);
+            this.chucvuCbb.TabIndex = 42;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(2, 16);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(152, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Chức vụ sau tuyển";
             // 
             // FormTuyenUngVien
             // 
@@ -853,6 +894,7 @@
             this.tableLayoutPanel5.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -909,5 +951,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TextBox tbLuong;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.ComboBox chucvuCbb;
+        private System.Windows.Forms.Label label10;
     }
 }

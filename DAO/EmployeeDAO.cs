@@ -90,7 +90,7 @@ namespace Quan_Ly_Nhan_Su.DAO
             return list;
         }
 
-        public bool createEmployee(EmployeeDTO employeeDTO, string maTuyenDung, PositionDTO positionDTO)
+        public bool createEmployee(EmployeeDTO employeeDTO, string maTuyenDung)
         {
             using (conn = connectDB.getConnection())
             {
@@ -98,31 +98,12 @@ namespace Quan_Ly_Nhan_Su.DAO
                 using (var transaction = conn.BeginTransaction())
                 {
                     try
-                    {
-                        string newPositionCode = createPositionCode(conn, transaction);
+                    {             
                         string newEmployeeCode = createEmployeeCode(conn, transaction);
-
-                        positionDTO.MaChucVu = newPositionCode;
-                        employeeDTO.MaChucVu = newPositionCode;
+             
                         employeeDTO.MaNhanVien = newEmployeeCode;
+     
 
-                        string sqlPo = @"
-                            INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc)
-                            VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)
-                            ON DUPLICATE KEY UPDATE
-                                tenChucVu = VALUES(tenChucVu),
-                                phuCapChucVu = VALUES(phuCapChucVu),
-                                ngayNhanChuc = VALUES(ngayNhanChuc);
-                        ";
-
-                        using (var cmdPo = new MySqlCommand(sqlPo, conn, transaction))
-                        {
-                            cmdPo.Parameters.AddWithValue("@maChucVu", positionDTO.MaChucVu);
-                            cmdPo.Parameters.AddWithValue("@tenChucVu", positionDTO.TenChucVu);
-                            cmdPo.Parameters.AddWithValue("@phuCapChucVu", positionDTO.PhuCapChucVu);
-                            cmdPo.Parameters.AddWithValue("@ngayNhanChuc", positionDTO.NgayNhanChuc);
-                            cmdPo.ExecuteNonQuery();
-                        }
                         Console.WriteLine("✅ Insert/Update chucvu OK");
 
                         string sql = @"
@@ -142,17 +123,16 @@ namespace Quan_Ly_Nhan_Su.DAO
                             cmd.Parameters.AddWithValue("@mucLuong", employeeDTO.MucLuong.HasValue
                                 ? employeeDTO.MucLuong.Value
                                 : (object)DBNull.Value);
-
                             cmd.ExecuteNonQuery();
                         }
                         Console.WriteLine("Insert nhanvien OK");
+
                         string sqlCandidate = @"
                             INSERT INTO dottuyendung_nhanvien
                             (maTuyenDung, maNhanVien, ngayTuyenDung)
                             VALUES
                             (@maTuyenDung, @maNhanVien, @ngayTuyenDung);
                         ";
-
                         using (var cmdCandidate = new MySqlCommand(sqlCandidate, conn, transaction))
                         {
                             cmdCandidate.Parameters.AddWithValue("@maTuyenDung", maTuyenDung);
@@ -174,7 +154,7 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
         }
 
-        public bool createEmployeeNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO, PositionDTO positionDTO)
+        public bool createEmployeeNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO)
         {
             using (conn = connectDB.getConnection())
             {
@@ -183,32 +163,9 @@ namespace Quan_Ly_Nhan_Su.DAO
                 {
                     try
                     {
-                        string newPositionCode = createPositionCode(conn, transaction);
                         string newEmployeeCode = createEmployeeCode(conn, transaction);
 
-                        positionDTO.MaChucVu = newPositionCode;
-                        employeeDTO.MaChucVu = newPositionCode;
-                        employeeDTO.MaNhanVien = newEmployeeCode;
-                        string sqlPo = @"
-                            INSERT INTO chucvu (maChucVu, tenChucVu, phuCapChucVu, ngayNhanChuc)
-                            VALUES (@maChucVu, @tenChucVu, @phuCapChucVu, @ngayNhanChuc)
-                            ON DUPLICATE KEY UPDATE
-                                tenChucVu = VALUES(tenChucVu),
-                                phuCapChucVu = VALUES(phuCapChucVu),
-                                ngayNhanChuc = VALUES(ngayNhanChuc);
-                        ";
-
-                        using (var cmdPo = new MySqlCommand(sqlPo, conn, transaction))
-                        {
-                            cmdPo.Parameters.AddWithValue("@maChucVu", positionDTO.MaChucVu);
-                            cmdPo.Parameters.AddWithValue("@tenChucVu", positionDTO.TenChucVu);
-                            cmdPo.Parameters.AddWithValue("@phuCapChucVu", positionDTO.PhuCapChucVu);
-                            cmdPo.Parameters.AddWithValue("@ngayNhanChuc", positionDTO.NgayNhanChuc);
-                            cmdPo.ExecuteNonQuery();
-                        }
-                        Console.WriteLine("Insert/Update chucvu OK");
-
-
+                        employeeDTO.MaNhanVien = newEmployeeCode;                     
                         string sqlPer = @"
                         INSERT INTO hosocanhan (soCmnd, hoTen, gioiTinh, ngaySinh, diaChi, email, sdt, noiCap, ngayCap, tinhTrangHonNhan, danToc, hocVan, chuyenNganh, anh)
                         VALUES (@soCmnd, @hoTen, @gioiTinh, @ngaySinh, @diaChi, @email, @sdt, @noiCap, @ngayCap, @tinhTrangHonNhan, @danToc, @hocVan, @chuyenNganh, @anh)";

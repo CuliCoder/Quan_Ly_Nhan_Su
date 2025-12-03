@@ -39,7 +39,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutThem = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.exportBtn = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
+            this.layoutThem.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -130,7 +130,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label4);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
+            this.flowLayoutPanel1.Controls.Add(this.layoutThem);
             this.flowLayoutPanel1.Controls.Add(this.exportBtn);
             this.flowLayoutPanel1.Controls.Add(this.importBtn);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
@@ -163,18 +163,18 @@
             this.label4.TabIndex = 12;
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // flowLayoutPanel3
+            // layoutThem
             // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel3.Controls.Add(this.label3);
-            this.flowLayoutPanel3.Controls.Add(this.label7);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(1055, 5);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(18, 5, 6, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(72, 25);
-            this.flowLayoutPanel3.TabIndex = 10;
+            this.layoutThem.AutoSize = true;
+            this.layoutThem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutThem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutThem.Controls.Add(this.label3);
+            this.layoutThem.Controls.Add(this.label7);
+            this.layoutThem.Location = new System.Drawing.Point(1055, 5);
+            this.layoutThem.Margin = new System.Windows.Forms.Padding(18, 5, 6, 3);
+            this.layoutThem.Name = "layoutThem";
+            this.layoutThem.Size = new System.Drawing.Size(72, 25);
+            this.layoutThem.TabIndex = 10;
             // 
             // label3
             // 
@@ -301,7 +301,10 @@
             // 
             // endDayPicker
             // 
-            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.CustomFormat = "";
+            this.endDayPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endDayPicker.Location = new System.Drawing.Point(422, 5);
             this.endDayPicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
             this.endDayPicker.MaximumSize = new System.Drawing.Size(170, 27);
@@ -312,7 +315,10 @@
             // 
             // startDaypicker
             // 
-            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.CustomFormat = "";
+            this.startDaypicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDaypicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startDaypicker.Location = new System.Drawing.Point(240, 5);
             this.startDaypicker.Margin = new System.Windows.Forms.Padding(0, 5, 12, 0);
             this.startDaypicker.MaximumSize = new System.Drawing.Size(170, 27);
@@ -415,8 +421,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
+            this.layoutThem.ResumeLayout(false);
+            this.layoutThem.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -434,7 +440,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel layoutThem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
