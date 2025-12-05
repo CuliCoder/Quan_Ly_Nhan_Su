@@ -23,10 +23,10 @@ namespace Quan_Ly_Nhan_Su
             Login loginForm = new Login();
             DialogResult result = loginForm.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                Application.Run(new mainGUI());
-            }
+            //if (result == DialogResult.OK)
+            //{
+            //    Console.WriteLine("i love information technology");
+            //}
         }
     }
 }

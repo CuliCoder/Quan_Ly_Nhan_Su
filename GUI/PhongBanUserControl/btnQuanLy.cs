@@ -23,6 +23,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         private DepartmentBLL departmentBLL = new DepartmentBLL();
         private EmployeeFullBLL employeeFull = new EmployeeFullBLL();
         private EmployeeBLL employee = new EmployeeBLL();
+        private SalaryFullBLL salaryFull = new SalaryFullBLL();
         public btnQuanLy()
         {
             InitializeComponent();
@@ -98,18 +99,23 @@ namespace Quan_Ly_Nhan_Su.GUI
                 var NgayThanhLap = pb.NgayThanhLap;
                 var tenQuanLy = pb.MaTruongPhong != null ? listNVFull.FirstOrDefault(nv => nv.MaNhanVien == pb.MaTruongPhong)?.HoTen : "Chưa có";
                 var soNV = phongBanCount.ContainsKey(pb.MaPhong) ? phongBanCount[pb.MaPhong] : 0;
-                //double avgLuong = listNV
-                //.Where(nv => nv.PhongBan.Equals(tenPB, StringComparison.OrdinalIgnoreCase))
-                //.Select(nv => (double)nv.MucLuong)
-                //.DefaultIfEmpty(0)
-                //.Average();
+                var maNhanVienList = listNV?
+                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim().Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c.MaNhanVien.ToString());
+                var SLL = salaryFull.GetAllSalaryFull()
+                   .Where(s => maNhanVienList.Any(mnv =>
+                   !string.IsNullOrEmpty(mnv) &&
+                   !string.IsNullOrEmpty(s.MaNhanVien) &&
+                   mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
+                   .ToList();
+                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) : 0;
                 tbPB.Rows.Add(stt,
                     tenPB,
                     NgayThanhLap != null ? NgayThanhLap.Value.ToString("dd/MM/yyyy") : "chưa có",
                     tenQuanLy,
                     soNV,
-                    /*avgLuong.ToString("N0") + " VNĐ")*/
-                    "chưa có");
+                    avgLuong.ToString("N0") + " VNĐ"
+                    );
                 countTemp++;
             }
             // Vẽ border dưới cho từng hàng
@@ -353,6 +359,26 @@ namespace Quan_Ly_Nhan_Su.GUI
             boxEdit.BackColor = customColor;
             boxdelete.BackColor = customColor;
             // Có thể set cho các panel khác nếu muốn
+        }
+
+        private void lbHT2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbMNV2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbGT2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbNS2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
