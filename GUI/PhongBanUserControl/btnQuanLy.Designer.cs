@@ -97,7 +97,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxAdd.Controls.Add(this.label4);
             this.boxAdd.Controls.Add(this.icAdd);
             this.boxAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.boxAdd.Location = new System.Drawing.Point(1255, 4);
+            this.boxAdd.Location = new System.Drawing.Point(1328, 5);
             this.boxAdd.Margin = new System.Windows.Forms.Padding(4);
             this.boxAdd.Name = "boxAdd";
             this.boxAdd.Size = new System.Drawing.Size(128, 50);
@@ -141,7 +141,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxEdit.Controls.Add(this.pictureBox1);
             this.boxEdit.Controls.Add(this.label3);
             this.boxEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.boxEdit.Location = new System.Drawing.Point(1120, 4);
+            this.boxEdit.Location = new System.Drawing.Point(1192, 5);
             this.boxEdit.Margin = new System.Windows.Forms.Padding(4);
             this.boxEdit.Name = "boxEdit";
             this.boxEdit.Size = new System.Drawing.Size(128, 50);
@@ -185,7 +185,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.boxdelete.Controls.Add(this.label2);
             this.boxdelete.Controls.Add(this.delete);
             this.boxdelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.boxdelete.Location = new System.Drawing.Point(984, 4);
+            this.boxdelete.Location = new System.Drawing.Point(1056, 5);
             this.boxdelete.Margin = new System.Windows.Forms.Padding(4);
             this.boxdelete.Name = "boxdelete";
             this.boxdelete.Size = new System.Drawing.Size(128, 50);
@@ -312,171 +312,175 @@ namespace Quan_Ly_Nhan_Su.GUI
             // lbHV2
             // 
             this.lbHV2.AutoSize = true;
-            this.lbHV2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHV2.Location = new System.Drawing.Point(92, 258);
+            this.lbHV2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHV2.Location = new System.Drawing.Point(126, 305);
             this.lbHV2.Name = "lbHV2";
-            this.lbHV2.Size = new System.Drawing.Size(0, 21);
+            this.lbHV2.Size = new System.Drawing.Size(0, 25);
             this.lbHV2.TabIndex = 16;
             // 
             // lbCV2
             // 
             this.lbCV2.AutoSize = true;
-            this.lbCV2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCV2.Location = new System.Drawing.Point(93, 228);
+            this.lbCV2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCV2.Location = new System.Drawing.Point(126, 273);
             this.lbCV2.Name = "lbCV2";
-            this.lbCV2.Size = new System.Drawing.Size(0, 21);
+            this.lbCV2.Size = new System.Drawing.Size(0, 25);
             this.lbCV2.TabIndex = 15;
             // 
             // lbDC2
             // 
             this.lbDC2.AutoSize = true;
-            this.lbDC2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDC2.Location = new System.Drawing.Point(84, 197);
+            this.lbDC2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDC2.Location = new System.Drawing.Point(126, 241);
             this.lbDC2.Name = "lbDC2";
-            this.lbDC2.Size = new System.Drawing.Size(0, 21);
+            this.lbDC2.Size = new System.Drawing.Size(0, 25);
             this.lbDC2.TabIndex = 14;
             // 
             // lbDT2
             // 
             this.lbDT2.AutoSize = true;
-            this.lbDT2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDT2.Location = new System.Drawing.Point(111, 166);
+            this.lbDT2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDT2.Location = new System.Drawing.Point(126, 207);
             this.lbDT2.Name = "lbDT2";
-            this.lbDT2.Size = new System.Drawing.Size(0, 21);
+            this.lbDT2.Size = new System.Drawing.Size(0, 25);
             this.lbDT2.TabIndex = 13;
             // 
             // lbNS2
             // 
             this.lbNS2.AutoSize = true;
-            this.lbNS2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNS2.Location = new System.Drawing.Point(106, 134);
+            this.lbNS2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNS2.Location = new System.Drawing.Point(126, 171);
             this.lbNS2.Name = "lbNS2";
-            this.lbNS2.Size = new System.Drawing.Size(0, 21);
+            this.lbNS2.Size = new System.Drawing.Size(0, 25);
             this.lbNS2.TabIndex = 12;
+            this.lbNS2.Click += new System.EventHandler(this.lbNS2_Click);
             // 
             // lbGT2
             // 
             this.lbGT2.AutoSize = true;
-            this.lbGT2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGT2.Location = new System.Drawing.Point(97, 103);
+            this.lbGT2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGT2.Location = new System.Drawing.Point(126, 138);
             this.lbGT2.Name = "lbGT2";
-            this.lbGT2.Size = new System.Drawing.Size(0, 21);
+            this.lbGT2.Size = new System.Drawing.Size(0, 25);
             this.lbGT2.TabIndex = 11;
+            this.lbGT2.Click += new System.EventHandler(this.lbGT2_Click);
             // 
             // lbHT2
             // 
             this.lbHT2.AutoSize = true;
-            this.lbHT2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHT2.Location = new System.Drawing.Point(80, 73);
+            this.lbHT2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHT2.Location = new System.Drawing.Point(126, 104);
             this.lbHT2.Name = "lbHT2";
-            this.lbHT2.Size = new System.Drawing.Size(0, 21);
+            this.lbHT2.Size = new System.Drawing.Size(0, 25);
             this.lbHT2.TabIndex = 10;
+            this.lbHT2.Click += new System.EventHandler(this.lbHT2_Click);
             // 
             // lbMNV2
             // 
             this.lbMNV2.AutoSize = true;
-            this.lbMNV2.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMNV2.Location = new System.Drawing.Point(72, 43);
+            this.lbMNV2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMNV2.Location = new System.Drawing.Point(126, 69);
             this.lbMNV2.Name = "lbMNV2";
-            this.lbMNV2.Size = new System.Drawing.Size(0, 21);
+            this.lbMNV2.Size = new System.Drawing.Size(0, 25);
             this.lbMNV2.TabIndex = 9;
+            this.lbMNV2.Click += new System.EventHandler(this.lbMNV2_Click);
             // 
             // lbNNC
             // 
             this.lbNNC.AutoSize = true;
-            this.lbNNC.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbNNC.Location = new System.Drawing.Point(4, 258);
+            this.lbNNC.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNNC.Location = new System.Drawing.Point(4, 306);
             this.lbNNC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNNC.Name = "lbNNC";
-            this.lbNNC.Size = new System.Drawing.Size(81, 21);
+            this.lbNNC.Size = new System.Drawing.Size(94, 25);
             this.lbNNC.TabIndex = 8;
-            this.lbNNC.Text = "Học vấn :";
+            this.lbNNC.Text = "Học vấn:";
             // 
             // lbDT
             // 
             this.lbDT.AutoSize = true;
-            this.lbDT.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbDT.Location = new System.Drawing.Point(4, 166);
+            this.lbDT.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDT.Location = new System.Drawing.Point(4, 208);
             this.lbDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDT.Name = "lbDT";
-            this.lbDT.Size = new System.Drawing.Size(100, 21);
+            this.lbDT.Size = new System.Drawing.Size(113, 25);
             this.lbDT.TabIndex = 7;
-            this.lbDT.Text = "Điện thoại :";
+            this.lbDT.Text = "Điện thoại:";
             // 
             // lbDC
             // 
             this.lbDC.AutoSize = true;
-            this.lbDC.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbDC.Location = new System.Drawing.Point(4, 197);
+            this.lbDC.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDC.Location = new System.Drawing.Point(4, 242);
             this.lbDC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDC.Name = "lbDC";
-            this.lbDC.Size = new System.Drawing.Size(73, 21);
+            this.lbDC.Size = new System.Drawing.Size(81, 25);
             this.lbDC.TabIndex = 6;
-            this.lbDC.Text = "Địa chỉ :";
+            this.lbDC.Text = "Địa chỉ:";
             // 
             // lbCV
             // 
             this.lbCV.AutoSize = true;
-            this.lbCV.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbCV.Location = new System.Drawing.Point(4, 228);
+            this.lbCV.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCV.Location = new System.Drawing.Point(4, 274);
             this.lbCV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCV.Name = "lbCV";
-            this.lbCV.Size = new System.Drawing.Size(82, 21);
+            this.lbCV.Size = new System.Drawing.Size(94, 25);
             this.lbCV.TabIndex = 5;
-            this.lbCV.Text = "Chức vụ :";
+            this.lbCV.Text = "Chức vụ:";
             // 
             // lbMNV
             // 
             this.lbMNV.AutoSize = true;
-            this.lbMNV.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbMNV.Location = new System.Drawing.Point(4, 43);
+            this.lbMNV.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMNV.Location = new System.Drawing.Point(4, 70);
             this.lbMNV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMNV.Name = "lbMNV";
-            this.lbMNV.Size = new System.Drawing.Size(63, 21);
+            this.lbMNV.Size = new System.Drawing.Size(72, 25);
             this.lbMNV.TabIndex = 4;
-            this.lbMNV.Text = "Mã số :";
+            this.lbMNV.Text = "Mã số:";
             // 
             // lbHT
             // 
             this.lbHT.AutoSize = true;
-            this.lbHT.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbHT.Location = new System.Drawing.Point(4, 73);
+            this.lbHT.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHT.Location = new System.Drawing.Point(4, 104);
             this.lbHT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHT.Name = "lbHT";
-            this.lbHT.Size = new System.Drawing.Size(74, 21);
+            this.lbHT.Size = new System.Drawing.Size(85, 25);
             this.lbHT.TabIndex = 3;
-            this.lbHT.Text = "Họ tên : ";
+            this.lbHT.Text = "Họ tên: ";
             // 
             // lbGT
             // 
             this.lbGT.AutoSize = true;
-            this.lbGT.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbGT.Location = new System.Drawing.Point(4, 103);
+            this.lbGT.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGT.Location = new System.Drawing.Point(3, 137);
             this.lbGT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbGT.Name = "lbGT";
-            this.lbGT.Size = new System.Drawing.Size(86, 21);
+            this.lbGT.Size = new System.Drawing.Size(95, 25);
             this.lbGT.TabIndex = 2;
-            this.lbGT.Text = "Giới tính :";
+            this.lbGT.Text = "Giới tính:";
             // 
             // lbNS
             // 
             this.lbNS.AutoSize = true;
-            this.lbNS.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.lbNS.Location = new System.Drawing.Point(4, 134);
+            this.lbNS.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNS.Location = new System.Drawing.Point(4, 172);
             this.lbNS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNS.Name = "lbNS";
-            this.lbNS.Size = new System.Drawing.Size(95, 21);
+            this.lbNS.Size = new System.Drawing.Size(111, 25);
             this.lbNS.TabIndex = 1;
-            this.lbNS.Text = "Ngày sinh :";
+            this.lbNS.Text = "Ngày sinh:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(4, 11);
+            this.label6.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(4, 36);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 21);
+            this.label6.Size = new System.Drawing.Size(225, 27);
             this.label6.TabIndex = 0;
             this.label6.Text = "Thông tin nhân viên";
             // 
@@ -536,7 +540,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.Label lbMNV;
         private System.Windows.Forms.Label lbHT;
         private System.Windows.Forms.Label lbGT;
-        private System.Windows.Forms.Label lbNS;
         private System.Windows.Forms.Label lbDT;
         private System.Windows.Forms.Label lbDC;
         private System.Windows.Forms.Label lbCV;
@@ -549,5 +552,6 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.Label lbCV2;
         private System.Windows.Forms.Label lbDC2;
         private System.Windows.Forms.Label lbDT2;
+        private Label lbNS;
     }
 }

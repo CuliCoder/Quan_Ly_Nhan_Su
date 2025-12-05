@@ -36,7 +36,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void label2_Click(object sender, EventArgs e)
         {
-            
             UngVien uv = new UngVien();
             addUserControl(uv, ungVienChecked);
         }

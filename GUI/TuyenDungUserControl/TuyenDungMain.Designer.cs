@@ -52,12 +52,13 @@
             this.tableLayoutPanel1.Controls.Add(this.panelContainer, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.006494F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.99351F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 622);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1309, 766);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tabContainer
@@ -75,12 +76,12 @@
             this.tabContainer.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tabContainer.Controls.Add(this.flowLayoutPanel2, 0, 0);
             this.tabContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabContainer.Location = new System.Drawing.Point(3, 3);
-            this.tabContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.tabContainer.Location = new System.Drawing.Point(4, 4);
+            this.tabContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.RowCount = 1;
             this.tabContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tabContainer.Size = new System.Drawing.Size(976, 34);
+            this.tabContainer.Size = new System.Drawing.Size(1301, 41);
             this.tabContainer.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -91,33 +92,34 @@
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(125, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(166, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(116, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(154, 33);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // tuyenDungChecked
             // 
             this.tuyenDungChecked.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tuyenDungChecked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tuyenDungChecked.Location = new System.Drawing.Point(0, 24);
+            this.tuyenDungChecked.Location = new System.Drawing.Point(0, 28);
             this.tuyenDungChecked.Margin = new System.Windows.Forms.Padding(0);
-            this.tuyenDungChecked.MaximumSize = new System.Drawing.Size(116, 4);
-            this.tuyenDungChecked.MinimumSize = new System.Drawing.Size(116, 4);
+            this.tuyenDungChecked.MaximumSize = new System.Drawing.Size(155, 5);
+            this.tuyenDungChecked.MinimumSize = new System.Drawing.Size(155, 5);
             this.tuyenDungChecked.Name = "tuyenDungChecked";
-            this.tuyenDungChecked.Size = new System.Drawing.Size(116, 4);
+            this.tuyenDungChecked.Size = new System.Drawing.Size(155, 5);
             this.tuyenDungChecked.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label1.Location = new System.Drawing.Point(159, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 17);
+            this.label1.Size = new System.Drawing.Size(139, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "TUYỂN DỤNG";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,33 +133,34 @@
             this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(116, 28);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(154, 33);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // ungVienChecked
             // 
             this.ungVienChecked.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ungVienChecked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ungVienChecked.Location = new System.Drawing.Point(0, 24);
+            this.ungVienChecked.Location = new System.Drawing.Point(0, 28);
             this.ungVienChecked.Margin = new System.Windows.Forms.Padding(0);
-            this.ungVienChecked.MaximumSize = new System.Drawing.Size(116, 4);
-            this.ungVienChecked.MinimumSize = new System.Drawing.Size(116, 4);
+            this.ungVienChecked.MaximumSize = new System.Drawing.Size(155, 5);
+            this.ungVienChecked.MinimumSize = new System.Drawing.Size(155, 5);
             this.ungVienChecked.Name = "ungVienChecked";
-            this.ungVienChecked.Size = new System.Drawing.Size(116, 4);
+            this.ungVienChecked.Size = new System.Drawing.Size(155, 5);
             this.ungVienChecked.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Montserrat", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(3, 4);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label2.Location = new System.Drawing.Point(159, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 17);
+            this.label2.Size = new System.Drawing.Size(106, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "ỨNG VIÊN";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,20 +170,21 @@
             // 
             this.panelContainer.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(3, 40);
+            this.panelContainer.Location = new System.Drawing.Point(4, 49);
             this.panelContainer.Margin = new System.Windows.Forms.Padding(0);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(976, 579);
+            this.panelContainer.Size = new System.Drawing.Size(1301, 713);
             this.panelContainer.TabIndex = 4;
             // 
             // TuyenDungMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TuyenDungMain";
-            this.Size = new System.Drawing.Size(982, 622);
+            this.Size = new System.Drawing.Size(1309, 766);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabContainer.ResumeLayout(false);
             this.tabContainer.PerformLayout();

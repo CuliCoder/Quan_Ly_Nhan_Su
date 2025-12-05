@@ -145,6 +145,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             tableTongQuan.Rows.Clear();
             tableTongQuan.Columns.Clear();
             tableTongQuan.Font = new Font("Montserrat", 12, FontStyle.Regular);
+            tableTongQuan.ReadOnly = true;
             // Thêm các cột vào DataGridView
             tableTongQuan.Columns.Add("STT", "STT");
             tableTongQuan.Columns.Add("PhongBan", "Phòng ban");
@@ -187,7 +188,6 @@ namespace Quan_Ly_Nhan_Su.GUI
                     (x.MaPhong?.Trim() ?? "")
                         .Equals(nv.MaPhong?.Trim() ?? "", StringComparison.OrdinalIgnoreCase)
                 );
-
                 if (pb != null)
                 {
                     if (phongBanCount.ContainsKey(pb.MaPhong))
@@ -204,17 +204,22 @@ namespace Quan_Ly_Nhan_Su.GUI
                 var NgayThanhLap = pb.NgayThanhLap;
                 var tenQuanLy = pb.MaTruongPhong != null ? listNVFull.FirstOrDefault(nv => nv.MaNhanVien == pb.MaTruongPhong)?.HoTen : "Chưa có";
                 var soNV = phongBanCount.ContainsKey(pb.MaPhong) ? phongBanCount[pb.MaPhong] : 0;
-                //double avgLuong = listNV
-                //.Where(nv => nv.PhongBan.Equals(tenPB, StringComparison.OrdinalIgnoreCase))
-                //.Select(nv => (double)nv.MucLuong)
-                //.DefaultIfEmpty(0)
-                //.Average();
+                var maNhanVienList = listNV?
+                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim().Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c.MaNhanVien.ToString());
+                var SLL = salaryFull.GetAllSalaryFull()
+                   .Where(s => maNhanVienList.Any(mnv =>
+                   !string.IsNullOrEmpty(mnv) &&
+                   !string.IsNullOrEmpty(s.MaNhanVien) &&
+                   mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
+                   .ToList();
+                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) : 0;
                 tableTongQuan.Rows.Add(stt,
                     tenPB,
                     NgayThanhLap != null ? NgayThanhLap.Value.ToString("dd/MM/yyyy") : "chưa có",
                     tenQuanLy, 
                     soNV,
-                    "không có");
+                    avgLuong.ToString("N0") + " VNĐ");
                 countTemp++;
             }
             // Vẽ border dưới cho từng hàng

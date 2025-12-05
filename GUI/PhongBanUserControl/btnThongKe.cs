@@ -146,6 +146,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             tableTongQuan.Rows.Clear();
             tableTongQuan.Columns.Clear();
             tableTongQuan.Font = new Font("Montserrat", 12, FontStyle.Regular);
+            tableTongQuan.ReadOnly = true;
 
             // Thêm các cột vào DataGridView
             tableTongQuan.Columns.Add("MNV", "MNV");
@@ -200,8 +201,8 @@ namespace Quan_Ly_Nhan_Su.GUI
                     nv.Sdt,
                     nv.SoCmnd,
                     nv.ChucVu,
-                    //nv.MucLuong.ToString("N0") + " VNĐ")
-                    "không có");
+                    nv.MucLuong.ToString("N0") + " VNĐ"
+                    );
                 }
             }
       

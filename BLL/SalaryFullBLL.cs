@@ -20,8 +20,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             {
                 salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, DateTime.Now.Month, DateTime.Now.Year).TotalHours;
                 salary.LuongThucLanh = TinhLuongThucLanh(salary);
-            }
-
+            } 
             return list;
         }
 
@@ -43,7 +42,6 @@ namespace Quan_Ly_Nhan_Su.BLL
             salary.TongGioLam = attendanceBLL.calculateTotalOfMonth(salary.MaNhanVien, DateTime.Now.Month, DateTime.Now.Year).TotalHours;
             decimal tongGioLam = (decimal)salary.TongGioLam;
             decimal tongGioBatBuoc = (decimal)TongGioBatBuoc;
-
             if (salary.TongGioLam >= TongGioBatBuoc)
             {
                 return salary.LuongCoBan
@@ -54,7 +52,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             else
             {
-                return (salary.LuongCoBan / tongGioBatBuoc * tongGioLam)
+                return (salary.LuongCoBan - tongGioBatBuoc * tongGioLam)
                     + salary.TongPhuCap
                     - salary.TongKhoanTru
                     + salary.LuongCoBan * salary.TongThuong / 100m;
