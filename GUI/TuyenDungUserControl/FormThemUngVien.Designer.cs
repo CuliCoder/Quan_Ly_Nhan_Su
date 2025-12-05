@@ -440,7 +440,10 @@
             // ngaySinhDate
             // 
             this.ngaySinhDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ngaySinhDate.CustomFormat = "";
             this.ngaySinhDate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ngaySinhDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ngaySinhDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.ngaySinhDate.Location = new System.Drawing.Point(3, 25);
             this.ngaySinhDate.MaximumSize = new System.Drawing.Size(150, 37);
             this.ngaySinhDate.MinimumSize = new System.Drawing.Size(150, 37);
@@ -779,7 +782,10 @@
             // 
             // ngayCapDate
             // 
+            this.ngayCapDate.CustomFormat = "";
             this.ngayCapDate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ngayCapDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ngayCapDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.ngayCapDate.Location = new System.Drawing.Point(3, 31);
             this.ngayCapDate.MaximumSize = new System.Drawing.Size(150, 25);
             this.ngayCapDate.MinimumSize = new System.Drawing.Size(150, 25);

@@ -19,14 +19,14 @@ namespace Quan_Ly_Nhan_Su.BLL
 
         public List<EmployeeDTO> GetAll() => _dao.getAll();
 
-        public bool Insert(EmployeeDTO employeeDTO, string maTuyenDung, PositionDTO positionDTO)
+        public bool Insert(EmployeeDTO employeeDTO, string maTuyenDung)
         {
-            return _dao.createEmployee(employeeDTO, maTuyenDung, positionDTO); ;
+            return _dao.createEmployee(employeeDTO, maTuyenDung); ;
         }
 
-        public bool InsertNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO, PositionDTO positionDTO)
+        public bool InsertNoCandiDate(EmployeeDTO employeeDTO, PersonalProfileDTO personalProfileDTO)
         {
-            return _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO, positionDTO);
+            return _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO);
         }
 
         public bool ImportExcelEmployees(List<EmployeeFullDTO> employees)
@@ -79,6 +79,11 @@ namespace Quan_Ly_Nhan_Su.BLL
             // Nó không dùng cache 'list' vì đây là một truy vấn cụ thể, 
             // tương tự như SearchEmployee()
             return _dao.GetByAccountId(maTaiKhoan);
+        }
+
+        public EmployeeDTO GetEmp(string MaNhanVien)
+        {
+            return _dao.GetEmp(MaNhanVien);
         }
     }
 }
