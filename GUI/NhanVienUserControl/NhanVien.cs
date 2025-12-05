@@ -1,13 +1,15 @@
-﻿using Quan_Ly_Nhan_Su.BLL;
+﻿using OfficeOpenXml;
+using Org.BouncyCastle.Asn1.X509;
+using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using OfficeOpenXml;
-using System.IO;
 using System.Data;
-using Org.BouncyCastle.Asn1.X509;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
@@ -35,6 +37,19 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 danhSachNhanVienPanel.Dock = DockStyle.Fill;
                 showDataToTable();
             };
+            tableData.CellClick += tableData_CellContentClick;
+            ApplyPermissions();
+        }
+
+        private void ApplyPermissions()
+        {
+            bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.NHAN_VIEN);
+
+            layoutThem.Visible = canCreate;
+            importBtn.Visible = canCreate;
+
+            bool canRead = SessionManager.Instance.CanRead(FunctionNames.NHAN_VIEN);
+            importBtn.Visible = canRead;
         }
 
         private void fillDataToTable(List<EmployeeFullDTO> listEmployyeFull)
@@ -50,6 +65,10 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             tableData.Columns["ChucVu"].HeaderText = "Chức Vụ";
             tableData.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
+            tableData.Columns["NoiCap"].Visible = false;
+            tableData.Columns["NgayCap"].Visible = false;
+            tableData.Columns["DanToc"].Visible = false;
+            tableData.Columns["TinhTranHonNhan"].Visible = false;
             tableData.Columns["HocVan"].Visible = false;
             tableData.Columns["ChuyenNganh"].Visible = false;
             tableData.Columns["MucLuong"].Visible = false;
@@ -168,7 +187,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                         {
                             EmployeeFullDTO emp = new EmployeeFullDTO();
 
-                            emp.MaNhanVien = null;
+                            emp.MaNhanVien = null;              
                             emp.HoTen = worksheet.Cells[row, 2].Text;
                             emp.NgaySinh = GetSafeDate(worksheet.Cells[row, 3], DateTime.Now);
                             emp.GioiTinh = worksheet.Cells[row, 4].Text;
@@ -182,12 +201,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                             emp.HocVan = worksheet.Cells[row, 12].Text;
                             emp.ChuyenNganh = worksheet.Cells[row, 13].Text;
                             emp.PhongBan = worksheet.Cells[row, 14].Text;
-                            emp.ChucVu = worksheet.Cells[row, 15].Text;
-                            emp.MucLuong = GetSafeDecimal(worksheet.Cells[row, 16]);
-
-                            emp.DiaChi = worksheet.Cells[row, 17].Text;
-                            emp.HinhAnh = worksheet.Cells[row, 18].Text;
-
+                            emp.MaChucVu = worksheet.Cells[row, 15].Text; ;
+                            emp.ChucVu = worksheet.Cells[row, 16].Text;
+                            emp.MucLuong = GetSafeDecimal(worksheet.Cells[row, 17]);
+                            emp.DiaChi = worksheet.Cells[row, 18].Text;
+                            emp.HinhAnh = worksheet.Cells[row, 19].Text;
                             listImport.Add(emp);
                         }
                         catch (Exception ex)
@@ -209,6 +227,63 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             }
 
             return listImport;
+        }
+
+        private void displayEmployeeDetails(EmployeeFullDTO employee)
+        {
+            if (employee == null) return;
+
+            txtTenLb.Text = employee.HoTen;
+            txtGioiTinhLb.Text = employee.GioiTinh;
+            txtNgaySinhLB.Text = employee.NgaySinh?.ToString("dd/MM/yyyy") ?? "";
+            txtEmailLb.Text = employee.Email;
+            txtSDTLb.Text = employee.Sdt;
+            if (!string.IsNullOrEmpty(employee.DiaChi))
+            {
+                string[] parts = employee.DiaChi.Split(',');
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    parts[i] = parts[i].Trim();
+                }
+                if (parts.Length > 0) txtDuongLB.Text = parts[0];
+                if (parts.Length > 1) txtPhuongXaLb.Text = parts[1];
+                if (parts.Length > 2) txtQuanHuyenLb.Text = parts[2];
+                if (parts.Length > 3) txtTinhTpLb.Text = parts[3];
+            }
+            else
+            {
+                txtDuongLB.Text = txtPhuongXaLb.Text = txtQuanHuyenLb.Text = txtTinhTpLb.Text = "";
+            }
+            txtCcd.Text = employee.SoCmnd;
+            txtChuyenNganhLb .Text = employee.ChuyenNganh;
+            txtDanTocLb.Text = employee.DanToc;
+            txtHonNhanLB.Text = employee.TinhTranHonNhan;
+            txtTrinhDoLB.Text = employee.HocVan;
+
+            try
+            {
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, employee.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(employee.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    pictureBox1.Image = Image.FromFile(finalPath);
+                else
+                    pictureBox1.Image = null;
+            }
+            catch (Exception ex)
+            {
+                pictureBox1.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
+            }
         }
 
         private DateTime GetSafeDate(ExcelRange cell, DateTime defaultValue)
@@ -276,6 +351,17 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                     else
                         MessageBox.Show("Nhập Excel thất bại!");
                 }
+            }
+        }
+
+        private void tableData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = tableData.Rows[e.RowIndex];
+                string maNhanVien = selectedRow.Cells["MaNhanVien"].Value.ToString();
+                EmployeeFullDTO employee = employeeFullBLL.GetEmployeeById(maNhanVien);
+                displayEmployeeDetails(employee);
             }
         }
     }

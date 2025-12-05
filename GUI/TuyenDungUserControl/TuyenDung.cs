@@ -1,4 +1,5 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,19 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             list = bus.GetAll();
 
             fillDataToTable(list);
+            ApplyPermissions();
         }
+        private void ApplyPermissions()
+        {
+            bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.TUYEN_DUNG);
+            layoutThem.Visible = canCreate;
 
+            bool canDelete = SessionManager.Instance.CanDelete(FunctionNames.TUYEN_DUNG);
+            layoutXoa.Visible = canDelete;
+       
+            bool canUpdate = SessionManager.Instance.CanUpdate(FunctionNames.TUYEN_DUNG);
+            layoutSua.Visible = canUpdate;
+        }
         private void fillDataToTable(List<RecruitmentBatchDTO> listData)
         {
             tableTuyenDung.AutoGenerateColumns = false;

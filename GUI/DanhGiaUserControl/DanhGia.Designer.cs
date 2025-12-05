@@ -17,7 +17,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhGia));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
@@ -112,7 +111,6 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.Location = new System.Drawing.Point(309, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(40, 30);
@@ -127,7 +125,7 @@
             this.label2.Location = new System.Drawing.Point(355, 8);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 23);
+            this.label2.Size = new System.Drawing.Size(87, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "Từ ngày:";
             // 
@@ -135,7 +133,7 @@
             // 
             this.dtpFromDate.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(444, 3);
+            this.dtpFromDate.Location = new System.Drawing.Point(448, 3);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Size = new System.Drawing.Size(140, 30);
             this.dtpFromDate.TabIndex = 3;
@@ -144,10 +142,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(590, 8);
+            this.label3.Location = new System.Drawing.Point(594, 8);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 23);
+            this.label3.Size = new System.Drawing.Size(96, 23);
             this.label3.TabIndex = 4;
             this.label3.Text = "Đến ngày:";
             // 
@@ -155,7 +153,7 @@
             // 
             this.dtpToDate.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpToDate.Location = new System.Drawing.Point(685, 3);
+            this.dtpToDate.Location = new System.Drawing.Point(696, 3);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Size = new System.Drawing.Size(140, 30);
             this.dtpToDate.TabIndex = 5;
@@ -167,7 +165,7 @@
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilter.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnFilter.ForeColor = System.Drawing.Color.White;
-            this.btnFilter.Location = new System.Drawing.Point(831, 3);
+            this.btnFilter.Location = new System.Drawing.Point(842, 3);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(100, 30);
             this.btnFilter.TabIndex = 6;
@@ -182,7 +180,7 @@
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(937, 3);
+            this.btnReset.Location = new System.Drawing.Point(948, 3);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(100, 30);
             this.btnReset.TabIndex = 7;
@@ -209,7 +207,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(246, 45);
+            this.lblTitle.Size = new System.Drawing.Size(212, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Bảng Đánh Giá";
             // 
@@ -233,7 +231,6 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(277, 8);
             this.btnAdd.Name = "btnAdd";
@@ -252,7 +249,6 @@
             this.btnDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDetail.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnDetail.ForeColor = System.Drawing.Color.White;
-            this.btnDetail.Image = ((System.Drawing.Image)(resources.GetObject("btnDetail.Image")));
             this.btnDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDetail.Location = new System.Drawing.Point(147, 8);
             this.btnDetail.Name = "btnDetail";
@@ -271,7 +267,6 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelete.Location = new System.Drawing.Point(27, 8);
             this.btnDelete.Name = "btnDelete";

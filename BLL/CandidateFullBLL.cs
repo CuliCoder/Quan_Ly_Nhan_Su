@@ -53,6 +53,21 @@ namespace Quan_Ly_Nhan_Su.BLL
             return false;
         }
 
+        public bool ORMCreateCadidateWPersonalProfile(PersonalProfileDTO perDTO, CandidateDTO cadiDto)
+        {
+            if (!_candidateDao.CheckId(cadiDto.MaUngVien))
+            {
+                MessageBox.Show("Mã ứng viên đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_dao.ORMCreateCandidateWithProfile(perDTO, cadiDto))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public List<CandidateFullDTO> Search(string keyword)
         {
             return _dao.Search(keyword);

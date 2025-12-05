@@ -18,6 +18,19 @@ namespace Quan_Ly_Nhan_Su.GUI
             error.SetError(tb, "");
             return true;
         }
+
+        public static bool InPutKey(TextBox tb, string message, string key ,ErrorProvider error)
+        {
+            if (!tb.Text.Contains(key) || tb.Text.Length != 5)
+            {
+                error.SetError(tb, message);
+                tb.Focus();
+                return false;
+            }
+            error.SetError(tb, "");
+            return true;
+        }
+
         public static bool IsSelected(ComboBox cb, string message)
         {
             if(cb.SelectedIndex == -1)
