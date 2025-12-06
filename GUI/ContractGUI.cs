@@ -14,26 +14,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
             _bll = new LaborContractBLL(); // Khởi tạo BLL
-            InitializeDataGridViewColumns(); // Khởi tạo cột trước khi tải dữ liệu
             LoadDataToGrid(); // Tải dữ liệu vào DataGridView
-        }
-
-        private void InitializeDataGridViewColumns()
-        {
-            // Xóa cột cũ (nếu có)
-            dataGridView1.Columns.Clear();
-
-            // Thêm cột với tiêu đề rõ ràng
-            dataGridView1.Columns.Add("STT", "STT");
-            dataGridView1.Columns.Add("MaTenNhanVien", "Mã - Tên nhân viên");
-            dataGridView1.Columns.Add("PhongBan", "Phòng ban");
-            dataGridView1.Columns.Add("TuNgay", "Từ ngày");
-            dataGridView1.Columns.Add("DenNgay", "Đến ngày");
-            dataGridView1.Columns.Add("LoaiHopDong", "Loại hợp đồng");
-            dataGridView1.Columns.Add("LuongCoBan", "Lương cơ bản");
-
-            // Đảm bảo tiêu đề cột luôn hiển thị
-            dataGridView1.ColumnHeadersVisible = true;
         }
 
         private void LoadDataToGrid()
@@ -86,10 +67,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
-        // Tùy chọn: Thêm event KeyDown cho textBoxSearch để tìm kiếm khi nhấn Enter
-        // Trong constructor hoặc InitializeComponent, thêm:
-        // textBoxSearch.KeyDown += new KeyEventHandler(textBoxSearch_KeyDown);
-
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -99,8 +76,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             }
         }
 
-        // Để reset tìm kiếm (load all), có thể sử dụng button1 (Quay Lại) hoặc thêm button mới
-        // Giả sử button1 là "Quay Lại" hoặc "Load All", cập nhật:
         private void button1_Click(object sender, EventArgs e)
         {
             textBoxSearch.Text = ""; // Xóa keyword

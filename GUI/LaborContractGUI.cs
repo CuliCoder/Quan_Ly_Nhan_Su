@@ -455,5 +455,10 @@ namespace Quan_Ly_Nhan_Su.GUI
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void labelpb_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
