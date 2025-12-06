@@ -56,7 +56,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Kiểm tra mã ứng viên
             if (!GUIValidator.NotEmpty(maUngVienTb, "Mã ứng viên không được để trống!", errorProvider))
                 return false;
-
+            if (!GUIValidator.InPutKey(maUngVienTb, "Mã chức vụ phải là UV0 và 5 chữ số", "UV0", errorProvider))
+                return false;
 
             // Kiểm tra CCCD
             if (!GUIValidator.NotEmpty(cccdTb, "Số CCCD không được để trống!", errorProvider))
@@ -214,7 +215,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
                 CandidateDTO candidate = LayDuLieuUngVien();
 
-                if (busFullCadi.CreateCadidateWPersonalProfile(personalProfile, candidate))
+                if (busFullCadi.ORMCreateCadidateWPersonalProfile(personalProfile, candidate))
                 {
                     busBatch.UpdateProfileCreate(candidate.MaTuyenDung);
                     luuThongTinForm?.Invoke(this, EventArgs.Empty);
@@ -238,7 +239,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
 
                     string projectFolder = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
-                    string imageFolder = Path.Combine(projectFolder, "Images", "Avatar");
+                    string imageFolder = Path.Combine(projectFolder, "Images", "Avatars");
             
                     if (!Directory.Exists(imageFolder))
                         Directory.CreateDirectory(imageFolder);
@@ -248,7 +249,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                     if (!File.Exists(destPath))
                         File.Copy(fullPath, destPath, true);
 
-                    string relativePath = Path.Combine("Images", "Avatar", fileName);
+                    string relativePath = Path.Combine("Images", "Avatars", fileName);
                     // Hiển thị ảnh
                     showHinh.Image = Image.FromFile(destPath);
                     showHinh.SizeMode = PictureBoxSizeMode.StretchImage;  

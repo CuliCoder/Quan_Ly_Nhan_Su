@@ -1,4 +1,5 @@
 ﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,18 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             // Hiển thị dữ liệu
             fillDataToTable(list);
+            ApplyPermissions();
         }
 
+        private void ApplyPermissions()
+        {
+            bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.UNG_VIEN);
+            layoutThem.Visible = canCreate;
+
+            bool canDelete = SessionManager.Instance.CanDelete(FunctionNames.UNG_VIEN);
+            layoutXoa.Visible = canDelete;
+            layoutTuyen.Visible = canCreate;
+        }
         private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             tableData.ClearSelection();

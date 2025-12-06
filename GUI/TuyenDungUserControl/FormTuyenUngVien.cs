@@ -20,7 +20,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private readonly EmployeeBLL bus;
         private readonly CandidateBLL busCandi;
-        private readonly DepartmentBLL department;
+
+        private readonly PositionBLL positionBLL;
         private readonly RecruitmentBatchBLL batchBLL;
 
         public event EventHandler luuThongTinForm;
@@ -36,7 +37,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // Khởi tạo các class
             bus = new EmployeeBLL();
             busCandi = new CandidateBLL();
-            department = new DepartmentBLL();
+            positionBLL = new PositionBLL();
             batchBLL = new RecruitmentBatchBLL();
 
             // Khởi tạo ErrorProvider
@@ -44,7 +45,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             {
                 BlinkStyle = ErrorBlinkStyle.NeverBlink
             };
-
+            loadDataToCombobox();
             // Load dữ liệu form
             DisplayCandidateDetails(dtoFull);
         }
@@ -75,6 +76,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             try
             {
+               
                 //hồ sơ cá nhân
                 showTenUV.Text = candidate.HoTen;
                 showCCCDUV.Text = candidate.SoCmnd;
@@ -93,7 +95,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 showPhuongXaUV.Text = ExtractAddressPart(candidate.DiaChi, 1);
                 showQuanHuyenUV.Text = ExtractAddressPart(candidate.DiaChi, 2);          
                 SoTinhTPUV.Text = ExtractAddressPart(candidate.DiaChi, 3);
-                
+
 
                 // Hiển thị ảnh ứng viên
                 string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
@@ -116,6 +118,14 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         }
 
 
+        private void loadDataToCombobox()
+        {
+            //Load data chuc vu
+            chucvuCbb.DataSource = positionBLL.GetAll();    
+            chucvuCbb.DisplayMember = "Display";
+            chucvuCbb.ValueMember = "MaChucVu";
+            chucvuCbb.SelectedIndex = -1;
+        }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
@@ -134,25 +144,28 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 return;
             }
 
-            
+            if(!GUIValidator.IsSelected(chucvuCbb, "Vui lòng chọn chức vụ"))
+            {
+                return;
+            }
+           
             PositionDTO positionDTO = new PositionDTO(
-               null, //mã chức vụ sẽ tự động kiểm tra và tạo trong DAO
+               null, 
                dtoFull.ChucVu,
                0,
                DateTime.Today.Date
             );
-
+            MessageBox.Show(chucvuCbb.SelectedValue.ToString());
             EmployeeDTO employeeDTO = new EmployeeDTO(
                 null, // mã nhân viên sẽ tự động kiểm tra và tạo trong DAO
                 dtoFull.SoCmnd,
-                null, // mã chức vụ sẽ được tạo tự động trong DAO
+                chucvuCbb.SelectedValue.ToString(), // mã chức vụ sẽ được tạo tự động trong DAO
                 null, // mã tài khoản sẽ được gán sau được cấp tài khoản
                 null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
                 Convert.ToDecimal(tbLuong.Text)
             ); 
-
-           
-            bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung, positionDTO);
+          
+            bool insertSuccess = bus.Insert(employeeDTO, dtoFull.MaTuyenDung);
             if (insertSuccess)
             {
                 busCandi.UpdateStatus(dtoFull.MaUngVien, "Đã Tuyển");
@@ -164,8 +177,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             else
             {
                 MessageBox.Show("Không thể lưu dữ liệu. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-             
+            }            
         }
 
     }

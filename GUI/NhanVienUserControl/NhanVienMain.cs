@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
+namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
-    public partial class TuyenDungMain : UserControl
+    public partial class NhanVienMain : UserControl
     {
-        public TuyenDungMain()
+        public NhanVienMain()
         {
             InitializeComponent();
-            UngVien uv = new UngVien();
-            addUserControl(uv, ungVienChecked);
+            NhanVien nv = new NhanVien();
+            addUserControl(nv, nhanVienChecked);
         }
         private void clearColorChecked()
         {
-            tuyenDungChecked.BackColor = SystemColors.ControlLightLight;
-            ungVienChecked.BackColor = SystemColors.ControlLightLight;
+            chucVuChecked.BackColor = SystemColors.ControlLightLight;
+            nhanVienChecked.BackColor = SystemColors.ControlLightLight;
         }
         private void addUserControl(UserControl userControl, Panel colorChecked)
         {
@@ -31,20 +31,21 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             panelContainer.Margin = new Padding(0);
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
-            colorChecked.BackColor = SystemColors.ActiveCaption;         
+            colorChecked.BackColor = SystemColors.ActiveCaption;
         }
+
+
 
         private void label2_Click(object sender, EventArgs e)
         {
-            UngVien uv = new UngVien();
-            addUserControl(uv, ungVienChecked);
+            NhanVien nv = new NhanVien();
+            addUserControl(nv, nhanVienChecked);
         }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
-            TuyenDung tdc = new TuyenDung();
-            addUserControl(tdc, tuyenDungChecked);
+            ChucVu chucVu = new ChucVu();
+            addUserControl(chucVu, chucVuChecked);
         }
     }
 }

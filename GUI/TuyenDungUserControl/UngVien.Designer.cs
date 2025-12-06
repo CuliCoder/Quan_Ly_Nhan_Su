@@ -36,13 +36,13 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutThem = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutXoa = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layoutTuyen = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -102,9 +102,9 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
+            this.layoutThem.SuspendLayout();
+            this.layoutXoa.SuspendLayout();
+            this.layoutTuyen.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -141,9 +141,9 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             // 
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.flowLayoutPanel3.Controls.Add(this.label6);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel4);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel2);
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel5);
+            this.flowLayoutPanel3.Controls.Add(this.layoutThem);
+            this.flowLayoutPanel3.Controls.Add(this.layoutXoa);
+            this.flowLayoutPanel3.Controls.Add(this.layoutTuyen);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -171,20 +171,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label6.TabIndex = 12;
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // flowLayoutPanel4
+            // layoutThem
             // 
-            this.flowLayoutPanel4.AutoSize = true;
-            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel4.Controls.Add(this.button2);
-            this.flowLayoutPanel4.Controls.Add(this.label2);
-            this.flowLayoutPanel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(1059, 14);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(18, 14, 18, 3);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(102, 27);
-            this.flowLayoutPanel4.TabIndex = 10;
+            this.layoutThem.AutoSize = true;
+            this.layoutThem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutThem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutThem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutThem.Controls.Add(this.button2);
+            this.layoutThem.Controls.Add(this.label2);
+            this.layoutThem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutThem.Location = new System.Drawing.Point(1059, 14);
+            this.layoutThem.Margin = new System.Windows.Forms.Padding(18, 14, 18, 3);
+            this.layoutThem.Name = "layoutThem";
+            this.layoutThem.Size = new System.Drawing.Size(102, 27);
+            this.layoutThem.TabIndex = 10;
             // 
             // button2
             // 
@@ -215,20 +215,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label2.Size = new System.Drawing.Size(25, 25);
             this.label2.TabIndex = 4;
             // 
-            // flowLayoutPanel2
+            // layoutXoa
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Controls.Add(this.button3);
-            this.flowLayoutPanel2.Controls.Add(this.label7);
-            this.flowLayoutPanel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(936, 14);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(102, 27);
-            this.flowLayoutPanel2.TabIndex = 9;
+            this.layoutXoa.AutoSize = true;
+            this.layoutXoa.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutXoa.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutXoa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutXoa.Controls.Add(this.button3);
+            this.layoutXoa.Controls.Add(this.label7);
+            this.layoutXoa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutXoa.Location = new System.Drawing.Point(936, 14);
+            this.layoutXoa.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
+            this.layoutXoa.Name = "layoutXoa";
+            this.layoutXoa.Size = new System.Drawing.Size(102, 27);
+            this.layoutXoa.TabIndex = 9;
             // 
             // button3
             // 
@@ -259,20 +259,20 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label7.Size = new System.Drawing.Size(25, 25);
             this.label7.TabIndex = 4;
             // 
-            // flowLayoutPanel5
+            // layoutTuyen
             // 
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel5.Controls.Add(this.button1);
-            this.flowLayoutPanel5.Controls.Add(this.label5);
-            this.flowLayoutPanel5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(813, 14);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(102, 27);
-            this.flowLayoutPanel5.TabIndex = 10;
+            this.layoutTuyen.AutoSize = true;
+            this.layoutTuyen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutTuyen.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutTuyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutTuyen.Controls.Add(this.button1);
+            this.layoutTuyen.Controls.Add(this.label5);
+            this.layoutTuyen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutTuyen.Location = new System.Drawing.Point(813, 14);
+            this.layoutTuyen.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
+            this.layoutTuyen.Name = "layoutTuyen";
+            this.layoutTuyen.Size = new System.Drawing.Size(102, 27);
+            this.layoutTuyen.TabIndex = 10;
             // 
             // button1
             // 
@@ -1142,12 +1142,12 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
+            this.layoutThem.ResumeLayout(false);
+            this.layoutThem.PerformLayout();
+            this.layoutXoa.ResumeLayout(false);
+            this.layoutXoa.PerformLayout();
+            this.layoutTuyen.ResumeLayout(false);
+            this.layoutTuyen.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1174,10 +1174,10 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel layoutXoa;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.FlowLayoutPanel layoutThem;
+        private System.Windows.Forms.FlowLayoutPanel layoutTuyen;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label txtLuongToiDa;

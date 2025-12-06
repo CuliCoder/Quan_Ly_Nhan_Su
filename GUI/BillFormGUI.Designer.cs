@@ -124,7 +124,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlRoot.Controls.Add(this.pnlHeader);
             this.pnlRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRoot.Location = new System.Drawing.Point(0, 0);
-            this.pnlRoot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlRoot.Margin = new System.Windows.Forms.Padding(2);
             this.pnlRoot.Name = "pnlRoot";
             this.pnlRoot.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.pnlRoot.Size = new System.Drawing.Size(434, 470);
@@ -140,7 +140,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.stack.Controls.Add(this.tblInfo);
             this.stack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stack.Location = new System.Drawing.Point(12, 58);
-            this.stack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stack.Margin = new System.Windows.Forms.Padding(2);
             this.stack.Name = "stack";
             this.stack.Size = new System.Drawing.Size(410, 401);
             this.stack.TabIndex = 0;
@@ -152,7 +152,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardSign.Controls.Add(this.cardSignHeader);
             this.cardSign.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardSign.Location = new System.Drawing.Point(0, 358);
-            this.cardSign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cardSign.Margin = new System.Windows.Forms.Padding(2);
             this.cardSign.Name = "cardSign";
             this.cardSign.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.cardSign.Size = new System.Drawing.Size(410, 43);
@@ -169,7 +169,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tblSign.Controls.Add(this.lblNhanVienXN, 1, 1);
             this.tblSign.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblSign.Location = new System.Drawing.Point(10, 35);
-            this.tblSign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblSign.Margin = new System.Windows.Forms.Padding(2);
             this.tblSign.Name = "tblSign";
             this.tblSign.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblSign.RowCount = 2;
@@ -240,7 +240,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardSignHeader.Controls.Add(this.lblSignTitle);
             this.cardSignHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.cardSignHeader.Location = new System.Drawing.Point(10, 11);
-            this.cardSignHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cardSignHeader.Margin = new System.Windows.Forms.Padding(2);
             this.cardSignHeader.Name = "cardSignHeader";
             this.cardSignHeader.Size = new System.Drawing.Size(390, 24);
             this.cardSignHeader.TabIndex = 1;
@@ -306,7 +306,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tblDeduct.Controls.Add(this.lblThue, 0, 2);
             this.tblDeduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblDeduct.Location = new System.Drawing.Point(10, 35);
-            this.tblDeduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblDeduct.Margin = new System.Windows.Forms.Padding(2);
             this.tblDeduct.Name = "tblDeduct";
             this.tblDeduct.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblDeduct.RowCount = 3;
@@ -364,7 +364,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardDeductHeader.Controls.Add(this.lblDeductTitle);
             this.cardDeductHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.cardDeductHeader.Location = new System.Drawing.Point(10, 11);
-            this.cardDeductHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cardDeductHeader.Margin = new System.Windows.Forms.Padding(2);
             this.cardDeductHeader.Name = "cardDeductHeader";
             this.cardDeductHeader.Size = new System.Drawing.Size(390, 24);
             this.cardDeductHeader.TabIndex = 1;
@@ -406,7 +406,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tblIncome.Controls.Add(this.lblPhuCapKhac, 0, 3);
             this.tblIncome.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblIncome.Location = new System.Drawing.Point(10, 35);
-            this.tblIncome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblIncome.Margin = new System.Windows.Forms.Padding(2);
             this.tblIncome.Name = "tblIncome";
             this.tblIncome.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblIncome.RowCount = 4;
@@ -479,7 +479,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.cardIncomeHeader.Controls.Add(this.lblIncomeTitle);
             this.cardIncomeHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.cardIncomeHeader.Location = new System.Drawing.Point(10, 11);
-            this.cardIncomeHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cardIncomeHeader.Margin = new System.Windows.Forms.Padding(2);
             this.cardIncomeHeader.Name = "cardIncomeHeader";
             this.cardIncomeHeader.Size = new System.Drawing.Size(390, 24);
             this.cardIncomeHeader.TabIndex = 1;
@@ -581,7 +581,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(12, 11);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(410, 47);
             this.pnlHeader.TabIndex = 1;
@@ -610,7 +610,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Location = new System.Drawing.Point(0, 470);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(434, 44);
             this.btnPrint.TabIndex = 2;
@@ -625,7 +625,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.ClientSize = new System.Drawing.Size(434, 514);
             this.Controls.Add(this.pnlRoot);
             this.Controls.Add(this.btnPrint);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BillFormGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phiếu Lương Nhân Viên";

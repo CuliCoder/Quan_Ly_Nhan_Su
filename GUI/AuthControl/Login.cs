@@ -95,6 +95,9 @@ namespace Quan_Ly_Nhan_Su.GUI.AuthControl
             // BÁO HIỆU ĐĂNG NHẬP THÀNH CÔNG VÀ ĐÓNG FORM
             this.DialogResult = DialogResult.OK;
             this.Close();
+
+            mainGUI man = new mainGUI();
+            man.ShowDialog();
         }
 
         private void lblAppName_Click(object sender, EventArgs e)

@@ -45,7 +45,7 @@ namespace Quan_Ly_Nhan_Su.DTO
             get => ngayNhanChuc;
             set => ngayNhanChuc = value;
         }
-
+        public string Display => $"{MaChucVu} - {TenChucVu}";
         public override string ToString()
         {
             return $"maChucVu: {maChucVu}, tenChucVu: {tenChucVu}, phuCapChucVu: {phuCapChucVu}, ngayNhanChuc: {ngayNhanChuc}";
