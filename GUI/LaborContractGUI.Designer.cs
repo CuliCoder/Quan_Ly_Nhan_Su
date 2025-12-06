@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
-    partial class LaborContractGUI
+    partial class LaborContractGUI : UserControl
     {
         private System.ComponentModel.IContainer components = null;
 
