@@ -289,7 +289,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             ConfigureMenuItem(pnlbTuyenDung, FunctionNames.TUYEN_DUNG);
             ConfigureMenuItem(pnlbPhongBan, FunctionNames.PHONG_BAN);
             ConfigureMenuItem(pnlbHopDong, FunctionNames.HOP_DONG);
-            ConfigureMenuItem(pnlbChamCong, FunctionNames.CHAM_CONG);
+            ConfigureMenuItem(pnlbChamCong, FunctionNames.CHAM_CONG_CA_NHAN);
             ConfigureMenuItem(pnlbLuongThuong, FunctionNames.LUONG);
             ConfigureMenuItem(pnlbDanhGia, FunctionNames.DANH_GIA);
             ConfigureMenuItem(pnlbTaiKhoan, FunctionNames.TAI_KHOAN);
