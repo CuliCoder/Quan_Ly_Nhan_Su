@@ -50,9 +50,6 @@
             this.mucLuongTb = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtPath = new System.Windows.Forms.Label();
-            this.flowLayoutPanel18 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tonGiaoTb = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tTpTb = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -102,13 +99,13 @@
             this.flowLayoutPanel21 = new System.Windows.Forms.FlowLayoutPanel();
             this.emailTb = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.chucvuCbb = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.chucvuCbb = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -121,7 +118,6 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.flowLayoutPanel16.SuspendLayout();
-            this.flowLayoutPanel18.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel6.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
@@ -138,8 +134,8 @@
             this.flowLayoutPanel13.SuspendLayout();
             this.flowLayoutPanel17.SuspendLayout();
             this.flowLayoutPanel21.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -361,26 +357,25 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel16, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.txtPath, 3, 2);
-            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel18, 1, 4);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel2, 1, 3);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel6, 1, 2);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel10, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel4, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel19, 2, 5);
-            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel11, 2, 4);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel7, 2, 3);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel3, 2, 2);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel12, 2, 1);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel22, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel14, 1, 5);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel5, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel13, 0, 2);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel17, 0, 3);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel21, 0, 4);
             this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel1, 0, 5);
+            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel14, 1, 4);
+            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel11, 1, 5);
+            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel19, 2, 4);
+            this.tableLayoutPanel7.Controls.Add(this.flowLayoutPanel16, 2, 5);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(2);
@@ -404,10 +399,10 @@
             this.flowLayoutPanel16.Controls.Add(this.label19);
             this.flowLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel16.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel16.Location = new System.Drawing.Point(476, 2);
+            this.flowLayoutPanel16.Location = new System.Drawing.Point(318, 307);
             this.flowLayoutPanel16.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel16.Name = "flowLayoutPanel16";
-            this.flowLayoutPanel16.Size = new System.Drawing.Size(156, 57);
+            this.flowLayoutPanel16.Size = new System.Drawing.Size(154, 56);
             this.flowLayoutPanel16.TabIndex = 57;
             // 
             // mucLuongTb
@@ -415,7 +410,7 @@
             this.mucLuongTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mucLuongTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.mucLuongTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mucLuongTb.Location = new System.Drawing.Point(2, 30);
+            this.mucLuongTb.Location = new System.Drawing.Point(2, 29);
             this.mucLuongTb.Margin = new System.Windows.Forms.Padding(2);
             this.mucLuongTb.MinimumSize = new System.Drawing.Size(150, 25);
             this.mucLuongTb.Multiline = true;
@@ -427,7 +422,7 @@
             // 
             this.label19.Dock = System.Windows.Forms.DockStyle.Top;
             this.label19.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(2, 13);
+            this.label19.Location = new System.Drawing.Point(2, 12);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(150, 15);
@@ -444,44 +439,6 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(156, 61);
             this.txtPath.TabIndex = 55;
-            // 
-            // flowLayoutPanel18
-            // 
-            this.flowLayoutPanel18.AutoSize = true;
-            this.flowLayoutPanel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel18.Controls.Add(this.tonGiaoTb);
-            this.flowLayoutPanel18.Controls.Add(this.label21);
-            this.flowLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel18.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel18.Location = new System.Drawing.Point(160, 246);
-            this.flowLayoutPanel18.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel18.Name = "flowLayoutPanel18";
-            this.flowLayoutPanel18.Size = new System.Drawing.Size(154, 57);
-            this.flowLayoutPanel18.TabIndex = 17;
-            // 
-            // tonGiaoTb
-            // 
-            this.tonGiaoTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tonGiaoTb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tonGiaoTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tonGiaoTb.Location = new System.Drawing.Point(2, 30);
-            this.tonGiaoTb.Margin = new System.Windows.Forms.Padding(2);
-            this.tonGiaoTb.MinimumSize = new System.Drawing.Size(150, 25);
-            this.tonGiaoTb.Multiline = true;
-            this.tonGiaoTb.Name = "tonGiaoTb";
-            this.tonGiaoTb.Size = new System.Drawing.Size(150, 25);
-            this.tonGiaoTb.TabIndex = 1;
-            // 
-            // label21
-            // 
-            this.label21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label21.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(2, 13);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(150, 15);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Tôn giáo";
             // 
             // flowLayoutPanel2
             // 
@@ -643,10 +600,10 @@
             this.flowLayoutPanel19.Controls.Add(this.label22);
             this.flowLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel19.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel19.Location = new System.Drawing.Point(318, 307);
+            this.flowLayoutPanel19.Location = new System.Drawing.Point(318, 246);
             this.flowLayoutPanel19.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel19.Name = "flowLayoutPanel19";
-            this.flowLayoutPanel19.Size = new System.Drawing.Size(154, 56);
+            this.flowLayoutPanel19.Size = new System.Drawing.Size(154, 57);
             this.flowLayoutPanel19.TabIndex = 48;
             // 
             // hocVanTb
@@ -654,7 +611,7 @@
             this.hocVanTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hocVanTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.hocVanTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hocVanTb.Location = new System.Drawing.Point(2, 29);
+            this.hocVanTb.Location = new System.Drawing.Point(2, 30);
             this.hocVanTb.Margin = new System.Windows.Forms.Padding(2);
             this.hocVanTb.MinimumSize = new System.Drawing.Size(150, 25);
             this.hocVanTb.Multiline = true;
@@ -666,7 +623,7 @@
             // 
             this.label22.Dock = System.Windows.Forms.DockStyle.Top;
             this.label22.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(2, 12);
+            this.label22.Location = new System.Drawing.Point(2, 13);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(150, 15);
@@ -681,10 +638,10 @@
             this.flowLayoutPanel11.Controls.Add(this.label15);
             this.flowLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel11.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel11.Location = new System.Drawing.Point(318, 246);
+            this.flowLayoutPanel11.Location = new System.Drawing.Point(160, 307);
             this.flowLayoutPanel11.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel11.Name = "flowLayoutPanel11";
-            this.flowLayoutPanel11.Size = new System.Drawing.Size(154, 57);
+            this.flowLayoutPanel11.Size = new System.Drawing.Size(154, 56);
             this.flowLayoutPanel11.TabIndex = 44;
             // 
             // honNhanTb
@@ -692,7 +649,7 @@
             this.honNhanTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.honNhanTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.honNhanTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.honNhanTb.Location = new System.Drawing.Point(2, 30);
+            this.honNhanTb.Location = new System.Drawing.Point(2, 29);
             this.honNhanTb.Margin = new System.Windows.Forms.Padding(2);
             this.honNhanTb.MinimumSize = new System.Drawing.Size(150, 25);
             this.honNhanTb.Multiline = true;
@@ -704,7 +661,7 @@
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Top;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(2, 13);
+            this.label15.Location = new System.Drawing.Point(2, 12);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(150, 15);
@@ -870,10 +827,10 @@
             this.flowLayoutPanel14.Controls.Add(this.label17);
             this.flowLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel14.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel14.Location = new System.Drawing.Point(160, 307);
+            this.flowLayoutPanel14.Location = new System.Drawing.Point(160, 246);
             this.flowLayoutPanel14.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel14.Name = "flowLayoutPanel14";
-            this.flowLayoutPanel14.Size = new System.Drawing.Size(154, 56);
+            this.flowLayoutPanel14.Size = new System.Drawing.Size(154, 57);
             this.flowLayoutPanel14.TabIndex = 13;
             // 
             // danTocTb
@@ -881,7 +838,7 @@
             this.danTocTb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.danTocTb.Dock = System.Windows.Forms.DockStyle.Top;
             this.danTocTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.danTocTb.Location = new System.Drawing.Point(2, 29);
+            this.danTocTb.Location = new System.Drawing.Point(2, 30);
             this.danTocTb.Margin = new System.Windows.Forms.Padding(2);
             this.danTocTb.MinimumSize = new System.Drawing.Size(150, 25);
             this.danTocTb.Multiline = true;
@@ -893,7 +850,7 @@
             // 
             this.label17.Dock = System.Windows.Forms.DockStyle.Top;
             this.label17.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(2, 12);
+            this.label17.Location = new System.Drawing.Point(2, 13);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(150, 15);
@@ -1110,56 +1067,6 @@
             this.label24.TabIndex = 0;
             this.label24.Text = "Email";
             // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 6;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel8.Controls.Add(this.button2, 4, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnLuu, 5, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 441);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(632, 36);
-            this.tableLayoutPanel8.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(423, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 30);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Tải Lại";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnLuu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLuu.Location = new System.Drawing.Point(528, 3);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(101, 30);
-            this.btnLuu.TabIndex = 1;
-            this.btnLuu.Text = "Lưu Thông Tin";
-            this.btnLuu.UseVisualStyleBackColor = false;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click_1);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -1196,6 +1103,57 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Chức vụ";
             // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 6;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel8.Controls.Add(this.button2, 4, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btnLuu, 5, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 441);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(632, 36);
+            this.tableLayoutPanel8.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(423, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 30);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Tải Lại";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLuu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLuu.Location = new System.Drawing.Point(528, 3);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(101, 30);
+            this.btnLuu.TabIndex = 1;
+            this.btnLuu.Text = "Lưu Thông Tin";
+            this.btnLuu.UseVisualStyleBackColor = false;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click_1);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // NhanVienNhapLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1221,8 +1179,6 @@
             this.tableLayoutPanel7.PerformLayout();
             this.flowLayoutPanel16.ResumeLayout(false);
             this.flowLayoutPanel16.PerformLayout();
-            this.flowLayoutPanel18.ResumeLayout(false);
-            this.flowLayoutPanel18.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel6.ResumeLayout(false);
@@ -1254,8 +1210,8 @@
             this.flowLayoutPanel17.PerformLayout();
             this.flowLayoutPanel21.ResumeLayout(false);
             this.flowLayoutPanel21.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1288,9 +1244,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel21;
         private System.Windows.Forms.TextBox emailTb;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel18;
-        private System.Windows.Forms.TextBox tonGiaoTb;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel17;
         private System.Windows.Forms.TextBox soDienThoaiTb;
         private System.Windows.Forms.Label label20;

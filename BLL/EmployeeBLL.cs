@@ -28,6 +28,10 @@ namespace Quan_Ly_Nhan_Su.BLL
         {
             return _dao.createEmployeeNoCandiDate(employeeDTO, personalProfileDTO);
         }
+        public bool UpdateNoCandiDate(EmployeeFullDTO employeeFull)
+        {
+            return _dao.updateEmployeeNoCandiDate(employeeFull);
+        } 
 
         public bool ImportExcelEmployees(List<EmployeeFullDTO> employees)
         {

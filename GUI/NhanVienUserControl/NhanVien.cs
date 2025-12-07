@@ -2,6 +2,7 @@
 using Org.BouncyCastle.Asn1.X509;
 using Quan_Ly_Nhan_Su.BLL;
 using Quan_Ly_Nhan_Su.Constants;
+using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,21 +16,24 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVien : UserControl
     {
-        private readonly NhanVienNhapLieu nhanVienNhapLieu;
+        private NhanVienNhapLieu nhanVienNhapLieu;
 
         private readonly EmployeeFullBLL employeeFullBLL;
         private readonly EmployeeBLL employeeBLL;
         private List<EmployeeFullDTO> listEmployyeFull;
         public NhanVien()
         {
-            InitializeComponent();
-
-            nhanVienNhapLieu = new NhanVienNhapLieu();
+            InitializeComponent();       
             employeeFullBLL = new EmployeeFullBLL();
             listEmployyeFull = new List<EmployeeFullDTO>();
             employeeBLL = new EmployeeBLL();
 
-            showDataToTable();
+            showDataToTable();       
+            tableData.CellClick += tableData_CellContentClick;
+            ApplyPermissions();
+        }
+        private void returNhanVienPanel()
+        {
             nhanVienNhapLieu.QuayLaiClicked += (s, e) =>
             {
                 chuyenMan.Controls.Clear();
@@ -37,8 +41,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 danhSachNhanVienPanel.Dock = DockStyle.Fill;
                 showDataToTable();
             };
-            tableData.CellClick += tableData_CellContentClick;
-            ApplyPermissions();
         }
 
         private void ApplyPermissions()
@@ -50,6 +52,9 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
             bool canRead = SessionManager.Instance.CanRead(FunctionNames.NHAN_VIEN);
             importBtn.Visible = canRead;
+
+            bool canUpdate = SessionManager.Instance.CanUpdate(FunctionNames.NHAN_VIEN);
+            layoutSua.Visible = canUpdate;
         }
 
         private void fillDataToTable(List<EmployeeFullDTO> listEmployyeFull)
@@ -100,7 +105,10 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         private void label3_Click(object sender, EventArgs e)
         {
+            EmployeeFullDTO employeeFullDTO = new EmployeeFullDTO();
+            nhanVienNhapLieu = new NhanVienNhapLieu(employeeFullDTO, "Them");
             addUserControl(nhanVienNhapLieu);
+            returNhanVienPanel();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -363,6 +371,15 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 EmployeeFullDTO employee = employeeFullBLL.GetEmployeeById(maNhanVien);
                 displayEmployeeDetails(employee);
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            string maNhanVien = tableData.CurrentRow.Cells["MaNhanVien"].Value?.ToString();
+            EmployeeFullDTO employeeFullDTO = employeeFullBLL.GetEmployeeById(maNhanVien);
+            nhanVienNhapLieu = new NhanVienNhapLieu(employeeFullDTO, "Sua");
+            addUserControl(nhanVienNhapLieu);
+            returNhanVienPanel();
         }
     }
 }
