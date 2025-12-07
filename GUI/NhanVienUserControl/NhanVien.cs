@@ -107,6 +107,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
         {
             EmployeeFullDTO employeeFullDTO = new EmployeeFullDTO();
             nhanVienNhapLieu = new NhanVienNhapLieu(employeeFullDTO, "Them");
+            nhanVienNhapLieu.TitleLB.Text = "Thêm Nhân Viên Mới";
             addUserControl(nhanVienNhapLieu);
             returNhanVienPanel();
         }
@@ -378,6 +379,7 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             string maNhanVien = tableData.CurrentRow.Cells["MaNhanVien"].Value?.ToString();
             EmployeeFullDTO employeeFullDTO = employeeFullBLL.GetEmployeeById(maNhanVien);
             nhanVienNhapLieu = new NhanVienNhapLieu(employeeFullDTO, "Sua");
+            nhanVienNhapLieu.TitleLB.Text = "Sửa Nhân Viên";
             addUserControl(nhanVienNhapLieu);
             returNhanVienPanel();
         }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
@@ -42,6 +43,11 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
                 cccdTb.Enabled = false;     
                 mucLuongTb.Enabled = false;
             }          
+        }
+        public Label TitleLB
+        {
+            get => titleLb;
+            set => titleLb = value;
         }
 
         private void loadDataToCombobox()

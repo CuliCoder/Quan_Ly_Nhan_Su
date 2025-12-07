@@ -38,7 +38,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.titleLb = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.showHinh = new System.Windows.Forms.PictureBox();
@@ -230,7 +230,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.titleLb, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -242,18 +242,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(915, 536);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label3
+            // titleLb
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(911, 48);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Thêm hồ sơ nhân viên";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.titleLb.AutoSize = true;
+            this.titleLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titleLb.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLb.Location = new System.Drawing.Point(2, 0);
+            this.titleLb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLb.Name = "titleLb";
+            this.titleLb.Size = new System.Drawing.Size(911, 48);
+            this.titleLb.TabIndex = 0;
+            this.titleLb.Text = "Thêm hồ sơ nhân viên";
+            this.titleLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel3
             // 
@@ -1226,7 +1226,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label titleLb;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.PictureBox showHinh;
