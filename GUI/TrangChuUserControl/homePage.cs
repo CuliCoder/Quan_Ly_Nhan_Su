@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         EmployeeFullBLL employeeFull= new EmployeeFullBLL();
         EmployeeBLL employee = new EmployeeBLL();
         SalaryFullBLL salaryFull = new SalaryFullBLL();
+        AccountBLL account = new AccountBLL();
 
         public homePage()
         {
@@ -67,13 +69,14 @@ namespace Quan_Ly_Nhan_Su.GUI
                     mnv.ToString().Trim().Equals(e.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
                     .ToList();
                 var countNV = listEmployee.Count();
-                var SLL = salaryFull.GetAllSalaryFull()
-                    .Where(s => maNhanVienList.Any(mnv =>
-                    !string.IsNullOrEmpty(mnv) &&
-                    !string.IsNullOrEmpty(s.MaNhanVien) &&
-                    mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
-                    .ToList();
-                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh)/1000000 : 0;
+                //var SLL = salaryFull.GetAllSalaryFull()
+                //    .Where(s => maNhanVienList.Any(mnv =>
+                //    !string.IsNullOrEmpty(mnv) &&
+                //    !string.IsNullOrEmpty(s.MaNhanVien) &&
+                //    mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
+                //    .ToList();
+                var avgLuong = listEmployee.Any() ? listEmployee.Average(e => (double)e.MucLuong)/1000000 : 0;
+                //var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh)/1000000 : 0;
                 nhanVienTheoNam[year] = new Tuple<int, double>(countNV, avgLuong);
             }
             foreach (var kvp in nhanVienTheoNam)
@@ -116,10 +119,10 @@ namespace Quan_Ly_Nhan_Su.GUI
 
                 if (pb != null)
                 {
-                    if (phongBanCount.ContainsKey(pb.MaPhong))
-                        phongBanCount[pb.MaPhong]++;
+                    if (phongBanCount.ContainsKey(pb.TenPhong))
+                        phongBanCount[pb.TenPhong]++;
                     else
-                        phongBanCount[pb.MaPhong] = 1;
+                        phongBanCount[pb.TenPhong] = 1;
                 }
             }
             // Thêm dữ liệu vào series
@@ -204,16 +207,10 @@ namespace Quan_Ly_Nhan_Su.GUI
                 var NgayThanhLap = pb.NgayThanhLap;
                 var tenQuanLy = pb.MaTruongPhong != null ? listNVFull.FirstOrDefault(nv => nv.MaNhanVien == pb.MaTruongPhong)?.HoTen : "Chưa có";
                 var soNV = phongBanCount.ContainsKey(pb.MaPhong) ? phongBanCount[pb.MaPhong] : 0;
-                var maNhanVienList = listNV?
-                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim().Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase))
-                    .Select(c => c.MaNhanVien.ToString());
-                var SLL = salaryFull.GetAllSalaryFull()
-                   .Where(s => maNhanVienList.Any(mnv =>
-                   !string.IsNullOrEmpty(mnv) &&
-                   !string.IsNullOrEmpty(s.MaNhanVien) &&
-                   mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
-                   .ToList();
-                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) : 0;
+                var NhanVienList = listNV?
+                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim().
+                    Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var avgLuong = NhanVienList.Any() ? NhanVienList.Average(e => (double)e.MucLuong) : 0;
                 tableTongQuan.Rows.Add(stt,
                     tenPB,
                     NgayThanhLap != null ? NgayThanhLap.Value.ToString("dd/MM/yyyy") : "chưa có",
