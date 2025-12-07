@@ -3,6 +3,7 @@ using Quan_Ly_Nhan_Su.config;
 using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.DAO
 {
@@ -215,6 +216,87 @@ namespace Quan_Ly_Nhan_Su.DAO
                 }
             }
         }
+
+        public bool updateEmployeeNoCandiDate(EmployeeFullDTO employee)
+        {         
+            using (conn = connectDB.getConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (var transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {                     
+                            string sqlNV = @"UPDATE nhanvien 
+                                     SET maChucVu = @maChucVu 
+                                     WHERE maNhanVien = @maNhanVien";
+                          
+                            using (var cmd = new MySqlCommand(sqlNV, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@maChucVu", employee.MaChucVu ?? (object)DBNull.Value);                           
+                                cmd.Parameters.AddWithValue("@maNhanVien", employee.MaNhanVien);
+
+                                cmd.ExecuteNonQuery();
+                            }
+               
+
+                            string queryHS = @"UPDATE hosocanhan 
+                                       SET hoTen = @hoTen, 
+                                           gioiTinh = @gioiTinh, 
+                                           ngaySinh = @ngaySinh, 
+                                           diachi = @diachi, 
+                                           email = @email, 
+                                           sdt = @sdt, 
+                                           noiCap = @noiCap, 
+                                           ngayCap = @ngayCap, 
+                                           tinhTrangHonNhan = @tinhTrangHonNhan, 
+                                           danToc = @danToc,
+                                           hocVan = @hocVan,
+                                           chuyenNganh = @chuyenNganh,
+                                           anh = @anh
+                                       WHERE soCmnd = @soCmnd"; 
+
+                          
+                            using (var command = new MySqlCommand(queryHS, conn, transaction))
+                            {
+                                command.Parameters.AddWithValue("@hoTen", employee.HoTen);
+                                command.Parameters.AddWithValue("@gioiTinh", employee.GioiTinh);
+                                command.Parameters.AddWithValue("@ngaySinh", employee.NgaySinh);
+                                command.Parameters.AddWithValue("@diaChi", employee.DiaChi ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@email", employee.Email ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@sdt", employee.Sdt ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@noiCap", employee.NoiCap ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@ngayCap", employee.NgayCap ?? (object)DBNull.Value); // Kiểm tra nếu NgayCap nullable
+                                command.Parameters.AddWithValue("@tinhTrangHonNhan", employee.TinhTranHonNhan ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@danToc", employee.DanToc ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@hocVan", employee.HocVan ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@chuyenNganh", employee.ChuyenNganh ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@anh", employee.HinhAnh ?? (object)DBNull.Value);
+
+                                command.Parameters.AddWithValue("@soCmnd", employee.SoCmnd);                       
+                                command.ExecuteNonQuery();
+                            }
+                        
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {                          
+                            transaction.Rollback();
+                            Console.WriteLine($"Lỗi Transaction: {ex.Message}");
+                            throw; 
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi kết nối: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
         public bool ImportEmployees(List<EmployeeFullDTO> employeeFulls)
         {
             using (conn = connectDB.getConnection())

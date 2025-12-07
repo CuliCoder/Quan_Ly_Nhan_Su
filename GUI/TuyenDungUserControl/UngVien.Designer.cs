@@ -31,14 +31,17 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UngVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.layoutThem = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.layoutSua = new System.Windows.Forms.FlowLayoutPanel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.layoutXoa = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -103,6 +106,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.layoutThem.SuspendLayout();
+            this.layoutSua.SuspendLayout();
             this.layoutXoa.SuspendLayout();
             this.layoutTuyen.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -142,6 +146,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.flowLayoutPanel3.Controls.Add(this.label6);
             this.flowLayoutPanel3.Controls.Add(this.layoutThem);
+            this.flowLayoutPanel3.Controls.Add(this.layoutSua);
             this.flowLayoutPanel3.Controls.Add(this.layoutXoa);
             this.flowLayoutPanel3.Controls.Add(this.layoutTuyen);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel1);
@@ -215,6 +220,50 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.label2.Size = new System.Drawing.Size(25, 25);
             this.label2.TabIndex = 4;
             // 
+            // layoutSua
+            // 
+            this.layoutSua.AutoSize = true;
+            this.layoutSua.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutSua.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.layoutSua.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.layoutSua.Controls.Add(this.button4);
+            this.layoutSua.Controls.Add(this.label9);
+            this.layoutSua.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.layoutSua.Location = new System.Drawing.Point(961, 14);
+            this.layoutSua.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
+            this.layoutSua.Name = "layoutSua";
+            this.layoutSua.Size = new System.Drawing.Size(77, 27);
+            this.layoutSua.TabIndex = 15;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(50, 25);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Sửa";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
+            this.label9.Location = new System.Drawing.Point(50, 0);
+            this.label9.Margin = new System.Windows.Forms.Padding(0);
+            this.label9.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label9.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(25, 25);
+            this.label9.TabIndex = 4;
+            // 
             // layoutXoa
             // 
             this.layoutXoa.AutoSize = true;
@@ -224,7 +273,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.layoutXoa.Controls.Add(this.button3);
             this.layoutXoa.Controls.Add(this.label7);
             this.layoutXoa.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutXoa.Location = new System.Drawing.Point(936, 14);
+            this.layoutXoa.Location = new System.Drawing.Point(838, 14);
             this.layoutXoa.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
             this.layoutXoa.Name = "layoutXoa";
             this.layoutXoa.Size = new System.Drawing.Size(102, 27);
@@ -268,7 +317,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.layoutTuyen.Controls.Add(this.button1);
             this.layoutTuyen.Controls.Add(this.label5);
             this.layoutTuyen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.layoutTuyen.Location = new System.Drawing.Point(813, 14);
+            this.layoutTuyen.Location = new System.Drawing.Point(715, 14);
             this.layoutTuyen.Margin = new System.Windows.Forms.Padding(18, 14, 3, 3);
             this.layoutTuyen.Name = "layoutTuyen";
             this.layoutTuyen.Size = new System.Drawing.Size(102, 27);
@@ -310,7 +359,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.flowLayoutPanel1.Controls.Add(this.tbSearch);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(535, 14);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(437, 14);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 14, 6, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(254, 30);
@@ -631,24 +680,24 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.tableData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableData.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tableData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableData.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tableData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tableData.DefaultCellStyle = dataGridViewCellStyle4;
             this.tableData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableData.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.tableData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1144,6 +1193,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             this.flowLayoutPanel3.PerformLayout();
             this.layoutThem.ResumeLayout(false);
             this.layoutThem.PerformLayout();
+            this.layoutSua.ResumeLayout(false);
+            this.layoutSua.PerformLayout();
             this.layoutXoa.ResumeLayout(false);
             this.layoutXoa.PerformLayout();
             this.layoutTuyen.ResumeLayout(false);
@@ -1233,5 +1284,8 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private System.Windows.Forms.Label txtChuyenNganhLb;
         private System.Windows.Forms.Label label4;
         private Label label6;
+        private FlowLayoutPanel layoutSua;
+        private Button button4;
+        private Label label9;
     }
 }

@@ -268,6 +268,70 @@ namespace Quan_Ly_Nhan_Su.DAO
                 }
             }
         }
+        public bool UpdateCandidateWithProfile(CandidateFullDTO cand)
+        {
+            using (var conn = connectDB.getConnection())
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {        
+                        var updateProfileCmd = new MySqlCommand(@"
+                        UPDATE hosocanhan 
+                        SET hoTen = @hoTen, 
+                            gioiTinh = @gioiTinh, 
+                            ngaySinh = @ngaySinh, 
+                            diaChi = @diaChi, 
+                            email = @email, 
+                            sdt = @sdt, 
+                            noiCap = @noiCap, 
+                            ngayCap = @ngayCap, 
+                            tinhTrangHonNhan = @tinhTrangHonNhan, 
+                            danToc = @danToc, 
+                            hocVan = @hocVan, 
+                            chuyenNganh = @chuyenNganh, 
+                            anh = @anh
+                        WHERE soCmnd = @soCmnd", conn, transaction); 
+
+                        updateProfileCmd.Parameters.AddWithValue("@hoTen", cand.HoTen);
+                        updateProfileCmd.Parameters.AddWithValue("@gioiTinh", cand.GioiTinh);
+                        updateProfileCmd.Parameters.AddWithValue("@ngaySinh", cand.NgaySinh);
+                        updateProfileCmd.Parameters.AddWithValue("@diaChi", (object)cand.DiaChi ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@email", (object)cand.Email ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@sdt", (object)cand.SoDienThoai ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@noiCap", (object)cand.NoiCap ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@ngayCap", cand.NgayCap);
+                        updateProfileCmd.Parameters.AddWithValue("@tinhTrangHonNhan", (object)cand.HonNhan ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@danToc", (object)cand.DanToc ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@hocVan", (object)cand.TrinhDoHocVan ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@chuyenNganh", (object)cand.ChuyenNganh ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@anh", (object)cand.HinhAnh ?? DBNull.Value);
+                        updateProfileCmd.Parameters.AddWithValue("@soCmnd", cand.SoCmnd);
+                        updateProfileCmd.ExecuteNonQuery();
+                    
+                        var updateCandidateCmd = new MySqlCommand(@"
+                        UPDATE ungvien 
+                        SET mucLuongDeal = @mucLuongDeal
+                        WHERE maUngVien = @maUngVien", conn, transaction);
+
+                        updateCandidateCmd.Parameters.AddWithValue("@mucLuongDeal", (object)cand.MucLuongDeal ?? DBNull.Value);
+                        updateCandidateCmd.Parameters.AddWithValue("@maUngVien", cand.MaUngVien);
+
+                        updateCandidateCmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine($"Lỗi khi cập nhật hồ sơ & ứng viên: {ex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
 
         public List<CandidateFullDTO> Search(string keyWord)
         {

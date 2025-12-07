@@ -29,8 +29,13 @@ namespace Quan_Ly_Nhan_Su.BLL
             return null;
         }
 
-        public bool DeleteCadidateWithProfile(string soCccd, string maUngVien)
+        public bool DeleteCadidateWithProfile(string soCccd, string maUngVien, string trangThai)
         {
+            if(trangThai.Equals("Đã Tuyển"))
+            {
+                MessageBox.Show("Không thể xóa vì ứng viên này đã được tuyển", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             if (_dao.DeleteCandidateWithProfile(soCccd, maUngVien))
             {
                 return true;
@@ -47,6 +52,20 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
 
             if (_dao.CreateCandidateWithProfile(perDTO, cadiDto))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool UpdateCandidateWithProfile(CandidateFullDTO candidateFullDTO)
+        {
+            if (candidateFullDTO.TrangThai.Equals("Đã Tuyển"))
+            {
+                MessageBox.Show("Không thể sửa vì ứng viên này đã được tuyển", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_dao.UpdateCandidateWithProfile(candidateFullDTO))
             {
                 return true;
             }

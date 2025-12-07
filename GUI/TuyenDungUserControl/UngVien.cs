@@ -43,7 +43,10 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             bool canDelete = SessionManager.Instance.CanDelete(FunctionNames.UNG_VIEN);
             layoutXoa.Visible = canDelete;
             layoutTuyen.Visible = canCreate;
+            bool canUpdate = SessionManager.Instance.CanUpdate(FunctionNames.UNG_VIEN);
+            layoutSua.Visible = canUpdate;
         }
+
         private void dataTable_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             tableData.ClearSelection();
@@ -61,12 +64,33 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormThemUngVien themUngVienForm = new FormThemUngVien();
+            CandidateFullDTO candidate = new CandidateFullDTO();
+            FormThemUngVien themUngVienForm = new FormThemUngVien(candidate, "Them");
+            themUngVienForm.TitleLB.Text = "Thêm Ứng Viên";
             themUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Lưu thành công!"); 
             themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
             themUngVienForm.ShowDialog();
         }
-  
+
+        private void button4_Click(object sender, EventArgs e)
+        {         
+         
+            if (tableData.CurrentRow == null || tableData.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maUngVien = tableData.CurrentRow.Cells["MaUngVien"].Value?.ToString();
+            CandidateFullDTO candidate =  busFullData.GetById(maUngVien);
+        
+            FormThemUngVien themUngVienForm = new FormThemUngVien(candidate, "Sua");
+            themUngVienForm.TitleLB.Text = "Sửa Ứng Viên";
+            themUngVienForm.luuThongTinForm += (s, ev) => luuThanhcong(s, ev, "Sửa thành công!");
+            themUngVienForm.StartPosition = FormStartPosition.CenterScreen;
+            themUngVienForm.ShowDialog();
+        }
+
         private void fillDataToTable(List<CandidateFullDTO> list)
         {
             tableData.DataSource = null;
@@ -200,6 +224,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             string maUngVien = selectedRow.Cells["MaUngVien"].Value.ToString();
             string soCccd = selectedRow.Cells["SoCmnd"].Value.ToString();
             string maTuyenDung = selectedRow.Cells["MaTuyenDung"].Value.ToString();
+            string trangThai = selectedRow.Cells["TrangThai"].Value.ToString();
             DialogResult result = MessageBox.Show(
                 $"Bạn có chắc muốn xóa ứng viên '{maUngVien}' không?",
                 "Xác nhận xóa",
@@ -209,7 +234,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 
             if (result == DialogResult.Yes)
             {
-                bool isDeleted = busFullData.DeleteCadidateWithProfile(soCccd, maUngVien);
+                bool isDeleted = busFullData.DeleteCadidateWithProfile(soCccd, maUngVien, trangThai);
                 if (isDeleted)
                 {
                     if(busBatch.UpdateProfileDelete(maTuyenDung))
@@ -316,5 +341,7 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 tuyenUngVienForm.ShowDialog();
             }
         }
+
+      
     }
 }
