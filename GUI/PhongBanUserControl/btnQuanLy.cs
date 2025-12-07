@@ -99,16 +99,10 @@ namespace Quan_Ly_Nhan_Su.GUI
                 var NgayThanhLap = pb.NgayThanhLap;
                 var tenQuanLy = pb.MaTruongPhong != null ? listNVFull.FirstOrDefault(nv => nv.MaNhanVien == pb.MaTruongPhong)?.HoTen : "Chưa có";
                 var soNV = phongBanCount.ContainsKey(pb.MaPhong) ? phongBanCount[pb.MaPhong] : 0;
-                var maNhanVienList = listNV?
-                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim().Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase))
-                    .Select(c => c.MaNhanVien.ToString());
-                var SLL = salaryFull.GetAllSalaryFull()
-                   .Where(s => maNhanVienList.Any(mnv =>
-                   !string.IsNullOrEmpty(mnv) &&
-                   !string.IsNullOrEmpty(s.MaNhanVien) &&
-                   mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
-                   .ToList();
-                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) : 0;
+                var NhanVienList = listNV?
+                    .Where(c => c != null && c.MaPhong != null && c.MaPhong.Trim()
+                    .Equals(pb.MaPhong.Trim(), StringComparison.OrdinalIgnoreCase));
+                var avgLuong = NhanVienList.Any() ? NhanVienList.Average(s => (double)s.MucLuong) : 0;
                 tbPB.Rows.Add(stt,
                     tenPB,
                     NgayThanhLap != null ? NgayThanhLap.Value.ToString("dd/MM/yyyy") : "chưa có",

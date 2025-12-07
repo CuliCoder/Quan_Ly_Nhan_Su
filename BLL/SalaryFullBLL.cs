@@ -52,7 +52,7 @@ namespace Quan_Ly_Nhan_Su.BLL
             }
             else
             {
-                return (salary.LuongCoBan - tongGioBatBuoc * tongGioLam)
+                return (salary.LuongCoBan / tongGioBatBuoc * tongGioLam)
                     + salary.TongPhuCap
                     - salary.TongKhoanTru
                     + salary.LuongCoBan * salary.TongThuong / 100m;

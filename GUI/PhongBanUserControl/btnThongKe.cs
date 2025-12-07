@@ -78,13 +78,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                     mnv.ToString().Trim().Equals(e.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
                     .ToList();
                 var countNV = listEmployee.Count();
-                var SLL = salaryFull.GetAllSalaryFull()
-                    .Where(s => maNhanVienList.Any(mnv =>
-                    !string.IsNullOrEmpty(mnv) &&
-                    !string.IsNullOrEmpty(s.MaNhanVien) &&
-                    mnv.ToString().Trim().Equals(s.MaNhanVien.ToString().Trim(), StringComparison.OrdinalIgnoreCase)))
-                    .ToList();
-                var avgLuong = SLL.Any() ? SLL.Average(s => (double)s.LuongThucLanh) / 1000000 : 0;
+                var avgLuong = listEmployee.Any() ? listEmployee.Average(e => (double)e.MucLuong) / 1000000 : 0;
                 nhanVienTheoNam[year] = new Tuple<int, double>(countNV, avgLuong);
             }
             foreach (var kvp in nhanVienTheoNam)
