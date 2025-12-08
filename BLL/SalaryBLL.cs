@@ -32,5 +32,10 @@ namespace Quan_Ly_Nhan_Su.BLL
         {
             return dao.Search(tuKhoa);
         }
+
+        public SalaryDTO GetSalaryByEmployeeId(string maNhanVien)
+        {
+            return dao.GetByEmployeeId(maNhanVien);
+        }
     }
 }

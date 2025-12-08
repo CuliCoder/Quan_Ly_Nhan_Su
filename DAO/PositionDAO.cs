@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Quan_Ly_Nhan_Su.DTO;
@@ -252,37 +252,42 @@ namespace Quan_Ly_Nhan_Su.DAO
 
         public PositionDTO GetPosition(string Id)
         {
+            PositionDTO dto = new PositionDTO();
+
             using (var conn = connectDB.getConnection())
             {
-              try
+                try
                 {
-                  conn.Open();
-                  string query = "SELECT * FROM chucvu WHERE id = @maChucVu";
-                  using (var command = new MySqlCommand(query, conn))
+                    conn.Open();
+                    string query = "SELECT * FROM chucvu WHERE id = @maChucVu";
+
+                    using (var command = new MySqlCommand(query, conn))
                     {
-                      command.Parameters.AddWithValue("@maChucVu", Id);
-                      using (var reader = command.ExecuteReader())
-                      {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@maChucVu", Id);
+                        using (var reader = command.ExecuteReader())
                         {
-                          return new PositionDTO
-                        {
-                            MaChucVu = reader["maChucVu"].ToString(),
-                            TenChucVu = reader["tenChucVu"].ToString(),
-                            PhuCapChucVu = reader["phuCapChucVu"] != DBNull.Value ? Convert.ToDecimal(reader["phuCapChucVu"])  : 0m,
-                            NgayNhanChuc = reader["ngayNhanChuc"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["ngayNhanChuc"]) : null
-                        };
+                            if (reader.Read())
+                            {
+                                dto.MaChucVu = reader["maChucVu"]?.ToString();
+                                dto.TenChucVu = reader["tenChucVu"]?.ToString();
+                                dto.PhuCapChucVu = reader["phuCapChucVu"] != DBNull.Value
+                                                    ? Convert.ToDecimal(reader["phuCapChucVu"])
+                                                    : 0m;
+                                dto.NgayNhanChuc = reader["ngayNhanChuc"] != DBNull.Value
+                                                    ? Convert.ToDateTime(reader["ngayNhanChuc"])
+                                                    : (DateTime?)null;
+                            }
+                        }
                     }
                 }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
+                }
             }
+
+            return dto;
         }
-        catch (MySqlException ex)
-        {
-            Console.WriteLine($"Error getting employee by account ID: {ex.Message}");
-        }
-    }
-    return null;
-}
         public List<PositionDTO> GetAllPositions()
         {
             var list = new List<PositionDTO>();
