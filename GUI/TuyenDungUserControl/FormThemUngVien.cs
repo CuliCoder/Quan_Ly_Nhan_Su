@@ -1,11 +1,13 @@
-﻿using Quan_Ly_Nhan_Su.BLL;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DAO;
 using Quan_Ly_Nhan_Su.DTO;
+using Quan_Ly_Nhan_Su.GUI;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Quan_Ly_Nhan_Su.GUI;
 
 namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
 {
@@ -16,21 +18,39 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private readonly CandidateFullBLL busFullCadi;
         private readonly RecruitmentBatchBLL busBatch;
         private readonly ErrorProvider errorProvider;
-
-        public FormThemUngVien()
+        private readonly CandidateFullDTO candidateFullDTO;
+        private string HanhDong;
+        public FormThemUngVien(CandidateFullDTO candidateFull, string hanhDong)
         {
             InitializeComponent();
-
+            
+            HanhDong = hanhDong;
             busFullCadi = new CandidateFullBLL();
             busBatch = new RecruitmentBatchBLL();
+            candidateFullDTO = new CandidateFullDTO();
+
+            fillDataToCombobox();
+
+            if (candidateFullDTO != null && hanhDong.Equals("Sua")) {
+                candidateFullDTO = candidateFull;
+                fillDataToTextBox(candidateFullDTO);
+                maUngVienTb.Enabled = false;
+                maTuyenDungCbb.Enabled = false;
+                cccdTb.Enabled = false;
+            }
+
             errorProvider = new ErrorProvider
             {
                 BlinkStyle = ErrorBlinkStyle.NeverBlink
             };
 
-            fillDataToCombobox();
+        
         }
-
+        public Label TitleLB
+        {
+           get { return titleLb; }
+           set { titleLb = value; }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -41,7 +61,6 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
         private void fillDataToCombobox()
         {
             maTuyenDungCbb.DataSource = busBatch.GetAll();
-            
             maTuyenDungCbb.DisplayMember = "MaTuyenDung";
             maTuyenDungCbb.ValueMember = "MaTuyenDung";
             maTuyenDungCbb.SelectedIndex = -1;
@@ -158,6 +177,67 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             return true;
         }
 
+        private void fillDataToTextBox(CandidateFullDTO cad)
+        {    
+            maTuyenDungCbb.SelectedValue = cad.MaTuyenDung;
+            maUngVienTb.Text = cad.MaUngVien;
+            cccdTb.Text = cad.SoCmnd;
+            hoTenTb.Text = cad.HoTen;
+            ngaySinhDate.Value = cad.NgaySinh;
+            if(cad.GioiTinh.Equals("Nam"))
+                namBt.Checked = true;
+            else if(cad.GioiTinh.Equals("Nữ"))
+                nuBt.Checked = true;
+
+    
+            if (!string.IsNullOrEmpty(cad.DiaChi))
+            {
+                string[] diaChiParts = cad.DiaChi.Split(',');
+                if (diaChiParts.Length == 4)
+                {
+                    duongTb.Text = diaChiParts[0];
+                    phxaTb.Text = diaChiParts[1];
+                    qhTb.Text = diaChiParts[2];
+                    tTpTb.Text = diaChiParts[3];
+                }
+            }
+            
+            emailTb.Text = cad.Email;
+            soDienThoaiTb.Text = cad.SoDienThoai;
+            noiCapTb.Text = cad.NoiCap;
+            ngayCapDate.Value = cad.NgayCap;
+            danTocTb.Text = cad.DanToc;
+            hocVanTb.Text = cad.TrinhDoHocVan;
+            honNhanTb.Text = cad.HonNhan;
+            chuyenNganhTb.Text = cad.ChuyenNganh;
+            mucLuongTb.Text = cad.MucLuongDeal?.ToString() ?? "";
+            txtPath.Text = cad.HinhAnh ?? "";
+            try
+            {
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, cad.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(cad.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    showHinh.Image = Image.FromFile(finalPath);
+                else
+                    showHinh.Image = null;
+            }
+            catch (Exception ex)
+            {
+                showHinh.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
+            }
+
+        }
         public CandidateDTO LayDuLieuUngVien()
         {   
             
@@ -208,10 +288,17 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
             };
         }
 
+
         private void button3_Click(object sender, EventArgs e)
         {
-            if(kiemTraThognTin())
+            if(!kiemTraThognTin())
             {
+                return;
+            }          
+            
+            if(HanhDong.Equals("Them"))
+            {
+
                 PersonalProfileDTO personalProfile = LayDuLieuHoSoCaNhan();
                 CandidateDTO candidate = LayDuLieuUngVien();
 
@@ -219,9 +306,51 @@ namespace Quan_Ly_Nhan_Su.GUI.TuyenDungUserControl
                 {
                     busBatch.UpdateProfileCreate(candidate.MaTuyenDung);
                     luuThongTinForm?.Invoke(this, EventArgs.Empty);
-                    this.Close();
+                    Close();
                 }
-            }              
+            }
+            else if(HanhDong.Equals("Sua"))
+            {
+                string diaChi = $"{duongTb.Text.Trim()}, {phxaTb.Text.Trim()}, {qhTb.Text.Trim()}, {tTpTb.Text.Trim()}";
+                string gioiTinh = "";
+                if (namBt.Checked)
+                    gioiTinh = "Nam";
+                else if (nuBt.Checked)
+                    gioiTinh = "Nữ";
+
+                CandidateFullDTO updatedCandidateFull = new CandidateFullDTO
+                {
+                    MaUngVien = maUngVienTb.Text.Trim(),
+                    SoCmnd = cccdTb.Text.Trim(),
+                    HoTen = hoTenTb.Text.Trim(),
+                    NgaySinh = ngaySinhDate.Value,
+                    GioiTinh = gioiTinh,
+                    DiaChi = diaChi,
+                    Email = emailTb.Text.Trim(),
+                    SoDienThoai = soDienThoaiTb.Text.Trim(),
+                    NoiCap = noiCapTb.Text.Trim(),
+                    NgayCap = ngayCapDate.Value,
+                    DanToc = danTocTb.Text.Trim(),
+                    TrinhDoHocVan = hocVanTb.Text.Trim(),
+                    HonNhan = honNhanTb.Text.Trim(),
+                    ChuyenNganh = chuyenNganhTb.Text.Trim(),                 
+                    HinhAnh = !string.IsNullOrEmpty(txtPath.Text) ? txtPath.Text.Trim() : "",
+                    MucLuongDeal = decimal.Parse(mucLuongTb.Text),              
+                    MaTuyenDung = candidateFullDTO.MaTuyenDung,
+                    ChucVu = candidateFullDTO.ChucVu,
+                    TrangThai = candidateFullDTO.TrangThai
+                };
+
+                if (busFullCadi.UpdateCandidateWithProfile(updatedCandidateFull))
+                {
+                    MessageBox.Show("Cập nhật thông tin ứng viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    luuThongTinForm?.Invoke(this, EventArgs.Empty);
+                    Close();
+                }else
+                {
+                    MessageBox.Show("Cập nhật thông tin ứng viên thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
 

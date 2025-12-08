@@ -14,19 +14,32 @@ namespace Quan_Ly_Nhan_Su
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // AUTOMATICALLY CREATE DEV ACCOUNT IF IT DOESN'T EXIST
-            // ===========================================
-            AccountBLL accountBLL = new AccountBLL();
-            //AccountBLL.EnsureDevAccountExists();
-            // ===========================================
+            while (true)
+            {
+                // 1. Hiện form login
+                using (var login = new Login())
+                {
+                    if (login.ShowDialog() != DialogResult.OK)
+                    {
+                        // Người dùng nhấn Cancel → Thoát ứng dụng
+                        return;
+                    }
+                }
 
-            Login loginForm = new Login();
-            DialogResult result = loginForm.ShowDialog();
+                // 2. Nếu login thành công → chạy mainGUI
+                using (var main = new mainGUI())
+                {
+                    var result = main.ShowDialog();
 
-            //if (result == DialogResult.OK)
-            //{
-            //    Console.WriteLine("i love information technology");
-            //}
+                    if (result != DialogResult.Retry)
+                    {
+                        // Không yêu cầu đăng nhập lại → Thoát app
+                        return;
+                    }
+                }
+
+                // 3. Nếu mainGUI trả về Retry → quay lại vòng lặp → mở login lần nữa
+            }
         }
     }
 }

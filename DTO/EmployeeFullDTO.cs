@@ -26,6 +26,7 @@ namespace Quan_Ly_Nhan_Su.DTO
         public decimal MucLuong { get; set; }
         public string DiaChi { get; set; } // Thêm thuộc tính DiaChi
         public string HinhAnh { get; set; } // Thêm thuộc tính HinhAnh (path ảnh avatar)
+        
        
 
         public override string ToString()

@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class ProfileStaffGUI : UserControl
     {
-        private readonly AttendanceBLL attendanceBLL = new AttendanceBLL();
-        private readonly EmployeeFullBLL employeeFullBLL = new EmployeeFullBLL();
-        private readonly PersonalProfileBLL profileBLL = new PersonalProfileBLL();
+        private readonly AttendanceBLL attendanceBLL;
+        private readonly EmployeeFullBLL employeeFullBLL;
+        private readonly PersonalProfileBLL profileBLL;
 
         private EmployeeFullDTO currentEmployeeFull;
         private PersonalProfileDTO currentProfile;
@@ -19,9 +20,12 @@ namespace Quan_Ly_Nhan_Su.GUI
         public ProfileStaffGUI()
         {
             InitializeComponent();
-
+            attendanceBLL = new AttendanceBLL();
+            employeeFullBLL = new EmployeeFullBLL();
+            profileBLL = new PersonalProfileBLL();
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
             ImproveDesign();
-
             // Gắn sự kiện
             this.Load += ProfileStaffGUI_Load;
             button1.Click += Button1_Click; // Nút thay ảnh

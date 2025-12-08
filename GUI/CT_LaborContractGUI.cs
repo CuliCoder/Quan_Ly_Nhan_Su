@@ -28,9 +28,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             LoadContractDetails();
         }
 
-        private readonly string avatarFolderPath = @"C:\Quan_Ly_Nhan_Su\Images\Avatars"; // Đường dẫn thư mục ảnh
-        private readonly string defaultAvatar = "no-avatar.jpg"; // Ảnh mặc định, chép file này vào thư mục
-
         private void LoadContractDetails()
         {
             try
@@ -56,32 +53,8 @@ namespace Quan_Ly_Nhan_Su.GUI
 
                     CalculateContractDuration(contract);
 
-                    Console.WriteLine($"GUI Debug: HinhAnh={contract.HinhAnh ?? "null"}");
-
-                    string imageName = !string.IsNullOrEmpty(contract.HinhAnh) ? contract.HinhAnh : defaultAvatar;
-                    string fullPath = Path.Combine(avatarFolderPath, imageName);
-                    Console.WriteLine($"GUI Debug: Full path={fullPath}, Exists={File.Exists(fullPath)}");
-
-                    if (File.Exists(fullPath))
-                    {
-                        pictureBoxAvatar.Image = Image.FromFile(fullPath);
-                        pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Không tìm thấy file: {fullPath}. Dùng ảnh mặc định nếu có.");
-                        fullPath = Path.Combine(avatarFolderPath, defaultAvatar);
-                        if (File.Exists(fullPath))
-                        {
-                            pictureBoxAvatar.Image = Image.FromFile(fullPath);
-                            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                        }
-                        else
-                        {
-                            pictureBoxAvatar.Image = null;
-                            Console.WriteLine("GUI Debug: Default avatar not found");
-                        }
-                    }
+                    // Load ảnh avatar
+                    LoadAvatar(contract.HinhAnh);
                 }
                 else
                 {
@@ -92,6 +65,109 @@ namespace Quan_Ly_Nhan_Su.GUI
             {
                 MessageBox.Show($"Lỗi: {ex.Message}");
                 Console.WriteLine($"GUI Error: {ex.Message}");
+            }
+        }
+
+        private void LoadAvatar(string imagePath)
+        {
+            try
+            {
+                // Lấy đường dẫn project root
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string defaultAvatar = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                Console.WriteLine($"GUI Debug: Project path: {projectPath}");
+                Console.WriteLine($"GUI Debug: Image path from DB: {imagePath}");
+
+                // Kiểm tra nếu imagePath không rỗng
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    string fullPath = "";
+
+                    // Nếu là relative path, combine với project path
+                    if (!Path.IsPathRooted(imagePath))
+                    {
+                        fullPath = Path.Combine(projectPath, imagePath);
+                    }
+                    else
+                    {
+                        fullPath = imagePath;
+                    }
+
+                    Console.WriteLine($"GUI Debug: Trying to load image from: {fullPath}");
+
+                    // Kiểm tra file tồn tại
+                    if (File.Exists(fullPath))
+                    {
+                        pictureBoxAvatar.Image = Image.FromFile(fullPath);
+                        pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                        Console.WriteLine("GUI Debug: Image loaded successfully");
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"GUI Debug: Image file not found at: {fullPath}");
+                        
+                        // Thử tìm với tên thư mục khác (Avatar vs Avatars)
+                        string alternativePath = imagePath.Replace("\\Avatar\\", "\\Avatars\\").Replace("/Avatar/", "/Avatars/");
+                        if (alternativePath != imagePath)
+                        {
+                            string altFullPath = Path.Combine(projectPath, alternativePath);
+                            Console.WriteLine($"GUI Debug: Trying alternative path: {altFullPath}");
+                            
+                            if (File.Exists(altFullPath))
+                            {
+                                pictureBoxAvatar.Image = Image.FromFile(altFullPath);
+                                pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                                Console.WriteLine("GUI Debug: Image loaded from alternative path");
+                                return;
+                            }
+                        }
+
+                        // Thử tìm file theo tên trong cả 2 thư mục
+                        string fileName = Path.GetFileName(imagePath);
+                        if (!string.IsNullOrEmpty(fileName))
+                        {
+                            string[] possiblePaths = new string[]
+                            {
+                                Path.Combine(projectPath, "Images", "Avatar", fileName),
+                                Path.Combine(projectPath, "Images", "Avatars", fileName)
+                            };
+
+                            foreach (string possiblePath in possiblePaths)
+                            {
+                                Console.WriteLine($"GUI Debug: Checking possible path: {possiblePath}");
+                                if (File.Exists(possiblePath))
+                                {
+                                    pictureBoxAvatar.Image = Image.FromFile(possiblePath);
+                                    pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                                    Console.WriteLine($"GUI Debug: Image found at: {possiblePath}");
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Nếu không tìm thấy ảnh, dùng ảnh mặc định
+                Console.WriteLine($"GUI Debug: Loading default avatar from: {defaultAvatar}");
+                if (File.Exists(defaultAvatar))
+                {
+                    pictureBoxAvatar.Image = Image.FromFile(defaultAvatar);
+                    pictureBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                    Console.WriteLine("GUI Debug: Default avatar loaded");
+                }
+                else
+                {
+                    pictureBoxAvatar.Image = null;
+                    Console.WriteLine($"GUI Debug: Default avatar not found at: {defaultAvatar}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"GUI Error loading avatar: {ex.Message}");
+                Console.WriteLine($"GUI Stack trace: {ex.StackTrace}");
+                pictureBoxAvatar.Image = null;
             }
         }
 

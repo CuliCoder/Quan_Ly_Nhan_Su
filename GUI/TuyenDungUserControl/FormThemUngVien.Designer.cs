@@ -32,7 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.titleLb = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel11 = new System.Windows.Forms.FlowLayoutPanel();
             this.danTocTb = new System.Windows.Forms.TextBox();
@@ -159,7 +159,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.titleLb);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -181,20 +181,20 @@
             this.label1.TabIndex = 0;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // titleLb
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label2.Location = new System.Drawing.Point(55, 3);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.MaximumSize = new System.Drawing.Size(107, 40);
-            this.label2.MinimumSize = new System.Drawing.Size(107, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 40);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Thêm ứng viên";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titleLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titleLb.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLb.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.titleLb.Location = new System.Drawing.Point(55, 3);
+            this.titleLb.Margin = new System.Windows.Forms.Padding(3);
+            this.titleLb.MaximumSize = new System.Drawing.Size(110, 40);
+            this.titleLb.MinimumSize = new System.Drawing.Size(110, 40);
+            this.titleLb.Name = "titleLb";
+            this.titleLb.Size = new System.Drawing.Size(110, 40);
+            this.titleLb.TabIndex = 0;
+            this.titleLb.Text = "Thêm ứng viên";
+            this.titleLb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
             // 
@@ -1128,7 +1128,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label titleLb;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel23;
         private System.Windows.Forms.TextBox phxaTb;

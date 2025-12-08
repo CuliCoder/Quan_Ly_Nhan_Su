@@ -88,7 +88,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                 lblPhuCapKhac.Text = $"Phụ cấp khác: {FmtVND(salary.TongPhuCap)}";
 
                 // Khoản trừ
-                lblTruBH.Text = $"Khấu trừ BH: {FmtVND(0)}";
+                lblTruBH.Text = $"Khấu trừ đi trễ: {FmtVND(0)}";
                 lblTruKhac.Text = $"Khấu trừ khác: {FmtVND(salary.TongKhoanTru)}";
                 lblThue.Text = $"Thuế TNCN: {FmtVND(0)}";
 

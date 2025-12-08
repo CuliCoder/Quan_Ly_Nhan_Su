@@ -79,7 +79,9 @@
       <HintPath>packages\MySql.Data.EntityFramework.9.5.0\lib\net462\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -141,6 +143,7 @@
     <Compile Include="BLL\EvaluationDetailBLL.cs" />
     <Compile Include="BLL\EvaluationFullBLL.cs" />
     <Compile Include="BLL\PermissionManager.cs" />
+    <Compile Include="BLL\SalaryIncreaseBLL.cs" />
     <Compile Include="BLL\SessionManager.cs" />
     <Compile Include="Constants\FunctionNames.cs" />
     <Compile Include="BLL\BonusBLL.cs" />
@@ -152,6 +155,7 @@
     <Compile Include="DAO\BonusDAO.cs" />
     <Compile Include="DAO\Models\RecruitmentBatchEntity.cs" />
     <Compile Include="DAO\SalaryFullDAO.cs" />
+    <Compile Include="DAO\SalaryIncreaseDAO.cs" />
     <Compile Include="DTO\AccountViewModel.cs" />
     <Compile Include="BLL\CandidateBLL.cs" />
     <Compile Include="BLL\CandidateFullBLL.cs" />
@@ -187,6 +191,7 @@
     <Compile Include="DTO\EvaluationDetailDTO.cs" />
     <Compile Include="DTO\EvaluationFullDTO.cs" />
     <Compile Include="DTO\SalaryFullDTO.cs" />
+    <Compile Include="DTO\SalaryIncreaseDTO.cs" />
     <Compile Include="GUI\AuthControl\Login.cs">
       <SubType>Form</SubType>
     </Compile>

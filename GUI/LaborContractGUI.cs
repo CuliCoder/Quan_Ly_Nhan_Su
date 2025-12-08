@@ -24,6 +24,16 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             InitializeComponent();
 
+            // Cấu hình TabControl để vẽ custom
+            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl.DrawItem += TabControl_DrawItem;
+            tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
+
+            // Cấu hình style cho TabControl
+            tabControl.SizeMode = TabSizeMode.Fixed;
+            tabControl.ItemSize = new Size(200, 40);
+            tabControl.Padding = new Point(20, 8);
+
             // Thêm cột DenNgay nếu chưa có
             if (dataGridView1.Columns["DenNgay"] == null)
             {
@@ -35,9 +45,92 @@ namespace Quan_Ly_Nhan_Su.GUI
             LoadDataToGrid();
 
             // Gắn sự kiện cho nút tìm kiếm và textbox
-            this.buttonSearch.Click += buttonSearch_Click;
             this.textBoxSearch.KeyDown += textBoxSearch_KeyDown;
         }
+
+        // Custom vẽ TabControl với màu sắc đẹp
+        private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabCtrl = (TabControl)sender;
+            TabPage tabPage = tabCtrl.TabPages[e.Index];
+            Rectangle tabRect = tabCtrl.GetTabRect(e.Index);
+
+            // Màu nền và chữ tùy theo trạng thái
+            Color backColor;
+            Color textColor;
+            Font textFont;
+
+            if (e.Index == tabCtrl.SelectedIndex)
+            {
+                // Tab đang được chọn - Màu xanh dương đậm
+                backColor = Color.FromArgb(41, 128, 185);
+                textColor = Color.White;
+                textFont = new Font(tabCtrl.Font.FontFamily, tabCtrl.Font.Size, FontStyle.Bold);
+                
+                // Vẽ viền dưới nổi bật
+                using (Pen borderPen = new Pen(Color.FromArgb(52, 152, 219), 4))
+                {
+                    e.Graphics.DrawLine(borderPen, 
+                        tabRect.Left, tabRect.Bottom - 2,
+                        tabRect.Right, tabRect.Bottom - 2);
+                }
+            }
+            else
+            {
+                // Tab không được chọn - Màu xanh nhạt
+                backColor = Color.FromArgb(236, 240, 241);
+                textColor = Color.FromArgb(52, 73, 94);
+                textFont = new Font(tabCtrl.Font.FontFamily, tabCtrl.Font.Size, FontStyle.Regular);
+            }
+
+            // Vẽ nền tab với gradient
+            using (SolidBrush backBrush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(backBrush, tabRect);
+            }
+
+            // Vẽ viền mỏng xung quanh
+            using (Pen borderPen = new Pen(Color.FromArgb(189, 195, 199), 1))
+            {
+                e.Graphics.DrawRectangle(borderPen, tabRect);
+            }
+
+            // Vẽ text ở giữa tab
+            StringFormat stringFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            using (SolidBrush textBrush = new SolidBrush(textColor))
+            {
+                e.Graphics.DrawString(tabPage.Text, textFont, textBrush, tabRect, stringFormat);
+            }
+
+            textFont.Dispose();
+        }
+
+        // Sự kiện khi chuyển tab
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Hiệu ứng chuyển đổi mượt mà
+            tabControl.Refresh();
+            
+            // Có thể thêm logic reload data tùy theo tab
+            switch (tabControl.SelectedIndex)
+            {
+                case 0: // Tab "HỢP ĐỒNG"
+                    // Reload dữ liệu hợp đồng nếu cần
+                    break;
+                case 1: // Tab "KÍ HỢP ĐỒNG"
+                    LoadDataToGrid();
+                    break;
+                case 2: // Tab "THỐNG KÊ"
+                    // Reload thống kê nếu cần
+                    break;
+            }
+        }
+
         private void LoadDataToGrid()
         {
             List<LaborContractDTO> list = _bll.GetAllContracts();
@@ -134,24 +227,32 @@ namespace Quan_Ly_Nhan_Su.GUI
             return sb.ToString().Normalize(System.Text.NormalizationForm.FormC);
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformSearch(textBoxSearch.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                PerformSearch(textBoxSearch.Text);
+                string searchText = textBoxSearch.Text == "Tìm kiếm nhân viên..." ? "" : textBoxSearch.Text;
+                PerformSearch(searchText);
+            }
+        }
+
+        // Placeholder cho textbox search
+        private void textBoxSearch_Enter(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text == "Tìm kiếm nhân viên...")
+            {
+                textBoxSearch.Text = "";
+                textBoxSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxSearch_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxSearch.Text))
+            {
+                textBoxSearch.Text = "Tìm kiếm nhân viên...";
+                textBoxSearch.ForeColor = Color.Gray;
             }
         }
 
@@ -447,13 +548,19 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             try
             {
-                // Some Designer buttons may be named button1 (magnifier). Forward to PerformSearch.
-                PerformSearch(textBoxSearch.Text);
+                // Button search icon - Forward to PerformSearch
+                string searchText = textBoxSearch.Text == "Tìm kiếm nhân viên..." ? "" : textBoxSearch.Text;
+                PerformSearch(searchText);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void labelpb_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

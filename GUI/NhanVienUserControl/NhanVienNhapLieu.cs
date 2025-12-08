@@ -10,28 +10,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 {
     public partial class NhanVienNhapLieu : UserControl
     {
         public event EventHandler QuayLaiClicked;
-        private readonly DepartmentBLL department;
         private readonly EmployeeBLL employee;
         private readonly PositionBLL positionBLL;
         public event EventHandler suKienLuu;
         private readonly ErrorProvider errorProvider;
-        public NhanVienNhapLieu()
+        private EmployeeFullDTO employeeFullDTO;
+        private string HanhDong;
+        public NhanVienNhapLieu(EmployeeFullDTO employeeFul, string hanhDong)
         {
             InitializeComponent();
-            department = new DepartmentBLL();
             employee = new EmployeeBLL();
             positionBLL = new PositionBLL();
+            employeeFullDTO = new EmployeeFullDTO();
+            HanhDong = hanhDong;
             errorProvider = new ErrorProvider 
             {
                 BlinkStyle = ErrorBlinkStyle.NeverBlink
             };
             loadDataToCombobox();
+            ClearForm();
+            if (employeeFul != null && hanhDong.Equals("Sua"))
+            {
+                employeeFullDTO = employeeFul;
+                fillDataToTextBox(employeeFullDTO);
+                cccdTb.Enabled = false;     
+                mucLuongTb.Enabled = false;
+            }          
+        }
+        public Label TitleLB
+        {
+            get => titleLb;
+            set => titleLb = value;
         }
 
         private void loadDataToCombobox()
@@ -52,19 +68,22 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
 
         public void ClearForm()
         {
-            hoTenTb.Text = "";
-            cccdTb.Text = "";
+            if(!HanhDong.Equals("Sua"))
+            {
+                mucLuongTb.Text = "";
+                cccdTb.Text = "";
+            }
+            hoTenTb.Text = "";       
             namBt.Checked = false;
             nuBt.Checked = false;
             emailTb.Text = "";
             soDienThoaiTb.Text = "";
             danTocTb.Text = "";
-            tonGiaoTb.Text = "";
             noiCapTb.Text = "";
             hocVanTb.Text = "";
             chuyenNganhTb.Text = "";
             honNhanTb.Text = "";
-            mucLuongTb.Text = "";
+            chucvuCbb.SelectedIndex = -1;
 
             duongTb.Text = "";
             phxaTb.Text = "";
@@ -131,10 +150,6 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             {
                 errorProvider.SetError(tTpTb, "");
             }
-
-            //Ton giao
-            if (!GUIValidator.NotEmpty(tonGiaoTb, "Tôn giáo không được để trống!", errorProvider))
-                return false;
 
             //danTocTb 
             if(!GUIValidator.NotEmpty(danTocTb, "Dân tộc không được để trống!", errorProvider))
@@ -248,35 +263,134 @@ namespace Quan_Ly_Nhan_Su.GUI.NhanVienUserControl
             };
         }
 
+        private void fillDataToTextBox(EmployeeFullDTO emp)
+        {
+            cccdTb.Text = emp.SoCmnd;
+            hoTenTb.Text = emp.HoTen;
+            if (emp.GioiTinh.Equals("Nam"))
+                namBt.Checked = true;
+            else
+                nuBt.Checked = true;
+            ngaySinhDate.Value = emp.NgaySinh ?? DateTime.Today;
+   
+            if(!string.IsNullOrEmpty(emp.DiaChi))
+            {
+                string[] addressParts = emp.DiaChi.Split(',');
+                if (addressParts.Length >= 4)
+                {
+                    duongTb.Text = addressParts[0].Trim();
+                    phxaTb.Text = addressParts[1].Trim();
+                    TpTb.Text = addressParts[2].Trim();
+                    tTpTb.Text = addressParts[3].Trim();
+                }
+            }
+            emailTb.Text = emp.Email;
+            soDienThoaiTb.Text = emp.Sdt;
+            noiCapTb.Text = emp.NoiCap;
+            ngayCapDate.Value = emp.NgayCap ?? DateTime.Today;  
+            danTocTb.Text = emp.DanToc;
+            honNhanTb.Text = emp.TinhTranHonNhan;
+            hocVanTb.Text = emp.HocVan;
+            chuyenNganhTb.Text = emp.ChuyenNganh;
+            mucLuongTb.Text = emp.MucLuong.ToString();
+            chucvuCbb.SelectedValue = emp.MaChucVu;
+            //Hình ảnh
+            try
+            {
+                string projectPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\"));
+                string imagePath = Path.Combine(projectPath, emp.HinhAnh ?? "");
+                string defaultImagePath = Path.Combine(projectPath, @"GUI\assets\img\images.png");
+
+                string finalPath = "";
+
+                if (!string.IsNullOrEmpty(emp.HinhAnh) && File.Exists(imagePath))
+                    finalPath = imagePath;
+                else if (File.Exists(defaultImagePath))
+                    finalPath = defaultImagePath;
+                else
+                    finalPath = "";
+                if (!string.IsNullOrEmpty(finalPath))
+                    showHinh.Image = Image.FromFile(finalPath);
+                else
+                    showHinh.Image = null;
+            }
+            catch (Exception ex)
+            {
+                showHinh.Image = null;
+                MessageBox.Show("Lỗi tải ảnh: " + ex.Message);
+            }
+        }
+
         private void btnLuu_Click_1(object sender, EventArgs e)
         {
             //validate inputs
             if (!ValidateInputs())
                 return;
-
             //Hồ sơ cá nhân
             PersonalProfileDTO personalProfileDTO = LayDuLieuHoSoCaNhan();
+         
 
-            //nhân viên
-            EmployeeDTO employeeDTO = new EmployeeDTO(
-                null,
-                cccdTb.Text,
-                chucvuCbb.SelectedValue.ToString(),
-                null, // mã tài khoản sẽ được gán sau 
-                null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
-                Convert.ToDecimal(mucLuongTb.Text)
-            );
+            if (HanhDong.Equals("Them"))
+            {          
+                //nhân viên
+                EmployeeDTO employeeDTO = new EmployeeDTO(
+                    null,
+                    cccdTb.Text,
+                    chucvuCbb.SelectedValue.ToString(),
+                    null, // mã tài khoản sẽ được gán sau
+                    null, //mã phòng ban sẽ được tạo sau khi tạo hợp đồng
+                    Convert.ToDecimal(mucLuongTb.Text)
+                );
+                bool insertSuccess = employee.InsertNoCandiDate(employeeDTO, personalProfileDTO);
+                if (insertSuccess)
+                {
+                    MessageBox.Show("Lưu thành công");
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Lưu thất bại!");
+                }
+            }
+            else if (HanhDong.Equals("Sua"))
+            {
+                EmployeeFullDTO employeeFullDTOUpdate = new EmployeeFullDTO
+                {
+                    MaNhanVien = employeeFullDTO.MaNhanVien,
+                    HoTen = hoTenTb.Text.Trim(),
+                    NgaySinh = ngaySinhDate.Value,
+                    GioiTinh = namBt.Checked ? "Nam" : "Nữ",
+                    Email = emailTb.Text.Trim(),
+                    Sdt = soDienThoaiTb.Text.Trim(),
+                    SoCmnd = cccdTb.Text.Trim(),
+                    NoiCap = noiCapTb.Text.Trim(),
+                    NgayCap = ngayCapDate.Value,
+                    DanToc = danTocTb.Text.Trim(),
+                    TinhTranHonNhan = honNhanTb.Text.Trim(),
+                    HocVan = hocVanTb.Text.Trim(),
+                    ChuyenNganh = chuyenNganhTb.Text.Trim(),
+                    MaChucVu = chucvuCbb.SelectedValue.ToString(),
+                    MucLuong = Convert.ToDecimal(mucLuongTb.Text),
+                    DiaChi = $"{duongTb.Text.Trim()}, {phxaTb.Text.Trim()}, {TpTb.Text.Trim()}, {tTpTb.Text.Trim()}",
+                    HinhAnh = txtPath.Text.Trim() != null ? txtPath.Text.Trim() : "",
+                };
 
-            bool insertSuccess = employee.InsertNoCandiDate(employeeDTO, personalProfileDTO);
-            if (insertSuccess)
-            {
-                MessageBox.Show("Lưu thành công");
-                ClearForm();
-            }
-            else
-            {
-                MessageBox.Show("Lưu thất bại!");
-            }
+                bool insertSuccess = employee.UpdateNoCandiDate(employeeFullDTOUpdate);
+                if (insertSuccess)
+                {
+                    MessageBox.Show("Cập nhật thành công");
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại!");
+                }
+            }    
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClearForm();
         }
     }
 }
