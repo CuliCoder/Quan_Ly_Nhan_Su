@@ -41,8 +41,8 @@ namespace Quan_Ly_Nhan_Su.GUI
             CheckLoginStatus();
             designForm();
             RegisterLogoutEvent();
-            addUserControl(homePage);
-            pnlbTrangChu.BackColor = ColorTranslator.FromHtml("#5DC2A7");
+            addUserControl(profileStaffGUI);
+            pnlbQLTTCN.BackColor = ColorTranslator.FromHtml("#5DC2A7");
             addPanelToList();
             addEventToPanel();
             attendanceGUI.getDanhSachNhanVienGUI().EmployeeSelected += ChamCongGUI_EmployeeSelected;
@@ -52,8 +52,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             ConfigureMenuByPermission();
             this.panel6.ResumeLayout();
         }
-
-
         // ===== KIỂM TRA TRẠNG THÁI ĐĂNG NHẬP =====
         private void CheckLoginStatus()
         {
@@ -459,7 +457,6 @@ namespace Quan_Ly_Nhan_Su.GUI
                 }
             }
         }
-
 
         private void mainGUI_Load(object sender, EventArgs e)
         {
