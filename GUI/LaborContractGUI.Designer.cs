@@ -20,15 +20,15 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageHopDong = new System.Windows.Forms.TabPage();
+            this.contractGUI = new Quan_Ly_Nhan_Su.GUI.ContractGUI();
             this.tabPageKiHopDong = new System.Windows.Forms.TabPage();
             this.panelMain = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -72,10 +72,9 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.labelKetThuc = new System.Windows.Forms.Label();
             this.labelBatDau = new System.Windows.Forms.Label();
             this.tabPageThongKe = new System.Windows.Forms.TabPage();
+            this.statisticsGUI1 = new Quan_Ly_Nhan_Su.GUI.StatisticsGUI();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            this.contractGUI = new Quan_Ly_Nhan_Su.GUI.ContractGUI();
-            this.statisticsGUI1 = new Quan_Ly_Nhan_Su.GUI.StatisticsGUI();
             this.tabControl.SuspendLayout();
             this.tabPageHopDong.SuspendLayout();
             this.tabPageKiHopDong.SuspendLayout();
@@ -93,35 +92,47 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.tabControl.Controls.Add(this.tabPageKiHopDong);
             this.tabControl.Controls.Add(this.tabPageThongKe);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.tabControl.ItemSize = new System.Drawing.Size(120, 25);
+            this.tabControl.ItemSize = new System.Drawing.Size(200, 40);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl.Name = "tabControl";
+            this.tabControl.Padding = new System.Drawing.Point(20, 8);
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1957, 1405);
+            this.tabControl.Size = new System.Drawing.Size(1631, 1171);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             // 
             // tabPageHopDong
             // 
             this.tabPageHopDong.Controls.Add(this.contractGUI);
-            this.tabPageHopDong.Location = new System.Drawing.Point(4, 29);
+            this.tabPageHopDong.Location = new System.Drawing.Point(4, 44);
             this.tabPageHopDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageHopDong.Name = "tabPageHopDong";
-            this.tabPageHopDong.Size = new System.Drawing.Size(1949, 1372);
+            this.tabPageHopDong.Size = new System.Drawing.Size(1623, 1123);
             this.tabPageHopDong.TabIndex = 0;
             this.tabPageHopDong.Text = "HỢP ĐỒNG";
             this.tabPageHopDong.UseVisualStyleBackColor = true;
+            // 
+            // contractGUI
+            // 
+            this.contractGUI.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contractGUI.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.contractGUI.Location = new System.Drawing.Point(-7, 0);
+            this.contractGUI.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.contractGUI.Name = "contractGUI";
+            this.contractGUI.Size = new System.Drawing.Size(1622, 1125);
+            this.contractGUI.TabIndex = 0;
             // 
             // tabPageKiHopDong
             // 
             this.tabPageKiHopDong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(191)))), ((int)(((byte)(255)))));
             this.tabPageKiHopDong.Controls.Add(this.panelMain);
-            this.tabPageKiHopDong.Location = new System.Drawing.Point(4, 29);
+            this.tabPageKiHopDong.Location = new System.Drawing.Point(4, 44);
             this.tabPageKiHopDong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageKiHopDong.Name = "tabPageKiHopDong";
-            this.tabPageKiHopDong.Size = new System.Drawing.Size(1949, 1372);
+            this.tabPageKiHopDong.Size = new System.Drawing.Size(1623, 1123);
             this.tabPageKiHopDong.TabIndex = 1;
             this.tabPageKiHopDong.Text = "KÍ HỢP ĐỒNG";
             // 
@@ -130,7 +141,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panelMain.BackColor = System.Drawing.Color.White;
             this.panelMain.Controls.Add(this.button1);
             this.panelMain.Controls.Add(this.textBoxSearch);
-            this.panelMain.Controls.Add(this.buttonSearch);
             this.panelMain.Controls.Add(this.dateTimePickerFrom);
             this.panelMain.Controls.Add(this.dateTimePickerTo);
             this.panelMain.Controls.Add(this.dataGridView1);
@@ -141,91 +151,100 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1949, 1372);
+            this.panelMain.Size = new System.Drawing.Size(1623, 1123);
             this.panelMain.TabIndex = 1;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Quan_Ly_Nhan_Su.Properties.Resources._211817_search_strong_icon1;
-            this.button1.Location = new System.Drawing.Point(850, 31);
+            this.button1.Location = new System.Drawing.Point(990, 21);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 41);
+            this.button1.Size = new System.Drawing.Size(60, 50);
             this.button1.TabIndex = 13;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.textBoxSearch.Location = new System.Drawing.Point(506, 31);
+            this.textBoxSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.textBoxSearch.ForeColor = System.Drawing.Color.Gray;
+            this.textBoxSearch.Location = new System.Drawing.Point(674, 28);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(337, 34);
+            this.textBoxSearch.Size = new System.Drawing.Size(310, 37);
             this.textBoxSearch.TabIndex = 12;
+            this.textBoxSearch.Text = "Tìm kiếm nhân viên...";
+            this.textBoxSearch.Enter += new System.EventHandler(this.textBoxSearch_Enter);
             this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(703, 40);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(84, 29);
-            this.buttonSearch.TabIndex = 1;
+            this.textBoxSearch.Leave += new System.EventHandler(this.textBoxSearch_Leave);
             // 
             // dateTimePickerFrom
             // 
+            this.dateTimePickerFrom.CalendarFont = new System.Drawing.Font("Segoe UI", 10F);
             this.dateTimePickerFrom.Checked = false;
-            this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(27, 35);
+            this.dateTimePickerFrom.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerFrom.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(8, 32);
             this.dateTimePickerFrom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(295, 42);
+            this.dateTimePickerFrom.ShowCheckBox = true;
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 37);
             this.dateTimePickerFrom.TabIndex = 10;
             this.dateTimePickerFrom.ValueChanged += new System.EventHandler(this.dateTimePickerFrom_ValueChanged);
             // 
             // dateTimePickerTo
             // 
+            this.dateTimePickerTo.CalendarFont = new System.Drawing.Font("Segoe UI", 10F);
             this.dateTimePickerTo.Checked = false;
-            this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerTo.Location = new System.Drawing.Point(251, 35);
+            this.dateTimePickerTo.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerTo.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerTo.Location = new System.Drawing.Point(227, 32);
             this.dateTimePickerTo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.Size = new System.Drawing.Size(337, 42);
+            this.dateTimePickerTo.ShowCheckBox = true;
+            this.dateTimePickerTo.Size = new System.Drawing.Size(200, 37);
             this.dateTimePickerTo.TabIndex = 11;
             this.dateTimePickerTo.ValueChanged += new System.EventHandler(this.dateTimePickerTo_ValueChanged);
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.ColumnHeadersHeight = 45;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
             this.Nhanvien,
             this.phongban,
             this.thuviectu});
-            this.dataGridView1.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 84);
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(195)))), ((int)(((byte)(199)))));
+            this.dataGridView1.Location = new System.Drawing.Point(3, 75);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 35;
+            this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1081, 876);
+            this.dataGridView1.Size = new System.Drawing.Size(1081, 885);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -262,7 +281,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(418, 35);
+            this.label1.Size = new System.Drawing.Size(315, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "Danh sách nhân viên thử việc";
             // 
@@ -630,13 +649,25 @@ namespace Quan_Ly_Nhan_Su.GUI
             // 
             this.tabPageThongKe.AutoScroll = true;
             this.tabPageThongKe.Controls.Add(this.statisticsGUI1);
-            this.tabPageThongKe.Location = new System.Drawing.Point(4, 29);
+            this.tabPageThongKe.Location = new System.Drawing.Point(4, 44);
             this.tabPageThongKe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageThongKe.Name = "tabPageThongKe";
-            this.tabPageThongKe.Size = new System.Drawing.Size(2339, 1646);
+            this.tabPageThongKe.Size = new System.Drawing.Size(1949, 1357);
             this.tabPageThongKe.TabIndex = 2;
             this.tabPageThongKe.Text = "THỐNG KÊ";
             this.tabPageThongKe.UseVisualStyleBackColor = true;
+            // 
+            // statisticsGUI1
+            // 
+            this.statisticsGUI1.AutoScroll = true;
+            this.statisticsGUI1.AutoSize = true;
+            this.statisticsGUI1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.statisticsGUI1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.statisticsGUI1.Location = new System.Drawing.Point(-4, 0);
+            this.statisticsGUI1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.statisticsGUI1.Name = "statisticsGUI1";
+            this.statisticsGUI1.Size = new System.Drawing.Size(1631, 1108);
+            this.statisticsGUI1.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
@@ -650,28 +681,6 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.mySqlCommand1.Connection = null;
             this.mySqlCommand1.EnableCaching = false;
             this.mySqlCommand1.Transaction = null;
-            // 
-            // contractGUI
-            // 
-            this.contractGUI.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.contractGUI.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.contractGUI.Location = new System.Drawing.Point(-7, 0);
-            this.contractGUI.Margin = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.contractGUI.Name = "contractGUI";
-            this.contractGUI.Size = new System.Drawing.Size(1622, 1125);
-            this.contractGUI.TabIndex = 0;
-            // 
-            // statisticsGUI1
-            // 
-            this.statisticsGUI1.AutoScroll = true;
-            this.statisticsGUI1.AutoSize = true;
-            this.statisticsGUI1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.statisticsGUI1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.statisticsGUI1.Location = new System.Drawing.Point(-4, 0);
-            this.statisticsGUI1.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.statisticsGUI1.Name = "statisticsGUI1";
-            this.statisticsGUI1.Size = new System.Drawing.Size(1631, 1108);
-            this.statisticsGUI1.TabIndex = 0;
             // 
             // LaborContractGUI
             // 
@@ -748,9 +757,8 @@ namespace Quan_Ly_Nhan_Su.GUI
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Button button1;
         private TabPage tabPageThongKe;
         private StatisticsGUI statisticsGUI1;
-        private Button button1;
     }
 }
