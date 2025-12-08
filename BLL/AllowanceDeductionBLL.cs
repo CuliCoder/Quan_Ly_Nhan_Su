@@ -13,6 +13,14 @@ namespace Quan_Ly_Nhan_Su.BLL
             return dao.GetAll();
         }
 
+        /// <summary>
+        /// Lấy phụ cấp/khoản trừ theo nhân viên và tháng/năm
+        /// </summary>
+        public List<AllowanceDeductionDTO> GetByEmployeeAndMonth(string maNhanVien, int thang, int nam)
+        {
+            return dao.GetByEmployeeAndMonth(maNhanVien, thang, nam);
+        }
+
         public bool Insert(AllowanceDeductionDTO phuCapKhoanTru)
         {
             return dao.Insert(phuCapKhoanTru);

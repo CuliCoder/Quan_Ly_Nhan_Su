@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Quan_Ly_Nhan_Su.GUI
@@ -12,18 +13,23 @@ namespace Quan_Ly_Nhan_Su.GUI
     {
         private readonly SalaryFullBLL _salaryFullBLL = new SalaryFullBLL();
         private readonly EmployeeFullBLL _employeeBLL = new EmployeeFullBLL();
+        private readonly AllowanceDeductionBLL _allowanceDeductionBLL = new AllowanceDeductionBLL();
         private readonly string _maNhanVien;
+        private readonly int _thang;
+        private readonly int _nam;
 
         // Dùng khi in
         private Bitmap _captureBmp;
 
         /// <summary>
-        /// Truyền mã nhân viên đang xem phiếu lương (ví dụ: "NV001")
+        /// Truyền mã nhân viên, tháng và năm để xem phiếu lương
         /// </summary>
-        public BillFormGUI(string maNhanVien)
+        public BillFormGUI(string maNhanVien, int thang, int nam)
         {
             InitializeComponent();
-            _maNhanVien = maNhanVien; // không thao tác layout ở đây để Designer mở an toàn
+            _maNhanVien = maNhanVien;
+            _thang = thang;
+            _nam = nam;
 
             // Gắn sự kiện load và in
             this.Load += BillFormGUI_Load;
@@ -33,7 +39,7 @@ namespace Quan_Ly_Nhan_Su.GUI
         /// <summary>
         /// (Tuỳ chọn) Constructor không tham số, tiện test Designer.
         /// </summary>
-        public BillFormGUI() : this(null)
+        public BillFormGUI() : this(null, DateTime.Now.Month, DateTime.Now.Year)
         {
         }
 
@@ -56,15 +62,15 @@ namespace Quan_Ly_Nhan_Su.GUI
         {
             if (string.IsNullOrWhiteSpace(_maNhanVien))
             {
-                // Nếu không có mã, chỉ giữ giao diện mẫu
+                MessageBox.Show("Mã nhân viên rỗng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int thang = DateTime.Now.Month;
-            int nam = DateTime.Now.Year;
-
-            SalaryFullDTO salary = _salaryFullBLL.GetSalaryFull(_maNhanVien, thang, nam);
+            SalaryFullDTO salary = _salaryFullBLL.GetSalaryFull(_maNhanVien, _thang, _nam);
             var employee = _employeeBLL.GetEmployeeById(_maNhanVien);
+            
+            // LẤY PHỤ CẤP VÀ KHOẢN TRỪ CHI TIẾT
+            var allowancesDeductions = _allowanceDeductionBLL.GetByEmployeeAndMonth(_maNhanVien, _thang, _nam);
 
             if (salary == null && employee == null)
             {
@@ -80,19 +86,39 @@ namespace Quan_Ly_Nhan_Su.GUI
 
             if (salary != null)
             {
+                // TÍNH TOÁN CHI TIẾT PHỤ CẤP VÀ KHOẢN TRỪ
+                decimal phuCapChucVu = allowancesDeductions
+                    .Where(x => x.Loai == "PhuCap" && x.MoTa.Contains("chức vụ"))
+                    .Sum(x => x.SoTien);
+
+                decimal phuCapKhac = allowancesDeductions
+                    .Where(x => x.Loai == "PhuCap" && !x.MoTa.Contains("chức vụ"))
+                    .Sum(x => x.SoTien);
+
+                decimal thue = allowancesDeductions
+                    .Where(x => x.Loai == "KhoanTru" && x.MoTa.Contains("Thuế"))
+                    .Sum(x => x.SoTien);
+
+                decimal truDiTre = allowancesDeductions
+                    .Where(x => x.Loai == "KhoanTru" && x.MoTa.Contains("trễ"))
+                    .Sum(x => x.SoTien);
+
+                decimal khoanTruKhac = allowancesDeductions
+                    .Where(x => x.Loai == "KhoanTru" && !x.MoTa.Contains("Thuế") && !x.MoTa.Contains("trễ"))
+                    .Sum(x => x.SoTien);
+
                 // Thu nhập
                 lblLuongCoBan.Text = $"Lương cơ bản: {FmtVND(salary.LuongCoBan)}";
                 lblThuong.Text = $"Thưởng: {salary.TongThuong:N0} %";
-                // Hiện tổng phụ cấp vào phụ cấp khác (chi tiết nếu có thể tách thì cập nhật sau)
-                lblPhuCapCV.Text = $"Phụ cấp chức vụ: {FmtVND(0)}";
-                lblPhuCapKhac.Text = $"Phụ cấp khác: {FmtVND(salary.TongPhuCap)}";
+                lblPhuCapCV.Text = $"Phụ cấp chức vụ: {FmtVND(phuCapChucVu)}";
+                lblPhuCapKhac.Text = $"Phụ cấp khác: {FmtVND(phuCapKhac)}";
 
                 // Khoản trừ
-                lblTruBH.Text = $"Khấu trừ đi trễ: {FmtVND(0)}";
-                lblTruKhac.Text = $"Khấu trừ khác: {FmtVND(salary.TongKhoanTru)}";
-                lblThue.Text = $"Thuế TNCN: {FmtVND(0)}";
+                lblTruBH.Text = $"Khấu trừ đi trễ: {FmtVND(truDiTre)}";
+                lblTruKhac.Text = $"Khấu trừ khác: {FmtVND(khoanTruKhac)}";
+                lblThue.Text = $"Thuế TNCN: {FmtVND(thue)}";
 
-                // Thực lãnh
+                // SỬ DỤNG LƯƠNG THỰC LÃNH TỪ DATABASE (KHÔNG TÍNH LẠI)
                 lblThucLanh.Text = $"👉 Thực lãnh: {FmtVND(salary.LuongThucLanh)}";
 
                 // Ngày lập
@@ -257,6 +283,11 @@ namespace Quan_Ly_Nhan_Su.GUI
         private void lblTitle_Click(object sender, EventArgs e)
         {
             // Tuỳ chọn: mở dialog thông tin, hoặc không làm gì
+        }
+
+        private void lblPhuCapCV_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -165,5 +165,52 @@ namespace Quan_Ly_Nhan_Su.DAO
             }
             return list;
         }
+
+        /// <summary>
+        /// Lấy danh sách phụ cấp/khoản trừ theo mã nhân viên và tháng/năm
+        /// </summary>
+        public List<AllowanceDeductionDTO> GetByEmployeeAndMonth(string maNhanVien, int thang, int nam)
+        {
+            List<AllowanceDeductionDTO> list = new List<AllowanceDeductionDTO>();
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    string sql = @"SELECT * FROM phucapkhoantru 
+                                   WHERE MaNhanVien = @MaNhanVien 
+                                     AND ThangApDung = @Thang 
+                                     AND NamApDung = @Nam";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNhanVien", maNhanVien);
+                        cmd.Parameters.AddWithValue("@Thang", thang);
+                        cmd.Parameters.AddWithValue("@Nam", nam);
+                        
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(new AllowanceDeductionDTO
+                                {
+                                    MaPhuCapKhoanTru = Convert.ToInt32(reader["MaPhuCapKhoanTru"]),
+                                    MaNhanVien = reader["MaNhanVien"].ToString(),
+                                    Loai = reader["Loai"].ToString(),
+                                    MoTa = reader["MoTa"].ToString(),
+                                    SoTien = Convert.ToDecimal(reader["SoTien"]),
+                                    ThangApDung = Convert.ToInt32(reader["ThangApDung"]),
+                                    NamApDung = Convert.ToInt32(reader["NamApDung"])
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi lấy phụ cấp/khoản trừ: " + ex.Message);
+            }
+            return list;
+        }
     }
 }
