@@ -327,7 +327,7 @@ namespace Quan_Ly_Nhan_Su.GUI
             this.lblTruBH.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblTruBH.Size = new System.Drawing.Size(466, 18);
             this.lblTruBH.TabIndex = 0;
-            this.lblTruBH.Text = "Khấu trừ BH:";
+            this.lblTruBH.Text = "Khấu trừ đi trễ:";
             this.lblTruBH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTruKhac

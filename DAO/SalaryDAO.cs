@@ -194,5 +194,40 @@ namespace Quan_Ly_Nhan_Su.DAO
                 return null;
             }
         }
+
+        public SalaryDTO GetByEmployeeId(string maNhanVien)
+        {
+            if (string.IsNullOrWhiteSpace(maNhanVien)) return null;
+            try
+            {
+                using (conn = connectDB.getConnection())
+                {
+                    conn.Open();
+                    const string sql = "SELECT * FROM luong WHERE MaNhanVien = @MaNhanVien LIMIT 1";
+                    using (var cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaNhanVien", maNhanVien);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new SalaryDTO
+                                {
+                                    MaLuong = reader["MaLuong"].ToString(),
+                                    MaNhanVien = reader["MaNhanVien"]?.ToString(),
+                                    LuongCoBan = Convert.ToDecimal(reader["LuongCoBan"]),
+                                    LuongTheoGio = Convert.ToDecimal(reader["LuongTheoGio"])
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy lương theo mã nhân viên: " + ex.Message);
+            }
+            return null;
+        }
     }
 }
