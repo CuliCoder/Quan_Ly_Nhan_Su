@@ -153,6 +153,7 @@
     <Compile Include="DAO\EvaluationDetailDAO.cs" />
     <Compile Include="DAO\EvaluationFullDAO.cs" />
     <Compile Include="DAO\BonusDAO.cs" />
+    <Compile Include="DAO\Data\CreateNewTableDataBase.cs" />
     <Compile Include="DAO\Models\RecruitmentBatchEntity.cs" />
     <Compile Include="DAO\SalaryFullDAO.cs" />
     <Compile Include="DAO\SalaryIncreaseDAO.cs" />

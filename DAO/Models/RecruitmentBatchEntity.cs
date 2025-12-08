@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Quan_Ly_Nhan_Su.DAO.Models
 {
     [Table("dottuyendung")]
-    internal class RecruitmentBatchEntity
+    public class RecruitmentBatchEntity
     {
         [Key]
         [Column("maTuyenDung")]

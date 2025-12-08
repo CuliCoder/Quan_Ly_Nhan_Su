@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Quan_Ly_Nhan_Su.DAO.Models
 {
     [Table("ungvien")]
-    internal class CandidateEntity
+    public class CandidateEntity
     {
         [Key]
         [Column("maUngVien")]
@@ -32,7 +32,7 @@ namespace Quan_Ly_Nhan_Su.DAO.Models
         public virtual RecruitmentBatchEntity recruitmentBatch { get; set; }
 
         [Column("mucLuongDeal")]
-        public decimal? MucLuongDeal { get; set; } 
+        public decimal? MucLuongDeal { get; set; }
 
         [Column("chucVu")]
         [StringLength(100)]
