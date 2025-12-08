@@ -208,48 +208,5 @@ namespace Quan_Ly_Nhan_Su.GUI.ChamCongUserControl
             }
         }
 
-        // Mock data
-        private List<EmployeeFullDTO> MockEmployees()
-        {
-            return new List<EmployeeFullDTO>
-            {
-                new EmployeeFullDTO { MaNhanVien = "NV001", HoTen = "Nguyễn Văn A", Email="a@example.com", PhongBan="Kế toán", ChucVu="Nhân viên" },
-                new EmployeeFullDTO { MaNhanVien = "NV002", HoTen = "Trần Thị B", Email="b@example.com", PhongBan="Nhân sự", ChucVu="Chuyên viên" },
-                new EmployeeFullDTO { MaNhanVien = "NV003", HoTen = "Lê Văn C", Email="c@example.com", PhongBan="IT", ChucVu="Dev" },
-                new EmployeeFullDTO { MaNhanVien = "NV004", HoTen = "Phạm Thị D", Email="d@example.com", PhongBan="IT", ChucVu="Tester" }
-            };
-        }
-
-        private List<AttendanceDTO> MockAttendanceFor(string maNV, int month, int year)
-        {
-            var rnd = new Random(maNV.GetHashCode() + month * 77 + year * 13);
-            int daysInMonth = DateTime.DaysInMonth(year, month);
-            var list = new List<AttendanceDTO>();
-            int count = rnd.Next(4, 9);
-            var used = new HashSet<int>();
-            while (used.Count < count)
-            {
-                int d = rnd.Next(1, daysInMonth + 1);
-                var date = new DateTime(year, month, d);
-                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday) continue;
-                used.Add(d);
-            }
-            foreach (var d in used)
-            {
-                var ngay = new DateTime(year, month, d);
-                var checkIn = ngay.AddHours(8).AddMinutes(rnd.Next(0, 25));
-                var checkOut = ngay.AddHours(17).AddMinutes(rnd.Next(0, 15));
-                list.Add(new AttendanceDTO(
-                    $"{maNV}_{ngay:dd/MM/yyyy}",
-                    maNV,
-                    ngay,
-                    checkIn,
-                    checkOut,
-                    Math.Max(0, (int)(checkIn - ngay.AddHours(8)).TotalMinutes),
-                    Math.Max(0, (int)(ngay.AddHours(17) - checkOut).TotalMinutes),
-                    8f));
-            }
-            return list;
-        }
     }
 }
