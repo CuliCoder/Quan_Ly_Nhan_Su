@@ -436,12 +436,7 @@ namespace Quan_Ly_Nhan_Su.GUI
                     // Xóa session hiện tại
                     SessionManager.Instance.Logout();
 
-                    // Đóng form hiện tại
-                    this.Hide();
-
-                    // Mở lại form đăng nhập
-                    Login loginForm = new Login();
-                    loginForm.ShowDialog();
+                    this.DialogResult = DialogResult.Retry;
 
                     // Đóng hoàn toàn ứng dụng sau khi đóng form đăng nhập
                     this.Close();
