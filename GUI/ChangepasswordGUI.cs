@@ -1,20 +1,23 @@
-﻿using System;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.DTO;
+using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Quan_Ly_Nhan_Su.BLL;
-using Quan_Ly_Nhan_Su.DTO;
 
 namespace Quan_Ly_Nhan_Su.GUI
 {
     public partial class ChangepasswordGUI : UserControl
     {
-        private readonly AccountBLL accountBLL = new AccountBLL();
+        private readonly AccountBLL accountBLL;
 
         public ChangepasswordGUI()
         {
             InitializeComponent();
-
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime || this.DesignMode)
+                return;
+            accountBLL = new AccountBLL();
             // Gán sự kiện
             this.Load += ChangepasswordGUI_Load;
             // Thêm sự kiện Resize cho UserControl
