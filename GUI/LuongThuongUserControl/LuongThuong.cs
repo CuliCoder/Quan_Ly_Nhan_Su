@@ -1,4 +1,6 @@
-﻿using Quan_Ly_Nhan_Su.DTO;
+﻿using Quan_Ly_Nhan_Su.BLL;
+using Quan_Ly_Nhan_Su.Constants;
+using Quan_Ly_Nhan_Su.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Quan_Ly_Nhan_Su.BLL;
 
 namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
 {
@@ -44,7 +45,7 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
             AutoGenerateSalaryIncreaseOnStartup();
             LoadEmployeeComboBox();
             ShowDataToTable();
-
+            ApplyPermissions();
             this.btnTinhLuong.Click += BtnTinhLuong_Click;
 
             if (this.btnBackToMonthly != null)
@@ -65,6 +66,21 @@ namespace Quan_Ly_Nhan_Su.GUI.LuongThuongUserControl
 
                 // Note: Auto-generate call removed to avoid background thread code if not present
             }
+        }
+
+        private void ApplyPermissions()
+        {
+            bool canCreate = SessionManager.Instance.CanCreate(FunctionNames.LUONG);
+            btnThemThuong.Visible = canCreate;
+            btnKT.Visible = canCreate;
+            btnPC.Visible = canCreate;
+            bool canUpdate = SessionManager.Instance.CanUpdate(FunctionNames.LUONG);
+            btnCapNhatThuong.Visible = canUpdate;
+            btnCapNhatPC.Visible = canUpdate;
+            btnCapNhatKT.Visible = canUpdate;
+            btnDuyetTangLuong.Visible = canUpdate;
+
+
         }
 
         private async void AutoGenerateSalaryIncreaseOnStartup()
